@@ -4,6 +4,7 @@ class CarsController < ApplicationController
   # GET /cars or /cars.json
   def index
     @cars = Car.all
+    # @carses = Car.order(:title). page params[:page]
   end
 
   # GET /cars/1 or /cars/1.json

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :cars
+  resources :cars 
   get "welcome/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root 'cars#index'
+  # get '/page/:page', action: :index, on: :collection
 end
