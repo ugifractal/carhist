@@ -1,10 +1,10 @@
 class CarsController < ApplicationController
   before_action :set_car, only: %i[ show edit update destroy ]
+  
 
   # GET /cars or /cars.json
   def index
-    @cars = Car.all
-    # @carses = Car.order(:title). page params[:page]
+    @cars = Car.paginate(page: params[:page], per_page: 20)
   end
 
   # GET /cars/1 or /cars/1.json
