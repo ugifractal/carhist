@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :cars 
+  resources :cars, :car_brands
   get "welcome/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  # root "posts#index"
   root 'cars#index'
-  # get '/page/:page', action: :index, on: :collection
+  get 'car_brands/index'
 end

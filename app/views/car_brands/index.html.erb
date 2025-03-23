@@ -1,0 +1,22 @@
+<h2><%= link_to "Model", "/cars" %>
+&nbsp &nbsp
+<%= link_to "Brand", "/car_brands" %></h2>
+
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Car brands" %>
+
+<h1>Car brands</h1>
+
+<div id="car_brands">
+  <% @car_brands.each do |car_brand| %>
+    <%= render car_brand %>
+    <p><strong>Name Brand:</strong> <%= car_brand.name %></p>
+
+    <p>
+      <%= link_to "Show this car brand", car_brand %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New car brand", new_car_brand_path %>
