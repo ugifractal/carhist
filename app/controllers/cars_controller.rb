@@ -4,7 +4,7 @@ class CarsController < ApplicationController
 
   # GET /cars or /cars.json
   def index
-    @cars = Car.paginate(page: params[:page], per_page: 20)
+    @car = Car.paginate(page: params[:page], per_page: 20)
   end
 
   # GET /cars/1 or /cars/1.json
@@ -50,7 +50,8 @@ class CarsController < ApplicationController
 
   # DELETE /cars/1 or /cars/1.json
   def destroy
-    @car.destroy!
+    @car = Car.find(params[:id])
+        @car.destroy
 
     respond_to do |format|
       format.html { redirect_to cars_path, status: :see_other, notice: "Car was successfully destroyed." }

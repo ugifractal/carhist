@@ -9,24 +9,31 @@
 <h1>Cars</h1>
 
 <div id="cars">
-  <% @cars.each do |car| %>
-    <table style="width:11%">
-      <tr>
-        <td><p><strong>Brand:</strong> <%= car.brand %></td>
-      </tr>
-      <tr>
-        <td><p><strong>Model:</strong> <%= car.model %></td>
-      </tr>
-      <tr>
-        <td><p><strong>Year:</strong> <%= car.year %></td>
-      </tr>
-    </table>
-    
-    <p>
-      <%= link_to "Show this car", car %>
-    </p>
-    <hr>
-  <% end %>
+  <table border="1" width="50%" style="border-collapse: collapse;">
+            <tr>
+                <th>No  </th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Year</th>
+            </tr>    
+                    <%
+                    no=0
+                    @car.each_with_index do |car, index| %>
+                      <tr>
+                        <td><%= index + 1 + (@car.current_page-1)*5 %></td>
+                          <td><%= car.brand %></td>
+                          <td><%= car.model %></td>
+                          <td><%= car.year %></td>
+                          <td>
+                            <%= link_to "Edit", edit_car_path(@car.take ) %>
+                          </td>
+                          <td> 
+                            <%= button_to "Delete", @car.first  , method: :delete %>
+                          </td>                         
+                        </tr>
+                    <% end %>
+        </table>
+        
 </div>
 
 <%= link_to "New car", new_car_path %>
