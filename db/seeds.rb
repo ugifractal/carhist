@@ -7,3 +7,20 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+car_brands = [
+  "Chevrolet",
+  "Daihatsu",
+  "Ford",
+  "Honda",
+  "Jeep",
+  "Subaru",
+  "Suzuki",
+  "Toyota",
+  "Volkswagen"
+]
+
+car_brands.each do |brand|
+  CarBrand.find_or_create_by(name: brand)
+end
+
+puts "Seeding car_brands completed!"
