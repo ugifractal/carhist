@@ -22,5 +22,3 @@ car_brands = [
 car_brands.each do |brand|
   CarBrand.find_or_create_by(name: brand)
 end
-
-puts "Seeding car_brands completed!"

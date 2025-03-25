@@ -14,12 +14,10 @@
       <th>No</th>
       <th>Brand Name</th>
     </tr>
-      <%
-      no=0
-      @car_brand.each_with_index do |car_brand, index| %>
+      <% @car_brands.each_with_index do |car_brand, index| %>
         <tr>
           <td>
-            <%= index + 1 + (@car_brand.current_page-1)*5 %>
+            <%= index + 1 + (@car_brands.current_page-1)*5 %>
           </td>
           <td><%= car_brand.name %></td>
           <td>

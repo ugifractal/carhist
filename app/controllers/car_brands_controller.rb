@@ -3,7 +3,7 @@ class CarBrandsController < ApplicationController
 
   # GET /car_brands or /car_brands.json
   def index
-    @car_brand = CarBrand.paginate(page: params[:page], per_page: 20)
+    @car_brands = CarBrand.paginate(page: params[:page], per_page: 20)
   end
 
   # GET /car_brands/1 or /car_brands/1.json

@@ -15,11 +15,9 @@
                 <th>Model</th>
                 <th>Year</th>
             </tr>    
-                    <%
-                    no=0
-                    @car.each_with_index do |car, index| %>
+                    <% @cars.each_with_index do |car, index| %>
                       <tr>
-                        <td><%= index + 1 + (@car.current_page-1)*5 %></td>
+                        <td><%= index + 1 + (@cars.current_page-1)*5 %></td>
                           <td><%= car.model %></td>
                           <td><%= car.year %></td>
                           <td>
