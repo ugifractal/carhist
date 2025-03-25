@@ -50,7 +50,8 @@ class CarsController < ApplicationController
 
   # DELETE /cars/1 or /cars/1.json
   def destroy
-    @car.destroy!
+    @car = Car.find(params[:id])
+        @car.destroy
 
     respond_to do |format|
       format.html { redirect_to cars_path, status: :see_other, notice: "Car was successfully destroyed." }

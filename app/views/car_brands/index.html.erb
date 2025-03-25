@@ -9,18 +9,26 @@
 <h1>Car brands</h1>
 
 <div id="car_brands">
-  <% @car_brands.each do |car_brand| %>
-    <%= render car_brand %>
-    <table style="width:11%">
-      <tr>
-        <td><p><strong>Name Brand:</strong> <%= car_brand.name %></p></td>
-      </tr>
-    </table>
-
-    <p>
-      <%= link_to "Show this car brand", car_brand %>
-    </p>
-  <% end %>
+  <table border="1" width="30%" style="border-collapse: collapse;">
+    <tr>
+      <th>No</th>
+      <th>Brand Name</th>
+    </tr>
+      <% @car_brands.each_with_index do |car_brand, index| %>
+        <tr>
+          <td>
+            <%= index + 1 + (@car_brands.current_page-1)*5 %>
+          </td>
+          <td><%= car_brand.name %></td>
+          <td>
+            <%= link_to "Edit", edit_car_brand_path(car_brand) %>
+          </td>
+          <td> 
+            <%= button_to "Delete", car_brand  , method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+  </table>
 </div>
 
 <%= link_to "New car brand", new_car_brand_path %>
