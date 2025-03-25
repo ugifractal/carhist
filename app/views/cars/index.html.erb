@@ -9,10 +9,9 @@
 <h1>Cars</h1>
 
 <div id="cars">
-  <table border="1" width="50%" style="border-collapse: collapse;">
+  <table border="1" width="40%" style="border-collapse: collapse;">
             <tr>
                 <th>No  </th>
-                <th>Brand</th>
                 <th>Model</th>
                 <th>Year</th>
             </tr>    
@@ -21,14 +20,13 @@
                     @car.each_with_index do |car, index| %>
                       <tr>
                         <td><%= index + 1 + (@car.current_page-1)*5 %></td>
-                          <td><%= car.brand %></td>
                           <td><%= car.model %></td>
                           <td><%= car.year %></td>
                           <td>
-                            <%= link_to "Edit", edit_car_path(@car.take ) %>
+                            <%= link_to "Edit", edit_car_path(car) %>
                           </td>
                           <td> 
-                            <%= button_to "Delete", @car.first  , method: :delete %>
+                            <%= button_to "Delete", car  , method: :delete %>
                           </td>                         
                         </tr>
                     <% end %>
