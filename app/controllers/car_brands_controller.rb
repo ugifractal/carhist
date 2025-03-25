@@ -68,4 +68,3 @@ class CarBrandsController < ApplicationController
       params.expect(car_brand: [ :name ])
     end
 end
-
