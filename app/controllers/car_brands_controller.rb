@@ -13,6 +13,7 @@ class CarBrandsController < ApplicationController
   # GET /car_brands/new
   def new
     @car_brand = CarBrand.new
+
   end
 
   # GET /car_brands/1/edit
