@@ -27,15 +27,12 @@ class CarModelsController < ApplicationController
   # POST /cars or /cars.json
   def create
     @car_model = CarModel.new(car_model_params)
-
-    respond_to do |format|
-      if @car_model.save
-        format.html { redirect_to @car_model, notice: "Car was successfully created." }
-        format.json { render :show, status: :created, location: @car_model }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @car_model.errors, status: :unprocessable_entity }
-      end
+  
+    if @car_model.save
+      flash[:pesan] = "Data Berhasil Disimpan!"
+      redirect_to car_models_path
+    else
+      render :new
     end
   end
 
@@ -72,5 +69,9 @@ class CarModelsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def car_model_params
       params.expect(car_model: [ :brand, :model, :year, :created_at, :updated_at ])
+    end
+
+    def car_model_params
+      params.require(:car_model).permit(:car_brand_id, :model, :year)
     end
 end
