@@ -1,0 +1,39 @@
+<h2><%= link_to "Model", "/car_models" %>
+&nbsp &nbsp
+<%= link_to "Brand", "/car_brands" %></h2>
+
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Cars" %>
+
+<h1>Cars</h1>
+
+<div id="cars">
+  <table border="1" width="40%" style="border-collapse: collapse;">
+            <tr>
+                <th>No  </th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Year</th>
+            </tr>    
+                    <% @car_models.each_with_index do |car_model, index| %>
+                      <tr>
+                        <td><%= index + 1 + (@car_models.current_page-1)*5 %></td>
+                          <td><%= car_model.car_brand.name %></td>
+                          <td><%= car_model.model %></td>
+                          <td><%= car_model.year %></td>
+                          <td>
+                            <%= link_to "Edit", edit_car_model_path(car_model) %>
+                          </td>
+                          <td> 
+                            <%= button_to "Delete", car_model  , method: :delete %>
+                          </td>                         
+                        </tr>
+                    <% end %>
+        </table>
+        
+</div>
+
+<%= link_to "New car", new_car_model_path %>
+
+<%= will_paginate @car_model %>
