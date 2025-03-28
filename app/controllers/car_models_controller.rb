@@ -3,11 +3,6 @@ class CarModelsController < ApplicationController
 
   # GET /cars or /cars.json
   def index
-    if params[:brand_id].present?
-      @car_models = CarModel.where(car_brand_id: params[:brand_id])
-    else
-      @car_models = CarModel.all
-    end
     @car_models = CarModel.paginate(page: params[:page], per_page: 20)
   end
 
@@ -29,7 +24,7 @@ class CarModelsController < ApplicationController
     @car_model = CarModel.new(car_model_params)
   
     if @car_model.save
-      flash[:pesan] = "Data Berhasil Disimpan!"
+      flash[:notice] = "Car model has been created!"
       redirect_to car_models_path
     else
       render :new
@@ -51,8 +46,7 @@ class CarModelsController < ApplicationController
 
   # DELETE /cars/1 or /cars/1.json
   def destroy
-    @car_model = CarModel.find(params[:id])
-        @car_model.destroy
+    @car_model.destroy
 
     respond_to do |format|
       format.html { redirect_to car_models_path, status: :see_other, notice: "Car was successfully destroyed." }
@@ -63,14 +57,10 @@ class CarModelsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_car_model
-      @car_model = CarModel.find(params.expect(:id))
+      @car_model = CarModel.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def car_model_params
-      params.expect(car_model: [ :brand, :model, :year, :created_at, :updated_at ])
-    end
-
     def car_model_params
       params.require(:car_model).permit(:car_brand_id, :model, :year)
     end
