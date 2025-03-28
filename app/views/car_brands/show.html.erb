@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render "form", car_brand: @car_brand %>
+
+<div>
+  <%= link_to "Edit this car", edit_car_brand_path(@car_brand) %> |
+  <%= link_to "Back to cars", car_brands_path %>
+
+  <%= button_to "Destroy this car", @car_brand, method: :delete %>
+</div>
