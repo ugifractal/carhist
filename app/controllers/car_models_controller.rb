@@ -13,7 +13,7 @@ class CarModelsController < ApplicationController
   # GET /cars/new
   def new
     @car_model = CarModel.new
-  end
+end
 
   # GET /cars/1/edit
   def edit
@@ -22,7 +22,7 @@ class CarModelsController < ApplicationController
   # POST /cars or /cars.json
   def create
     @car_model = CarModel.new(car_model_params)
-  
+
     if @car_model.save
       flash[:notice] = "Car model has been created!"
       redirect_to car_models_path
