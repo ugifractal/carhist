@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :tasks
+  devise_for :users
   resources :car_models, :car_brands
   get "welcome/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -14,4 +16,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "car_models#index"
   get "car_brands/index"
+  get 'homepage', to: 'home#homepage'
+  get 'dashboard', to: 'home#dashboard'
 end
