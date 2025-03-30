@@ -14,10 +14,11 @@ class CarsTest < ApplicationSystemTestCase
     visit cars_url
     click_on "New car"
 
-    fill_in "Brand", with: @car.brand
+    fill_in "Car model", with: @car.car_model_id
     fill_in "Created at", with: @car.created_at
-    fill_in "Model", with: @car.model
-    fill_in "Updated at", with: @car.updated_at
+    fill_in "Name", with: @car.name
+    fill_in "Updated", with: @car.updated
+    fill_in "User", with: @car.user_id
     fill_in "Year", with: @car.year
     click_on "Create Car"
 
@@ -29,10 +30,11 @@ class CarsTest < ApplicationSystemTestCase
     visit car_url(@car)
     click_on "Edit this car", match: :first
 
-    fill_in "Brand", with: @car.brand
+    fill_in "Car model", with: @car.car_model_id
     fill_in "Created at", with: @car.created_at.to_s
-    fill_in "Model", with: @car.model
-    fill_in "Updated at", with: @car.updated_at.to_s
+    fill_in "Name", with: @car.name
+    fill_in "Updated", with: @car.updated.to_s
+    fill_in "User", with: @car.user_id
     fill_in "Year", with: @car.year
     click_on "Update Car"
 
