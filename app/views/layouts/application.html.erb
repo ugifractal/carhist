@@ -22,9 +22,10 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <%= current_user.id %>
-    <% end %>
+  <p class="alert"><%= alert %></p>
     <%= yield %>
+  <% if user_signed_in? %>
+    <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+  <% end %>
   </body>
 </html>
