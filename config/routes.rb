@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cars
   resources :tasks
   devise_for :users
   resources :car_models, :car_brands
@@ -16,6 +17,4 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "car_models#index"
   get "car_brands/index"
-  get 'homepage', to: 'home#homepage'
-  get 'dashboard', to: 'home#dashboard'
 end
