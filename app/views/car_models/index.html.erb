@@ -6,9 +6,23 @@
 
 <% content_for :title, "Cars" %>
 
-<h1>Cars</h1>
+<div style="border: 2px solid black; padding: 10px; margin-bottom: 10px; display: flex; align-items: center;">
+  <h1 style="color: black; margin: 0;">carhist</h1>
+  <% if user_signed_in? %>
+    <%= button_to "Logout", destroy_user_session_path, method: :delete, form: { style: "margin-left: 20px; margin-bottom: 0;" } %>
+  <% end %>
+</div>
+
+<div style="display: flex; gap: 10px;">
+  <div style="border: 2px solid black; padding: 10px; width: 6%;">
+    <h2 style="color: black;">my cars</h2>
+    <ul>
+      
+    </ul>
+  </div>
 
 <div id="cars">
+  <%= link_to "New car", new_car_model_path %>
   <table border="1" width="40%" style="border-collapse: collapse;">
             <tr>
                 <th>No  </th>
@@ -33,7 +47,5 @@
         </table>
         
 </div>
-
-<%= link_to "New car", new_car_model_path %>
 
 <%= will_paginate @car_model %>
