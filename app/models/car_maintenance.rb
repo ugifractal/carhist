@@ -1,0 +1,2 @@
+class CarMaintenance < ApplicationRecord
+end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :car_maintenances
   resources :cars
   resources :tasks
   devise_for :users
