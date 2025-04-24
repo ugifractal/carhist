@@ -16,6 +16,11 @@
           <div>
             <%= link_to('Models', admin_car_models_path, class: 'underline text-white') %>
           </div>
+          <div>
+            <% if user_signed_in? %>
+              <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+            <% end %>
+          </div>
         </div>
         <div class="w-full px-5 py-5">
           <%= yield %>

@@ -4,9 +4,6 @@
 
 <div style="border: 2px solid black; padding: 10px; margin-bottom: 10px; display: flex; align-items: center;">
   <h1 style="color: black; margin: 0;">carhist</h1>
-  <% if user_signed_in? %>
-    <%= button_to "Logout", destroy_user_session_path, method: :delete, form: { style: "margin-left: 20px; margin-bottom: 0;" } %>
-  <% end %>
 </div>
 
 <div id="cars">
