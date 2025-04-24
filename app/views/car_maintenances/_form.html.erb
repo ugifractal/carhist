@@ -1,4 +1,4 @@
-<%= form_with(model: car_maintenance, class: "contents") do |form| %>
+<%= form_with(model: [@car, @car_maintenance], class: "contents") do |form| %>
   <% if car_maintenance.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
       <h2><%= pluralize(car_maintenance.errors.count, "error") %> prohibited this car_maintenance from being saved:</h2>
@@ -11,7 +11,21 @@
     </div>
   <% end %>
 
-  <div class="inline">
+  <div class="mt-2">
+    <div>Maintence Type</div>
+    <div>
+      <%= form.select(:maintenance_type, [['Oil Change', 'oil_change'],['Other', 'other']], class: 'border w-80 h-80') %>
+    </div>
+  </div>
+
+  <div class="mt-2">
+    <div>Description</div>
+    <div>
+      <%= form.text_area(:description, class: 'border w-80 h-80') %>
+    </div>
+  </div>
+
+  <div class="mt-8">
     <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>

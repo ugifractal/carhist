@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
-  resources :car_maintenances
-  resources :cars
-  resources :tasks
   devise_for :users
-  resources :car_models, :car_brands
+
+  resources :cars do
+    resources :car_maintenances
+  end
+
+  namespace :admin do
+    resource :dashboards, only: %i[show]
+    resources :car_brands
+    resources :car_models
+  end
+
   get "welcome/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -16,6 +23,6 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "car_models#index"
-  get "car_brands/index"
+  get "/admin", to: "admin/dashboards#show"
+  root "cars#index"
 end
