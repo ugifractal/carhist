@@ -1,16 +1,22 @@
 <%= form_with(model: [:admin, @car_model]) do |form| %>
   <div>
-    <% brands = CarBrand.all.map { |b| [b.name, b.id] } %>
-    <%= form.label :car_brand_id, "Brand", style: "display: block" %>
-    <%= form.select :car_brand_id, options_for_select(brands, @car_model.car_brand_id), include_blank: "- Pilih Brand -" %>
+    <div class="mt-2">
+      <% brands = CarBrand.all.map { |b| [b.name, b.id] } %>
+      <%= form.label :car_brand_id, "Brand", style: "display: block" %>
+      <%= form.select :car_brand_id, options_for_select(brands, @car_model.car_brand_id), include_blank: "- Pilih Brand -", class: 'border' %>
+    </div>
 
-    <%= form.label :model, style: "display: block" %>
-    <%= form.text_field :model %>
+    <div class="mt-2">
+      <%= form.label :model, style: "display: block" %>
+      <%= form.text_field :model, class: 'border' %>
+    </div>
 
-    <%= form.label :year, style: "display: block" %>
-    <%= form.number_field :year %>
+    <div class="mt-2">
+      <%= form.label :year, style: "display: block" %>
+      <%= form.number_field :year, class: 'border' %>
+    </div>
 
     <br>
-    <button type="submit">Save</button>
+    <button type="submit" class="bg-red-700 text-white rounded px-3 py-2">Save</button>
   </div>
 <% end %>
