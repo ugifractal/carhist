@@ -1,7 +1,3 @@
-<h2><%= link_to "Model", "/car_models" %>
-&nbsp &nbsp
-<%= link_to "Brand", "/car_brands" %></h2>
-
 <p style="color: green"><%= notice %></p>
 
 <% content_for :title, "Car brands" %>
@@ -21,14 +17,16 @@
           </td>
           <td><%= car_brand.name %></td>
           <td>
-            <%= link_to "Edit", edit_car_brand_path(car_brand) %>
+            <%= link_to "Edit", edit_admin_car_brand_path(car_brand) %>
           </td>
-          <td> 
-            <%= button_to "Delete", car_brand  , method: :delete %>
+          <td>
+            <%= button_to "Delete", admin_car_brand_path(car_brand)  , method: :delete %>
           </td>
         </tr>
       <% end %>
   </table>
 </div>
 
-<%= link_to "New car brand", new_car_brand_path %>
+<div class="mt-4">
+  <%= link_to "New car brand", new_admin_car_brand_path, class: 'bg-red-800 text-white rounded px-3 py-2' %>
+</div>

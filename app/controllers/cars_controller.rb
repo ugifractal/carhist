@@ -1,9 +1,10 @@
 class CarsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_car, only: %i[ show edit update destroy ]
 
   # GET /cars or /cars.json
   def index
-    @cars = Car.all
+    @cars = current_user.cars
   end
 
   # GET /cars/1 or /cars/1.json
@@ -12,7 +13,7 @@ class CarsController < ApplicationController
 
   # GET /cars/new
   def new
-    @car = Car.new
+    @car = current_user.cars.new
   end
 
   # GET /cars/1/edit
@@ -21,7 +22,7 @@ class CarsController < ApplicationController
 
   # POST /cars or /cars.json
   def create
-    @car = Car.new(car_params)
+    @car = current_user.cars.new(car_params)
 
     respond_to do |format|
       if @car.save

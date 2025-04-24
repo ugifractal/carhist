@@ -12,36 +12,21 @@
   <% end %>
 
   <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div>
     <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: 'border' %>
   </div>
 
   <div>
     <%= form.label :year, style: "display: block" %>
-    <%= form.number_field :year %>
+    <%= form.select(:year, (1900..(Time.now.year)).map { |x| [x,x] }.reverse, class: 'border') %>
   </div>
 
   <div>
     <%= form.label :car_model_id, style: "display: block" %>
-    <%= form.number_field :car_model_id %>
+    <%= form.select :car_model_id, CarModel.all.map { |m| ["#{m.car_brand.name} #{m.model}", m.id] } %>
   </div>
 
-  <div>
-    <%= form.label :created_at, style: "display: block" %>
-    <%= form.datetime_field :created_at %>
-  </div>
-
-  <div>
-    <%= form.label :updated, style: "display: block" %>
-    <%= form.datetime_field :updated %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="mt-4">
+    <%= form.submit(class: 'bg-red-800 text-white rounded py-2 px-3') %>
   </div>
 <% end %>

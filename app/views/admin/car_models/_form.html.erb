@@ -1,9 +1,9 @@
-<%= form_with(model: car_model) do |form| %>
+<%= form_with(model: [:admin, @car_model]) do |form| %>
   <div>
     <% brands = CarBrand.all.map { |b| [b.name, b.id] } %>
     <%= form.label :car_brand_id, "Brand", style: "display: block" %>
-    <%= form.select :car_brand_id, options_for_select(brands, @car_model.car_brand_id), include_blank: "- Pilih Brand -" %>            
-          
+    <%= form.select :car_brand_id, options_for_select(brands, @car_model.car_brand_id), include_blank: "- Pilih Brand -" %>
+
     <%= form.label :model, style: "display: block" %>
     <%= form.text_field :model %>
 
