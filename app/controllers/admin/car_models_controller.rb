@@ -1,6 +1,5 @@
 module Admin
   class CarModelsController < AdminBaseController
-    before_action :authenticate_user!
     before_action :set_car_model, only: %i[ show edit update destroy ]
 
     # GET /cars or /cars.json
