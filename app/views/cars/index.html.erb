@@ -4,8 +4,11 @@
 
 <h1 class="text-2xl">Cars</h1>
 <div class="mt-4">
-  <%= link_to "New car", new_car_path, class: 'bg-red-700 px-3 py-2 rounded text-white' %>
+  <% if current_user.cars.count < 5 %>
+  <%= link_to 'New car', new_car_path, class: 'bg-red-700 px-3 py-2 rounded text-white'%>
+<% end %>
 </div>
+
 <div class="mt-4">
   <% if @cars.any? %>
     <table class="table">
@@ -25,7 +28,7 @@
               <%= link_to "Maintence history", car_car_maintenances_path(car), class: 'underline text-red-700' %>
             </td>
           </tr>
-
+          
         <% end %>
       </tbody>
     </table>
