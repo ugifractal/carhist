@@ -14,6 +14,11 @@
             <%= link_to('Cars', cars_path, class: 'underline text-white') %>
           </div>
 
+          <% @cars.each do |car| %>
+            <div>
+              <%= link_to( car.name, cars_path, class: 'underline text-white ml-5' ) %>
+            </div>
+          <% end %> 
         </div>
         <div class="w-full px-5 py-5">
           <%= yield %>

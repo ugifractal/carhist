@@ -4,7 +4,7 @@ class CarsController < ApplicationController
 
   # GET /cars or /cars.json
   def index
-    @cars = current_user.cars
+    @cars = current_user.cars.order(name: :asc)
   end
 
   # GET /cars/1 or /cars/1.json
@@ -22,6 +22,11 @@ class CarsController < ApplicationController
 
   # POST /cars or /cars.json
   def create
+    if current_user.cars.count >= 5
+      redirect_to cars_path, alert: "You have reached maximum cars count."
+      return
+    end
+
     @car = current_user.cars.new(car_params)
 
     respond_to do |format|
