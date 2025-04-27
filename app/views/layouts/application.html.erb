@@ -9,34 +9,40 @@
         <div>
           <h2 class="text-4xl">Carhist</h2>
         </div>
+        <% if user_signed_in? %>
         <div data-controller="account">
           <div data-action="click->account#toggle" class="rounded-full bg-white w-12 h-12 flex items-center justify-center cursor-pointer">
-            <div class="text-2xl text-red-700">A</div>
+            <div class="text-2xl text-red-700">
+              <% if current_user %>
+                <%= current_user.email[0].upcase %>
+              <% else %>
+                &nbsp;  
+              <% end %>
+            </div>
           </div>
           <div data-account-target="menu" class="hidden absolute bg-white border border-red-700 w-60 right-1 py-3 px-2 text-red-800">
             <div>
               <%= link_to('Account', '#') %>
             </div>
             <div class="mt-4">
-              <%= link_to('Logout', '#') %>
+              <%= button_to "Logout", destroy_user_session_path, method: :delete %>
             </div>
           </div>
         </div>
+        <% end %>
       </div>
       <div class="flex">
         <div class="w-80 py-3 px-2 bg-gray-600 min-h-80">
           <div>
             <%= link_to('Cars', cars_path, class: 'underline text-white') %>
           </div>
-
-          <% @cars.each do |car| %>
-            <div>
-              <%= link_to( car.name, car_car_maintenances_path(car), class: 'underline text-white ml-5' ) %>
-            </div>
-          <% end %>
           <div>
             <% if user_signed_in? %>
-              <%= button_to "Logout", destroy_user_session_path, method: :delete, class: 'mt-10 underline text-white' %>
+              <% @cars.each do |car| %>
+                <div>
+                  <%= link_to( car.name, car_car_maintenances_path(car), class: 'underline text-white ml-5' ) %>
+                </div>
+              <% end %>
             <% end %>
           </div>
         </div>
