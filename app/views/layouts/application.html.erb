@@ -22,7 +22,7 @@
           </div>
           <div data-account-target="menu" class="hidden absolute bg-white border border-red-700 w-60 right-1 py-3 px-2 text-red-800">
             <div>
-              <%= link_to('Account', '#') %>
+              <%= link_to(current_user.email, 'users/edit') %>
             </div>
             <div class="mt-4">
               <%= button_to "Logout", destroy_user_session_path, method: :delete %>
