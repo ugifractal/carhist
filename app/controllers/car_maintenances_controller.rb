@@ -6,11 +6,12 @@ class CarMaintenancesController < ApplicationController
   # GET /car_maintenances or /car_maintenances.json
   def index
     if params[:search].present?
-      @car_maintenances = CarMaintenance
-        .where("LOWER(maintenance_type) LIKE ?", "%#{params[:search].downcase}%")
-        .paginate(page: params[:page], per_page: 10)
+      @car_maintenances = @car.car_maintenances
+        .where("LOWER(description) LIKE ?", "%#{params[:search].downcase}%")
+        .paginate(page: params[:page], per_page: 5)
     else
-      @car_maintenances = CarMaintenance.paginate(page: params[:page], per_page: 10)
+      @car_maintenances = @car.car_maintenances
+      .paginate(page: params[:page], per_page: 5)
     end
   end
 
@@ -20,7 +21,7 @@ class CarMaintenancesController < ApplicationController
 
   # GET /car_maintenances/new
   def new
-    @car_maintenance = CarMaintenance.new
+    @car_maintenance = @car.car_maintenances.new
   end
 
   # GET /car_maintenances/1/edit
