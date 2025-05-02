@@ -5,7 +5,13 @@ class CarMaintenancesController < ApplicationController
 
   # GET /car_maintenances or /car_maintenances.json
   def index
-    @car_maintenances = @car.car_maintenances.paginate(per_page: 20, page: params[:page])
+    if params[:search].present?
+      @car_maintenances = CarMaintenance
+        .where("LOWER(maintenance_type) LIKE ?", "%#{params[:search].downcase}%")
+        .paginate(page: params[:page], per_page: 10)
+    else
+      @car_maintenances = CarMaintenance.paginate(page: params[:page], per_page: 10)
+    end
   end
 
   # GET /car_maintenances/1 or /car_maintenances/1.json
@@ -71,6 +77,6 @@ class CarMaintenancesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def car_maintenance_params
-      params.expect(car_maintenance: [ :maintenance_type, :description ])
-    end
+      params.require(:car_maintenance).permit(:car_id, :maintenance_type, :description)
+    end    
 end

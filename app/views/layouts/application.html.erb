@@ -38,9 +38,9 @@
           </div>
           <div>
             <% if user_signed_in? %>
-              <% @cars.each do |car| %>
+              <% current_user.cars.each do |car| %>
                 <div>
-                  <%= link_to( car.name, car_car_maintenances_path(car), class: 'underline text-white ml-5' ) %>
+                  <%= link_to( car.name, car_car_maintenances_path(car), class: 'underline text-white ml-5' ) if car.persisted? %>
                 </div>
               <% end %>
             <% end %>
