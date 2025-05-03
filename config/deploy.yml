@@ -95,7 +95,7 @@ accessories:
   db:
     image: postgres:16.4
     host: 103.157.26.43
-    port: "127.0.0.1:5432:5432"
+    port: "127.0.0.1:5433:5432"
     env:
       clear:
         POSTGRES_PASSWORD: postgres
