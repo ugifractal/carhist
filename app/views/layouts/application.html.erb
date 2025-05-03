@@ -21,7 +21,7 @@
             </div>
           </div>
           <div data-account-target="menu" class="hidden absolute bg-white border border-red-700 w-60 right-1 py-3 px-2 text-red-800">
-            <% if current_user %>
+            <% if current_user.admin? %>
             <div>
               <%= link_to("admin", '/admin') %>
             </div>
