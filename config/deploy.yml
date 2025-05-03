@@ -94,7 +94,7 @@ builder:
 accessories:
   db:
     image: postgres:16.4
-    host: 127.0.0.1
+    host: 103.157.26.43
     env:
       clear:
         POSTGRES_PASSWORD: postgres
