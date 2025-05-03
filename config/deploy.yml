@@ -2,12 +2,12 @@
 service: carhist
 
 # Name of the container image.
-image: your-user/carhist
+image: ugifractal/carhist
 
 # Deploy to these servers.
 servers:
   web:
-    - 192.168.0.1
+    - 103.157.26.43
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -25,7 +25,7 @@ proxy:
 registry:
   # Specify the registry server, if you're not using Docker Hub
   # server: registry.digitalocean.com / ghcr.io / ...
-  username: your-user
+  username: ugifractal
 
   # Always use an access token rather than real password when possible.
   password:
@@ -48,10 +48,10 @@ env:
 
     # Match this to any external database server to configure Active Record correctly
     # Use carhist-db for a db accessory server on same machine via local kamal docker network.
-    # DB_HOST: 192.168.0.2
+    DB_HOST: carhist-db
 
     # Log everything from Rails
-    # RAILS_LOG_LEVEL: debug
+    RAILS_LOG_LEVEL: debug
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
@@ -90,6 +90,15 @@ builder:
 # Use a different ssh user than root
 # ssh:
 #   user: app
+
+accessories:
+  db:
+    image: postgres:16.4
+    env:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    directories:
+      - data/postgres-16.4:/var/lib/postgresql/data
 
 # Use accessory services (secrets come from .kamal/secrets).
 # accessories:
