@@ -21,7 +21,12 @@
             </div>
           </div>
           <div data-account-target="menu" class="hidden absolute bg-white border border-red-700 w-60 right-1 py-3 px-2 text-red-800">
+            <% if current_user %>
             <div>
+              <%= link_to("admin", '/admin') %>
+            </div>
+            <% end %>
+            <div class="mt-4">
               <%= link_to(current_user.email, 'users/edit') %>
             </div>
             <div class="mt-4">
