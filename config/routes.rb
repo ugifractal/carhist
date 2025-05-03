@@ -25,4 +25,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   get "/admin", to: "admin/dashboards#show"
   root "cars#index"
+  get "/admin/users", to: "admin/users#index"
 end
