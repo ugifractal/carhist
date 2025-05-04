@@ -5,10 +5,14 @@
     </div>
   
     <div>
-      <%= form.label :plan %>
-      <%= form.text_field :plan %> <!-- atau bisa pakai select jika punya pilihan plan tertentu -->
+        <%= form.label :plan %><br>
+        <%= form.select :plan, options_for_select([["Free", "free"], ["Paid", "paid"]], @user.plan) %>
     </div>
-  
+
+    <div>
+        <%= link_to "Back", admin_users_path %>
+    </div>
+
     <div>
       <%= form.submit "Save" %>
     </div>
