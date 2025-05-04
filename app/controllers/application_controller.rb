@@ -3,10 +3,15 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   before_action :set_cars
+  before_action :set_locale
 
   private
 
   def set_cars
     @cars = Car.all
+  end
+
+  def set_locale
+    I18n.locale = :id
   end
 end

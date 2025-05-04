@@ -16,7 +16,7 @@
               <% if current_user %>
                 <%= current_user.email[0].upcase %>
               <% else %>
-                &nbsp;  
+                &nbsp;
               <% end %>
             </div>
           </div>
@@ -39,7 +39,7 @@
       <div class="flex">
         <div class="w-80 py-3 px-2 bg-gray-600 min-h-80">
           <div>
-            <%= link_to('Cars', cars_path, class: 'underline text-white') %>
+            <%= link_to(t('layout.application.list_car'), cars_path, class: 'underline text-white') %>
           </div>
           <div>
             <% if user_signed_in? %>
