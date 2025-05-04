@@ -35,6 +35,7 @@ registry:
 env:
   secret:
     - RAILS_MASTER_KEY
+    - DATABASE_CACHE_URL
     # - DATABASE_URL
   clear:
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
@@ -54,6 +55,7 @@ env:
     # Log everything from Rails
     RAILS_LOG_LEVEL: debug
     RAILS_ENV: production
+    AAAAA: AAAA
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
