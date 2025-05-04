@@ -1,0 +1,16 @@
+<%= form_with(model: [:admin, @user], local: true) do |form| %>
+    <div>
+      <%= form.label :email %>
+      <%= form.text_field :email %>
+    </div>
+  
+    <div>
+      <%= form.label :plan %>
+      <%= form.text_field :plan %> <!-- atau bisa pakai select jika punya pilihan plan tertentu -->
+    </div>
+  
+    <div>
+      <%= form.submit "Save" %>
+    </div>
+  <% end %>
+  

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resource :dashboards, only: %i[show]
+    resources :users, except: [:show]
     resources :car_brands
     resources :car_models
   end
