@@ -12,20 +12,51 @@
 # Configure Using Gemfile
 # gem "pg"
 #
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: postgres
-  password: sakib
-  host: localhost
+default:
+  primary: &default
+    adapter: postgresql
+    encoding: unicode
+    # For details on connection pooling, see Rails configuration guide
+    # https://guides.rubyonrails.org/configuring.html#database-pooling
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    username: postgres
+    password: sakib
+    host: localhost
 
 
 development:
-  <<: *default
-  database: carhist_development
+  primary:
+    <<: *default
+    database: carhist_development
+  queue:
+    <<: *default
+    database: carhist_queue_development
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *default
+    database: carhist_cable_development
+    migrations_paths: db/cable_migrate
+  cache:
+    <<: *default
+    database: carhist_cache_development
+    migrations_paths: db/cache_migrate
+
+test:
+  primary:
+    <<: *default
+    database: carhist_test
+  queue:
+    <<: *default
+    database: carhist_queue_test
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *default
+    database: carhist_cable_test
+    migrations_paths: db/cable_migrate
+  cache:
+    <<: *default
+    database: carhist_cache_test
+    migrations_paths: db/cache_migrate
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -57,9 +88,9 @@ development:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: carhist_test
+# test:
+#   <<: *default
+#   database: carhist_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -86,14 +117,14 @@ production:
     adapter: postgresql
     url: <%= ENV["DATABASE_URL"] %>
   cache:
-    adapter: postgresql
+    <<: *primary_production
     url: <%= ENV["DATABASE_CACHE_URL"] %>
     migrations_paths: db/cache_migrate
   queue:
-    adapter: postgresql
+    <<: *primary_production
     url: <%= ENV["DATABASE_QUEUE_URL"] %>
     migrations_paths: db/queue_migrate
   cable:
-    adapter: postgresql
+    <<: *primary_production
     url: <%= ENV["DATABASE_CABLE_URL"] %>
     migrations_paths: db/cable_migrate
