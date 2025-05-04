@@ -3,6 +3,8 @@
     <tr>
       <th>No</th>
       <th>Email</th>
+      <th>Email</th>
+      <th>Edit</th>
     </tr>
   </thead>
   <tbody>
@@ -10,6 +12,12 @@
       <tr>
         <td><%= index + 1 %></td>
         <td><%= user.email %></td>
+        <td>
+            <%= link_to "free" %>
+        </td>
+        <td>
+            <%= link_to "Edit" %>
+        </td>
       </tr>
     <% end %>
   </tbody>
