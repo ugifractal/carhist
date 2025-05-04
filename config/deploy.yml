@@ -50,7 +50,7 @@ env:
     # Match this to any external database server to configure Active Record correctly
     # Use carhist-db for a db accessory server on same machine via local kamal docker network.
     DB_HOST: carhist-db
-    DATABASE_URL: postgres://postgres:postgres@localhost:5432/carhist_production
+    DATABASE_URL: postgres://postgres:postgres@carhist-db:5432/carhist_production
     # Log everything from Rails
     RAILS_LOG_LEVEL: debug
     RAILS_ENV: production
