@@ -1,6 +1,7 @@
 class CarsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_car, only: %i[ show edit update destroy ]
+  before_action :check_car_limit, only: [:new, :create]
 
   # GET /cars or /cars.json
   def index
@@ -22,11 +23,6 @@ class CarsController < ApplicationController
 
   # POST /cars or /cars.json
   def create
-    if current_user.cars.count >= 5
-      redirect_to cars_path, alert: "You have reached maximum cars count."
-      return
-    end
-
     @car = current_user.cars.new(car_params)
 
     respond_to do |format|
@@ -72,5 +68,12 @@ class CarsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def car_params
       params.expect(car: [ :user_id, :name, :year, :car_model_id, :created_at, :updated ])
+    end
+
+    def check_car_limit
+      limit = current_user.plan == 'free' ? 2 : 6
+      if current_user.cars.count >= limit
+        redirect_to cars_path, alert: "You have reached the maximum number of cars allowed for your plan."
+      end
     end
 end
