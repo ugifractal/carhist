@@ -23,7 +23,10 @@ RUN apt-get update -qq && \
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development"
+    BUNDLE_WITHOUT="development" \
+    NODE_VERSION="22.12.0" \
+    NVM_DIR="/usr/local/nvm" \
+    NODE_OPTIONS="--openssl-legacy-provider"
 
 # Throw-away build stage to reduce size of final image
 FROM base AS build
@@ -33,10 +36,21 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev pkg-config && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
+# Install node and yarn
+RUN mkdir $NVM_DIR && \
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash && \
+    . $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
+
+RUN . $NVM_DIR/nvm.sh && npm install --global yarn
+
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
+    . $NVM_DIR/nvm.sh && \
     bundle exec bootsnap precompile --gemfile
 
 # Copy application code
@@ -51,7 +65,7 @@ RUN chmod +x bin/* && \
     sed -i 's/ruby\.exe$/ruby/' bin/*
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+RUN . $NVM_DIR/nvm.sh && SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
 
 
 
