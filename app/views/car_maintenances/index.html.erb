@@ -8,7 +8,7 @@
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-xl">Car maintenances of <%= @car.brand_name %> (<%= @car.name %>)</h1>
     <%= link_to "New car maintenance", new_car_car_maintenance_path(@car), class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
-  </div>    
+  </div>
   <%= form_tag car_car_maintenances_path(@car), method: :get, local: true do %>
     <div class="ml-198">
       <%= text_field_tag :search, params[:search], placeholder: "Search by car name...", class: "border-3 border-blue-600" %>
