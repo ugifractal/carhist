@@ -20,8 +20,8 @@ servers:
 proxy:
   ssl: false
   hosts:
-    - 127.0.0.1 # hotswitch.duruxignition.com
-    - hotswitch.duruxignition.com
+    - 127.0.0.1
+    - carhist.duruxignition.com
 
 # Credentials for your image host.
 registry:
