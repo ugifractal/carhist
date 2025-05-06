@@ -1,17 +1,19 @@
 class CarMaintenancesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_car
-  before_action :set_car_maintenance, only: %i[ show edit update destroy ]
+  before_action :set_car_maintenance, only: %i[ show edit update destroy manage_photos ]
 
   # GET /car_maintenances or /car_maintenances.json
   def index
     if params[:search].present?
       @car_maintenances = @car.car_maintenances
         .where("LOWER(description) LIKE ?", "%#{params[:search].downcase}%")
+        .order(performed_at: :asc)
         .paginate(page: params[:page], per_page: 5)
     else
       @car_maintenances = @car.car_maintenances
-      .paginate(page: params[:page], per_page: 5)
+        .order(performed_at: :asc)
+        .paginate(page: params[:page], per_page: 5)
     end
   end
 
@@ -66,6 +68,9 @@ class CarMaintenancesController < ApplicationController
     end
   end
 
+  def manage_photos
+  end
+
   private
 
   def set_car
@@ -73,11 +78,11 @@ class CarMaintenancesController < ApplicationController
   end
     # Use callbacks to share common setup or constraints between actions.
     def set_car_maintenance
-      @car_maintenance = @car.car_maintenances.find(params.expect(:id))
+      @car_maintenance = @car.car_maintenances.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def car_maintenance_params
-      params.require(:car_maintenance).permit(:car_id, :maintenance_type, :description)
-    end    
+      params.require(:car_maintenance).permit(:car_id, :maintenance_type, :description, :performed_at)
+    end
 end

@@ -24,14 +24,11 @@ module Admin
     def create
       @car_brand = CarBrand.new(car_brand_params)
 
-      respond_to do |format|
-        if @car_brand.save
-          format.html { redirect_to admin_car_brand_path(@car_brand), notice: "Car brand was successfully created." }
-          format.json { render :show, status: :created, location: @car_brand }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @car_brand.errors, status: :unprocessable_entity }
-        end
+      if @car_brand.save
+        flash[:notice] = "Car brand has been created!"
+        redirect_to admin_car_brands_path
+      else
+        render :new
       end
     end
 
@@ -40,7 +37,7 @@ module Admin
       respond_to do |format|
         if @car_brand.update(car_brand_params)
           format.html { redirect_to admin_car_brand_path(@car_brand), notice: "Car brand was successfully updated." }
-          format.json { render :show, status: :ok, location: @car_brand }
+        
         else
           format.html { render :edit, status: :unprocessable_entity }
           format.json { render json: @car_brand.errors, status: :unprocessable_entity }

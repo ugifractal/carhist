@@ -2,13 +2,9 @@
 
 <% content_for :title, "Cars" %>
 
-<div style="border: 2px solid black; padding: 10px; margin-bottom: 10px; display: flex; align-items: center;">
-  <h1 style="color: black; margin: 0;">carhist</h1>
-</div>
-
 <div id="cars">
-  <%= link_to "New model", new_admin_car_model_path %>
-  <table border="1" width="40%" style="border-collapse: collapse;">
+  <%= link_to "New model", new_admin_car_model_path, class: "bg-blue-500 text-white px-4 py-2 rounded-full shadow hover:bg-blue-600" %>
+  <table border="1" width="40%" style="border-collapse: collapse; margin-top: 20px;">
             <tr>
                 <th>No  </th>
                 <th>Brand</th>

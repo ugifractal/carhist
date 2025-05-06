@@ -1,0 +1,5 @@
+id:
+  cars:
+    index:
+      title: "Cars"
+      column_name: "Name"

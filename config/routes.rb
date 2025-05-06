@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'users/sessions', passwords: 'users/passwords' }
 
   resources :cars do
-    resources :car_maintenances
+    resources :car_maintenances do
+      resources :history_images do
+      end
+    end
   end
 
   namespace :admin do

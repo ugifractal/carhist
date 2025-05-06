@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_04_025632) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_05_124631) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -55,6 +55,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_04_025632) do
     t.integer "car_model_id"
     t.datetime "created"
     t.datetime "updated"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "history_images", force: :cascade do |t|
+    t.integer "car_maintenance_id"
+    t.string "type"
+    t.string "title"
+    t.jsonb "image_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
