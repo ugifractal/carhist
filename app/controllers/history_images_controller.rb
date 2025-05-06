@@ -3,7 +3,21 @@ class HistoryImagesController < ApplicationController
 
   def index
     @history_images = @car_maintenance.history_images
-    @history_image = @car_maintenance.history_images.new
+  end
+
+  def create
+    @history_image = @car_maintenance.history_images.new(image: params[:file])
+    if @history_image.save
+      render json: {}, status: :ok
+    else
+      render json: { error: @history_image.errors.first.full_message }, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @history_image = @car_maintenance.history_images.find(params[:id])
+    @history_image.destroy
+    redirect_to(car_car_maintenance_history_images_path(@car, @car_maintenance), notice: "image has been deleted")
   end
 
   private

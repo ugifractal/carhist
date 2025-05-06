@@ -4,7 +4,7 @@ class CreateHistoryImages < ActiveRecord::Migration[8.0]
       t.integer :car_maintenance_id
       t.string :type
       t.string :title
-      t.jsonb :image
+      t.jsonb :image_data
       t.timestamps
     end
   end

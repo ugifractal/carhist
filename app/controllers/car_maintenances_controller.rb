@@ -8,10 +8,12 @@ class CarMaintenancesController < ApplicationController
     if params[:search].present?
       @car_maintenances = @car.car_maintenances
         .where("LOWER(description) LIKE ?", "%#{params[:search].downcase}%")
+        .order(performed_at: :asc)
         .paginate(page: params[:page], per_page: 5)
     else
       @car_maintenances = @car.car_maintenances
-      .paginate(page: params[:page], per_page: 5)
+        .order(performed_at: :asc)
+        .paginate(page: params[:page], per_page: 5)
     end
   end
 
@@ -81,6 +83,6 @@ class CarMaintenancesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def car_maintenance_params
-      params.require(:car_maintenance).permit(:car_id, :maintenance_type, :description)
+      params.require(:car_maintenance).permit(:car_id, :maintenance_type, :description, :performed_at)
     end
 end

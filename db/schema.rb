@@ -63,7 +63,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_05_124631) do
     t.integer "car_maintenance_id"
     t.string "type"
     t.string "title"
-    t.jsonb "image"
+    t.jsonb "image_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
