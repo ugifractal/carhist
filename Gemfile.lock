@@ -98,6 +98,7 @@ GEM
       xpath (~> 3.2)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.1)
+    content_disposition (1.0.0)
     crass (1.0.6)
     date (3.4.1)
     debug (1.10.0)
@@ -110,6 +111,8 @@ GEM
       responders
       warden (~> 1.2.3)
     dotenv (3.1.7)
+    down (5.4.2)
+      addressable (~> 2.8)
     drb (2.2.1)
     ed25519 (1.3.0)
     erubi (1.13.1)
@@ -292,6 +295,9 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    shrine (3.6.0)
+      content_disposition (~> 1.0)
+      down (~> 5.1)
     solid_cable (3.0.7)
       actioncable (>= 7.2)
       activejob (>= 7.2)
@@ -380,6 +386,7 @@ DEPENDENCIES
   rails (~> 8.0.2)
   rubocop-rails-omakase
   selenium-webdriver
+  shrine
   solid_cable
   solid_cache
   solid_queue
