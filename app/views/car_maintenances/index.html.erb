@@ -10,10 +10,14 @@
     <%= link_to "New car maintenance", new_car_car_maintenance_path(@car), class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
   </div>
   <%= form_tag car_car_maintenances_path(@car), method: :get, local: true do %>
-    <div class="flex justify-between items-center">
-      <%= text_field_tag :search, params[:search], placeholder: "Search by car name...", class: "border-3 border-blue-600" %>
-      <%= submit_tag "Search",
-          class: "rounded-md mt-3 bg-blue-600 text-white px-4 py-1 rounded-r-md hover:bg-blue-500 font-medium" %>
+    <div class="flex justify-end items-center mt-3">
+      <div class="mr-2">
+        <%= text_field_tag :search, params[:search], placeholder: "Search by car name...", class: "border border-red-800" %>
+      </div>
+      <div>
+        <%= submit_tag "Search",
+          class: "rounded-md bg-blue-600 text-white px-4 py-1 rounded-r-md hover:bg-blue-500 font-medium" %>
+      </div>
     </div>
   <% end %>
   <div id="car_maintenances" class="min-w-full divide-y divide-gray-200 space-y-5 mt-4">
