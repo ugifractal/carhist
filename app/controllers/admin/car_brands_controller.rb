@@ -38,7 +38,6 @@ module Admin
       respond_to do |format|
         if @car_brand.update(car_brand_params)
           format.html { redirect_to admin_car_brand_path(@car_brand), notice: "Car brand was successfully updated." }
-        
         else
           format.html { render :edit, status: :unprocessable_entity }
           format.json { render json: @car_brand.errors, status: :unprocessable_entity }

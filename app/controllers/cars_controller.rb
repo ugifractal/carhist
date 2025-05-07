@@ -1,7 +1,7 @@
 class CarsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_car, only: %i[ show edit update destroy ]
-  before_action :check_car_limit, only: [:new, :create]
+  before_action :check_car_limit, only: [ :new, :create ]
 
   # GET /cars or /cars.json
   def index
@@ -71,7 +71,7 @@ class CarsController < ApplicationController
     end
 
     def check_car_limit
-      limit = current_user.plan == 'free' ? 2 : 6
+      limit = current_user.plan == "free" ? 2 : 6
       if current_user.cars.count >= limit
         redirect_to cars_path, alert: "You have reached the maximum number of cars allowed for your plan."
       end

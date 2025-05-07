@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'users/sessions', passwords: 'users/passwords', registrations: 'users/registrations' }
+  devise_for :users, controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations" }
 
   resources :cars do
     resources :car_maintenances do
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resource :dashboards, only: %i[show]
-    resources :users, except: [:show]
+    resources :users, except: [ :show ]
     resources :car_brands
     resources :car_models
   end
