@@ -3,5 +3,5 @@ id:
     index:
       title: "Daftar Mobil"
       column_name: "Nama"
-      new_car: "Tambah Mobil"
+      add_car: "Tambah Mobil"
       maintenance_history: "Service Record"
