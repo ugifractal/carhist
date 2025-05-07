@@ -6,6 +6,9 @@ id:
           attributes:
             title:
               blank: kosong
+  views:
+    history_images:
+      back: kembali
   support:
     array:
       words_connector: ' '
