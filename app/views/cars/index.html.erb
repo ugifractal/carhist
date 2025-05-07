@@ -8,7 +8,7 @@
 </h1>
 <div class="mt-4">
 <% if (current_user.plan == 'free' && current_user.cars.count < 2) || (current_user.plan == 'paid' && current_user.cars.count < 6) %>
-  <%= link_to 'New car', new_car_path, class: 'bg-red-700 px-3 py-2 rounded text-white'%>
+  <%= link_to t('cars.index.add_car'), new_car_path, class: 'bg-red-700 px-3 py-2 rounded text-white'%>
 <% end %>
 </div>
 
@@ -28,7 +28,7 @@
             <td><%= car.name %></td>
             <td><%= car.car_model.car_brand.name %> <%= car.car_model.model %> <%= car.car_model.year %></td>
             <td>
-              <%= link_to "Maintence history", car_car_maintenances_path(car), class: 'underline text-red-700' %>
+              <%= link_to t('cars.index.maintenance_history'), car_car_maintenances_path(car), class: 'underline text-red-700' %>
             </td>
           </tr>
 
