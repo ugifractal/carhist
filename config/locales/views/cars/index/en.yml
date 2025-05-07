@@ -1,5 +1,7 @@
-id:
+en:
   cars:
     index:
       title: "Cars"
       column_name: "Name"
+      add_car: "Add a Car"
+      maintenance_history: "Maintenance History"
