@@ -28,6 +28,7 @@ module Admin
         flash[:notice] = "Car brand has been created!"
         redirect_to admin_car_brands_path
       else
+        flash.now[:alert] = @car_brand.errors.full_messages.to_sentence
         render :new
       end
     end
