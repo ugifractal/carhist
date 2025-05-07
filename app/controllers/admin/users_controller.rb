@@ -3,7 +3,7 @@ module Admin
       def index
         @users = User.order(email: :asc)
       end
-      
+
       def edit
         @user = User.find(params[:id])
       end
@@ -15,11 +15,10 @@ module Admin
         else
           render :edit
         end
-      end      
+      end
 
       def user_params
         params.require(:user).permit(:email, :plan)
       end
-      
     end
-  end
+end
