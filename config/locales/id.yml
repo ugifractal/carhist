@@ -1,4 +1,11 @@
 id:
+  activerecord:
+    errors:
+      models:
+        car_maintenance:
+          attributes:
+            title:
+              blank: kosong
   support:
     array:
       words_connector: ' '
