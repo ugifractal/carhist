@@ -37,3 +37,11 @@ en:
     month_names: [January, Febuary, March, April, May, June, July, August, September, October, November, December]
     abbr_month_names: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
     day_names: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
+
+en:
+  cars:
+    index:
+      title: "Cars"
+      column_name: "Name"
+      new_car: "New Car"
+      maintenance_history: "Maintenance History"
