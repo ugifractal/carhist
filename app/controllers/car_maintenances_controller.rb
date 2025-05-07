@@ -83,6 +83,6 @@ class CarMaintenancesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def car_maintenance_params
-      params.require(:car_maintenance).permit(:car_id, :maintenance_type, :description, :performed_at)
+      params.require(:car_maintenance).permit(:car_id, :title, :maintenance_type, :description, :performed_at)
     end
 end
