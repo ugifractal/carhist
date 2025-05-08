@@ -11,10 +11,11 @@ export default class extends Controller {
     this.list = []
   }
 
-  triggerUpload() {
+  triggerUpload(e) {
+    e.preventDefault()
     this.fileTarget.click();
   }
-  
+
   upload(e) {
     const listContainer = this.progressListTarget
     for (let i = 0; i < e.target.files.length; i++) {
