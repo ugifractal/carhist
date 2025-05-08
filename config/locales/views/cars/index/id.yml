@@ -8,3 +8,6 @@ id:
   views:
     history_images:
       back: "kembali"
+    car_maintenances:
+      new:
+        back: "kembali"
