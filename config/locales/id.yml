@@ -6,6 +6,8 @@ id:
           attributes:
             title:
               blank: kosong
+            description:
+              blank: kosong
   views:
     history_images:
       back: "kembali"
