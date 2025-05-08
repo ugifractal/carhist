@@ -6,7 +6,8 @@
 <div class="mt-6" data-controller="upload">
   <div>
     <%= form_tag(url: car_car_maintenance_history_images_path(@car, @car_maintenance), method: :post) do %>
-      <%= file_field_tag(:image, multiple: true, data: {'upload-target': 'file', action: 'change->upload#upload'}) %>
+      <%= link_to t('views.history_images.upload_photo') %>
+      <%= file_field_tag(:image, multiple: true, data: {'upload-target': 'file', action: 'change->upload#upload'} class: hidden) %>
     <% end %>
   </div>
   <div data-upload-target="progressList">

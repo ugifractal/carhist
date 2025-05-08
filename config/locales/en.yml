@@ -41,3 +41,4 @@ en:
   views:
     history_images:
       back: "back"
+      upload_photo: "Upload Photo"
