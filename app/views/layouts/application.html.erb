@@ -3,13 +3,6 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= csrf_meta_tags %>
-    <style>
-      @test (max-width: 768px) {
-        .sidebar {
-          display: none;
-        }
-      }
-    </style>
   </head>
   <body>
     <div>
@@ -45,7 +38,7 @@
         <% end %>
       </div>
       <div class="flex">
-        <div class="w-80 py-3 px-2 bg-gray-600 min-h-80 sidebar">
+        <div class="w-80 py-3 px-2 bg-gray-600 min-h-80 md:block hidden">
           <div>
             <%= link_to(t('layout.application.list_car'), cars_path, class: 'underline text-white') %>
           </div>
