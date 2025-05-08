@@ -8,7 +8,7 @@ id:
               blank: kosong
   views:
     history_images:
-      back: kembali
+      back: "kembali"
   support:
     array:
       words_connector: ' '
