@@ -11,6 +11,8 @@ id:
   views:
     history_images:
       back: "kembali"
+      upload_photo: "Unggah Foto"
+
   support:
     array:
       words_connector: ' '
