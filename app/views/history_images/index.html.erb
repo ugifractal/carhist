@@ -7,7 +7,7 @@
   <div>
     <%= form_tag(url: car_car_maintenance_history_images_path(@car, @car_maintenance), method: :post) do %>
       <%= link_to t('views.history_images.upload_photo'), '#', class: "upload-link", data: { action: "click->upload#triggerUpload" }, class: "rounded-md bg-red-600 text-white px-4 py-1 rounded-r-md hover:bg-red-500 font-medium" %>
-      <%= file_field_tag(:image, multiple: true, data: {'upload-target': 'file'}, class: "hidden") %>
+      <%= file_field_tag(:image, multiple: true, data: {'upload-target': 'file', action: 'change->upload#upload'}, class: "hidden") %>
     <% end %>
   </div>
   <div data-upload-target="progressList">
