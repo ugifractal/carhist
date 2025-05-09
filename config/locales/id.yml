@@ -20,6 +20,13 @@ id:
       show: "Lihat"
       edit: "ubah"
       destroy: "hapus"
+      new:
+        name: "Tipe Service"
+        title: "Judul"
+        head: "Service Record Baru"
+        description: "Deskripsi"
+        time: "Dibuat Pada"
+        create: "Buat Service Record"
     cars:
       new: "Tambah Mobil"
       back: "Kembali"

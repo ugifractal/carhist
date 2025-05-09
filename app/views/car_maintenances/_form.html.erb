@@ -12,34 +12,35 @@
   <% end %>
 
   <div class="mt-2">
-    <div>Maintence Type</div>
+    <div><%= t('views.car_maintenances.new.name') %></div>
     <div>
       <%= form.select(:maintenance_type, [['Oil Change', 'oil_change'],['Other', 'other']], class: 'border w-80 h-80') %>
     </div>
   </div>
 
   <div class="mt-2">
-    <div>Title</div>
+    <div><%= t('views.car_maintenances.new.title') %></div>
     <div>
       <%= form.text_field(:title) %>
     </div>
   </div>
 
   <div class="mt-2">
-    <div>Performed At</div>
+    <div><%= t('views.car_maintenances.new.time') %></div>
     <div>
       <%= form.date_select(:performed_at) %>
     </div>
   </div>
 
   <div class="mt-2">
-    <div>Description</div>
+    <div><%= t('views.car_maintenances.new.description') %></div>
     <div>
       <%= form.text_area(:description, class: 'border w-80 h-80') %>
     </div>
   </div>
 
   <div class="mt-8">
-    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit t('views.car_maintenances.new.create'),
+      class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-red-800 hover:bg-red-500 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>
