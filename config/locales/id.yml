@@ -22,7 +22,7 @@ id:
       destroy: "hapus"
     cars:
       new: "Tambah Mobil"
-      back: "Kembali ke Cars"
+      back: "Kembali"
       nama: "Nama"
       tahun: "Tahun"
       model: "Model Mobil"
