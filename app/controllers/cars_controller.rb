@@ -73,7 +73,7 @@ class CarsController < ApplicationController
     def check_car_limit
       limit = current_user.plan == "free" ? 2 : 6
       if current_user.cars.count >= limit
-        redirect_to cars_path, alert: "You have reached the maximum number of cars allowed for your plan."
+        redirect_to cars_path, alert: t('alerts.car_limit_reached')
       end
     end
 end

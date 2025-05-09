@@ -27,6 +27,8 @@ id:
       tahun: "Tahun"
       model: "Model Mobil"
       tambah: "Tambah"
+  alerts:
+    car_limit_reached: "Anda telah mencapai jumlah mobil maksimum yang diizinkan untuk paket Anda."
 
   support:
     array:

@@ -37,3 +37,5 @@ en:
       tahun: "Year"
       model: "Car Model"
       tambah: "Create Car"
+  alerts:
+    car_limit_reached: "You have reached the maximum number of cars allowed for your plan."
