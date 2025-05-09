@@ -1,11 +1,11 @@
 <% content_for :title, "New car" %>
 
-<h1 class="text-2xl">New car</h1>
+<h1 class="text-2xl"><%= t('views.cars.new') %></h1>
 
 <%= render "form", car: @car %>
 
 <br>
 
 <div>
-  <%= link_to "Back to cars", cars_path %>
+  <%= link_to t('views.cars.back'), cars_path %>
 </div>
