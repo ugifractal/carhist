@@ -22,3 +22,11 @@ en:
     history_images:
       back: "back"
       upload_photo: "Upload Photo"
+    car_maintenances:
+      title: "Car maintenances of"
+      name: "New car maintenance"
+      button: "Search"
+      column: "Search by car name..."
+      show: "show"
+      edit: "edit"
+      destroy: "destroy"

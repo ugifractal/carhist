@@ -6,17 +6,17 @@
   <% end %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-xl">Car maintenances of <%= @car.brand_name %> (<%= @car.name %>)</h1>
-    <%= link_to "New car maintenance", new_car_car_maintenance_path(@car), class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+    <h1 class="font-bold text-xl"> <%= t('views.car_maintenances.title') %> <%= @car.brand_name %> (<%= @car.name %>)</h1>
+    <%= link_to t('views.car_maintenances.name'), new_car_car_maintenance_path(@car), class: "rounded-md px-3.5 py-2.5 bg-red-800 hover:bg-red-500 text-white block font-medium" %>
   </div>
   <%= form_tag car_car_maintenances_path(@car), method: :get, local: true do %>
     <div class="flex justify-end items-center mt-3">
       <div class="mr-2">
-        <%= text_field_tag :search, params[:search], placeholder: "Search by car name...", class: "border border-red-800" %>
+        <%= text_field_tag :search, params[:search], placeholder: t('views.car_maintenances.column'), class: "border border-red-800" %>
       </div>
       <div>
-        <%= submit_tag "Search",
-          class: "rounded-md bg-blue-600 text-white px-4 py-1 rounded-r-md hover:bg-blue-500 font-medium" %>
+        <%= submit_tag t('views.car_maintenances.button'),
+          class: "rounded-md bg-red-800 text-white px-4 py-1 rounded-r-md hover:bg-red-500 font-medium" %>
       </div>
     </div>
   <% end %>
@@ -30,9 +30,9 @@
               <td><%= car_maintenance.maintenance_type.gsub('_', ' ') %></td>
               <td><%= link_to("#{car_maintenance.history_images.count} photos", car_car_maintenance_history_images_path(@car, car_maintenance), class: 'pointer text-red-800') %></td>
               <td class="w-full sm:w-auto flex flex-col sm:flex-row space-x-2 space-y-2">
-                <%= link_to "Show", car_car_maintenance_path(@car, car_maintenance), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-                <%= link_to "Edit", edit_car_car_maintenance_path(@car, car_maintenance), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-                <%= button_to "Destroy", car_car_maintenance_path(@car, car_maintenance), method: :delete, class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-800 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
+                <%= link_to t('views.car_maintenances.show'), car_car_maintenance_path(@car, car_maintenance), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+                <%= link_to t('views.car_maintenances.edit'), edit_car_car_maintenance_path(@car, car_maintenance), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+                <%= button_to t('views.car_maintenances.destroy'), car_car_maintenance_path(@car, car_maintenance), method: :delete, class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-800 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
               </td>
             </tr>
           </tbody>
