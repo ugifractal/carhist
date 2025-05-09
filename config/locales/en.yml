@@ -30,3 +30,10 @@ en:
       show: "show"
       edit: "edit"
       destroy: "destroy"
+    cars:
+      new: "Add Car"
+      back: "Back to cars"
+      nama: "Name"
+      tahun: "Year"
+      model: "Car Model"
+      tambah: "Create Car"

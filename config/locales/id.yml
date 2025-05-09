@@ -20,6 +20,13 @@ id:
       show: "Lihat"
       edit: "ubah"
       destroy: "hapus"
+    cars:
+      new: "Tambah Mobil"
+      back: "Kembali ke Cars"
+      nama: "Nama"
+      tahun: "Tahun"
+      model: "Model Mobil"
+      tambah: "Tambah"
 
   support:
     array:
