@@ -30,6 +30,13 @@ en:
       show: "show"
       edit: "edit"
       destroy: "destroy"
+      new:
+        name: "Maintenance Type"
+        title: "Title"
+        head: "New car maintenance"
+        description: "Description"
+        time: "Perfomed At"
+        create: "Create Car Maintenance"
     cars:
       new: "Add Car"
       back: "Back to cars"
