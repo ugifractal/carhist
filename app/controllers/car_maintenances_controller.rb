@@ -15,10 +15,22 @@ class CarMaintenancesController < ApplicationController
         .order(performed_at: :asc)
         .paginate(page: params[:page], per_page: 5)
     end
+    respond_to do |format|
+      format.json do
+        render json: MaintenanceSerializer.new(@car_maintenances).serialize
+      end
+      format.html {}
+      end
   end
 
   # GET /car_maintenances/1 or /car_maintenances/1.json
   def show
+    respond_to do |format|
+      format.json do
+        render json: MaintenanceSerializer.new(@car_maintenance).serialize
+      end
+      format.html {}
+      end
   end
 
   # GET /car_maintenances/new
