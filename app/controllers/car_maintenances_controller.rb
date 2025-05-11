@@ -19,7 +19,7 @@ class CarMaintenancesController < ApplicationController
       format.json do
         render json: MaintenanceSerializer.new(@car_maintenances).serialize
       end
-      format.html {}
+      format.html
       end
   end
 
@@ -29,7 +29,7 @@ class CarMaintenancesController < ApplicationController
       format.json do
         render json: MaintenanceSerializer.new(@car_maintenance).serialize
       end
-      format.html {}
+      format.html
       end
   end
 
@@ -73,7 +73,6 @@ class CarMaintenancesController < ApplicationController
   # DELETE /car_maintenances/1 or /car_maintenances/1.json
   def destroy
     @car_maintenance.destroy!
-
     respond_to do |format|
       format.html { redirect_to car_maintenances_path, status: :see_other, notice: "Car maintenance was successfully destroyed." }
       format.json { head :no_content }

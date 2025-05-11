@@ -73,4 +73,4 @@ gem "tailwindcss-rails", "~> 4.2"
 
 gem "jsbundling-rails", "~> 1.3"
 
-gem 'alba'
+gem "alba"
