@@ -27,6 +27,9 @@ id:
         description: "Deskripsi"
         time: "Dibuat Pada"
         create: "Buat Service Record"
+      date: "Tanggal"
+      type: "Tipe"
+      photos: "Foto"
     cars:
       new: "Tambah Mobil"
       back: "Kembali"

@@ -29,9 +29,11 @@
 !/tmp/storage/.keep
 
 /public/assets
+/public/uploads
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/config/credentials/development.key
 
 /app/assets/builds/*
 !/app/assets/builds/.keep

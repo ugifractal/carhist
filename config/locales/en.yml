@@ -37,6 +37,9 @@ en:
         description: "Description"
         time: "Perfomed At"
         create: "Create Car Maintenance"
+      date: "Date"
+      type: "Type"
+      photos: "Photos"
     cars:
       new: "Add Car"
       back: "Back to cars"
