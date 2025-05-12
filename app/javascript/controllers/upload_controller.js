@@ -16,7 +16,15 @@ export default class extends Controller {
     this.fileTarget.click();
   }
 
-  upload(e) {
+  async upload(e) {
+    const info = await this.info()
+    const totalImagesInDB = info.car_maintenance_images.length
+    debugger
+    const totalToBeUploaded = e.target.files.length
+    if ((totalImagesInDB + totalToBeUploaded) > 10 ){
+      console.log("cannt upload more than 10 images")
+      return
+    }
     const listContainer = this.progressListTarget
     for (let i = 0; i < e.target.files.length; i++) {
       const uid = Date.now()
@@ -30,6 +38,17 @@ export default class extends Controller {
       this.uploadFile(e.target.files[i], uid)
     }
     e.target.file = ''
+  }
+
+  async info(carId, maintenanceId) {
+    const url = `http://127.0.0.1:3000/cars/${carId}/car_maintenances/${maintenanceId}.json`;
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    const  response = await fetch(url,{
+      method: "GET"
+
+    })
+    const json = await response.json()
+    return json
   }
 
   uploadFile(file, id) {
