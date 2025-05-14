@@ -3,6 +3,7 @@ import { Controller } from '@hotwired/stimulus'
 export default class extends Controller {
   static targets = ['file', 'progressList']
   static values = {
+    infoUrl: String,
     url: String
   }
 
@@ -17,13 +18,12 @@ export default class extends Controller {
   }
 
   async upload(e) {
-    const info = await this.info()
-    const totalImagesInDB = info.car_maintenance_images.length
-    debugger
-    const totalToBeUploaded = e.target.files.length
+    const info = await this.info();
+    const totalImagesInDB = info.car_maintenance_images.length;
+    const totalToBeUploaded = e.target.files.length;
     if ((totalImagesInDB + totalToBeUploaded) > 10 ){
       console.log("cannt upload more than 10 images")
-      return
+      return;
     }
     const listContainer = this.progressListTarget
     for (let i = 0; i < e.target.files.length; i++) {
@@ -40,12 +40,10 @@ export default class extends Controller {
     e.target.file = ''
   }
 
-  async info(carId, maintenanceId) {
-    const url = `http://127.0.0.1:3000/cars/${carId}/car_maintenances/${maintenanceId}.json`;
+  async info() {
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-    const  response = await fetch(url,{
+    const  response = await fetch(this.infoUrlValue,{
       method: "GET"
-
     })
     const json = await response.json()
     return json
