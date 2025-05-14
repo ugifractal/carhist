@@ -14,20 +14,20 @@
 
 <div class="mt-4">
   <% if @cars.any? %>
-    <table class="table">
+    <table class="w-full border border-red-500">
       <thead>
-        <tr>
-          <th><%= t('cars.index.column_name') %></th>
-          <th>Brand</th>
-          <th></th>
+        <tr class="py-2 bg-red-100 text-red-800">
+          <th class="text-left py-2 px-2"><%= t('cars.index.column_name') %></th>
+          <th class="w-48 text-center py-2 px-2">Brand</th>
+          <th class="w-48 py-2 px-2"></th>
         </tr>
       </thead>
       <tbody>
         <% @cars.each do |car| %>
           <tr>
-            <td><%= car.name %></td>
-            <td><%= car.car_model.car_brand.name %> <%= car.car_model.model %> <%= car.car_model.year %></td>
-            <td>
+            <td class="py-2 px-2"><%= car.name %></td>
+            <td class="text-center"><%= car.car_model.car_brand.name %> <%= car.car_model.model %> <%= car.car_model.year %></td>
+            <td class="py-2 px-2">
               <%= link_to t('cars.index.maintenance_history'), car_car_maintenances_path(car), class: 'underline text-red-700' %>
             </td>
           </tr>
