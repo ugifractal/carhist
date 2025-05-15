@@ -1,11 +1,22 @@
 <div>
-  <%= link_to(car_path, class: 'text-red-800') do %>
+  <%= link_to('/', class: 'text-red-800') do %>
     &larr; <%= t('views.cars.back') %>
   <% end %>
 </div>
 <p style="color: green"><%= notice %></p>
 
 <%= render @car %>
+
+<div class="mt-6 flex flex-wrap">
+  <% if @car.image.attached? %>
+    <%= button_to(car_path(@car), method: :delete) do %>
+        X
+    <% end %>
+    <%= image_tag url_for(@car.image), alt: "Car Image" %>
+  <% else %>
+    <p>No image uploaded.</p>
+  <% end %>
+</div>
 
 <div class="flex space-x-2">
   <%= link_to "Edit this car", edit_car_path(@car),
