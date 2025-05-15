@@ -13,13 +13,13 @@
         <% if user_signed_in? %>
         <div data-controller="account">
           <div data-action="click->account#toggle" class="rounded-full bg-white w-12 h-12 flex items-center justify-center cursor-pointer">
-            <div class="text-2xl text-red-700">
-              <% if current_user %>
+            <% if current_user.avatar.attached? %>
+              <%= image_tag current_user.avatar.variant(resize_to_fill: [40, 40]), class: "rounded-full w-12 h-12 object-cover" %>
+            <% else %>
+              <div class="text-2xl text-red-700">
                 <%= current_user.email[0].upcase %>
-              <% else %>
-                &nbsp;
-              <% end %>
-            </div>
+              </div>
+            <% end %>
           </div>
           <div data-account-target="menu" class="hidden absolute bg-white border border-red-700 w-60 right-1 py-3 px-2 text-red-800">
             <% if current_user.admin? %>
