@@ -26,6 +26,11 @@
     <%= form.select :car_model_id, CarModel.all.map { |m| ["#{m.car_brand.name} #{m.model}", m.id] } %>
   </div>
 
+  <div class="mt-2">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
   <div class="mt-4">
     <%= form.submit t('views.cars.tambah'), class: 'bg-red-800 text-white rounded py-2 px-3' %>
   </div>
