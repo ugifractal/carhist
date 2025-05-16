@@ -8,13 +8,14 @@
 <%= render @car %>
 
 <div class="mt-6 flex flex-wrap">
-  <% if @car.image.attached? %>
-    <%= button_to(car_path(@car), method: :delete) do %>
-        X
+  <div>
+  <% if car.image.attached? %>
+    <%= button_to(car_path(car), method: :delete) do %>
+      X
     <% end %>
-    <%= image_tag url_for(@car.image), alt: "Car Image" %>
+    <%= link_to image_tag(url_for(car.image), style: "width:150px; height:150px"), car.image, alt: "Car Image" %>
   <% else %>
-    <p>No image uploaded.</p>
+    <p>No image available.</p>
   <% end %>
 </div>
 
