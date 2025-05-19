@@ -32,6 +32,10 @@
           placeholder: "Confirm Password",
           class: "w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" %>
       </div>
+      <div class="text-left">
+        <%= f.label :avatar %>
+        <%= f.file_field :avatar %>
+      </div>
 
       <div class="actions">
         <%= f.submit "Sign up",

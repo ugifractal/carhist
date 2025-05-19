@@ -6,4 +6,5 @@ class User < ApplicationRecord
          :confirmable
 
   has_many :cars, dependent: :destroy
+  has_one_attached :avatar
 end
