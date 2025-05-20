@@ -1,0 +1,24 @@
+<div>
+  <%= link_to("New Fueling", new_car_car_fueling_path(@car), class: "px-2 py-2 bg-red-800 rounded text-white") %>
+</div>
+<div class="mt-3">
+  <table>
+    <tr>
+      <th>Filled date</th>
+      <th>Price</th>
+      <th>Volume</th>
+      <th></th>
+    </tr>
+    <% @car_fuelings.each do |car_fueling| %>
+      <tr>
+        <td><%= car_fueling.filled_at %></td>
+        <td><%= car_fueling.price %></td>
+        <td><%= car_fueling.volume %></td>
+        <td>
+          <%= link_to('edit', edit_car_car_fueling_path(@car, car_fueling)) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+</div>

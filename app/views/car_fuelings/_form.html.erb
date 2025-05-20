@@ -1,0 +1,38 @@
+<%= form_with(model: [@car, @car_fueling]) do |f| %>
+  <div>
+    <div>Filled At</div>
+    <div><%= f.date_select(:filled_at) %></div>
+  </div>
+  <div>
+    <div>Volume</div>
+    <div><%= f.text_field(:volume, class: "border border-red-800") %></div>
+  </div>
+  <div class="mt-2">
+    <div>Kilometer</div>
+    <div><%= f.text_field(:km, class: "border border-red-800") %></div>
+  </div>
+
+  <div class="mt-2">
+    <div>Ron Number</div>
+    <div><%= f.select(:ron_number, [["Ron 90", 90], ["Ron 92", 92], ["Ron 95", 95], ["Ron 98", 98]], {}, class: "border border-red-800") %></div>
+  </div>
+
+  <div class="mt-2">
+    <div>Location</div>
+    <div><%= f.text_field(:location, class: "border border-red-800") %></div>
+  </div>
+
+  <div class="mt-2">
+    <div>Price</div>
+    <div><%= f.text_field(:price, class: "border border-red-800") %></div>
+  </div>
+
+  <div class="mt-2">
+    <div>Fuel Range Before Filling</div>
+    <div><%= f.text_field(:fuel_range, class: "border border-red-800") %></div>
+  </div>
+
+  <div class="mt-2">
+    <%= f.submit class: "px-2 py-2 bg-red-800 text-white rounded" %>
+  </div>
+<% end %>
