@@ -92,10 +92,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_20_024416) do
 
   create_table "car_shops", force: :cascade do |t|
     t.string "name"
+<<<<<<< HEAD
+    t.string "address"
+    t.string "google_map_url"
+    t.boolean "approved", default: false
+    t.jsonb "submitted_by", default: {}
+=======
     t.text "address"
     t.string "google_map_url"
     t.boolean "approved"
     t.integer "submitted_by"
+>>>>>>> main
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

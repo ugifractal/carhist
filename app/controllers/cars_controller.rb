@@ -11,6 +11,7 @@ class CarsController < ApplicationController
   # GET /cars/1 or /cars/1.json
   def show
     @car = Car.find(params[:id])
+    @image_url = url_for(@car.image) if @car.image.attached?
   end
 
   # GET /cars/new
