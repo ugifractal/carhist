@@ -1,7 +1,7 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  static targets = ['file', 'progressList', 'preview']
+  static targets = ['file', 'progressList', 'images']
   static values = {
     infoUrl: String,
     url: String
@@ -10,23 +10,6 @@ export default class extends Controller {
   connect() {
     console.log('upload connected')
     this.list = []
-  }
-
-  preview() {
-    const input = this.inputTarget;
-    const preview = this.previewTarget;
-
-    const file = input.files[0];
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = (e) => {
-        preview.src = e.target.result;
-        preview.classList.remove("hidden");
-      };
-
-      reader.readAsDataURL(file);
-    }
   }
 
   triggerUpload(e) {
@@ -82,7 +65,7 @@ export default class extends Controller {
     request.onload = () => {
       if (request.status === 200) {
         const response = JSON.parse(request.responseText);
-        this.insertImage(response.image_url);
+        this.insertImage(response.history_image.url);
       }
     };
 
@@ -93,7 +76,7 @@ export default class extends Controller {
     const imgElement = document.createElement('img');
     imgElement.src = imageUrl;
     imgElement.className = 'px-5 w-60 h-60 object-cover';
-    this.progressListTarget.appendChild(imgElement);
+    this.imagesTarget.appendChild(imgElement);
   }
 
   updateUI(hash) {
