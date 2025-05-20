@@ -1,0 +1,60 @@
+<div>
+  <%= link_to(car_car_fuelings_path(@car), class: 'text-red-800') do %>
+    &larr; <%= t('views.cars.back') %>
+  <% end %>
+</div>
+
+<div>
+  <div>
+    <div>
+      Volume
+    </div>
+    <div>
+      <%= @car_fueling.volume %>
+    </div>
+  </div>
+  <div>
+    <div>
+      Price
+    </div>
+    <div>
+      <%= @car_fueling.price %>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      Location
+    </div>
+    <div>
+      <%= @car_fueling.location %>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      Ron number
+    </div>
+    <div>
+      <%= @car_fueling.ron_number %>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      Filled at
+    </div>
+    <div>
+      <%= @car_fueling.filled_at %>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      Fuel range
+    </div>
+    <div>
+      <%= @car_fueling.fuel_range %>
+    </div>
+  </div>
+</div>

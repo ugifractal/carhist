@@ -1,7 +1,7 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  static targets = ['file', 'progressList']
+  static targets = ['file', 'progressList', 'preview']
   static values = {
     infoUrl: String,
     url: String
@@ -10,6 +10,23 @@ export default class extends Controller {
   connect() {
     console.log('upload connected')
     this.list = []
+  }
+
+  preview() {
+    const input = this.inputTarget;
+    const preview = this.previewTarget;
+
+    const file = input.files[0];
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        preview.src = e.target.result;
+        preview.classList.remove("hidden");
+      };
+
+      reader.readAsDataURL(file);
+    }
   }
 
   triggerUpload(e) {
@@ -41,34 +58,42 @@ export default class extends Controller {
   }
 
   async info() {
-    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-    const  response = await fetch(this.infoUrlValue,{
-      method: "GET"
-    })
-    const json = await response.json()
-    return json
+    const response = await fetch(this.infoUrlValue);
+    const json = await response.json();
+    return json;
   }
 
   uploadFile(file, id) {
-    const listContainer = this.progressListTarget
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    let form = new FormData();
+    form.append('file', file);
+    form.append('authenticity_token', token);
 
-    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-    let form = new FormData()
-    form.append("file", file)
-    form.append("authenticity_token", token)
-
-    const request = new XMLHttpRequest()
-    request.open('POST', this.urlValue)
+    const request = new XMLHttpRequest();
+    request.open('POST', this.urlValue);
     request.upload.addEventListener('progress', (e) => {
-      let percent_completed = (e.loaded / e.total) * 100
+      let percent_completed = (e.loaded / e.total) * 100;
 
-      let index = this.list.findIndex(x => x.uid == id)
-      this.list[index].progress = Math.round(percent_completed)
+      let index = this.list.findIndex(x => x.uid == id);
+      this.list[index].progress = Math.round(percent_completed);
+      this.updateUI(this.list[index]);
+    });
 
-	    console.log(percent_completed)
-      this.updateUI(this.list[index])
-    })
-    request.send(form)
+    request.onload = () => {
+      if (request.status === 200) {
+        const response = JSON.parse(request.responseText);
+        this.insertImage(response.image_url);
+      }
+    };
+
+    request.send(form);
+  }
+
+  insertImage(imageUrl) {
+    const imgElement = document.createElement('img');
+    imgElement.src = imageUrl;
+    imgElement.className = 'px-5 w-60 h-60 object-cover';
+    this.progressListTarget.appendChild(imgElement);
   }
 
   updateUI(hash) {

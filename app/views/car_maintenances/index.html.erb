@@ -9,6 +9,9 @@
     <h1 class="font-bold text-xl"> <%= t('views.car_maintenances.title') %> <%= @car.brand_name %> (<%= @car.name %>)</h1>
     <%= link_to t('views.car_maintenances.name'), new_car_car_maintenance_path(@car), class: "rounded-md px-3.5 py-2.5 bg-red-800 hover:bg-red-500 text-white block font-medium" %>
   </div>
+  <div class="flex justify-end mt-3">
+    <%= link_to("Car fuelings", car_car_fuelings_path(@car), class: "bg-red-800 px-2 py-2 text-white rounded") %>
+  </div>
   <%= form_tag car_car_maintenances_path(@car), method: :get, local: true do %>
     <div class="flex justify-end items-center mt-3">
       <div class="mr-2">
@@ -22,22 +25,22 @@
   <% end %>
   <div id="car_maintenances" class="min-w-full divide-y divide-gray-200 space-y-5 mt-4">
     <% if @car_maintenances.any? %>
-        <table class="pb-5 sm:pb-0">
+        <table class="w-full border border-red-500">
           <thead>
-            <tr>
-              <th><%= t('views.car_maintenances.date') %></th>
-              <th><%= t('views.car_maintenances.type') %></th>
-              <th><%= t('views.car_maintenances.photos') %></th>
+            <tr class="py-2 bg-red-100 text-red-800">
+              <th class="px-4 py-3 text-left"><%= t('views.car_maintenances.date') %></th>
+              <th class="px-4 py-3 text-center"><%= t('views.car_maintenances.type') %></th>
+              <th class="px-4 py-3 text-center"><%= t('views.car_maintenances.photos') %></th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             <% @car_maintenances.each do |car_maintenance| %>
               <tr>
-                <td><%= car_maintenance.performed_at&.strftime('%d %b %Y') %></td>
-                <td><%= car_maintenance.maintenance_type.gsub('_', ' ') %></td>
-                <td><%= link_to("#{car_maintenance.history_images.count} photos", car_car_maintenance_history_images_path(@car, car_maintenance), class: 'pointer text-red-800') %></td>
-                <td class="w-full sm:w-auto space-x-2 space-y-2">
+                <td class="px-4 py-3"><%= car_maintenance.performed_at&.strftime('%d %b %Y') %></td>
+                <td class="px-4 py-3 text-center"><%= car_maintenance.maintenance_type.gsub('_', ' ') %></td>
+                <td class="px-4 py-3 text-center text-red-800"><%= link_to("#{car_maintenance.history_images.count} photos", car_car_maintenance_history_images_path(@car, car_maintenance), class: 'pointer text-red-800') %></td>
+                <td class="px-4 py-3 text-center space-x-2 flex justify-center">
                   <%= link_to t('views.car_maintenances.show'), car_car_maintenance_path(@car, car_maintenance),
                     class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
                   <%= link_to t('views.car_maintenances.edit'), edit_car_car_maintenance_path(@car, car_maintenance),

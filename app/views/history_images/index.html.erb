@@ -3,6 +3,7 @@
     &larr; <%= t('views.history_images.back') %>
   <% end %>
 </div>
+
 <div class="mt-6" data-controller="upload" data-upload-info-url-value="<%= car_car_maintenance_path(@car, @car_maintenance, format: 'json') %>">
   <div>
     <% if @history_images.size < 10 %>

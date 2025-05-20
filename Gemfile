@@ -76,3 +76,5 @@ gem "jsbundling-rails", "~> 1.3"
 gem "alba"
 
 gem "letter_opener"
+
+gem "shrine"
