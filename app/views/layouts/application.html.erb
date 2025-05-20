@@ -13,8 +13,8 @@
         <% if user_signed_in? %>
         <div data-controller="account">
           <div data-action="click->account#toggle" class="rounded-full bg-white w-12 h-12 flex items-center justify-center cursor-pointer">
-            <% if current_user.avatar.attached? %>
-              <%= image_tag current_user.avatar.variant(resize_to_fill: [40, 40]), class: "rounded-full w-12 h-12 object-cover" %>
+            <% if current_user.image&.url %>
+              <%= image_tag current_user.image.url, class: "rounded-full w-12 h-12 object-cover" %>
             <% else %>
               <div class="text-2xl text-red-700">
                 <%= current_user.email[0].upcase %>
