@@ -22,7 +22,7 @@
     <% @history_images.each do |history| %>
       <div class="border border-red-700 mx-5 my-5">
         <div class="flex justify-end px-5 py-5">
-          <%= button_to(car_car_maintenance_history_image_path(@car, @car_maintenance, history), method: :delete) do %>
+          <%= button_to(car_car_maintenance_history_image_path(@car, @car_maintenance, history), method: :delete, data: { action: "click->upload#delete" }) do %>
             X
           <% end %>
         </div>
