@@ -3,6 +3,7 @@ class Car < ApplicationRecord
   belongs_to :user
   belongs_to :car_model
   has_many :car_maintenances, dependent: :destroy
+  has_many :car_fuelings, dependent: :destroy
 
   validates :name, presence: true
 

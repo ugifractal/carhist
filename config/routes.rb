@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :history_images do
       end
     end
+    resources :car_fuelings
   end
 
   namespace :admin do
