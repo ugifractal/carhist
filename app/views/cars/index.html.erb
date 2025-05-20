@@ -20,18 +20,21 @@
           <th class="text-left py-2 px-2"><%= t('cars.index.column_name') %></th>
           <th class="w-48 text-center py-2 px-2">Brand</th>
           <th class="w-48 py-2 px-2"></th>
+          <th class="w-48 py-2 px-2"></th>
         </tr>
       </thead>
       <tbody>
         <% @cars.each do |car| %>
           <tr>
-            <td class="py-2 px-2"><%= car.name %></td>
+            <td class="py-2 px-2">
+              <%= link_to car.name, car_path(car.id) %>
+            </td>
             <td class="text-center"><%= car.car_model.car_brand.name %> <%= car.car_model.model %> <%= car.car_model.year %></td>
             <td class="py-2 px-2">
               <%= link_to t('cars.index.maintenance_history'), car_car_maintenances_path(car), class: 'underline text-red-700' %>
             </td>
             <td class="py-2 px-2">
-              <%= button_to "Detail", car_path(car.id) %>
+              <%= link_to("fuelings", car_car_fuelings_path(car), class: 'underline text-red-700') %>
             </td>
           </tr>
 
