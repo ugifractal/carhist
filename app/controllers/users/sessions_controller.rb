@@ -9,6 +9,10 @@ class Users::SessionsController < Devise::SessionsController
     super
   end
 
+  def user_params
+    params.require(:user).permit(:avatar)
+  end
+
   # POST /resource/sign_in
   # def create
   #   super
