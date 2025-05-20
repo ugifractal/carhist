@@ -1,4 +1,4 @@
-  class Car < ApplicationRecord
+class Car < ApplicationRecord
   include ImageUploader::Attachment(:image)
     belongs_to :user
     belongs_to :car_model
