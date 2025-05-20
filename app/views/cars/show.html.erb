@@ -13,8 +13,8 @@
     <%= button_to(car_path(@car), method: :delete) do %>
       X
     <% end %>
-    <%= link_to @car.image_url do %>
-      <%= image_tag @car.image_url %>
+    <%= link_to @car.image.url do %>
+      <%= image_tag @car.image.url %>
     <% end %>
   <% else %>
     <p>No image available.</p>
