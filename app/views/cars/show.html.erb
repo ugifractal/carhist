@@ -1,5 +1,9 @@
 <div>
+<<<<<<< HEAD
   <%= link_to('/', class: 'text-red-800') do %>
+=======
+  <%= link_to("/", class: 'text-red-800') do %>
+>>>>>>> main
     &larr; <%= t('views.cars.back') %>
   <% end %>
 </div>
@@ -9,11 +13,21 @@
 
 <div class="mt-6 flex flex-wrap">
   <div>
+<<<<<<< HEAD
   <% if car.image.attached? %>
     <%= button_to(car_path(car), method: :delete) do %>
       X
     <% end %>
     <%= link_to image_tag(url_for(car.image), style: "width:150px; height:150px"), car.image, alt: "Car Image" %>
+=======
+  <% if @car.image %>
+    <%= button_to(car_path(@car), method: :delete) do %>
+      X
+    <% end %>
+    <%= link_to @car.image.url do %>
+      <%= image_tag @car.image.url %>
+    <% end %>
+>>>>>>> main
   <% else %>
     <p>No image available.</p>
   <% end %>

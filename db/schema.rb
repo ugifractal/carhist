@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_15_224110) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_20_024416) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -50,6 +50,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_15_224110) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "car_fuelings", force: :cascade do |t|
+    t.integer "car_id"
+    t.datetime "filled_at"
+    t.integer "price"
+    t.integer "km"
+    t.integer "ron_number"
+    t.string "location"
+    t.integer "fuel_range"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "volume"
+  end
+
   create_table "car_maintenances", force: :cascade do |t|
     t.integer "car_id"
     t.string "maintenance_type"
@@ -79,10 +92,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_15_224110) do
 
   create_table "car_shops", force: :cascade do |t|
     t.string "name"
+<<<<<<< HEAD
     t.string "address"
     t.string "google_map_url"
     t.boolean "approved", default: false
     t.jsonb "submitted_by", default: {}
+=======
+    t.text "address"
+    t.string "google_map_url"
+    t.boolean "approved"
+    t.integer "submitted_by"
+>>>>>>> main
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
