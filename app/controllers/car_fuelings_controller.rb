@@ -10,7 +10,7 @@ class CarFuelingsController < ApplicationController
     if @car_fueling.save
       redirect_to(car_car_fueling_path(@car, @car_fueling))
     else
-      render action: 'new'
+      render action: "new"
     end
   end
 
@@ -23,7 +23,7 @@ class CarFuelingsController < ApplicationController
     if @car_fueling.update(car_fueling_params)
       redirect_to(car_car_fueling_path(@car, @car_fueling))
     else
-      render action: 'edit'
+      render action: "edit"
     end
   end
 
