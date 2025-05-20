@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_20_024416) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_20_131054) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -92,17 +92,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_20_024416) do
 
   create_table "car_shops", force: :cascade do |t|
     t.string "name"
-<<<<<<< HEAD
-    t.string "address"
-    t.string "google_map_url"
-    t.boolean "approved", default: false
-    t.jsonb "submitted_by", default: {}
-=======
     t.text "address"
     t.string "google_map_url"
     t.boolean "approved"
     t.integer "submitted_by"
->>>>>>> main
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -117,6 +110,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_20_024416) do
     t.datetime "updated"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "image_data"
   end
 
   create_table "history_images", force: :cascade do |t|
@@ -142,6 +136,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_20_024416) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.jsonb "image_data"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
