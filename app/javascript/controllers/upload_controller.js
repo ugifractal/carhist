@@ -17,6 +17,14 @@ export default class extends Controller {
     this.fileTarget.click();
   }
 
+  delete(e) {
+    let confirmed = confirm("Are you sure?")
+
+    if(!confirmed){
+      e.preventDefault()
+    }
+  }
+
   async upload(e) {
     const info = await this.info();
     const totalImagesInDB = info.car_maintenance_images.length;
