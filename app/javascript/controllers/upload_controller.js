@@ -1,7 +1,8 @@
 import { Controller } from '@hotwired/stimulus'
+import * as Turbo from "@hotwired/turbo"
 
 export default class extends Controller {
-  static targets = ['file', 'progressList', 'images']
+  static targets = ['file', 'progressList']
   static values = {
     infoUrl: String,
     url: String
@@ -72,19 +73,24 @@ export default class extends Controller {
 
     request.onload = () => {
       if (request.status === 200) {
-        const response = JSON.parse(request.responseText);
-        this.insertImage(response.history_image.url);
+        const response = JSON.parse(request.responseText)
+        this.showImage(response)
       }
     };
 
     request.send(form);
   }
 
-  insertImage(imageUrl) {
-    const imgElement = document.createElement('img');
-    imgElement.src = imageUrl;
-    imgElement.className = 'px-5 w-60 h-60 object-cover';
-    this.imagesTarget.appendChild(imgElement);
+  async showImage(json) {
+    const url = `/cars/${json.car.id}/car_maintenances/${json.car_maintenance.id}/history_images/${json.history_image.id}`
+    let response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: "text/vnd.turbo-stream.html",
+      }
+    })
+    const html = await response.text()
+    Turbo.renderStreamMessage(html)
   }
 
   updateUI(hash) {
