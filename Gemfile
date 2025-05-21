@@ -4,7 +4,6 @@ source "https://rubygems.org"
 gem "rails", "~> 8.0.2"
 gem "shrine"
 gem "will_paginate", "~> 4.0"
-gem "byebug"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use postgresql as the database for Active Record
@@ -44,6 +43,7 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
+  gem "byebug"
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 

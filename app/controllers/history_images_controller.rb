@@ -8,10 +8,14 @@ class HistoryImagesController < ApplicationController
   def create
     @history_image = @car_maintenance.history_images.new(image: params[:file])
     if @history_image.save
-      render json: { history_image: { id: @history_image.id, url: @history_image.image.url } }, status: :ok
+      render json: { car: { id: @car.id }, car_maintenance: { id: @car_maintenance.id }, history_image: { id: @history_image.id, url: @history_image.image.url } }, status: :ok
     else
       render json: { error: @history_image.errors.first.full_message }, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @history_image = @car_maintenance.history_images.find(params[:id])
   end
 
   def destroy

@@ -1,0 +1,5 @@
+<turbo-stream target="history-images-frame" action="append">
+  <template>
+    <%= render(partial: 'history_images/image', formats: [ :html ], locals: { history: @history_image, car: @car, car_maintenance: @car_maintenance }) %>
+  </template>
+</turbo-stream>
