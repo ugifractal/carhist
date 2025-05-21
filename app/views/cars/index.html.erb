@@ -7,12 +7,12 @@
   <%= t('cars.index.title') %>
 </h1>
 <div class="mt-4">
-<% if (current_user.plan == 'free' && current_user.cars.count < 2) || (current_user.plan == 'paid' && current_user.cars.count < 6) %>
-  <%= link_to t('cars.index.add_car'), new_car_path, class: 'bg-red-700 px-3 py-2 rounded text-white'%>
-<% end %>
+  <% if (current_user.plan == 'free' && current_user.cars.count < 2) || (current_user.plan == 'paid' && current_user.cars.count < 6) %>
+    <%= link_to t('cars.index.add_car'), new_car_path, class: 'bg-red-700 px-3 py-2 rounded text-white'%>
+  <% end %>
 </div>
 
-<div class="mt-4">
+<div class="mt-4 hiddenx">
   <% if @cars.any? %>
     <table class="w-full border border-red-500">
       <thead>
