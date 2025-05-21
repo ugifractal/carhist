@@ -14,28 +14,29 @@
   <div class="mt-2">
     <div><%= t('views.car_maintenances.new.name') %></div>
     <div>
-      <%= form.select(:maintenance_type, [['Oil Change', 'oil_change'],['AC Repair', 'ac_repair'],['Tire Repair', 'tire_repair']], class: 'border w-80 h-80') %>
+      <%= form.select(:maintenance_type,
+       [['Oil Change', 'oil_change'],['AC Repair', 'ac_repair'],['Tire Repair', 'tire_repair']], {}, class:"border border-red-800 rounded") %>
     </div>
   </div>
 
   <div class="mt-2">
     <div><%= t('views.car_maintenances.new.title') %></div>
     <div>
-      <%= form.text_field(:title) %>
+      <%= form.text_field(:title, class: "border border-red-800 rounded") %>
     </div>
   </div>
 
   <div class="mt-2">
     <div><%= t('views.car_maintenances.new.time') %></div>
     <div>
-      <%= form.date_select(:performed_at) %>
+      <%= form.date_select(:performed_at, {}, class:"border border-red-800 rounded") %>
     </div>
   </div>
 
   <div class="mt-2">
     <div><%= t('views.car_maintenances.new.description') %></div>
     <div>
-      <%= form.text_area(:description, class: 'border w-80 h-80') %>
+      <%= form.text_area(:description, class: 'border border-red-800 w-80 h-80 rounded') %>
     </div>
   </div>
 
