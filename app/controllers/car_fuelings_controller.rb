@@ -7,6 +7,11 @@ class CarFuelingsController < ApplicationController
 
   def create
     @car_fueling = @car.car_fuelings.new(car_fueling_params)
+    if @car_fueling.volume.present?
+      decimal_str = sprintf('%.1f', @car_fueling.volume.to_f)
+      @car_fueling.volume = (decimal_str.to_f * 100).to_i
+    end
+
     if @car_fueling.save
       redirect_to(car_car_fueling_path(@car, @car_fueling))
     else
