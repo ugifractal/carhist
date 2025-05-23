@@ -1,2 +1,8 @@
+<div>
+  <%= link_to(car_car_fuelings_path(@car), class: 'text-red-800') do %>
+    &larr; <%= t('views.cars.back') %>
+  <% end %>
+</div>
+
 <h2 class="text-xl">New Fuel filling</h2>
 <%= render partial: 'car_fuelings/form' %>
