@@ -10,7 +10,7 @@
       Volume
     </div>
     <div>
-      <%= @car_fueling.volume %>
+      <%= (@car_fueling.volume.to_f / 100).to_s %>
     </div>
   </div>
   <div>

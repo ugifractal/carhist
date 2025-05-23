@@ -6,7 +6,10 @@ class CarFuelingsController < ApplicationController
   end
 
   def create
+    volume = (car_fueling_params[:volume].to_f * 100).to_i
     @car_fueling = @car.car_fuelings.new(car_fueling_params)
+    @car_fueling.volume = volume
+
     if @car_fueling.save
       redirect_to(car_car_fueling_path(@car, @car_fueling))
     else
@@ -19,7 +22,9 @@ class CarFuelingsController < ApplicationController
   end
 
   def update
+    volume = (car_fueling_params[:volume].to_f * 100).to_i
     @car_fueling = @car.car_fuelings.find(params[:id])
+    @car_fueling.volume = volume
     if @car_fueling.update(car_fueling_params)
       redirect_to(car_car_fueling_path(@car, @car_fueling))
     else
