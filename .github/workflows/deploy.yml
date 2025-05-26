@@ -1,0 +1,33 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+  # workflow_run:
+  #   branches:
+  #     - staging
+  #   workflows:
+  #     - CI
+  #   types:
+  #     - completed
+
+jobs:
+  capistrano:
+    runs-on: ubuntu-latest
+    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.KAMAL_DEPLOY_PRIVATE_KEY }}
+      - run: kamal deploy
+    concurrency:
+      group: production
+      cancel-in-progress: true
