@@ -203,9 +203,14 @@ GEM
     parser (3.3.7.2)
       ast (~> 2.4.1)
       racc
+    pdf-core (0.10.0)
     pg (1.5.9)
     pp (0.6.2)
       prettyprint
+    prawn (2.5.0)
+      matrix (~> 0.4)
+      pdf-core (~> 0.10.0)
+      ttfunk (~> 1.8)
     prettyprint (0.2.0)
     propshaft (1.1.0)
       actionpack (>= 7.0.0)
@@ -344,6 +349,8 @@ GEM
     thruster (0.1.13-arm64-darwin)
     thruster (0.1.13-x86_64-linux)
     timeout (0.4.3)
+    ttfunk (1.8.0)
+      bigdecimal (~> 3.1)
     turbo-rails (2.0.13)
       actionpack (>= 7.1.0)
       railties (>= 7.1.0)
@@ -368,7 +375,11 @@ GEM
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    wicked_pdf (2.8.2)
+      activesupport
+      ostruct
     will_paginate (4.0.1)
+    wkhtmltopdf-binary (0.12.6.9)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.7.2)
@@ -392,6 +403,7 @@ DEPENDENCIES
   kamal
   letter_opener
   pg (~> 1.5.9)
+  prawn
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.2)
@@ -408,7 +420,9 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
+  wicked_pdf
   will_paginate (~> 4.0)
+  wkhtmltopdf-binary
 
 BUNDLED WITH
    2.6.2

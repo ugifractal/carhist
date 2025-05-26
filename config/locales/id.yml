@@ -12,6 +12,11 @@ id:
               blank: kosong
             description:
               blank: kosong
+        car_fueling:
+          attributes:
+            volume:
+              not_a_number: bukan angka
+              greater_than: lebih besar dari %{count}
   views:
     history_images:
       back: "kembali"
