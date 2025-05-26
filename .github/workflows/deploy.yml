@@ -16,7 +16,7 @@ on:
   #     - completed
 
 jobs:
-  capistrano:
+  kamal:
     runs-on: ubuntu-latest
     # if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
@@ -27,7 +27,7 @@ jobs:
       - uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.KAMAL_DEPLOY_PRIVATE_KEY }}
-      - run: kamal deploy
+      - run: gem install kamal && kamal deploy
     concurrency:
       group: production
       cancel-in-progress: true
