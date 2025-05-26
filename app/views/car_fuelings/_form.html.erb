@@ -1,4 +1,16 @@
 <%= form_with(model: [@car, @car_fueling]) do |f| %>
+  <% if @car_fueling.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@car_fueling.errors.count, "error") %> prohibited this car fueling from being saved:</h2>
+
+      <ul>
+        <% @car_fueling.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div>
     <div>Filled At</div>
     <div><%= f.date_select(:filled_at) %></div>

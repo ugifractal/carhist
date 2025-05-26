@@ -13,7 +13,7 @@
       <tr>
         <td><%= car_fueling.filled_at %></td>
         <td><%= car_fueling.price %></td>
-        <td><%= (car_fueling.volume)%></td>
+        <td><%= (car_fueling.volume).round(2)%></td>
         <td>
           <%= link_to('edit', edit_car_car_fueling_path(@car, car_fueling)) %>
         </td>
