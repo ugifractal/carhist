@@ -35,10 +35,10 @@ jobs:
       - name: Create SSH Key
         run: |
           mkdir ~/.ssh
-          echo $KAMAL_DEPLOY_PRIVATE_KEY > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          echo $KAMAL_DEPLOY_PRIVATE_KEY > ~/.ssh/private.key
+          chmod 600 ~/.ssh/private.key
           echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts          
-          ssh root@103.157.26.43
+          ssh -i ~/.ssh/private.key root@103.157.26.43
           
       #- uses: webfactory/ssh-agent@v0.9.1
       #  with:
