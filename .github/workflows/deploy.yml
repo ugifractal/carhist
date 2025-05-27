@@ -32,18 +32,18 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - name: Create SSH Key
-        run: |
-          mkdir ~/.ssh
-          echo $KAMAL_DEPLOY_PRIVATE_KEY > ~/.ssh/private.key
-          chmod 600 ~/.ssh/private.key
-          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts          
-          ssh -i ~/.ssh/private.key root@103.157.26.43
+      #- name: Create SSH Key
+      #  run: |
+      #    mkdir ~/.ssh
+      #    echo $KAMAL_DEPLOY_PRIVATE_KEY > ~/.ssh/private.key
+      #    chmod 600 ~/.ssh/private.key
+      #    echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts          
+      #    ssh -i ~/.ssh/private.key root@103.157.26.43
           
-      #- uses: webfactory/ssh-agent@v0.9.1
-      #  with:
-      #    ssh-private-key: ${{ secrets.KAMAL_DEPLOY_PRIVATE_KEY }}
-      # - run: ssh root@103.157.26.43 # gem install kamal && kamal deploy
+      - uses: webfactory/ssh-agent@v0.9.1
+        with:
+          ssh-private-key: ${{ secrets.KAMAL_DEPLOY_PRIVATE_KEY }}
+      - run: ssh root@103.157.26.43 # gem install kamal && kamal deploy
     concurrency:
       group: production
       cancel-in-progress: true
