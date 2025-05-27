@@ -24,6 +24,7 @@ jobs:
       KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
       KAMAL_REGISTRY_USERNAME: ${{ secrets.KAMAL_REGISTRY_USERNAME }}
       KAMAL_DEPLOY_PRIVATE_KEY: ${{ secrets.KAMAL_DEPLOY_PRIVATE_KEY }}
+      SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
     runs-on: ubuntu-latest
     # if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
@@ -35,6 +36,7 @@ jobs:
         run: |
           mkdir ~/.ssh
           echo $KAMAL_DEPLOY_PRIVATE_KEY > ~/.ssh/id_rsa
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
           chmod 600 ~/.ssh/id_rsa
           ssh root@103.157.26.43
           
