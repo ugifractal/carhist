@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :users, except: [ :show ]
     resources :car_brands
     resources :car_models
+    resources :car_shops
   end
 
   get "welcome/index"
