@@ -77,7 +77,6 @@ gem "alba"
 
 gem "letter_opener"
 
-gem 'prawn'
+gem "prawn"
 
-gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+gem 'prawn-table'

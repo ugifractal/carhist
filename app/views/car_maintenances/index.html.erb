@@ -12,6 +12,9 @@
   <div class="flex justify-end mt-3">
     <%= link_to("Car fuelings", car_car_fuelings_path(@car), class: "bg-red-800 px-2 py-2 text-white rounded") %>
   </div>
+  <h1 class="flex justify-end mt-3">
+    <%= button_to 'Generate PDF', export_pdf_car_car_maintenances_path(@car), method: :get, class: 'bg-red-800 px-2 py-2 rounded text-white' %>
+  </h1>
   <%= form_tag car_car_maintenances_path(@car), method: :get, local: true do %>
     <div class="flex justify-end items-center mt-3">
       <div class="mr-2">
