@@ -7,4 +7,5 @@ class User < ApplicationRecord
          :confirmable
 
   has_many :cars, dependent: :destroy
+  has_many :car_shops
 end
