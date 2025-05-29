@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   resources :cars do
     resources :car_maintenances do
+      collection do
+        get :export_pdf
+      end
       resources :history_images do
       end
     end
