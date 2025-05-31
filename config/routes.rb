@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :car_fuelings
   end
 
+  resource :settings, only: %i[show]
+
   namespace :admin do
     resource :dashboards, only: %i[show]
     resources :users, except: [ :show ]
