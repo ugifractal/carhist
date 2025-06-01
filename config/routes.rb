@@ -12,7 +12,14 @@ Rails.application.routes.draw do
     resources :car_fuelings
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :cars, only: [:index]
+    end
+  end
+
   resource :settings, only: %i[show]
+  resources :car_shops
 
   namespace :admin do
     resource :dashboards, only: %i[show]
