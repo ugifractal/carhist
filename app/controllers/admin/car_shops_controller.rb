@@ -15,7 +15,7 @@ module Admin
       @car_shop.submitted_by = current_user.id
 
       if @car_shop.save
-        redirect_to car_shops_path, notice: 'Car shop successfully created.'
+        redirect_to car_shops_path, notice: "Car shop successfully created."
       else
         render :new
       end

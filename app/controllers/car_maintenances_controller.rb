@@ -91,23 +91,23 @@ class CarMaintenancesController < ApplicationController
     pdf.move_down 10
 
     if @car_maintenances.any?
-      table_data = [["Date", "Type", "Photo Count"]]
+      table_data = [ [ "Date", "Type", "Photo Count" ] ]
       @car_maintenances.each do |m|
         date = m.performed_at&.strftime("%d %b %Y")
         type = m.maintenance_type.humanize
         photo_count = m.history_images.count
-        table_data << [date, type, photo_count.to_s]
+        table_data << [ date, type, photo_count.to_s ]
       end
 
-      pdf.table(table_data, header: true, row_colors: ['F0F0F0', 'FFFFFF'], cell_style: { borders: [] })
+      pdf.table(table_data, header: true, row_colors: [ "F0F0F0", "FFFFFF" ], cell_style: { borders: [] })
     else
       pdf.text "No maintenance records found.", style: :italic
     end
 
     send_data pdf.render,
               filename: "maintenance_report_#{@car.name.parameterize}_#{Time.current.strftime('%Y%m%d')}.pdf",
-              type: 'application/pdf',
-              disposition: 'attachment'
+              type: "application/pdf",
+              disposition: "attachment"
   end
 
   private
