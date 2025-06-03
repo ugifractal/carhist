@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   resource :settings, only: %i[show]
+  resources :car_shops
 
   namespace :admin do
     resource :dashboards, only: %i[show]

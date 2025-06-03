@@ -79,4 +79,4 @@ gem "letter_opener"
 
 gem "prawn"
 
-gem 'prawn-table'
+gem "prawn-table"
