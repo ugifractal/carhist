@@ -2,7 +2,6 @@ class CarsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_car, only: %i[ show edit update destroy ]
   before_action :check_car_limit, only: [ :new, :create ]
-  before_action :authenticate_api_key!
 
   # GET /cars or /cars.json
   def index
@@ -78,17 +77,4 @@ class CarsController < ApplicationController
         redirect_to cars_path, alert: t("alerts.car_limit_reached")
       end
     end
-
-    def authenticate_api_key!
-      input_key = request.headers['api-key']
-
-      authorized = ApiKey.all.any? do |api_key|
-        BCrypt::Password.new(api_key.key_digest).is_password?(input_key)
-      end
-
-      unless authorized
-        render json: { error: 'Unauthorized' }, status: :unauthorized
-      end
-    end
-
 end
