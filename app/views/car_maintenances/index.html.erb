@@ -32,6 +32,7 @@
           <thead>
             <tr class="py-2 bg-red-100 text-red-800">
               <th class="px-4 py-3 text-left"><%= t('views.car_maintenances.date') %></th>
+              <th class="px-4 py-3">Title</th>
               <th class="px-4 py-3 text-center"><%= t('views.car_maintenances.type') %></th>
               <th class="px-4 py-3 text-center"><%= t('views.car_maintenances.photos') %></th>
               <th></th>
@@ -41,6 +42,7 @@
             <% @car_maintenances.each do |car_maintenance| %>
               <tr>
                 <td class="px-4 py-3"><%= car_maintenance.performed_at&.strftime('%d %b %Y') %></td>
+                <th class="px-4 py-3"><%= car_maintenance.title %></th>
                 <td class="px-4 py-3 text-center"><%= car_maintenance.maintenance_type.gsub('_', ' ') %></td>
                 <td class="px-4 py-3 text-center text-red-800"><%= link_to("#{car_maintenance.history_images.count} photos", car_car_maintenance_history_images_path(@car, car_maintenance), class: 'pointer text-red-800') %></td>
                 <td class="px-4 py-3 text-center space-x-2 flex justify-center">
