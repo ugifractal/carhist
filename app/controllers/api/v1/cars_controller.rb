@@ -1,11 +1,11 @@
 module Api
   module V1
     class CarsController < ApplicationController
-      ##before_action :authenticate_api_key!
+      ## before_action :authenticate_api_key!
 
       def index
         cars = Car.all
-        render json: { cars: cars.as_json(only: [:id, :name, :brand]) }
+        render json: { cars: cars.as_json(only: [ :id, :name, :brand ]) }
       end
 
       private
