@@ -1,1 +1,5 @@
-<h1>SETTING</h1>
+<% if current_user.api_key %>
+  <p>Your API Key: <code><%= current_user.api_key.api_key %></code></p>
+<% else %>
+  <%= link_to "Create API Key", new_api_key_path %>
+<% end %>
