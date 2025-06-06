@@ -1,0 +1,12 @@
+<h1>Create API Key</h1>
+
+<%= form_with model: @api_key, url: api_key_path, local: true do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.submit "Create" %>
+  </div>
+<% end %>
