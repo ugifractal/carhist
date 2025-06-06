@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resource :settings, only: %i[show]
   resources :car_shops
+  resource :api_key, only: [ :new, :create ]
 
   namespace :admin do
     resource :dashboards, only: %i[show]
