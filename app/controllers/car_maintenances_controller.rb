@@ -91,12 +91,13 @@ class CarMaintenancesController < ApplicationController
     pdf.move_down 10
 
     if @car_maintenances.any?
-      table_data = [ [ "Date", "Type", "Title" ] ]
+      table_data = [ [ "Date", "Type", "Title", "Description" ] ]
       @car_maintenances.each do |m|
         date = m.performed_at&.strftime("%d %b %Y")
         type = m.maintenance_type.humanize
         title = m.title
-        table_data << [ date, type, title ]
+        description = m.description
+        table_data << [ date, type, title, description ]
       end
 
       pdf.table(table_data, header: true, row_colors: [ "F0F0F0", "FFFFFF" ], cell_style: { borders: [] })
