@@ -4,7 +4,7 @@ module Api
       before_action :authenticate_api_key!
 
       def index
-        cars = Car.all
+        cars = @api_key.user.cars
         render json: { cars: cars.as_json(only: [ :id, :name, :brand ]) }
       end
 
@@ -12,7 +12,9 @@ module Api
 
       def authenticate_api_key!
         header_key = request.headers["api-key"]
-        unless ApiKey.exists?(api_key: header_key)
+        if ApiKey.exists?(api_key: header_key)
+          @api_key = ApiKey.find_by(api_key: header_key)
+        else
           render json: { error: "Unauthorized. Invalid or missing API key." }, status: :unauthorized
         end
       end
