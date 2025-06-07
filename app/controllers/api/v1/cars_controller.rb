@@ -1,7 +1,7 @@
 module Api
   module V1
     class CarsController < ApplicationController
-      ## before_action :authenticate_api_key!
+      before_action :authenticate_api_key!
 
       def index
         cars = Car.all
@@ -12,7 +12,7 @@ module Api
 
       def authenticate_api_key!
         header_key = request.headers["api-key"]
-        unless ApiKey.exists?(key: header_key)
+        unless ApiKey.exists?(api_key: header_key)
           render json: { error: "Unauthorized. Invalid or missing API key." }, status: :unauthorized
         end
       end
