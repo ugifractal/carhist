@@ -1,21 +1,14 @@
 <div>
-  <%= link_to(admin_car_shops_path, class: 'text-red-800') do %>
+  <%= link_to(car_shops_path, class: 'text-red-800') do %>
     &larr; <%= t('views.cars.back') %>
   <% end %>
 </div>
 
 <h1>New Car Shop</h1>
-<%= form_with model: @car_shop, url: admin_car_shops_path, local: true do |form| %>
+<%= form_with model: @car_shop, url: car_shops_path, local: true do |form| %>
   <div class="mt-2">
     <%= form.label :name %>
     <%= form.text_field :name, class:"border border-red-800 rounded" %>
-  </div>
-
-  <div class="mt-2">
-    <%= form.label :user_id %>
-
-    <%= form.select(:user_id, @users.map {|x| [x.email, x.id] }) %>
-
   </div>
 
   <div class="mt-2">

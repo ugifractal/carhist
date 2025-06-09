@@ -1,6 +1,6 @@
 <h1>Your Car Shops</h1>
 <div id="car_shops">
-  <%= link_to "Create New Car Shop", new_admin_car_shop_path %>
+  <%= link_to "Create New Car Shop", new_car_shop_path %>
 </div>
 <table>
   <tr>
@@ -10,7 +10,7 @@
   <% @car_shops.each do |shop| %>
     <tr>
       <td><%= shop.name %></td>
-      <td><%= shop.submitted_by %></td>
+      <td><%= shop.user.email %></td>
     </tr>
   <% end %>
 </table>
