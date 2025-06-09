@@ -18,7 +18,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :settings, only: %i[show]
+  resource :settings, only: %i[show] do
+    delete :api_key, to: 'settings#destroy_api_key'
+  end
+  
   resources :car_shops
   resource :api_key, only: [ :new, :create ]
 
