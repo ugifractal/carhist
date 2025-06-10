@@ -19,7 +19,7 @@ class Car < ApplicationRecord
       pdf.move_down 10
 
       if maintenances.any?
-        table_data = [["Date", "Type", "Title", "Description"]]
+        table_data = [ [ "Date", "Type", "Title", "Description" ] ]
         maintenances.each do |m|
           table_data << [
             m.performed_at&.strftime("%d %b %Y"),
