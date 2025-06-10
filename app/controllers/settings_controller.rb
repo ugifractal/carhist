@@ -6,6 +6,6 @@ class SettingsController < ApplicationController
 
   def destroy_api_key
     current_user.api_key&.destroy
-    redirect_to settings_path, notice: 'API key deleted.'
+    redirect_to settings_path, notice: "API key deleted."
   end
 end
