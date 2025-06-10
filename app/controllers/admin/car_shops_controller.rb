@@ -12,25 +12,31 @@ module Admin
     end
 
     def new
+      @users = User.all
       @car_shop = CarShop.new
     end
 
     def create
-      @car_shop = current_user.car_shops.build(car_shop_params)
-      @car_shop.submitted_by = current_user.id
+      @users = User.all
+      @car_shop = CarShop.new(car_shop_params)
 
       if @car_shop.save
-        redirect_to car_shops_path, notice: "Car shop successfully created."
-        format.json { render :show, status: :ok, location: @car_model }
+        redirect_to admin_car_shops_path, notice: "Car shop successfully created."
       else
         render :new
       end
     end
 
+    def update_submitted_by
+      @shop = CarShop.find(params[:id])
+      @shop.update(submitted_by: params[:car_shop][:submitted_by])
+      redirect_to admin_car_shops_path, notice: "Submitted by updated."
+    end
+
     private
 
     def car_shop_params
-      params.require(:car_shop).permit(:name)
+      params.require(:car_shop).permit(:name, :user_id)
     end
   end
 end
