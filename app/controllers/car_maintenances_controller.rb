@@ -9,11 +9,11 @@ class CarMaintenancesController < ApplicationController
       @car_maintenances = @car.car_maintenances
         .where("LOWER(description) LIKE ?", "%#{params[:search].downcase}%")
         .order(performed_at: :desc)
-        .paginate(page: params[:page], per_page: 5)
+        .paginate(page: params[:page], per_page: 15)
     else
       @car_maintenances = @car.car_maintenances
         .order(performed_at: :desc)
-        .paginate(page: params[:page], per_page: 5)
+        .paginate(page: params[:page], per_page: 15)
     end
     respond_to do |format|
       format.json do
