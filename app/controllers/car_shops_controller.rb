@@ -3,6 +3,11 @@ class CarShopsController < ApplicationController
 
   def index
     @car_shops = CarShop.paginate(page: params[:page], per_page: 20)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @car_shops }
+    end
   end
 
   def new
@@ -23,6 +28,6 @@ class CarShopsController < ApplicationController
   private
 
   def car_shop_params
-    params.require(:car_shop).permit(:name)
+    params.require(:car_shop).permit(:name, :user_id)
   end
 end
