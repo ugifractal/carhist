@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :cars, dependent: :destroy
   has_many :car_shops
   has_one :api_key, dependent: :destroy
+  has_one :setting, dependent: :destroy
 end
