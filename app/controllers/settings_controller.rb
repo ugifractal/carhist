@@ -1,17 +1,11 @@
 class SettingsController < ApplicationController
-  before_action :set_setting
+  before_action :authenticate_user!
 
   def show
   end
 
   def destroy_api_key
-    @setting.update(api_key: nil)
-    redirect_to setting_path, notice: 'API key deleted successfully.'
-  end
-
-  private
-
-  def set_setting
-    @setting = current_user.setting
+    current_user.api_key&.destroy
+    redirect_to settings_path, notice: 'API key deleted.'
   end
 end
