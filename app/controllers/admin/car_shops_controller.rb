@@ -6,7 +6,7 @@ module Admin
       @car_shops = current_user.car_shops.paginate(page: params[:page], per_page: 20)
 
       respond_to do |format|
-        format.html # optional if you have index.html.erb
+        format.html
         format.json { render json: @car_shops }
       end
     end
