@@ -12,6 +12,14 @@
   </div>
 
   <div class="mt-2">
+    <div><%= "Category" %></div>
+    <div>
+      <%= form.select(:category,
+       [['Tire Shop', 'tire_shop'],['Ecu Shop', 'ecu_shop'],['Suspension', 'suspension'],['Other', 'other']], {}, class:"border border-red-800 rounded") %>
+    </div>
+  </div>
+
+  <div class="mt-2">
     <%= form.submit 'Create' %>
   </div>
 <% end %>

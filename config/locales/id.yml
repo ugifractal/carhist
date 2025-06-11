@@ -17,6 +17,11 @@ id:
             volume:
               not_a_number: bukan angka
               greater_than: lebih besar dari %{count}
+        car_shop:
+          attributes:
+            category:
+              blank: kosong
+
   views:
     history_images:
       back: "kembali"
