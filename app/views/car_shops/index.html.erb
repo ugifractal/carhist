@@ -21,7 +21,9 @@
           <td class="py-2 px-2"><%= shop.category %></td>
           <td class="py-2 px-2"><%= shop.user.email %></td>
           <td class="py-2 px-2">edit</td>
-          <td class="py-2 px-2">delete</td>
+          <td class="py-2 px-2">
+            <%= button_to "delete", @car_shop, method: :delete %>
+          </td>
         </tr>
       <% end %>
     </tbody>

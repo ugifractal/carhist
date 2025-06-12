@@ -25,6 +25,15 @@ class CarShopsController < ApplicationController
     end
   end
 
+  def destroy
+    @car_shop.destroy!
+
+    respond_to do |format|
+      format.html { redirect_to car_shops_path, status: :see_other, notice: "Car Shop was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   def car_shop_params
