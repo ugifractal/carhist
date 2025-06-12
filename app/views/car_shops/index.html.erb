@@ -1,13 +1,16 @@
-<h1>Your Car Shops</h1>
-<div id="car_shops">
-  <%= link_to "Create New Car Shop", new_car_shop_path %>
+<h1 class="text-2xl">Your Car Shops</h1>
+<div class="mt-4">
+  <%= link_to "Create New Car Shop", new_car_shop_path, class: 'bg-red-700 px-3 py-2 rounded text-white'%>
 </div>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Category</th>
-    <th>Submitted By</th>
-  </tr>
+
+<table class="border border-red-500">
+  <thead>
+    <tr class="py-2 bg-red-100 text-red-800">
+      <th class="text-left py-2 px-2">Name</th>
+      <th class="w-48 text-center py-2 px-2">Category</th>
+      <th class="w-48 text-center py-2 px-2">Submitted By</th>
+    </tr>
+  </thead>
   <% @car_shops.each do |shop| %>
     <tr>
       <td><%= shop.name %></td>
