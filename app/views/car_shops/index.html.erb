@@ -5,11 +5,13 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Category</th>
     <th>Submitted By</th>
   </tr>
   <% @car_shops.each do |shop| %>
     <tr>
       <td><%= shop.name %></td>
+      <td><%= shop.category %></td>
       <td><%= shop.user.email %></td>
     </tr>
   <% end %>
