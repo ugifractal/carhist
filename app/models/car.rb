@@ -29,7 +29,10 @@ class Car < ApplicationRecord
           ]
         end
 
-        pdf.table(table_data, header: true, row_colors: %w[F0F0F0 FFFFFF], cell_style: { borders: [] })
+        pdf.table(table_data, header: true,
+                              row_colors: %w[F0F0F0 FFFFFF],
+                              cell_style: { borders: [] },
+                              column_widths: [ 90, 100, 130, 220 ])
       else
         pdf.text "No maintenance records found.", style: :italic
       end

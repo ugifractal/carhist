@@ -3,7 +3,7 @@
 <%= form_with model: @api_key, url: api_key_path, local: true do |form| %>
   <div>
     <%= form.label :name %><br>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "border border-red-800 rounded"%>
   </div>
 
   <div>
