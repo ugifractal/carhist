@@ -1,18 +1,31 @@
-<h1>Your Car Shops</h1>
-<div id="car_shops">
-  <%= link_to "Create New Car Shop", new_car_shop_path %>
+<h1 class="text-2xl">Your Car Shops</h1>
+<div class="mt-4">
+  <%= link_to "Create New Car Shop", new_car_shop_path, class: 'bg-red-700 px-3 py-2 rounded text-white'%>
 </div>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Category</th>
-    <th>Submitted By</th>
-  </tr>
-  <% @car_shops.each do |shop| %>
-    <tr>
-      <td><%= shop.name %></td>
-      <td><%= shop.category %></td>
-      <td><%= shop.user.email %></td>
-    </tr>
-  <% end %>
-</table>
+
+<div class="mt-4 hiddenx">
+  <table class="w-full border border-red-500">
+    <thead>
+      <tr class="py-2 bg-red-100 text-red-800">
+        <th class="text-left py-2 px-2">Name</th>
+        <th class="text-left py-2 px-2">Category</th>
+        <th class="w-48 text-center py-2 px-2">Submitted By</th>
+        <th class="w-48 py-2 px-2"></th>
+        <th class="w-48 py-2 px-2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @car_shops.each do |shop| %>
+        <tr>
+          <td class="py-2 px-2"><%= shop.name %></td>
+          <td class="py-2 px-2"><%= shop.category %></td>
+          <td class="py-2 px-2"><%= shop.user.email %></td>
+          <td class="py-2 px-2">edit</td>
+          <td class="py-2 px-2">
+            <%= button_to "delete", @car_shop, method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
