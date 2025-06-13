@@ -29,6 +29,7 @@ id:
     car_maintenances:
       title: "Service Record dari"
       name: "Tambah Car Maintenance"
+      editing: "Ubah Service Record"
       button: "Cari"
       column: "Cari nama mobil..."
       show: "Lihat"
