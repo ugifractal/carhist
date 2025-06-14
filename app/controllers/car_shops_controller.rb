@@ -37,6 +37,6 @@ class CarShopsController < ApplicationController
   private
 
   def car_shop_params
-    params.require(:car_shop).permit(:name, :category)
+    params.require(:car_shop).permit(:name, :category, :description)
   end
 end
