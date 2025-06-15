@@ -42,9 +42,8 @@
 
   <div class="mt-2">
     <div><%= "Bengkel" %></div>
-    <div>
-      <%= form.select(:maintenance_type,
-       [['Oil Change', 'oil_change'],['AC Repair', 'ac_repair'],['Tire Repair', 'tire_repair'],['Other', 'other']], {}, class:"border border-red-800 rounded") %>
+    <div class= "border border-red-800 rounded">
+      <%= form.select(:name, options_from_collection_for_select(@car_shops, :id, :name) {}) %>
     </div>
   </div>
 <% end %>
