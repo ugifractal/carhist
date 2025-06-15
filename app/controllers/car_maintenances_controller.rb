@@ -48,7 +48,7 @@ class CarMaintenancesController < ApplicationController
 
     respond_to do |format|
       if @car_maintenance.save
-        format.html { redirect_to car_car_maintenance_path(@car, @car_maintenance), notice: "Car maintenance was successfully created." }
+        format.html { redirect_to car_car_maintenance_history_images_path(@car, @car_maintenance), notice: "Car maintenance was successfully created." }
         format.json { render :show, status: :created, location: @car_maintenance }
       else
         format.html { render :new, status: :unprocessable_entity }
