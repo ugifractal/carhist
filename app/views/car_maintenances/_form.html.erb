@@ -45,5 +45,10 @@
     <div>
       <%= form.select(:name, options_from_collection_for_select(@car_shops, :id, :name),{}, class: "border border-red-800 rounded px-2 py-1 text-sm w-auto") %>
     </div>
+
+    <div class="mt-8">
+      <%= form.submit t(@car_maintenance.new_record? ? 'views.car_maintenances.new.create' : 'views.car_maintenances.edit'),
+        class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-red-800 hover:bg-red-500 text-white inline-block font-medium cursor-pointer" %>
+    </div>
   </div>
 <% end %>
