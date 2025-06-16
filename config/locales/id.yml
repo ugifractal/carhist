@@ -26,6 +26,7 @@ id:
     history_images:
       back: "kembali"
       upload_photo: "Unggah Foto"
+      command: "Tambahkan foto service nya disini!"
     car_maintenances:
       title: "Service Record dari"
       name: "Tambah Car Maintenance"
@@ -33,14 +34,14 @@ id:
       button: "Cari"
       column: "Cari nama mobil..."
       show: "Lihat"
-      edit: "ubah"
+      edit: "Update Service Record"
       destroy: "hapus"
       new:
         name: "Tipe Service"
         title: "Judul"
         head: "Service Record Baru"
         description: "Deskripsi"
-        time: "Dibuat Pada"
+        time: "Waktu Pengerjaan"
         create: "Buat Service Record"
       date: "Tanggal"
       type: "Tipe"
