@@ -35,6 +35,7 @@ class CarMaintenancesController < ApplicationController
 
   # GET /car_maintenances/new
   def new
+    @car = Car.find(params[:car_id])
     @car_maintenance = @car.car_maintenances.new
   end
 
@@ -44,6 +45,7 @@ class CarMaintenancesController < ApplicationController
 
   # POST /car_maintenances or /car_maintenances.json
   def create
+    @car = Car.find(params[:car_id])
     @car_maintenance = @car.car_maintenances.new(car_maintenance_params)
 
     respond_to do |format|
