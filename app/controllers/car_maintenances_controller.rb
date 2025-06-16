@@ -36,10 +36,12 @@ class CarMaintenancesController < ApplicationController
   # GET /car_maintenances/new
   def new
     @car_maintenance = @car.car_maintenances.new
+    @car_shops = CarShop.all
   end
 
   # GET /car_maintenances/1/edit
   def edit
+    @car_shops = CarShop.all
   end
 
   # POST /car_maintenances or /car_maintenances.json

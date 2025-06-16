@@ -34,6 +34,7 @@ id:
       button: "Cari"
       column: "Cari nama mobil..."
       show: "Lihat"
+      edit-view: "edit"
       edit: "Update Service Record"
       destroy: "hapus"
       new:
