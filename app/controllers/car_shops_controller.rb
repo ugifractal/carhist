@@ -10,6 +10,10 @@ class CarShopsController < ApplicationController
     end
   end
 
+  def show
+    @car_shop = CarShop.find(params[:id])
+  end
+
   def new
     @car_shop = CarShop.new
   end
@@ -27,7 +31,7 @@ class CarShopsController < ApplicationController
 
   def destroy
     @car_shop.destroy!
-
+    @car_shop = CarShop.find(params[:id])
     respond_to do |format|
       format.html { redirect_to car_shops_path, status: :see_other, notice: "Car Shop was successfully destroyed." }
       format.json { head :no_content }
