@@ -26,6 +26,7 @@ id:
     history_images:
       back: "kembali"
       upload_photo: "Unggah Foto"
+      command: "Tambahkan foto service nya disini!"
     car_maintenances:
       title: "Service Record dari"
       name: "Tambah Car Maintenance"
