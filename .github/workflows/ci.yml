@@ -56,6 +56,8 @@ jobs:
         run: bundle exec rubocop -f github
       - name: Lint ERB
         run: bundle exec erb_lint app/views/
+      - name: Lint Javascript files
+        run: yarn run eslint app/javascript/
 
   # test:
   #   runs-on: ubuntu-latest
