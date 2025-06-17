@@ -1,0 +1,6 @@
+---
+EnableDefaultLinters: false
+linters:
+  FinalNewline:
+    enabled: true
+
