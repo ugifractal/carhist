@@ -9,9 +9,5 @@ class CarMaintenanceSetting < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-
-    add_index :maintenance_settings, :car_id
-    add_foreign_key :maintenance_settings, :cars
-    end
   end
 end
