@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_11_031756) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_16_231846) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -81,6 +81,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_11_031756) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
+    t.string "car_shop_id"
   end
 
   create_table "car_models", force: :cascade do |t|
@@ -127,6 +128,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_11_031756) do
     t.string "type"
     t.string "title"
     t.jsonb "image_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "maintenance_settings", force: :cascade do |t|
+    t.integer "car_id"
+    t.integer "engine_oil_change_interval", default: 5000
+    t.integer "engine_oil_change_time_interval", default: 6
+    t.integer "transmission_oil_change_interval", default: 20000
+    t.integer "transmission_oil_change_time_interval", default: 24
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
