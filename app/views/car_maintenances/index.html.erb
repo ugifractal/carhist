@@ -12,20 +12,25 @@
   <div class="flex justify-end mt-3">
     <%= link_to("Car fuelings", car_car_fuelings_path(@car), class: "bg-red-800 px-2 py-2 text-white rounded") %>
   </div>
-  <h1 class="flex justify-end mt-3">
-    <%= link_to 'Generate PDF', export_pdf_car_car_maintenances_path(@car), method: :get, class: 'bg-red-800 px-2 py-2 rounded text-white' %>
-  </h1>
-  <%= form_tag car_car_maintenances_path(@car), method: :get, local: true do %>
-    <div class="flex justify-end items-center mt-3">
-      <div class="mr-2">
-        <%= text_field_tag :search, params[:search], placeholder: t('views.car_maintenances.column'), class: "border border-red-800" %>
-      </div>
-      <div>
-        <%= submit_tag t('views.car_maintenances.button'),
-          class: "rounded-md bg-red-800 text-white px-4 py-1 rounded-r-md hover:bg-red-500 font-medium" %>
-      </div>
-    </div>
+
+  <% if @car_maintenances.size == 0 %>
+    <% else %>
+      <h1 class="flex justify-end mt-3">
+        <%= link_to 'Generate PDF', export_pdf_car_car_maintenances_path(@car), method: :get, class: 'bg-red-800 px-2 py-2 rounded text-white' %>
+      </h1>
+      <%= form_tag car_car_maintenances_path(@car), method: :get, local: true do %>
+        <div class="flex justify-end items-center mt-3">
+          <div class="mr-2">
+            <%= text_field_tag :search, params[:search], placeholder: t('views.car_maintenances.column'), class: "border border-red-800" %>
+          </div>
+          <div>
+            <%= submit_tag t('views.car_maintenances.button'),
+              class: "rounded-md bg-red-800 text-white px-4 py-1 rounded-r-md hover:bg-red-500 font-medium" %>
+          </div>
+        </div>
+      <% end %>
   <% end %>
+
   <div id="car_maintenances" class="min-w-full divide-y divide-gray-200 space-y-5 mt-4">
     <% if @car_maintenances.any? %>
         <table class="w-full border border-red-500">
