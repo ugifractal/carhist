@@ -43,7 +43,10 @@
   <div class="mt-2">
     <div><%= "Bengkel" %></div>
     <div>
-      <%= form.select(:name, options_from_collection_for_select(@car_shops, :id, :name),{}, class: "border border-red-800 rounded px-2 py-1 text-sm w-auto") %>
+      <%= form.select :car_shop_id,
+        options_for_select([["DIY", nil]] + @car_shops.map { |shop| [shop.name, shop.id] }, selected: @car_maintenance.car_shop_id),
+        {},
+        class: "border border-red-800 rounded px-2 py-1 text-sm w-auto" %>
     </div>
 
     <div class="mt-8">
