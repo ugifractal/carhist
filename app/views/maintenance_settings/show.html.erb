@@ -1,16 +1,17 @@
-<h1>Maintenance setting for <%= @car.name %></h1>
-<%= form_with(model: [@car, @car_maintenance], class: "contents") do |form| %>
-<div class="mt-2">
-    <div><%= "Engine Oil Change Interval" %></div>
-    <div>
-      <%= form.text_field(:title, class: "border border-red-800 rounded text-sm") %>
-    </div>
+<h1 class="text-xl font-bold mb-4">
+  Maintenance setting for <%= @car.name %>
+</h1>
+
+<%= form_with(model: [@car, @maintenance_setting], local: true) do |form| %>
+  <div class="mb-4">
+    <%= form.label :engine_oil_change_interval, "Engine Oil Change Interval", class: "block font-medium mb-1" %>
+    <%= form.number_field :engine_oil_change_interval, class: "border rounded w-full px-3 py-2" %>
   </div>
 
-  <div class="mt-2">
-    <div><%= "Transmission Oil Change Interval" %></div>
-    <div>
-      <%= form.text_field(:title, class: "border border-red-800 rounded text-sm") %>
-    </div>
+  <div class="mb-4">
+    <%= form.label :transmission_oil_change_interval, "Transmission Oil Change Interval", class: "block font-medium mb-1" %>
+    <%= form.number_field :transmission_oil_change_interval, class: "border rounded w-full px-3 py-2" %>
   </div>
+
+  <%= form.submit "Save Settings", class: "bg-blue-600 text-white px-4 py-2 rounded" %>
 <% end %>

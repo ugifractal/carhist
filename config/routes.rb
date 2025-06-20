@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations", confirmations: "users/confirmations" }
 
   resources :cars do
-    resource :maintenance_settings, only: [:show]
+    resource :maintenance_settings
     resources :car_maintenances do
       collection do
         get :export_pdf
