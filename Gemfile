@@ -81,3 +81,5 @@ gem "letter_opener"
 gem "prawn"
 
 gem "prawn-table"
+
+gem 'inline_svg'
