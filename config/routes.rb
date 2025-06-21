@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  get "maintenance_settings/show"
   devise_for :users, controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations", confirmations: "users/confirmations" }
 
   resources :cars do
+    resource :maintenance_settings
     resources :car_maintenances do
       collection do
         get :export_pdf
