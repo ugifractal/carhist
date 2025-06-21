@@ -10,7 +10,7 @@
 <div class="mt-4">
   <% if (current_user.plan == 'free' && current_user.cars.count < 2) || (current_user.plan == 'paid' && current_user.cars.count < 6) %>
     <%= link_to new_car_path(@car) do %>
-      <img src="https://www.svgrepo.com/show/526725/add-square.svg" class="w-8 h-8 inline" />
+      <img src="<%= asset_path('/app/images/add.svg') %>" class="w-8 h-8 inline" />
     <% end %>
   <% end %>
 </div>
