@@ -56,8 +56,8 @@
                   <% end %>
                   <%= link_to t('views.car_maintenances.show'), car_car_maintenance_path(@car, car_maintenance),
                     class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-                  <%= button_to car_car_maintenance_path(@car, car_maintenance), class: "flex items-center justify-center", method: :delete, data: { turbo_confirm: "Are you sure?" } do %>
-                    <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
+                  <%= button_to car_car_maintenance_path(@car, car_maintenance), method: :delete, data: { turbo_confirm: "Are you sure?" } do %>
+                    <%= image_tag "trash.svg", class: "w-5 h-5 inline mt-2" %>
                   <% end %>
                 </td>
               </tr>
