@@ -52,12 +52,12 @@
                 <td class="px-4 py-3 text-center text-red-800"><%= link_to("#{car_maintenance.history_images.count} photos", car_car_maintenance_history_images_path(@car, car_maintenance), class: 'pointer text-red-800') %></td>
                 <td class="px-4 py-3 text-center space-x-2 flex justify-center">
                   <%= link_to edit_car_car_maintenance_path(@car, car_maintenance), class: "flex items-center justify-center" do %>
-                    <img src="https://www.svgrepo.com/show/42233/pencil-edit-button.svg" class="w-4 h-4 inline" />
+                    <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
                   <% end %>
                   <%= link_to t('views.car_maintenances.show'), car_car_maintenance_path(@car, car_maintenance),
                     class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
                   <%= button_to car_car_maintenance_path(@car, car_maintenance), class: "flex items-center justify-center", method: :delete, data: { turbo_confirm: "Are you sure?" } do %>
-                    <img src="https://www.svgrepo.com/show/533027/trash-slash-alt.svg" class="w-4 h-4 inline" />
+                    <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
                   <% end %>
                 </td>
               </tr>
