@@ -13,11 +13,24 @@
     <%= link_to("Car fuelings", car_car_fuelings_path(@car), class: "bg-red-800 px-2 py-2 text-white rounded") %>
   </div>
 
-  <% if @car_maintenances.size == 0 %>
-    <% else %>
-      <h1 class="flex justify-end mt-3">
-        <%= link_to 'Generate PDF', export_pdf_car_car_maintenances_path(@car), method: :get, class: 'bg-red-800 px-2 py-2 rounded text-white' %>
-      </h1>
+  <% if @car_maintenances.any? %>
+      <div data-controller="account">
+        <div data-action="click->account#toggle" class="cursor-pointer flex justify-end mt-3">
+          <div class="bg-red-800 px-2 py-2 rounded text-white">
+            <%= "Action" %>
+          </div>
+        </div>
+
+        <div data-account-target="menu" class="hidden absolute bg-white border border-red-700 rounded-md w-max lg:w-35 right-0 mt-1 z-50">
+          <div class="p-3">
+            <h1 class="flex justify-end">
+              <%= link_to 'Generate PDF', export_pdf_car_car_maintenances_path(@car), method: :get, class: 'bg-red-800 px-2 py-1 rounded text-white text-sm' %>
+            </h1>
+          </div>
+        </div>
+      </div>
+
+
       <%= form_tag car_car_maintenances_path(@car), method: :get, local: true do %>
         <div class="flex justify-end items-center mt-3">
           <div class="mr-2">
