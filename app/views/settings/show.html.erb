@@ -3,4 +3,5 @@
   <%= button_to "Delete API Key", api_key_settings_path, method: :delete, data: { confirm: "Are you sure?" } %>
 <% else %>
   <%= link_to "Create API Key", new_api_key_path, class: 'bg-red-700 px-3 py-2 rounded text-white' %>
+  <%= link_to "Maintenance Setting", car_maintenance_settings_path(@car), class: 'bg-red-700 px-3 py-2 rounded text-white' %>
 <% end %>
