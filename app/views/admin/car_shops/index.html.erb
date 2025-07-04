@@ -6,12 +6,14 @@
   <tr>
     <th>Name</th>
     <th>Submitted By</th>
+    <th>Approved at</th>
   </tr>
 
   <% @car_shops.each do |shop| %>
     <tr>
       <td><%= shop.name %></td>
       <td><%= shop.user.email %></td>
+      <td><%= shop.user.approved_at %></td>
     </tr>
   <% end %>
 
