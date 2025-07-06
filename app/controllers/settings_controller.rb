@@ -2,6 +2,7 @@ class SettingsController < ApplicationController
   before_action :authenticate_user!
 
   def show
+    @car = Car.find(params[:car_id])
   end
 
   def destroy_api_key
