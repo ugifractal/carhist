@@ -47,6 +47,7 @@ id:
       date: "Tanggal"
       type: "Tipe"
       photos: "Foto"
+      description: "Deskripsi:"
     cars:
       new: "Tambah Mobil"
       back: "Kembali"

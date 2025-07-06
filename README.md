@@ -1,6 +1,6 @@
 # CARHIST
 
-## This app is designed to manage car histories
+## This app is designed to record car maintenances
 
 
 ## Run app on development

@@ -1,3 +1,9 @@
+<div>
+  <%= link_to(car_car_maintenances_path(@car), class: 'text-red-800') do %>
+    &larr; <%= t('views.history_images.back') %>
+  <% end %>
+</div>
+
 <% content_for :title, "Showing car maintenance" %>
 
 <div class="md:w-2/3 w-full">
@@ -11,10 +17,16 @@
     Maintenance Type: <%= @car_maintenance.maintenance_type %>
   </div>
   <div>
+    <%= t('views.car_maintenances.description') %>
     <%= @car_maintenance.description %>
   </div>
 
-  <%= link_to "Edit this car maintenance", edit_car_car_maintenance_path(@car, @car_maintenance), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to car maintenances", car_car_maintenances_path(@car), class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= button_to "Destroy this car maintenance", car_car_maintenance_path(@car, @car_maintenance), method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", class: "w-full rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
+  <%= link_to edit_car_car_maintenance_path(@car, @car_maintenance) do %>
+    <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
+    <%= t('views.car_maintenances.edit-view') %>
+  <% end %>
+  <%= button_to car_car_maintenance_path(@car, @car_maintenance), method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", data: { turbo_confirm: "Are you sure?" } do %>
+    <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
+    <%= t('views.car_maintenances.destroy') %>
+  <% end %>
 </div>
