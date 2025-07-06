@@ -17,7 +17,8 @@
     Maintenance Type: <%= @car_maintenance.maintenance_type %>
   </div>
   <div>
-    Description: <%= @car_maintenance.description %>
+    <%= t('views.car_maintenances.description') %>
+    <%= @car_maintenance.description %>
   </div>
 
   <%= link_to edit_car_car_maintenance_path(@car, @car_maintenance) do %>
