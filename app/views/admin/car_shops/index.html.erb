@@ -13,7 +13,13 @@
     <tr>
       <td><%= shop.name %></td>
       <td><%= shop.user.email %></td>
-      <td><%= shop.user.approved_at %></td>
+      <td>
+          <% if shop.approved_at.present? %>
+            <%= shop.approved_at.strftime("%d-%B-%Y %H:%M") %>
+          <% else %>
+            <p>Not Approved</p>
+          <% end %>
+        </td>
     </tr>
   <% end %>
 
