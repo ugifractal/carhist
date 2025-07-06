@@ -103,7 +103,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_03_110743) do
     t.string "name"
     t.text "address"
     t.string "google_map_url"
-    t.boolean "approved"
+    t.boolean "approved_at"
     t.integer "user_id"
     t.text "description"
     t.datetime "created_at", null: false
