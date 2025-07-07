@@ -26,7 +26,11 @@ ENV RAILS_ENV="production" \
     BUNDLE_WITHOUT="development" \
     NODE_VERSION="22.12.0" \
     NVM_DIR="/usr/local/nvm" \
-    NODE_OPTIONS="--openssl-legacy-provider"
+    NODE_OPTIONS="--openssl-legacy-provider" \
+    SMTP_USERNAME="" \
+    SMTP_PASS="" \
+    SMTP_PORT="587" \
+    SMTP_DOMAIN="smtp.zoho.com"
 
 # Throw-away build stage to reduce size of final image
 FROM base AS build
