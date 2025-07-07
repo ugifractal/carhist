@@ -18,13 +18,16 @@
     <tbody>
       <% @car_shops.each do |shop| %>
         <tr>
-          <td class="py-2 px-2"><%= link_to shop.name, car_shop_path(shop) %></td>
-          <td class="py-2 px-2"><%= shop.category %></td>
-          <td class="text-center py-2 px-2"><%= shop.user.email %></td>
-          <td class="text-center py-2 px-2"><%= shop.description %></td>
-          <td class="py-2 px-2">edit</td>
-          <td class="py-2 px-2">
-            <%= button_to "delete", @car_shop, method: :delete %>
+          <td class="px-4 py-3"><%= shop.name %></td>
+          <td class="px-4 py-3 text-center"><%= shop.category %></td>
+          <td class="px-4 py-3 text-center"><%= shop.user.email %></td>
+          <td class="px-4 py-3 text-center space-x-2 flex justify-center">
+            <%= link_to edit_car_shop_path(shop), class: "flex items-center justify-center" do %>
+              <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
+            <% end %>
+            <%= button_to car_shop_path(shop), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
+              <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
+            <% end %>
           </td>
         </tr>
       <% end %>
