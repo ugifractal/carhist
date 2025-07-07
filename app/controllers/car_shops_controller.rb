@@ -1,5 +1,6 @@
 class CarShopsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_car_shop, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @car_shops = CarShop.paginate(page: params[:page], per_page: 20)
@@ -11,7 +12,6 @@ class CarShopsController < ApplicationController
   end
 
   def show
-    @car_shop = CarShop.find(params[:id])
   end
 
   def new
@@ -29,9 +29,20 @@ class CarShopsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @car_shop.update(car_shop_params)
+      redirect_to car_shops_path, notice: "Car shop successfully updated."
+    else
+      render :edit
+    end
+  end
+
+
   def destroy
     @car_shop.destroy!
-    @car_shop = CarShop.find(params[:id])
     respond_to do |format|
       format.html { redirect_to car_shops_path, status: :see_other, notice: "Car Shop was successfully destroyed." }
       format.json { head :no_content }
@@ -39,6 +50,9 @@ class CarShopsController < ApplicationController
   end
 
   private
+    def set_car_shop
+      @car_shop = CarShop.find(params[:id])
+    end
 
   def car_shop_params
     params.require(:car_shop).permit(:name, :category, :description)
