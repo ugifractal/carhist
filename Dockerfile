@@ -28,7 +28,7 @@ ENV RAILS_ENV="production" \
     NVM_DIR="/usr/local/nvm" \
     NODE_OPTIONS="--openssl-legacy-provider" \
     SMTP_USERNAME="" \
-    SMTP_PASSWORD="" \
+    SMTP_PASS="" \
     SMTP_PORT="587" \
     SMTP_DOMAIN="smtp.zoho.com"
 
