@@ -1,3 +1,9 @@
+<div>
+  <%= link_to(car_shops_path, class: 'text-red-800') do %>
+    &larr; <%= t('views.history_images.back') %>
+  <% end %>
+</div>
+
 <% content_for :title, "Editing car shop" %>
 
 <h1>Editing car</h1>
@@ -5,8 +11,3 @@
 <%= render "form", car_shop: @car_shop %>
 
 <br>
-
-<div>
-  <%= link_to "Show this car", @car_shop %> |
-  <%= link_to "Back to cars", car_shops_path %>
-</div>

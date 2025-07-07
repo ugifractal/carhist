@@ -76,4 +76,17 @@ Rails.application.configure do
 
   config.active_job.queue_adapter = :solid_queue
   config.solid_queue.connects_to = { database: { writing: :queue } }
+
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   user_name: ENV.fetch("SMTP_USERNAME"),
+  #   password: ENV.fetch("SMTP_PASS"),
+  #   address: ENV.fetch("SMTP_DOMAIN"),
+  #   port: 587,
+  #   ssl: false,
+  #   enable_starttls_auto: true,
+  #   open_timeout: 60,
+  #   read_timeout: 60,
+  #   authentication: :plain
+  # }
 end
