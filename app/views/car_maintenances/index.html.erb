@@ -12,20 +12,25 @@
   <div class="flex justify-end mt-3">
     <%= link_to("Car fuelings", car_car_fuelings_path(@car), class: "bg-red-800 px-2 py-2 text-white rounded") %>
   </div>
-  <h1 class="flex justify-end mt-3">
-    <%= link_to 'Generate PDF', export_pdf_car_car_maintenances_path(@car), method: :get, class: 'bg-red-800 px-2 py-2 rounded text-white' %>
-  </h1>
-  <%= form_tag car_car_maintenances_path(@car), method: :get, local: true do %>
-    <div class="flex justify-end items-center mt-3">
-      <div class="mr-2">
-        <%= text_field_tag :search, params[:search], placeholder: t('views.car_maintenances.column'), class: "border border-red-800" %>
-      </div>
-      <div>
-        <%= submit_tag t('views.car_maintenances.button'),
-          class: "rounded-md bg-red-800 text-white px-4 py-1 rounded-r-md hover:bg-red-500 font-medium" %>
-      </div>
-    </div>
+
+  <% if @car_maintenances.size == 0 %>
+    <% else %>
+      <h1 class="flex justify-end mt-3">
+        <%= link_to 'Generate PDF', export_pdf_car_car_maintenances_path(@car), method: :get, class: 'bg-red-800 px-2 py-2 rounded text-white' %>
+      </h1>
+      <%= form_tag car_car_maintenances_path(@car), method: :get, local: true do %>
+        <div class="flex justify-end items-center mt-3">
+          <div class="mr-2">
+            <%= text_field_tag :search, params[:search], placeholder: t('views.car_maintenances.column'), class: "border border-red-800" %>
+          </div>
+          <div>
+            <%= submit_tag t('views.car_maintenances.button'),
+              class: "rounded-md bg-red-800 text-white px-4 py-1 rounded-r-md hover:bg-red-500 font-medium" %>
+          </div>
+        </div>
+      <% end %>
   <% end %>
+
   <div id="car_maintenances" class="min-w-full divide-y divide-gray-200 space-y-5 mt-4">
     <% if @car_maintenances.any? %>
         <table class="w-full border border-red-500">
@@ -42,16 +47,18 @@
             <% @car_maintenances.each do |car_maintenance| %>
               <tr>
                 <td class="px-4 py-3"><%= car_maintenance.performed_at&.strftime('%d %b %Y') %></td>
-                <th class="px-4 py-3"><%= car_maintenance.title %></th>
+                <th class="px-4 py-3 text-red-800"><%= link_to car_maintenance.title, car_car_maintenance_path(@car, car_maintenance) %></th>
                 <td class="px-4 py-3 text-center"><%= car_maintenance.maintenance_type.gsub('_', ' ') %></td>
                 <td class="px-4 py-3 text-center text-red-800"><%= link_to("#{car_maintenance.history_images.count} photos", car_car_maintenance_history_images_path(@car, car_maintenance), class: 'pointer text-red-800') %></td>
                 <td class="px-4 py-3 text-center space-x-2 flex justify-center">
+                  <%= link_to edit_car_car_maintenance_path(@car, car_maintenance), class: "flex items-center justify-center" do %>
+                    <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
+                  <% end %>
                   <%= link_to t('views.car_maintenances.show'), car_car_maintenance_path(@car, car_maintenance),
                     class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-                  <%= link_to t('views.car_maintenances.edit'), edit_car_car_maintenance_path(@car, car_maintenance),
-                    class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-                  <%= button_to t('views.car_maintenances.destroy'), car_car_maintenance_path(@car, car_maintenance), method: :delete,
-                    class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-800 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
+                  <%= button_to car_car_maintenance_path(@car, car_maintenance), method: :delete, data: { turbo_confirm: "Are you sure?" } do %>
+                    <%= image_tag "trash.svg", class: "w-5 h-5 inline mt-2" %>
+                  <% end %>
                 </td>
               </tr>
             <% end %>

@@ -15,33 +15,42 @@
     <div><%= t('views.car_maintenances.new.name') %></div>
     <div>
       <%= form.select(:maintenance_type,
-       [['Oil Change', 'oil_change'],['AC Repair', 'ac_repair'],['Tire Repair', 'tire_repair'],['Other', 'other']], {}, class:"border border-red-800 rounded") %>
+       [['Oil Change', 'oil_change'],['AC Repair', 'ac_repair'],['Tire Repair', 'tire_repair'],['Other', 'other']], {}, class:"border border-red-800 rounded text-sm") %>
     </div>
   </div>
 
   <div class="mt-2">
     <div><%= t('views.car_maintenances.new.title') %></div>
     <div>
-      <%= form.text_field(:title, class: "border border-red-800 rounded") %>
+      <%= form.text_field(:title, class: "border border-red-800 rounded text-sm") %>
     </div>
   </div>
 
   <div class="mt-2">
     <div><%= t('views.car_maintenances.new.time') %></div>
     <div>
-      <%= form.date_select(:performed_at, {}, class:"border border-red-800 rounded") %>
+      <%= form.date_select(:performed_at, {}, class:"border border-red-800 rounded text-sm") %>
     </div>
   </div>
 
   <div class="mt-2">
     <div><%= t('views.car_maintenances.new.description') %></div>
     <div>
-      <%= form.text_area(:description, class: 'border border-red-800 w-80 h-80 rounded') %>
+      <%= form.text_area(:description, class: "border border-red-800 w-80 h-80 rounded text-sm") %>
     </div>
   </div>
 
-  <div class="mt-8">
-    <%= form.submit t('views.car_maintenances.new.create'),
-      class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-red-800 hover:bg-red-500 text-white inline-block font-medium cursor-pointer" %>
+  <div class="mt-2">
+    <div><%= "Bengkel" %></div>
+    <div>
+      <%= form.select :car_shop_id,
+        options_for_select([["DIY", nil]] + @car_shops.map { |shop| [shop.name, shop.id] }, selected: @car_maintenance.car_shop_id),
+        {}, class: "border border-red-800 rounded px-2 py-1 text-sm w-auto" %>
+    </div>
+
+    <div class="mt-8">
+      <%= form.submit t(@car_maintenance.new_record? ? 'views.car_maintenances.new.create' : 'views.car_maintenances.edit'),
+        class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-red-800 hover:bg-red-500 text-white inline-block font-medium cursor-pointer" %>
+    </div>
   </div>
 <% end %>

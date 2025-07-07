@@ -36,10 +36,12 @@ class CarMaintenancesController < ApplicationController
   # GET /car_maintenances/new
   def new
     @car_maintenance = @car.car_maintenances.new
+    @car_shops = CarShop.all
   end
 
   # GET /car_maintenances/1/edit
   def edit
+    @car_shops = CarShop.all
   end
 
   # POST /car_maintenances or /car_maintenances.json
@@ -48,7 +50,7 @@ class CarMaintenancesController < ApplicationController
 
     respond_to do |format|
       if @car_maintenance.save
-        format.html { redirect_to car_car_maintenance_path(@car, @car_maintenance), notice: "Car maintenance was successfully created." }
+        format.html { redirect_to car_car_maintenance_history_images_path(@car, @car_maintenance), notice: "Car maintenance was successfully created." }
         format.json { render :show, status: :created, location: @car_maintenance }
       else
         format.html { render :new, status: :unprocessable_entity }

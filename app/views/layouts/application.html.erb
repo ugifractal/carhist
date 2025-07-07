@@ -40,7 +40,7 @@
                 <%= link_to("Setting", settings_path) %>
               </div>
               <% if current_user.admin? %>
-                <div>
+                <div class="mt-4">
                   <%= link_to("admin", '/admin') %>
                 </div>
               <% end %>
@@ -68,7 +68,7 @@
               <% end %>
             <% end %>
           </div>
-          <div>
+          <div class="mt-4">
             <%= link_to('Car Shops', car_shops_path, class: 'underline text-white') %>
           </div>
         </div>

@@ -3,13 +3,11 @@
       <%= form.label :email %>
       <%= form.text_field :email %>
     </div>
-  
+
     <div>
         <%= form.label :plan %><br>
         <%= form.select :plan, options_for_select([["Free", "free"], ["Paid", "paid"]], @user.plan) %>
     </div>
-
-    
 
     <div>
         <%= link_to "Back", admin_users_path %>
@@ -19,4 +17,3 @@
       <%= form.submit "Save" %>
     </div>
   <% end %>
-  

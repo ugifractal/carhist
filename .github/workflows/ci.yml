@@ -54,6 +54,18 @@ jobs:
 
       - name: Lint code for consistent style
         run: bundle exec rubocop -f github
+      - name: Lint ERB
+        run: bundle exec erb_lint app/views/
+      - name: Setup nodejs 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+      - name: Yarn install
+        uses: borales/actions-yarn@v5
+        with:
+          cmd: install # will run `yarn install` command
+      - name: Lint Javascript files
+        run: yarn run eslint app/javascript/
 
   # test:
   #   runs-on: ubuntu-latest

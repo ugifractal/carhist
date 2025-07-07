@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  get "maintenance_settings/show"
   devise_for :users, controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations", confirmations: "users/confirmations" }
 
   resources :cars do
+    resource :maintenance_settings, only: [ :show, :update ]
     resources :car_maintenances do
       collection do
         get :export_pdf
@@ -18,7 +20,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :settings, only: %i[show] do
+  resource :settings, only: [ :show ] do
     delete :api_key, to: "settings#destroy_api_key"
   end
 
