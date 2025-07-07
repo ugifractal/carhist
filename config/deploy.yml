@@ -41,6 +41,10 @@ env:
     - DATABASE_QUEUE_URL
     - DATABASE_CABLE_URL
     - DATABASE_URL
+    - SMTP_DOMAIN
+    - SMTP_PORT
+    - SMTP_USERNAME
+    - SMTP_PASS
 
   clear:
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
