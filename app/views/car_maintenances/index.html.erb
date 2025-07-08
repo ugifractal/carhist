@@ -13,11 +13,26 @@
     <%= link_to("Car fuelings", car_car_fuelings_path(@car), class: "bg-red-800 px-2 py-2 text-white rounded") %>
   </div>
 
-  <% if @car_maintenances.size == 0 %>
-    <% else %>
-      <h1 class="flex justify-end mt-3">
-        <%= link_to 'Generate PDF', export_pdf_car_car_maintenances_path(@car), method: :get, class: 'bg-red-800 px-2 py-2 rounded text-white' %>
-      </h1>
+  <% if @car_maintenances.any? %>
+      <div class="flex justify-end mt-3">
+        <div data-controller="dropdown" class="relative inline-block text-left" data-action="click->dropdown#toggle">
+          <!-- Trigger Button -->
+          <button type="button" class="inline-flex justify-center rounded-md border border-red-800 shadow-sm px-4 py-2 bg-red-800 text-sm font-medium text-white">
+            Actions
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div data-dropdown-target="menu"
+              class="hidden absolute right-0 z-10 mt-2 w-44 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <div class="py-1">
+              <%= link_to 'Generate PDF', export_pdf_car_car_maintenances_path(@car), method: :get,
+                class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-red-100 hover:text-red-800' %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
       <%= form_tag car_car_maintenances_path(@car), method: :get, local: true do %>
         <div class="flex justify-end items-center mt-3">
           <div class="mr-2">
@@ -54,8 +69,6 @@
                   <%= link_to edit_car_car_maintenance_path(@car, car_maintenance), class: "flex items-center justify-center" do %>
                     <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
                   <% end %>
-                  <%= link_to t('views.car_maintenances.show'), car_car_maintenance_path(@car, car_maintenance),
-                    class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
                   <%= button_to car_car_maintenance_path(@car, car_maintenance), method: :delete, data: { turbo_confirm: "Are you sure?" } do %>
                     <%= image_tag "trash.svg", class: "w-5 h-5 inline mt-2" %>
                   <% end %>
