@@ -14,23 +14,22 @@
   </div>
 
   <% if @car_maintenances.any? %>
-      <div class="flex justify-end mt-3">
-        <div data-controller="dropdown" class="relative inline-block text-left" data-action="click->dropdown#toggle">
-          <!-- Trigger Button -->
-          <button type="button" class="inline-flex justify-center rounded-md border border-red-800 shadow-sm px-4 py-2 bg-red-800 text-sm font-medium text-white">
+    <div class="flex justify-end mt-3">
+      <div data-controller="account" class="relative inline-block text-left">
+        <div data-action="click->account#toggle">
+          <button class="bg-red-800 px-3 py-2 rounded text-white">
             Actions
           </button>
+        </div>
 
-          <!-- Dropdown Menu -->
-          <div data-dropdown-target="menu"
-              class="hidden absolute right-0 z-10 mt-2 w-44 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <div class="py-1">
-              <%= link_to 'Generate PDF', export_pdf_car_car_maintenances_path(@car), method: :get,
-                class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-red-100 hover:text-red-800' %>
-            </div>
-          </div>
+        <div data-account-target="menu" class="hidden absolute z-50 mt-2 right-0 w-48 bg-white border border-red-700 rounded shadow-lg">
+          <%= link_to 'Generate PDF', export_pdf_car_car_maintenances_path(@car), method: :get,
+              class: 'block w-full text-left px-4 py-2 text-sm text-white bg-red-800 hover:bg-red-700 rounded' %>
         </div>
       </div>
+    </div>
+
+
 
 
       <%= form_tag car_car_maintenances_path(@car), method: :get, local: true do %>
