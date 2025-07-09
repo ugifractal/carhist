@@ -22,16 +22,12 @@
           </button>
         </div>
 
-        <div data-dropdown-target="drop" class="hidden absolute z-50 mt-2 right-0 w-48 bg-white border border-red-700 rounded shadow-lg">
+        <div data-dropdown-target="drop" class="hidden absolute z-50 mt-2 right-0 w-36 bg-white border border-red-700 rounded shadow-lg">
           <%= link_to 'Generate PDF', export_pdf_car_car_maintenances_path(@car), method: :get,
               class: 'block w-full text-left px-4 py-2 text-sm text-white bg-red-800 hover:bg-red-700 rounded' %>
         </div>
       </div>
     </div>
-
-
-
-
 
       <%= form_tag car_car_maintenances_path(@car), method: :get, local: true do %>
         <div class="flex justify-end items-center mt-3">
