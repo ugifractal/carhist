@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div>
+      <div class="flex flex-wrap items-center justify-between bg-red-800 text-white py-5 px-3">
+        <div>
+          <%= link_to('Carhist', '/', class: 'text-xl lg:text-4xl') %>
+        </div>
+        <div>
+          <% if user_signed_in? %>
+            <%= link_to("Dashboard", cars_path) %>
+          <% else %>
+            <%= link_to("Sign in", new_user_session_path) %>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>
