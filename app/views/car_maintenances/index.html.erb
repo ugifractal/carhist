@@ -17,10 +17,10 @@
     <div class="flex justify-end mt-3">
       <div data-controller="dropdown" class="relative inline-block text-left">
         <div data-action="click->dropdown#toggle">
-          <%= image_tag "arrow.svg", class: "w-4 h-4 inline" %>
           <button class="bg-red-800 px-3 py-2 rounded text-white">
             Actions
           </button>
+          <%= image_tag "arrow.svg", class: "w-4 h-4 inline" %>
         </div>
 
         <div data-dropdown-target="drop" class="hidden absolute z-50 mt-2 right-0 w-36 bg-white border border-red-700 rounded shadow-lg">
