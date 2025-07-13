@@ -1,4 +1,0 @@
-sudo -u postgres psql
-
-create user tsaqib with encrypted password 'tsaqib';
-alter user tsaqib with SUPERUSER;
