@@ -6,6 +6,10 @@ id:
           attributes:
             current_password:
               blank: kosong
+        car:
+          attributes:
+            car_model:
+              required: "Car model harus diisi"
         car_maintenance:
           attributes:
             title:
