@@ -14,4 +14,8 @@ export default class extends Controller {
       this.dropTarget.classList.add('hidden')
     }
   }
+
+  hide() {
+    this.dropTarget.classList.add('hidden')
+  }
 }

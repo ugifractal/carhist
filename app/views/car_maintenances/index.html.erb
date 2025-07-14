@@ -19,14 +19,13 @@
         <div data-action="click->dropdown#toggle">
           <span class="bg-red-800 px-3 py-2 rounded text-white">
             Actions
-            
             <%= image_tag "arroww.svg", class: "g-red-800 w-2 h-2 inline" %>
           </span>
         </div>
-
         <div data-dropdown-target="drop" class="hidden absolute z-50 mt-2 right-0 w-36 bg-white border border-red-700 rounded shadow-lg">
           <%= link_to 'Generate PDF', export_pdf_car_car_maintenances_path(@car), method: :get,
-              class: 'block w-full text-left px-4 py-2 text-sm text-white bg-red-800 hover:bg-red-700 rounded' %>
+              class: 'block w-full text-left px-4 py-2 text-sm text-white bg-red-800 hover:bg-red-700 rounded', 
+              data: { action: 'click->dropdown#hide' } %>
         </div>
       </div>
     </div>
