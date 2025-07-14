@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "public_car_shops/show"
   get "maintenance_settings/show"
   devise_for :users, controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations", confirmations: "users/confirmations" }
 
@@ -50,4 +51,6 @@ Rails.application.routes.draw do
   get "/admin", to: "admin/dashboards#show"
   get "/admin/users", to: "admin/users#index"
   root "welcome#index"
+
+  get 'public/car_shops/:id/:slug', to: 'public_car_shops#show', as: :public_car_shop
 end
