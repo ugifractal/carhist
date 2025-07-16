@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_06_225011) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_16_045524) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -103,7 +103,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_06_225011) do
     t.string "name"
     t.text "address"
     t.string "google_map_url"
-    t.boolean "approved_at"
+    t.datetime "approved_at"
     t.integer "user_id"
     t.text "description"
     t.datetime "created_at", null: false
