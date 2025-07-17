@@ -6,7 +6,7 @@ module Public
       if @car_shop.nil?
         redirect_to root_path, alert: "Car shop not found or not approved."
       else
-        render :show
+        render :welcome
       end
     end
   end
