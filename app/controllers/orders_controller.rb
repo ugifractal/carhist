@@ -14,16 +14,14 @@ class OrdersController < ApplicationController
     @order = @company.orders.new(price: Order::ORDER_PRICE)
     begin
       ActiveRecord::Base.transaction do
-        require 'byebug';debugger
         @order.save
         MidtransUtil::Midtrans.setup(secret_key: ENV.fetch("MIDTRANS_SERVER_KEY"))
         response = MidtransUtil::TransactionApi.create(@order)
         if response["error_messages"].present?
           raise CarhistError::GeneralError.new(response["error_messages"].first)
         end
-        #require 'byebug';debugger
         @order.update!(midtrans_redirect_url: response["redirect_url"])
-        redirect_to(@order.midtrans_redirect_url , allow_other_host: true)
+        redirect_to(@order.midtrans_redirect_url, allow_other_host: true)
       end
     rescue CarhistError::GeneralError => e
       flash[:error] = e.message

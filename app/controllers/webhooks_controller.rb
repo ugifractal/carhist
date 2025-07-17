@@ -20,10 +20,10 @@ class WebhooksController < ApplicationController
     when "settlement"
       order = Order.where(id: order_id, status: "pending").first
       order&.upgrade!
-    when 'cancel'
+    when "cancel"
       order = Order.where(id: order_id, status: "pending").first
       order&.cancel!
     end
-    render plain: 'ok', status: :ok
+    render plain: "ok", status: :ok
   end
 end
