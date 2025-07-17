@@ -45,6 +45,9 @@ env:
     - SMTP_PORT
     - SMTP_USERNAME
     - SMTP_PASS
+    - MIDTRANS_CLIENT_KEY
+    - MIDTRANS_SERVER_KEY
+    - MIDTRANS_BASE_URL
 
   clear:
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.

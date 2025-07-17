@@ -30,7 +30,10 @@ ENV RAILS_ENV="production" \
     SMTP_USERNAME="" \
     SMTP_PASS="" \
     SMTP_PORT="587" \
-    SMTP_DOMAIN="smtp.zoho.com"
+    SMTP_DOMAIN="smtp.zoho.com" \
+    MIDTRANS_CLIENT_KEY="" \
+    MIDTRANS_SERVER_KEY="" \
+    MIDTRANS_BASE_URL=""
 
 # Throw-away build stage to reduce size of final image
 FROM base AS build
