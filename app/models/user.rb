@@ -10,4 +10,12 @@ class User < ApplicationRecord
   has_many :car_shops
   has_one :api_key, dependent: :destroy
   has_one :setting, dependent: :destroy
+  belongs_to :company
+
+  before_validation :assign_company, on: :create
+
+  def assign_company
+    new_company = Company.create!(name: email.split("@").first)
+    self.company = new_company
+  end
 end

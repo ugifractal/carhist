@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   get "maintenance_settings/show"
   devise_for :users, controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations", confirmations: "users/confirmations" }
 
+  resources :dashboards, only: %i[index]
+  resources :companies do
+    resources :orders do
+    end
+  end
+
   resources :cars do
     resource :maintenance_settings, only: [ :show, :update ]
     resources :car_maintenances do
