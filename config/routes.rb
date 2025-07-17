@@ -50,8 +50,5 @@ Rails.application.routes.draw do
   get "/admin", to: "admin/dashboards#show"
   get "/admin/users", to: "admin/users#index"
   root "welcome#index"
-
-  namespace :public, path: "/public", module: "public", as: "public" do
-    get "car_shops/:id(/:name)", to: "car_shops#show", as: "car_shop"
-  end
+  get "/public/car_shops/:id/:name", to: "public/car_shops#show"
 end
