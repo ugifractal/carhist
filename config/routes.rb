@@ -50,4 +50,5 @@ Rails.application.routes.draw do
   get "/admin", to: "admin/dashboards#show"
   get "/admin/users", to: "admin/users#index"
   root "welcome#index"
+  get "/public/car_shops/:id/:name", to: "public/car_shops#show"
 end
