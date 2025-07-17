@@ -102,7 +102,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_17_035511) do
     t.string "name"
     t.text "address"
     t.string "google_map_url"
-    t.boolean "approved_at"
+    t.datetime "approved_at"
     t.integer "user_id"
     t.text "description"
     t.datetime "created_at", null: false
@@ -159,6 +159,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_17_035511) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "company_id"
+    t.string "midtrans_redirect_url"
   end
 
   create_table "users", force: :cascade do |t|
@@ -170,7 +171,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_17_035511) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
-    t.string "plan", default: "free"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"

@@ -12,7 +12,7 @@ module MidtransUtil
         response = conn.post("/snap/v1/transactions") do |req|
           req.body = {
             "transaction_details" => {
-              "order_id" => "1",
+              "order_id" => order.id,
               "gross_amount" => 5000
             },
             "credit_card" => {

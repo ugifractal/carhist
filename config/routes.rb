@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   get "maintenance_settings/show"
   devise_for :users, controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations", confirmations: "users/confirmations" }
 
-  resources :dashboards, only: %i[index]
+  resource :dashboards, only: %i[show]
   resources :companies do
     resources :orders do
+      patch :cancel, on: :member
     end
   end
 
@@ -55,5 +56,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   get "/admin", to: "admin/dashboards#show"
   get "/admin/users", to: "admin/users#index"
+  post "/webhooks/midtrans", to: "webhooks#midtrans"
   root "welcome#index"
 end

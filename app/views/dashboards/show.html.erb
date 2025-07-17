@@ -1,0 +1,24 @@
+<% if current_user.company.plan == "paid" %>
+  Plan: <%= current_user.company.plan %> Until <%= current_user.company.paid_until.strftime("%d %b %Y") %>
+<% else %>
+  <div>
+    You are currently on free plan
+  </div>
+
+  <% if @pending_order %>
+    <div>
+      You have a pending order.
+      <%= link_to("Complete payment", @pending_order.midtrans_redirect_url) %>
+      <%= button_to(cancel_company_order_path(current_user.company, @pending_order), class: "bg-red-700 text-white px-3 py-2 rounded", method: :patch, data: { turbo_confirm: "Are you sure?" }) do %>
+        Cancel order
+      <% end %>
+    </div>
+  <% else %>
+    <div class="mt-3">
+      <%= link_to(new_company_order_path(current_user.company), class: "bg-red-700 text-white px-3 py-2 rounded") do %>
+        Upgrade Plan
+      <% end %>
+    </div>
+  <% end %>
+
+<% end %>

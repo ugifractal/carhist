@@ -1,9 +1,0 @@
-<% if current_user.plan == "paid" %>
-  Plan: <%= current_user.plan %>
-<% else %>
-  You are currently on free plan
-<% end %>
-
-<%= link_to(new_company_order_path(current_user.company)) do %>
-  Upgrade Plan
-<% end %>
