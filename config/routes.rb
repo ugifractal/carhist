@@ -52,6 +52,6 @@ Rails.application.routes.draw do
   root "welcome#index"
 
   namespace :public, path: "/public", module: "public", as: "public" do
-    get "car_shops/:id(/:name)", to: "welcome#index", as: "car_shop"
+    get "car_shops/:id(/:name)", to: "car_shops#show", as: "car_shop"
   end
 end
