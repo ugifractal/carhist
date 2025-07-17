@@ -3,7 +3,7 @@
     <tr>
       <th>No</th>
       <th>Email</th>
-      <th>Plan</th>
+      <th>Company</th>
       <th></th>
     </tr>
   </thead>
@@ -12,7 +12,7 @@
       <tr>
         <td><%= index + 1 %></td>
         <td><%= user.email %></td>
-        <td><%= user.plan %></td>
+        <td><%= user.company.name %></td>
         <td><%= link_to "edit", edit_admin_user_path(user) %></td>
       </tr>
     <% end %>

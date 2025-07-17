@@ -1,0 +1,5 @@
+<h2>Upgrade</h2>
+
+<%= form_with(model: @order, url: company_orders_path(@company), data: { turbo: false }) do |f| %>
+  <%= f.submit %>
+<% end %>

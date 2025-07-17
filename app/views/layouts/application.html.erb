@@ -58,6 +58,10 @@
       </div>
       <div class="flex">
         <div class="hidden lg:block bg-gray-600 w-20 md:w-80 min-h-20 py-3 px-2">
+          <div><h2 class="text-white text-2xl"><%= current_user.company.name %></h2></div>
+          <div class="mt-2">
+            <%= link_to("Dashboard", dashboards_path, class: 'underline text-white') %>
+          </div>
           <div>
             <%= link_to(t('layout.application.list_car'), cars_path, class: 'underline text-white') %>
           </div>
@@ -75,6 +79,9 @@
           </div>
         </div>
         <div class="w-full px-5 py-5">
+          <% if flash[:error] %>
+            <div class="bg-red-700 text-white px-3 py-3"><%= flash[:error] %></div>
+          <% end %>
           <%= yield %>
         </div>
       </div>

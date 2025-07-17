@@ -8,7 +8,7 @@
 </h1>
 
 <div class="mt-4">
-  <% if (current_user.plan == 'free' && current_user.cars.count < 2) || (current_user.plan == 'paid' && current_user.cars.count < 6) %>
+  <% if (current_user.company.plan == 'free' && current_user.cars.count < 2) || (current_user.company.plan == 'paid' && current_user.cars.count < 6) %>
     <%= link_to new_car_path(@car) do %>
       <%= image_tag "add.svg", alt: "Add", class: "w-8 h-8 inline" %>
     <% end %>
