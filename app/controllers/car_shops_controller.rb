@@ -3,7 +3,8 @@ class CarShopsController < ApplicationController
   before_action :set_car_shop, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @car_shops = CarShop.paginate(page: params[:page], per_page: 20)
+    @car_shops = CarShop.where(user_id: current_user.id)
+                        .paginate(page: params[:page], per_page: 20)
 
     respond_to do |format|
       format.html
