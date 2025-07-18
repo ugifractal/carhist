@@ -1,3 +1,6 @@
+<% content_for :title do %>
+  Dashboard
+<% end %>
 <% if current_user.company.plan == "paid" %>
   Plan: <%= current_user.company.plan %> Until <%= current_user.company.paid_until.strftime("%d %b %Y") %>
 <% else %>
