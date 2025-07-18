@@ -58,13 +58,13 @@ COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     . $NVM_DIR/nvm.sh && \
-    bundle exec bootsnap precompile --gemfile
+    bundle exec bootsnap precompile -j 0 --gemfile
 
 # Copy application code
 COPY . .
 
 # Precompile bootsnap code for faster boot times
-# RUN bundle exec bootsnap precompile app/ lib/
+RUN bundle exec bootsnap precompile -j 0 app/ lib/
 
 # Adjust binfiles to be executable on Linux
 RUN chmod +x bin/* && \
