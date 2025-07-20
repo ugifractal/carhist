@@ -10,8 +10,8 @@ User.first.cars
 User.last.cars
 ### ganti company dari user akhir
 usr = User.last
-usr.update({"company_id" => "2"})
-ada = Company.new(name: "a")
+usr.update({"company_id" => "id"})
+proper = Company.new(name: "a")
 ### Cara menampilkan semua car sesuai jumlah yang kita mau
 User.limit(2)
 Car.limit(1)
