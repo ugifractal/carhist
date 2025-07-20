@@ -8,10 +8,13 @@ User.all
 User.first.cars
 ### Cara menampilkan semua car dari user terakhir
 User.last.cars
-### ganti company dari user akhir
+### Buat Company baru
 usr = User.last
-usr.update({"company_id" => "id"})
 proper = Company.new(name: "a")
+### untuk save
+proper.save
+### untuk update
+usr.update(company_id: proper.id)
 ### Cara menampilkan semua car sesuai jumlah yang kita mau
 User.limit(2)
 Car.limit(1)
