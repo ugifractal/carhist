@@ -66,3 +66,9 @@ Car.limit(1)
 # Menampilkan CarMaintenance yang title-nya mengandung huruf 's' (case insensitive)
 CarMaintenance.where("title ILIKE ?", "%s%")
 ```
+
+## Cara menambahkan debugger
+
+```ruby
+reuire "byebug";debugger
+```
