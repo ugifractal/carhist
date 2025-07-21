@@ -14,7 +14,7 @@ model = Company.new(name: "a")
 ### untuk save
 model.save
 ### untuk update
-car.update(company_id: proper.id)
+car.update(company_id: model.id)
 ### Cara menampilkan semua car sesuai jumlah yang kita mau
 User.limit(2)
 Car.limit(1)
