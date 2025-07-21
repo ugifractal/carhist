@@ -58,4 +58,5 @@ Rails.application.routes.draw do
   post "/webhooks/midtrans", to: "webhooks#midtrans"
   root "welcome#index"
   get "/public/car_shops/:id/:name", to: "public/car_shops#show"
+  get "/public/car_shops", to: "public/car_shops#index"
 end
