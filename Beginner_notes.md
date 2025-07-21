@@ -1,23 +1,68 @@
 # Beginner
 ## Cara Menampilkan Mobil dari User
 
+---
+
+## User
+
 ```ruby
-### Cara menampilkan semua User
+# Menampilkan semua User
 User.all
-### Cara menampilkan semua car dari user pertama
+```
+
+```ruby
+# Menampilkan semua Car dari user pertama
 User.first.cars
-### Cara menampilkan semua car dari user terakhir
+```
+
+```ruby
+# Menampilkan semua Car dari user terakhir
 User.last.cars
-### Buat Company baru
+```
+
+---
+
+## Company
+
+```ruby
+# Ambil user terakhir
 car = User.last
+```
+
+```ruby
+# Buat company baru
 model = Company.new(name: "a")
-### untuk save
+```
+
+```ruby
+# Simpan company ke database
 model.save
-### untuk update
+```
+
+```ruby
+# Update user dengan company_id
 car.update(company_id: model.id)
-### Cara menampilkan semua car sesuai jumlah yang kita mau
+```
+
+---
+
+## Limit Data
+
+```ruby
+# Menampilkan 2 user pertama
 User.limit(2)
+```
+
+```ruby
+# Menampilkan 1 mobil pertama
 Car.limit(1)
-### Cara menampilkan title yang ada huruf S
+```
+
+---
+
+## Filter Data Berdasarkan Huruf
+
+```ruby
+# Menampilkan CarMaintenance yang title-nya mengandung huruf 's' (case insensitive)
 CarMaintenance.where("title ILIKE ?", "%s%")
 ```
