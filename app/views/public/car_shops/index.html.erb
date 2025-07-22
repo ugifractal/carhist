@@ -14,7 +14,7 @@
         <tr>
           <td class="px-4 py-2 text-center"><%= shop.name %></td>
           <td class="px-4 py-2 text-center"><%= shop.user.email %></td>
-          <td class="px-4 py-2 text-center">
+          <td class="px-4 py-2 text-center"><%= link_to "Show" %>
           </td>
         </tr>
       <% end %>
@@ -23,5 +23,5 @@
 </div>
 
 <div class="mt-4">
-  <%= will_paginate(@car_maintenances) %>
+  <%= will_paginate(@car_shops) %>
 </div>
