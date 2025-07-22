@@ -6,7 +6,7 @@ module Public
                           .paginate(page: params[:page], per_page: 10)
 
       respond_to do |format|
-        format.html { render layout: "welcome" }
+        format.html { render :index }
         format.json { render json: @car_shops }
       end
     end

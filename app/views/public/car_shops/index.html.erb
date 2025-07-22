@@ -14,7 +14,7 @@
         <tr>
           <td class="px-4 py-2 text-center"><%= shop.name %></td>
           <td class="px-4 py-2 text-center"><%= shop.user.email %></td>
-          <td class="px-4 py-2 text-center"><%= link_to "Show" %>
+          <td class="px-4 py-2 text-center"><%= link_to "Show", "/public/car_shops/#{shop.id}/#{shop.name.parameterize}" %>
           </td>
         </tr>
       <% end %>
