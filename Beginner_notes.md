@@ -72,3 +72,29 @@ CarMaintenance.where("title ILIKE ?", "%s%")
 ```ruby
 reuire "byebug";debugger
 ```
+
+## Cara Extend Class
+
+```ruby
+class A < B # inheritance
+end
+```
+
+## Cara Ubah Layout
+
+```ruby
+render layout: "new_layout"
+```
+
+## Cara Menampilkan Semua Car Shop dari User pertama
+```ruby
+User.first.car_shops
+```
+
+## Cara Menampilkan semua Email
+```ruby
+User.all.map { |x| x.email }
+# x adalah enumerator
+# {...} adalah blok bisa diganti dengan do dan end jika multiline
+# hasil: array
+```
