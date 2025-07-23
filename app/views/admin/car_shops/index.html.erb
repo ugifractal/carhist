@@ -1,19 +1,21 @@
-<h1>Your Car Shops</h1>
+<h1 class="text-2xl">Your Car Shops</h1>
 <div id="car_shops">
-  <%= button_to "Create New Car Shop", new_admin_car_shop_path, method: :get%>
+  <%= button_to "Create New Car Shop", new_admin_car_shop_path, method: :get, class: 'bg-red-700 px-3 py-2 rounded text-white' %>
 </div>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Submitted By</th>
-    <th>Approved at</th>
+
+<div class="mt-4">
+<table class="w-full border border-red-500">
+  <tr class="py-2 bg-red-100 text-red-800">
+    <th class="py-2 px-2">Name</th>
+    <th class="py-2 px-2">Submitted By</th>
+    <th class="py-2 px-2">Approved at</th>
   </tr>
 
   <% @car_shops.each do |shop| %>
     <tr>
-      <td><%= shop.name %></td>
-      <td><%= shop.user.email %></td>
-      <td>
+      <td class="text-center py-2 px-2"><%= shop.name %></td>
+      <td class="w-48 text-center py-2 px-2"><%= shop.user.email %></td>
+      <td class="text-center py-2 px-2">
           <% if shop.approved_at.present? %>
             <%= shop.approved_at.strftime("%d-%B-%Y %H:%M") %>
           <% else %>
@@ -23,3 +25,4 @@
     </tr>
   <% end %>
 </table>
+</div>
