@@ -1,26 +1,13 @@
-<h1 class="text-xl font-bold mb-4">Approved Car Shops</h1>
+<h1 class="text-xl font-bold mt-4 text-center">Approved Car Shops</h1>
 
-<div>
-  <table class="w-full border border-red-500">
-    <thead>
-      <tr class="py-2 bg-red-100 text-red-800">
-        <th class="px-4 py-2">Name</th>
-        <th class="px-4 py-2">Owner</th>
-        <th class="px-4 py-2">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @car_shops.each do |shop| %>
-        <tr>
-          <td class="px-4 py-2 text-center"><%= shop.name %></td>
-          <td class="px-4 py-2 text-center"><%= shop.user.email %></td>
-          <td class="px-4 py-2 text-center"><%= link_to "Show", "/public/car_shops/#{shop.id}/#{shop.name.parameterize}" %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<% @car_shops.each do |shop| %>
+  <div class="flex flex-wrap gap-6 justify-center my-6">
+    <div class="w-48 h-48 border border-red-700 flex items-center justify-center text-red-700 text-sm">
+      <%= shop.name %>
+      <%= link_to "Show", "/public/car_shops/#{shop.id}/#{shop.name.parameterize}" %>
+    </div>
+  </div>
+<% end %>
 
 <div class="mt-4">
   <%= will_paginate(@car_shops) %>
