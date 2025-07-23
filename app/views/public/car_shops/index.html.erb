@@ -3,8 +3,7 @@
 <% @car_shops.each do |shop| %>
   <div class="flex flex-wrap gap-6 justify-center my-6">
     <div class="w-48 h-48 border border-red-700 flex items-center justify-center text-red-700 text-sm">
-      <%= shop.name %>
-      <%= link_to "Show", "/public/car_shops/#{shop.id}/#{shop.name.parameterize}" %>
+      <%= link_to shop.name, "/public/car_shops/#{shop.id}/#{shop.name.parameterize}" %>
     </div>
   </div>
 <% end %>
