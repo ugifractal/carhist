@@ -33,6 +33,24 @@ module Admin
       redirect_to admin_car_shops_path, notice: "Submitted by updated."
     end
 
+    def edit
+      @car_shop = CarShop.find(params[:id])
+    end
+
+    def update
+      @car_shop = CarShop.find(params[:id])
+      if @car_shop.update(car_shop_params)
+        redirect_to admin_car_shops_path, notice: 'Car shop updated successfully.'
+      else
+        render :edit
+      end
+    end
+
+    def destroy
+      @car_shop.destroy
+      redirect_to admin_car_shops_path, notice: 'Car shop was successfully deleted.'
+    end
+
     private
 
     def car_shop_params

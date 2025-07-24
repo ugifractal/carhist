@@ -9,6 +9,8 @@
     <th class="py-2 px-2">Name</th>
     <th class="py-2 px-2">Submitted By</th>
     <th class="py-2 px-2">Approved at</th>
+    <th></th>
+    <th></th> 
   </tr>
 
   <% @car_shops.each do |shop| %>
@@ -16,12 +18,20 @@
       <td class="text-center py-2 px-2"><%= shop.name %></td>
       <td class="w-48 text-center py-2 px-2"><%= shop.user.email %></td>
       <td class="text-center py-2 px-2">
-          <% if shop.approved_at.present? %>
-            <%= shop.approved_at.strftime("%d-%B-%Y %H:%M") %>
-          <% else %>
-            <p>Not Approved</p>
-          <% end %>
-        </td>
+        <% if shop.approved_at.present? %>
+          <%= shop.approved_at.strftime("%d-%B-%Y %H:%M") %>
+        <% else %>
+          <p>Not Approved</p>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to edit_admin_car_shop_path(shop), class: "flex items-center justify-center" do %>
+          <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
+        <% end %>
+        <%= button_to car_shop_path(shop), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
+          <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>
