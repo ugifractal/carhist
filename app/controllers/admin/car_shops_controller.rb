@@ -1,6 +1,7 @@
 module Admin
   class CarShopsController < AdminBaseController
     before_action :authenticate_user!
+    before_action :set_car_shop, only: %i[ show edit update destroy ]
 
     def index
       @car_shops = current_user.car_shops.paginate(page: params[:page], per_page: 20)
@@ -34,11 +35,10 @@ module Admin
     end
 
     def edit
-      @car_shop = CarShop.find(params[:id])
+      @users = User.all
     end
 
     def update
-      @car_shop = CarShop.find(params[:id])
       if @car_shop.update(car_shop_params)
         redirect_to admin_car_shops_path, notice: 'Car shop updated successfully.'
       else
@@ -52,6 +52,10 @@ module Admin
     end
 
     private
+
+    def set_car_shop
+      @car_shop = CarShop.find(params.expect(:id))
+    end
 
     def car_shop_params
       params.require(:car_shop).permit(:name, :user_id, :category, :approved_at)
