@@ -111,7 +111,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_25_080058) do
     t.string "category"
     t.string "lat"
     t.string "lng"
-    t.boolean "approved"
+    t.boolean "approved", default: false
   end
 
   create_table "cars", force: :cascade do |t|
