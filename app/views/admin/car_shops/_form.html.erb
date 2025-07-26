@@ -15,6 +15,22 @@
   </div>
 
   <div class="mt-2">
+    <%= form.label :user_id %>
+    <%= form.select(:user_id, @users.map {|x| [x.email, x.id] }) %>
+  </div>
+  
+  <div class="mt-2">
+    <%= form.label :category %>
+    <%= form.text_field :category, class:"border border-red-800 rounded" %>
+  </div>
+
+  <div class="mt-2">
+    <%= form.label :description %>
+    <%= form.text_area :description, class:"border border-red-800 rounded" %>
+  </div>
+
+
+  <div class="mt-2">
     <%= form.submit 'Create' %>
   </div>
 <% end %>
