@@ -1,6 +1,7 @@
 module Admin
   class CarShopsController < AdminBaseController
     before_action :authenticate_user!
+    before_action :set_car_shop, only: %i[ show edit update destroy ]
 
     def index
       @car_shops = current_user.car_shops.paginate(page: params[:page], per_page: 20)
@@ -33,10 +34,31 @@ module Admin
       redirect_to admin_car_shops_path, notice: "Submitted by updated."
     end
 
+    def edit
+      @users = User.all
+    end
+
+    def update
+      if @car_shop.update(car_shop_params)
+        redirect_to admin_car_shops_path, notice: 'Car shop updated successfully.'
+      else
+        render :edit
+      end
+    end
+
+    def destroy
+      @car_shop.destroy
+      redirect_to admin_car_shops_path, notice: 'Car shop was successfully deleted.'
+    end
+
     private
 
+    def set_car_shop
+      @car_shop = CarShop.find(params.expect(:id))
+    end
+
     def car_shop_params
-      params.require(:car_shop).permit(:name, :user_id, :category, :approved_at)
+      params.require(:car_shop).permit(:name, :user_id, :approved)
     end
   end
 end
