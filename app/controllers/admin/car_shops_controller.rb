@@ -1,7 +1,7 @@
 module Admin
   class CarShopsController < AdminBaseController
     before_action :authenticate_user!
-    before_action :set_car_shop, only: %i[ show edit update destroy ]
+    before_action :set_car_shop, only: %i[ show edit update destroy update]
 
     def index
       @car_shops = current_user.car_shops.paginate(page: params[:page], per_page: 20)
@@ -58,7 +58,7 @@ module Admin
     end
 
     def car_shop_params
-      params.require(:car_shop).permit(:name, :user_id, :approved_at)
+      params.require(:car_shop).permit(:name, :user_id, :approved_at, :description, :category)
     end
   end
 end

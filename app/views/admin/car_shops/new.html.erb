@@ -5,7 +5,10 @@
 </div>
 
 <h1>New Car Shop</h1>
-
-<%= render "form", car_shop: @car_shop %>
-
+<%= form_with(model: @car_shop, url: admin_car_shops_path, local: true) do |form| %>
+  <%= render "form", car_shop: @car_shop, form: form %>
+  <div class="mt-2">
+    <%= form.submit 'Create' %>
+  </div>
+<% end %>
 <br>

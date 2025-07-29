@@ -1,35 +1,29 @@
-<%= form_with model: @car_shop, url: admin_car_shops_path, local: true do |form| %>
-  <div class="mt-2">
-    <%= form.label :name %>
-    <%= form.text_field :name, class:"border border-red-800 rounded" %>
-  </div>
-  
-  <div class="mt-2">
-    <div><%= "Category" %></div>
-    <div>
-      <%= form.select(:category,
-       [['Tire Shop', 'tire_shop'],['Ecu Shop', 'ecu_shop'],['Suspension', 'suspension'],['Other', 'other']], {}, class:"border border-red-800 rounded") %>
-    </div>
-  </div>
+<div class="mt-2">
+  <%= form.label :name %>
+  <%= form.text_field :name, class:"border border-red-800 rounded" %>
+</div>
 
-  <div class="mt-2">
-    <div><%= "Description" %></div>
-    <div>
-      <%= form.text_area(:description, class: 'border border-red-800 w-80 h-80 rounded') %>
-    </div>
+<div class="mt-2">
+  <div><%= "Category" %></div>
+  <div>
+    <%= form.select(:category,
+      [['Tire Shop', 'tire_shop'],['Ecu Shop', 'ecu_shop'],['Suspension', 'suspension'],['Other', 'other']], {}, class:"border border-red-800 rounded") %>
   </div>
+</div>
 
-  <div class="mt-2">
-    <%= form.label :user_id %>
-    <%= form.select(:user_id, @users.map {|x| [x.email, x.id] }) %>
+<div class="mt-2">
+  <div><%= "Description" %></div>
+  <div>
+    <%= form.text_area(:description, class: 'border border-red-800 w-80 h-80 rounded') %>
   </div>
+</div>
 
-  <div class="mt-2">
-    <%= form.label :approved_at %>
-    <%= form.check_box :approved_at %>
-  </div>
+<div class="mt-2">
+  <%= form.label :user_id %>
+  <%= form.select(:user_id, @users.map {|x| [x.email, x.id] }) %>
+</div>
 
-  <div class="mt-2">
-    <%= form.submit 'Create' %>
-  </div>
-<% end %>
+<div class="mt-2">
+  <%= form.label :approved_at %>
+  <%= form.check_box :approved_at %>
+</div>
