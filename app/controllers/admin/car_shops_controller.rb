@@ -4,7 +4,7 @@ module Admin
     before_action :set_car_shop, only: %i[ show edit update destroy update]
 
     def index
-      @car_shops = current_user.car_shops.paginate(page: params[:page], per_page: 20)
+      @car_shops = CarShop.paginate(page: params[:page], per_page: 20)
 
       respond_to do |format|
         format.html
