@@ -4,6 +4,8 @@
   <% end %>
 </div>
 
+<% content_for :title, "Editing Car Shop" %>
+
 <h1 class="text-2xl mb-4">Edit Car Shop</h1>
 <%= form_with(model: @car_shop, url: admin_car_shop_path(@car_shop), local: true) do |form| %>
   <%= render "form", car_shop: @car_shop, form: form %>

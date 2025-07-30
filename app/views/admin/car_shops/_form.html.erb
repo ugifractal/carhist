@@ -23,7 +23,13 @@
   <%= form.select(:user_id, @users.map {|x| [x.email, x.id] }) %>
 </div>
 
-<div class="mt-2">
-  <%= form.label :approved_at %>
-  <%= form.check_box :approved_at %>
+<div class="mt-2 text-sm text-gray-800">
+  <%= form.label :approved_at %><br>
+
+  <% if @car_shop.approved_at.present? %>
+    <%= car_shop.approved_at.strftime("%d %B %Y %H:%M") %>
+  <% else %>
+    Pending
+  <% end %>
 </div>
+

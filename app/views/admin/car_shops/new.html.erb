@@ -4,6 +4,8 @@
   <% end %>
 </div>
 
+<% content_for :title, "New Car Shop" %>
+
 <h1>New Car Shop</h1>
 <%= form_with(model: @car_shop, url: admin_car_shops_path, local: true) do |form| %>
   <%= render "form", car_shop: @car_shop, form: form %>
