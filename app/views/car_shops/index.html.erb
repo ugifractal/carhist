@@ -26,6 +26,9 @@
             <%= link_to edit_car_shop_path(shop), class: "flex items-center justify-center" do %>
               <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
             <% end %>
+            <%= link_to car_shop_path(shop), class: "flex items-center justify-center" do %>
+              <%= image_tag "show.svg", class: "w-4 h-4 inline" %>
+            <% end %>
             <%= button_to car_shop_path(shop), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
               <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
             <% end %>
