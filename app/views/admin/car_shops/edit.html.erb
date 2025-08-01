@@ -4,8 +4,9 @@
       &larr; <%= t('views.cars.back') %>
     <% end %>
   </div>
+  <%= button_to 'Set Pending', pending_admin_car_shop_path(@car_shop), method: :patch, data: { turbo_confirm: "Are you sure to set pending?" }, class: "bg-red-700 text-white rounded px-3 py-2" %>
 <% else %>
-  <%= link_to 'Approve', approve_admin_car_shop_path(@car_shop), method: :patch, class: "bg-red-700 text-white rounded px-3 py-2" %>
+  <%= button_to 'Approve', approve_admin_car_shop_path(@car_shop), method: :patch, data: { turbo_confirm: "Are you sure to approve?" }, class: "bg-red-700 text-white rounded px-3 py-2" %>
 <% end %>
 
 <% content_for :title, "Editing Car Shop" %>

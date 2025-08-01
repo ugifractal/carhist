@@ -1,7 +1,7 @@
 module Admin
   class CarShopsController < AdminBaseController
     before_action :authenticate_user!
-    before_action :set_car_shop, only: %i[ show edit update destroy update]
+    before_action :set_car_shop, only: %i[ show edit update destroy update approve pending]
 
     def index
       @car_shops = CarShop.paginate(page: params[:page], per_page: 20)
@@ -13,9 +13,13 @@ module Admin
     end
 
     def approve
-      @car_shop = CarShop.find(params[:id])
       @car_shop.update(approved_at: Time.current)
-      redirect_to admin_car_shops_path
+      redirect_to admin_car_shops_path, notice: "Car shop approved."
+    end
+
+    def pending
+      @car_shop.update(approved_at: "pending")
+      redirect_to admin_car_shops_path, notice: "Car shop set pending."
     end
 
     def new

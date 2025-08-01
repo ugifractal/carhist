@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     resources :car_shops do
       member do
         patch :approve
+        patch :pending
       end
     end
   end
