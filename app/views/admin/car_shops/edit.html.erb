@@ -1,8 +1,12 @@
-<div>
-  <%= link_to(admin_car_shops_path, class: 'text-red-800') do %>
-    &larr; <%= t('views.cars.back') %>
-  <% end %>
-</div>
+<% if @car_shop.approved_at %>
+  <div>
+    <%= link_to(admin_car_shops_path, class: 'text-red-800') do %>
+      &larr; <%= t('views.cars.back') %>
+    <% end %>
+  </div>
+<% else %>
+  <button class="bg-red-700 text-white rounded px-3 py-2">Approve</button>
+<% end %>
 
 <% content_for :title, "Editing Car Shop" %>
 

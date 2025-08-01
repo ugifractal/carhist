@@ -8,7 +8,7 @@
   <tr class="py-2 bg-red-100 text-red-800">
     <th class="py-2 px-2">Name</th>
     <th class="py-2 px-2">Submitted By</th>
-    <th class="py-2 px-2">Approved at</th>
+    <th class="py-2 px-2">Approved</th>
     <th></th>
     <th></th>
   </tr>
@@ -28,9 +28,13 @@
         <%= link_to edit_admin_car_shop_path(shop), class: "flex items-center justify-center" do %>
           <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
         <% end %>
-        <%= link_to admin_car_shop_path(shop), class: "flex items-center justify-center" do %>
-          <%= image_tag "show.svg", class: "w-4 h-4 inline" %>
+
+        <% if shop.approved_at %>
+          <%= link_to "/public/car_shops/#{shop.id}/#{shop.name.parameterize}", class: "flex items-center justify-center" do %>
+            <%= image_tag "show.svg", class: "w-4 h-4 inline" %>
+          <% end %>
         <% end %>
+
         <%= button_to car_shop_path(shop), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
           <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
         <% end %>
