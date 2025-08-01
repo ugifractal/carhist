@@ -22,6 +22,10 @@ jobs:
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://postgres:postgres@localhost:5432/carhist_test"
+      DATABASE_CACHE_URL: "postgres://postgres:postgres@localhost:5432/carhist_test"
+      DATABASE_CABLE_URL: "postgres://postgres:postgres@localhost:5432/carhist_test"
+      DATABASE_QUEUE_URL: "postgres://postgres:postgres@localhost:5432/carhist_test"
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

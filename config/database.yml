@@ -48,14 +48,17 @@ test:
     database: carhist_test
   queue:
     <<: *default
+    url: <%= ENV["DATABASE_QUEUE_URL"] %>
     database: carhist_queue_test
     migrations_paths: db/queue_migrate
   cable:
     <<: *default
+    url: <%= ENV["DATABASE_CABLE_URL"] %>
     database: carhist_cable_test
     migrations_paths: db/cable_migrate
   cache:
     <<: *default
+    url: <%= ENV["DATABASE_CACHE_URL"] %>
     database: carhist_cache_test
     migrations_paths: db/cache_migrate
 
