@@ -12,6 +12,12 @@ module Admin
       end
     end
 
+    def approve
+      @car_shop = CarShop.find(params[:id])
+      @car_shop.update(approved_at: Time.current)
+      redirect_to admin_car_shops_path
+    end
+
     def new
       @users = User.all
       @car_shop = CarShop.new

@@ -5,7 +5,7 @@
     <% end %>
   </div>
 <% else %>
-  <button class="bg-red-700 text-white rounded px-3 py-2">Approve</button>
+  <%= link_to 'Approve', approve_admin_car_shop_path(@car_shop), method: :patch, class: "bg-red-700 text-white rounded px-3 py-2" %>
 <% end %>
 
 <% content_for :title, "Editing Car Shop" %>
