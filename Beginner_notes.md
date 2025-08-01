@@ -70,7 +70,7 @@ CarMaintenance.where("title ILIKE ?", "%s%")
 ## Cara menambahkan debugger
 
 ```ruby
-reuire "byebug";debugger
+require "byebug";debugger
 ```
 
 ## Cara Extend Class

@@ -12,7 +12,7 @@ module Public
     end
 
     def show
-      @car_shop = CarShop.find(params[:id])
+      @car_shop = CarShop.approved.find(params[:id])
 
       render layout: "welcome"
     end
