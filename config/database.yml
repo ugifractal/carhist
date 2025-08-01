@@ -44,7 +44,7 @@ development:
 test:
   primary:
     <<: *default
-    url: ENV["DATABASE_URL"]
+    url: <%= ENV["DATABASE_URL"] %>
     database: carhist_test
   queue:
     <<: *default
