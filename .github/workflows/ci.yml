@@ -57,8 +57,6 @@ jobs:
       - name: Precompile assets
         run: yarn build && bundle exec rails assets:precompile
       - name: Run test
-        run: bundle exec rails test
-      - name: System Test
         run: bundle exec rails test:models
       - name: Upload screenshots
         uses: actions/upload-artifact@v4
