@@ -49,7 +49,7 @@ jobs:
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bundle exec brakeman --no-pager
       - name: Set up database schema
-        run: bundle exec bin/rails db:schema:load
+        run: bundle exec rails db:schema:load
       - name: Precompile assets
         run: yarn build && bundle exec rails assets:precompile
       - name: Run test
