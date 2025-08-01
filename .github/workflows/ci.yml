@@ -8,40 +8,20 @@ on:
     branches: [ main ]
 
 jobs:
-  scan_ruby:
+  lint_and_test:
     runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
-
-      - name: Scan for common Rails security vulnerabilities using static analysis
-        run: bundle exec brakeman --no-pager
-
-  # scan_js:
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
-
-  #     - name: Set up Ruby
-  #       uses: ruby/setup-ruby@v1
-  #       with:
-  #         ruby-version: .ruby-version
-  #         bundler-cache: true
-
-  #     - name: Scan for security vulnerabilities in JavaScript dependencies
-  #       run: bin/importmap audit
-
-  lint:
-    runs-on: ubuntu-latest
+    services:
+      postgres:
+        env:
+          POSTGRES_DB: carhist_test
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+        image: postgres:13
+        ports:
+          - "5432:5432"
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: "postgres://postgres:postgres@localhost:5432/carhist_test"
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -66,50 +46,19 @@ jobs:
           cmd: install # will run `yarn install` command
       - name: Lint Javascript files
         run: yarn run eslint app/javascript/
-
-  # test:
-  #   runs-on: ubuntu-latest
-
-    # services:
-    #   postgres:
-    #     image: postgres
-    #     env:
-    #       POSTGRES_USER: postgres
-    #       POSTGRES_PASSWORD: postgres
-    #     ports:
-    #       - 5432:5432
-    #     options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
-
-      # redis:
-      #   image: redis
-      #   ports:
-      #     - 6379:6379
-      #   options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
-
-    # steps:
-    #   - name: Install packages
-    #     run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev pkg-config google-chrome-stable
-
-    #   - name: Checkout code
-    #     uses: actions/checkout@v4
-
-    #   - name: Set up Ruby
-    #     uses: ruby/setup-ruby@v1
-    #     with:
-    #       ruby-version: .ruby-version
-    #       bundler-cache: true
-
-    #   - name: Run tests
-    #     env:
-    #       RAILS_ENV: test
-    #       DATABASE_URL: postgres://postgres:postgres@localhost:5432
-    #       # REDIS_URL: redis://localhost:6379/0
-    #     run: bin/rails db:test:prepare test test:system
-
-    #   - name: Keep screenshots from failed system tests
-    #     uses: actions/upload-artifact@v4
-    #     if: failure()
-    #     with:
-    #       name: screenshots
-    #       path: ${{ github.workspace }}/tmp/screenshots
-    #       if-no-files-found: ignore
+      - name: Scan for common Rails security vulnerabilities using static analysis
+        run: bundle exec brakeman --no-pager
+      - name: Set up database schema
+        run: bundle exec bin/rails db:schema:load
+      - name: Precompile assets
+        run: yarn build && bundle exec rails assets:precompile
+      - name: Run test
+        run: bundle exec rails test
+      - name: System Test
+        run: bundle exec rails test:models
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: screenshots
+          path: tmp/screenshots
