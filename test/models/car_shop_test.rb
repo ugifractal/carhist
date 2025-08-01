@@ -7,6 +7,5 @@ class CarShopTest < ActiveSupport::TestCase
   end
 
   test "approved" do
-
   end
 end

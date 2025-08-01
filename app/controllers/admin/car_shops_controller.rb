@@ -40,7 +40,7 @@ module Admin
 
     def update
       if @car_shop.update(car_shop_params)
-        redirect_to admin_car_shops_path, notice: 'Car shop updated successfully.'
+        redirect_to admin_car_shops_path, notice: "Car shop updated successfully."
       else
         render :edit
       end
@@ -48,7 +48,7 @@ module Admin
 
     def destroy
       @car_shop.destroy
-      redirect_to admin_car_shops_path, notice: 'Car shop was successfully deleted.'
+      redirect_to admin_car_shops_path, notice: "Car shop was successfully deleted."
     end
 
     private
