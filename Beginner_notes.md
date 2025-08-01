@@ -98,3 +98,11 @@ User.all.map { |x| x.email }
 # {...} adalah blok bisa diganti dengan do dan end jika multiline
 # hasil: array
 ```
+
+## Cara Rebase
+```ruby
+git pull origin name --rebase
+git add
+git rebase --continue
+git push
+```
