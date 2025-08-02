@@ -38,7 +38,12 @@ Rails.application.routes.draw do
     resources :users, except: [ :show ]
     resources :car_brands
     resources :car_models
-    resources :car_shops
+    resources :car_shops do
+      member do
+        patch :approve
+        patch :pending
+      end
+    end
   end
 
   get "welcome/index"

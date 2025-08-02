@@ -1,0 +1,7 @@
+pending:
+  name: bengkel asep
+  approved_at: 
+
+approved:
+  name: bengkel udin
+  approved_at: <%= DateTime.new(2025, 8, 15, 10, 0, 0) %>

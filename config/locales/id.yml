@@ -23,8 +23,12 @@ id:
               greater_than: lebih besar dari %{count}
         car_shop:
           attributes:
+            name:
+              blank: "Nama tidak boleh kosong"
             category:
-              blank: kosong
+              blank: "Kategori tidak boleh kosong"
+            description:
+              blank: "Deskripsi tidak boleh kosong"
 
   views:
     history_images:
