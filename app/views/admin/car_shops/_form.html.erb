@@ -19,6 +19,16 @@
 </div>
 
 <div class="mt-2">
+  <%= form.label :lat %>
+  <%= form.text_field :lat, class:"border border-red-800 rounded" %>
+</div>
+
+<div class="mt-2">
+  <%= form.label :lng %>
+  <%= form.text_field :lng, class:"border border-red-800 rounded" %>
+</div>
+
+<div class="mt-2">
   <%= form.label :user_id %>
   <%= form.select(:user_id, @users.map {|x| [x.email, x.id] }) %>
 </div>

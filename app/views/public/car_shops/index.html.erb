@@ -8,6 +8,14 @@
   <% end %>
 </div>
 
+<div
+  data-controller="map"
+  data-map-latitude-value="<%= @car_shop.lat %>"
+  data-map-longitude-value="<%= @car_shop.lng %>"
+>
+  <div id="map" style="height: 400px;"></div>
+</div>
+
 <div class="mt-4">
   <%= will_paginate(@car_shops) %>
 </div>
