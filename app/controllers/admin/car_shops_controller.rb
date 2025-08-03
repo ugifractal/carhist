@@ -68,7 +68,7 @@ module Admin
     end
 
     def car_shop_params
-      params.require(:car_shop).permit(:name, :user_id, :approved_at, :description, :category)
+      params.require(:car_shop).permit(:name, :user_id, :approved_at, :description, :category, :lat, :lng)
     end
   end
 end

@@ -4,7 +4,6 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.css" rel="stylesheet" />
     <title>
       <% if (title = yield(:title)).present? %>
         <%= title %>
@@ -14,7 +13,6 @@
     </title>
   </head>
   <body>
-  <script src="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.js"></script>
     <div>
       <div class="flex flex-wrap items-center justify-between bg-red-800 text-white py-5 px-3">
         <div data-controller="sidebar" class="block lg:hidden">
