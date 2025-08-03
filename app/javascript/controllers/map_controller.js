@@ -18,15 +18,14 @@ export default class extends Controller {
 
     const map = new maplibregl.Map({
       container: this.element,
-      style: 'https://demotiles.maplibre.org/style.json',
-      center: [-74.5, 40],
-      // center: [this.longitudeValue, this.latitudeValue],
+      //style: 'https://demotiles.maplibre.org/style.json',
+      style: 'https://raw.githubusercontent.com/go2garret/maps/main/src/assets/json/openStreetMap.json',
+      center: [this.longitudeValue, this.latitudeValue],
       zoom: 14
     })
 
     new maplibregl.Marker()
-      //.setLngLat([this.longitudeValue, this.latitudeValue])
-      .setLngLat([-74.5, 40])
+      .setLngLat([this.longitudeValue, this.latitudeValue])
       .addTo(map)
   }
 }
