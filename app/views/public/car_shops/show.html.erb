@@ -1,1 +1,13 @@
-<h1>Car Shop Name : <%= @car_shop.name %></h1>
+<% content_for :title, @car_shop.name %>
+
+<h1 class="text-2xl"><%= @car_shop.name %></h1>
+<div class="text-2xl"><%= @car_shop.description %></div>
+
+<div
+  data-controller="map"
+  data-map-latitude-value="<%= @car_shop.lat %>"
+  data-map-longitude-value="<%= @car_shop.lng %>"
+  class="w-full h-96"
+  id="map"
+>
+</div>

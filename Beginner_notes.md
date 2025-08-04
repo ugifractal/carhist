@@ -70,7 +70,7 @@ CarMaintenance.where("title ILIKE ?", "%s%")
 ## Cara menambahkan debugger
 
 ```ruby
-reuire "byebug";debugger
+require "byebug";debugger
 ```
 
 ## Cara Extend Class
@@ -97,4 +97,12 @@ User.all.map { |x| x.email }
 # x adalah enumerator
 # {...} adalah blok bisa diganti dengan do dan end jika multiline
 # hasil: array
+```
+
+## Cara Rebase
+```ruby
+git pull origin name --rebase
+git add
+git rebase --continue
+git push
 ```

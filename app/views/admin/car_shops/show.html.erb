@@ -1,5 +1,5 @@
 <div>
-  <%= link_to(car_shops_path, class: 'text-red-800') do %>
+  <%= link_to(admin_car_shops_path, class: 'text-red-800') do %>
     &larr; <%= t('views.cars.back') %>
   <% end %>
 </div>
@@ -16,7 +16,7 @@
   <div>
     Car Shop Name: <%= @car_shop.name %>
   </div>
-
+  
   <div>
     Category: <%= @car_shop.category %>
   </div>

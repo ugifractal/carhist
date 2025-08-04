@@ -13,6 +13,7 @@
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo": "^8.0.13",
     "esbuild-plugin-stimulus": "^0.1.5",
-    "eslint": "^9.29.0"
+    "eslint": "^9.29.0",
+    "maplibre-gl": "^5.6.1"
   }
 }
