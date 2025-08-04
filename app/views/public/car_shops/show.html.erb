@@ -1,4 +1,7 @@
-<h1>Car Shop Name : <%= @car_shop.name %></h1>
+<% content_for :title, @car_shop.name %>
+
+<h1 class="text-2xl"><%= @car_shop.name %></h1>
+<h1 class="text-2xl"><%= @car_shop.description %></h1>
 
 <div
   data-controller="map"

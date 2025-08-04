@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
+  <title><%= content_for?(:title) ? yield(:title) : "Default Title" %> | Carhist</title>
     <div>
       <div class="flex flex-wrap items-center justify-between bg-gray-300 text-red-800 py-5 px-3">
         <div>
