@@ -1,32 +1,48 @@
 <p style="color: green"><%= notice %></p>
 
-<% content_for :title, "Cars" %>
+<h1 class="text-2xl">Your Car Models</h1>
+<div id="car_shops", class="mt-10">
+  <%= link_to "New Model", new_admin_car_model_path, method: :get, class: 'bg-red-700 px-3 py-2 rounded text-white' %>
+</div>
 
-<div id="cars">
-  <%= link_to "New model", new_admin_car_model_path, class: "bg-blue-500 text-white px-2 py-2 rounded shadow hover:bg-blue-600" %>
-  <table border="1" width="40%" style="border-collapse: collapse; margin-top: 20px;">
-            <tr>
-                <th>No  </th>
-                <th>Brand</th>
-                <th>Model</th>
-                <th>Year</th>
-            </tr>
-                    <% @car_models.each_with_index do |car_model, index| %>
-                      <tr>
-                        <td><%= index + 1 + (@car_models.current_page-1)*5 %></td>
-                          <td><%= car_model.car_brand.name %></td>
-                          <td><%= car_model.model %></td>
-                          <td><%= car_model.year %></td>
-                          <td>
-                            <%= link_to "Edit", edit_admin_car_model_path(car_model) %>
-                          </td>
-                          <td>
-                            <%= button_to "Delete", admin_car_model_path(car_model)  , method: :delete %>
-                          </td>
-                        </tr>
-                    <% end %>
-        </table>
+<div class="mt-4">
+  <table class="w-full border border-red-500">
+    <tr class="bg-red-100 text-red-800 font-semibold">
+      <th class="py-2 px-4 text-center">No</th>
+      <th class="py-2 px-4 text-center">Brand</th>
+      <th class="py-2 px-4 text-center">Model</th>
+      <th class="py-2 px-4 text-center">Year</th>
+      <th class="py-2 px-4 text-center">Company</th>
+      <th class="py-2 px-4 text-center">Action</th>
+    </tr>
 
+    <% @car_models.each_with_index do |car_model, index| %>
+      <tr>
+        <td class="text-center py-2 px-4">
+          <%= index + 1 + (@car_models.current_page - 1) * 5 %>
+        </td>
+        <td class="text-center py-2 px-4">
+          <%= car_model.car_brand.name %>
+        </td>
+        <td class="text-center py-2 px-4">
+          <%= car_model.model %>
+        </td>
+        <td class="text-center py-2 px-4">
+          <%= car_model.year %>
+        </td>
+        <td class="text-center py-2 px-4">
+        </td>
+        <td class="text-center py-2 px-4 space-x-2 flex justify-center">
+          <%= link_to edit_admin_car_model_path(car_model), class: "text-blue-600 hover:underline" do %>
+            <%= image_tag "edit.svg", class: "w-4 h-4 inline mt-1" %>
+          <% end %>
+          <%= button_to admin_car_model_path(car_model), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
+            <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 </div>
 
 <%= will_paginate @car_model %>

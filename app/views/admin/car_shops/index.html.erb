@@ -1,45 +1,47 @@
+<p style="color: green"><%= notice %></p>
+
 <h1 class="text-2xl">Your Car Shops</h1>
 <div id="car_shops", class="mt-10">
   <%= link_to "Create New Car Shop", new_admin_car_shop_path, method: :get, class: 'bg-red-700 px-3 py-2 rounded text-white' %>
 </div>
 
 <div class="mt-4">
-<table class="w-full border border-red-500">
-  <tr class="py-2 bg-red-100 text-red-800">
-    <th class="py-2 px-2">Name</th>
-    <th class="py-2 px-2">Submitted By</th>
-    <th class="py-2 px-2">Status</th>
-    <th></th>
-    <th></th>
-  </tr>
-
-  <% @car_shops.each do |shop| %>
-    <tr>
-      <td class="text-center py-2 px-2"><%= shop.name %></td>
-      <td class="w-48 text-center py-2 px-2"><%= shop.user.email %></td>
-      <td class="text-center py-2 px-2">
-        <% if shop.approved_at %>
-          Approved
-        <% else %>
-          Pending
-        <% end %>
-      </td>
-      <td class="px-4 py-3 text-center space-x-2 flex justify-center">
-        <%= link_to edit_admin_car_shop_path(shop), class: "flex items-center justify-center" do %>
-          <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
-        <% end %>
-
-        <% if shop.approved_at %>
-          <%= link_to "/public/car_shops/#{shop.id}/#{shop.name.parameterize}", class: "flex items-center justify-center" do %>
-            <%= image_tag "show.svg", class: "w-4 h-4 inline" %>
-          <% end %>
-        <% end %>
-
-        <%= button_to car_shop_path(shop), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
-          <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
-        <% end %>
-      </td>
+  <table class="w-full border border-red-500">
+    <tr class="py-2 bg-red-100 text-red-800">
+      <th class="py-2 px-2">Name</th>
+      <th class="py-2 px-2">Submitted By</th>
+      <th class="py-2 px-2">Status</th>
+      <th></th>
+      <th></th>
     </tr>
-  <% end %>
-</table>
+
+    <% @car_shops.each do |shop| %>
+      <tr>
+        <td class="text-center py-2 px-2"><%= shop.name %></td>
+        <td class="w-48 text-center py-2 px-2"><%= shop.user.email %></td>
+        <td class="text-center py-2 px-2">
+          <% if shop.approved_at %>
+            Approved
+          <% else %>
+            Pending
+          <% end %>
+        </td>
+        <td class="px-4 py-3 text-center space-x-2 flex justify-center">
+          <%= link_to edit_admin_car_shop_path(shop), class: "flex items-center justify-center" do %>
+            <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
+          <% end %>
+
+          <% if shop.approved_at %>
+            <%= link_to "/public/car_shops/#{shop.id}/#{shop.name.parameterize}", class: "flex items-center justify-center" do %>
+              <%= image_tag "show.svg", class: "w-4 h-4 inline" %>
+            <% end %>
+          <% end %>
+
+          <%= button_to car_shop_path(shop), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
+            <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 </div>
