@@ -13,7 +13,8 @@
           <%= link_to('Carhist', '/', class: 'text-xl lg:text-4xl') %>
         </div>
         <div>
-          <%= link_to("Carshops", "/public/car_shops", class: "mr-4") %>
+          <%= link_to t('views.car_shops.title'), "/public/car_shops", class: "mr-4" %>
+          <%= link_to t('views.car_models.title'), "/public/car_models", class: "mr-4" %>
           <% if user_signed_in? %>
             <%= link_to("Dashboard", dashboards_path) %>
           <% else %>

@@ -64,4 +64,6 @@ Rails.application.routes.draw do
   root "welcome#index"
   get "/public/car_shops/:id/:name", to: "public/car_shops#show"
   get "/public/car_shops", to: "public/car_shops#index"
+  get "/public/car_models/:id/:name", to: "public/car_models#show"
+  get "/public/car_models", to: "public/car_models#index"
 end

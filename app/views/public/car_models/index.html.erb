@@ -1,0 +1,13 @@
+<h1 class="text-xl font-bold mt-4 text-center">Car Models</h1>
+
+<div class="flex flex-wrap gap-6 justify-start my-6 px-6">
+  <% @car_models.each do |model| %>
+    <div class="w-48 h-48 border border-red-700 flex items-center justify-center text-red-700 text-sm">
+      <%= link_to model.model, "/public/car_models/#{model.id}/#{model.model.parameterize}" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="mt-4">
+  <%= will_paginate(@car_models) %>
+</div>
