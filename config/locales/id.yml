@@ -21,7 +21,7 @@ id:
             volume:
               not_a_number: bukan angka
               greater_than: lebih besar dari %{count}
-        car_shop:
+        car_shop: 
           attributes:
             name:
               blank: "Nama tidak boleh kosong"
@@ -63,8 +63,14 @@ id:
       tahun: "Tahun"
       model: "Model Mobil"
       tambah: "Tambah"
+    car_shops:
+      title: "Bengkel"
+    car_models:
+      title: "Spek Mobil"
+
   alerts:
     car_limit_reached: "Anda telah mencapai jumlah mobil maksimum yang diizinkan untuk paket Anda."
+    
 
   support:
     array:
