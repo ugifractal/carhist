@@ -4,18 +4,19 @@
   <% end %>
 </div>
 
-<% content_for :title, "Editing car" %>
+<% content_for :title, "Editing Car" %>
 
 <h1>Edit Car</h1>
-<%= form_with(model: [:admin, @car_model]) do |form| %>
-  <%= render "form", car_model: @car_model %>
+
+<%= form_with(model: [:admin, @car_model], local: true) do |form| %>
+  <%= render "form", form: form %>
   <div class="mt-2">
-    <%= form.submit 'Create' %>
+    <%= form.submit 'Update', class: "bg-blue-500 text-white px-4 py-2 rounded" %>
   </div>
 <% end %>
 
 <br>
 
 <div>
-  <%= link_to "Show this car", @car %> |
+  <%= link_to "Show this car", [:admin, @car_model] %>
 </div>

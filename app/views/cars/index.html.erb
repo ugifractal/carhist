@@ -14,38 +14,57 @@
     <% end %>
   <% end %>
 </div>
-
-  <div class="mt-4 hiddenx">
-    <% if @cars.any? %>
-      <table class="w-full border border-red-500">
-        <thead>
-          <tr class="py-2 bg-red-100 text-red-800">
-            <th class="text-left py-2 px-2"><%= t('cars.index.column_name') %></th>
-            <th class="w-48 text-center py-2 px-2">Brand</th>
-            <th class="w-48 py-2 px-2"></th>
-            <th class="w-48 py-2 px-2"></th>
-          </tr>
-        </thead>
-        <tbody>
+<div class="mt-4">
+  <% if @cars.any? %>
+    <table class="w-full border border-red-500">
+      <thead>
+        <tr class="bg-red-100 text-red-800 font-semibold">
+          <th class="py-2 px-4 text-center">No</th>
+          <th class="py-2 px-4 text-center"><%= t('cars.index.column_name') %></th>
+          <th class="py-2 px-4 text-center">Brand & Model</th>
+          <th class="py-2 px-4 text-center">Maintenance</th>
+          <th class="py-2 px-4 text-center">Fuelings</th>
+          <th class="py-2 px-4 text-center">Company</th>
+          <th class="py-2 px-4 text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
         <% if user_signed_in? %>
-          <% @cars.each do |car| %>
+          <% @cars.each_with_index do |car, index| %>
             <tr>
-              <td class="py-2 px-2">
-                <%= link_to car.name, car_path(car.id) %>
+              <td class="text-center py-2 px-4"><%= index + 1 %></td>
+              <td class="text-center py-2 px-4">
+                <%= link_to car.name, class: "underline text-blue-600" %>
               </td>
-              <td class="text-center"><%= car.car_model.car_brand.name %> <%= car.car_model.model %> <%= car.car_model.year %></td>
-              <td class="py-2 px-2">
+              <td class="text-center py-2 px-4">
+                <%= car.car_model.car_brand.name %> <%= car.car_model.model %> <%= car.car_model.year %>
+              </td>
+              <td class="text-center py-2 px-4">
                 <%= link_to t('cars.index.maintenance_history'), car_car_maintenances_path(car), class: 'underline text-red-700' %>
               </td>
-              <td class="py-2 px-2">
-                <%= link_to("fuelings", car_car_fuelings_path(car), class: 'underline text-red-700') %>
+              <td class="text-center py-2 px-4">
+                <%= link_to "Fuelings", car_car_fuelings_path(car), class: 'underline text-red-700' %>
+              </td>
+              <td class="text-center py-2 px-4">
+                <%= car.company_id %>
+              </td>
+              <td class="text-center py-2 px-4 space-x-2 flex justify-center">
+                <%= link_to edit_car_path(car), class: "text-blue-600 hover:underline" do %>
+                  <%= image_tag "edit.svg", class: "w-4 h-4 inline mt-1" %>
+                <% end %>
+                <%= link_to car_path(car.id), class: "flex items-center justify-center" do %>
+                  <%= image_tag "show.svg", class: "w-4 h-4 inline" %>
+                <% end %>
+                <%= button_to car_path(car), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
+                  <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
+                <% end %>
               </td>
             </tr>
           <% end %>
         <% end %>
-        </tbody>
-      </table>
-    <% else %>
-      <h2>You have no cars, please add</h2>
-    <% end %>
-  </div>
+      </tbody>
+    </table>
+  <% else %>
+    <h2 class="text-red-700 font-semibold">You have no cars, please add</h2>
+  <% end %>
+</div>
