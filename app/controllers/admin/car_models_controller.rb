@@ -63,7 +63,7 @@ module Admin
 
       # Only allow a list of trusted parameters through.
       def car_model_params
-        params.require(:car_model).permit(:car_brand_id, :model, :year)
+        params.require(:car_model).permit(:car_brand_id, :model, :year, :overall_width, :overall_height, :overall_length, :wheelbase, :tank_capacity, :company)
       end
   end
 end

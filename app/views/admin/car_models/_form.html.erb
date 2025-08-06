@@ -39,4 +39,9 @@
       <%= form.label :tank_capacity, style: "display: block" %>
       <%= form.number_field :overall_width, class: 'border' %>
     </div>
+
+    <div class="mt-2">
+      <%= form.select(:company,
+       [['PT', 'PT'],['Contoh 1', 'contoh 1'],['Tire Repair', 'tire_repair'],['Other', 'other']], {}, class:"border border-red-800 rounded text-sm") %>
+    </div>
   </div>
