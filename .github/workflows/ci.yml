@@ -57,8 +57,10 @@ jobs:
         run: bundle exec rails db:schema:load
       - name: Precompile assets
         run: yarn build && bundle exec rails assets:precompile
-      - name: Run test
+      - name: Run test models
         run: bundle exec rails test:models
+      - name: Run test system
+        run: bundle exec rails test:system
       - name: Upload screenshots
         uses: actions/upload-artifact@v4
         if: failure()
