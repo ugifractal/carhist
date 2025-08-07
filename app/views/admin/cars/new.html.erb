@@ -1,0 +1,13 @@
+<div>
+  <%= link_to(cars_path, class: 'text-red-800') do %>
+    &larr; <%= t('views.cars.back') %>
+  <% end %>
+</div>
+
+<% content_for :title, "New car" %>
+
+<h1 class="text-2xl"><%= t('views.cars.new') %></h1>
+
+<%= render "form", car: @car %>
+
+<br>

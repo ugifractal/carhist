@@ -1,0 +1,45 @@
+<%= form_with(model: car) do |form| %>
+  <% if car.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
+
+      <ul>
+        <% car.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mt-2">
+    <%= form.label :name,t('views.cars.nama'), style: "display: block" %>
+    <%= form.text_field :name, class: 'border' %>
+  </div>
+
+  <div class="mt-2">
+    <%= form.label :year,t('views.cars.tahun'), style: "display: block" %>
+    <%= form.select(:year, (1900..(Time.now.year)).map { |x| [x,x] }.reverse, class: 'border') %>
+  </div>
+
+  <div class="mt-2">
+    <%= form.label :car_model_id,t('views.cars.model'), style: "display: block" %>
+    <%= form.select :car_model_id, CarModel.all.map { |m| ["#{m.car_brand.name} #{m.model}", m.id] } %>
+  </div>
+
+  <div class="mt-2">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="mt-2">
+    <div>Company</div>
+    <div>
+      <%= form.select(:company_id,
+       [['Oil Change', 'oil_change'],['AC Repair', 'ac_repair'],['Tire Repair', 'tire_repair'],['Other', 'other']], {}, class:"border border-red-800 rounded text-sm") %>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <%= form.submit t('views.cars.tambah'), class: 'bg-red-800 text-white rounded py-2 px-3' %>
+  </div>
+<% end %>

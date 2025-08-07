@@ -12,7 +12,6 @@
       <th class="py-2 px-4 text-center">Brand</th>
       <th class="py-2 px-4 text-center">Model</th>
       <th class="py-2 px-4 text-center">Year</th>
-      <th class="py-2 px-4 text-center">Company</th>
       <th class="py-2 px-4 text-center">Action</th>
     </tr>
 
@@ -30,9 +29,7 @@
         <td class="text-center py-2 px-4">
           <%= car_model.year %>
         </td>
-        <td class="text-center py-2 px-4">
-          <%= car_model.company %>
-        </td>
+
         <td class="text-center py-2 px-4 space-x-2 flex justify-center">
           <%= link_to edit_admin_car_model_path(car_model), class: "text-blue-600 hover:underline" do %>
             <%= image_tag "edit.svg", class: "w-4 h-4 inline mt-1" %>
