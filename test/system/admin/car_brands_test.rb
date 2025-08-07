@@ -28,11 +28,13 @@ class CarBrandsTest < ApplicationSystemTestCase
 
   test "edit brand" do
     user = users(:admin)
-    sleep 1
+    login_as user
 
-    visit edit_admin_car_brand_path(@car_brand)
+    car_brand = car_brands(:suzuki)
+
+    visit edit_admin_car_brand_path(car_brand)
     sleep 1
-    fill_in :car_brand_name, with: "chevrolet"
+    fill_in :car_brand_name, with: "AAAAA"
     click_button "Update Car brand"
     sleep 1
     assert_text "Car brand has been updated!"
