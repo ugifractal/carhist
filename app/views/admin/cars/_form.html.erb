@@ -1,4 +1,3 @@
-<%= form_with(model: car) do |form| %>
   <% if car.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
@@ -32,14 +31,8 @@
   </div>
 
   <div class="mt-2">
-    <div>Company</div>
-    <div>
-      <%= form.select(:company_id,
-       [['Oil Change', 'oil_change'],['AC Repair', 'ac_repair'],['Tire Repair', 'tire_repair'],['Other', 'other']], {}, class:"border border-red-800 rounded text-sm") %>
-    </div>
+    <%= form.label :company_id, "Perusahaan", style: "display: block"%>
+    <%= form.select :company_id,
+                Company.all.map { |c| [c.name, c.id] },
+                { include_blank: "- Pilih Perusahaan -" } %>
   </div>
-
-  <div class="mt-4">
-    <%= form.submit t('views.cars.tambah'), class: 'bg-red-800 text-white rounded py-2 px-3' %>
-  </div>
-<% end %>

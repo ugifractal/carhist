@@ -1,7 +1,19 @@
 id:
   activerecord:
     errors:
+      attributes:
+        company:
+          required: "Perusahaan wajib diisi"
+      messages:
+        required: "Tidak boleh kosong"
       models:
+        car:
+          required: "Data mobil wajib diisi"
+          attributes:
+            company:
+              required: "Perusahaan wajib diisi"
+            car_model:
+              required: "Car model harus diisi"
         user:
           attributes:
             current_password:

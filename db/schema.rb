@@ -123,7 +123,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_05_071409) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.jsonb "image_data"
-    t.integer "company_id"
+    t.string "company_id"
   end
 
   create_table "companies", force: :cascade do |t|

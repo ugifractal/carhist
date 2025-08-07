@@ -1,6 +1,5 @@
 module Admin
   class CarsController < AdminBaseController
-    before_action :authenticate_user!
     before_action :set_car, only: %i[ show edit update destroy ]
     before_action :check_car_limit, only: [ :new, :create ]
 
@@ -16,7 +15,7 @@ module Admin
 
     # GET /cars/new
     def new
-      @car = current_user.cars.new
+      @car = Car.new
     end
 
     # GET /cars/1/edit
@@ -69,7 +68,7 @@ module Admin
 
       # Only allow a list of trusted parameters through.
       def car_params
-        params.expect(car: [ :user_id, :name, :year, :car_model_id, :created_at, :updated, :image ])
+        params.expect(car: [ :user_id, :name, :year, :car_model_id, :created_at, :updated, :image, :company_id ])
       end
 
       def check_car_limit

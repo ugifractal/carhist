@@ -1,5 +1,5 @@
 <div>
-  <%= link_to(cars_path, class: 'text-red-800') do %>
+  <%= link_to(admin_cars_path, class: 'text-red-800') do %>
     &larr; <%= t('views.cars.back') %>
   <% end %>
 </div>
@@ -7,7 +7,10 @@
 <% content_for :title, "New car" %>
 
 <h1 class="text-2xl"><%= t('views.cars.new') %></h1>
-
-<%= render "form", car: @car %>
-
+<%= form_with model: @car, url: admin_cars_path(@car), local: true do |form| %>
+  <%= render 'form', car: @car, form: form %>
+  <div class="mt-2">
+    <%= form.submit t('views.cars.tambah'), class: 'bg-red-800 text-white rounded py-2 px-3' %>
+  </div>
+<% end %>
 <br>
