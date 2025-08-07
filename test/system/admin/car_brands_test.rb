@@ -49,7 +49,9 @@ class CarBrandsTest < ApplicationSystemTestCase
     visit admin_car_brands_path
     sleep 1
 
-    click_button "Delete"
+    within("tr", text: car_brand.name) do
+      click_button "Delete"
+    end
 
     sleep 1
     assert_text "Car brand was successfully destroyed."
