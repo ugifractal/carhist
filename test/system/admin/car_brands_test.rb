@@ -34,9 +34,24 @@ class CarBrandsTest < ApplicationSystemTestCase
 
     visit edit_admin_car_brand_path(car_brand)
     sleep 1
-    fill_in :car_brand_name, with: "AAAAA"
+    fill_in :car_brand_name, with: "Audi"
     click_button "Update Car brand"
     sleep 1
-    assert_text "Car brand has been updated!"
+    assert_text "Car brand was successfully updated."
+  end
+
+  test "destroy" do
+    user = users(:admin)
+    login_as user
+
+    car_brand = car_brands(:suzuki)
+
+    visit admin_car_brands_path
+    sleep 1
+
+    click_button "Delete"
+
+    sleep 1
+    assert_text "Car brand was successfully destroyed."
   end
 end
