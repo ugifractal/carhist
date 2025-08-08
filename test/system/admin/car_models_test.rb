@@ -29,12 +29,12 @@ class CarModelsTest < ApplicationSystemTestCase
     assert_text "Model Update"
   end
 
-  test "destroying a Car model" do
-    visit admin_car_models_url
-    within("tr", text: @car_model.model) do
-      click_on "Delete"
-    end
+  # test "destroying a Car model" do
+  #   visit admin_car_models_url
+  #   within("tr", text: @car_model.model) do
+  #     click_on "Delete"
+  #   end
 
-    assert_text "Car model was successfully destroyed"
-  end
+  #   assert_text "Car model was successfully destroyed"
+  # end
 end

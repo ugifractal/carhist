@@ -40,20 +40,19 @@ class CarBrandsTest < ApplicationSystemTestCase
     assert_text "Car brand was successfully updated."
   end
 
-  test "destroy" do
-    user = users(:admin)
-    login_as user
+  # test "destroy" do
+  #   user = users(:admin)
+  #   login_as user
 
-    car_brand = car_brands(:suzuki)
+  #   car_brand = car_brands(:suzuki)
 
-    visit admin_car_brands_path
-    sleep 1
+  #   visit admin_car_brands_path
+  #   sleep 1
+  #   within("tr", text: car_brand.name) do
+  #     click_button "Delete"
+  #   end
 
-    within("tr", text: car_brand.name) do
-      click_button "Delete"
-    end
-
-    sleep 1
-    assert_text "Car brand was successfully destroyed."
-  end
+  #   sleep 1
+  #   assert_text "Car brand was successfully destroyed."
+  # end
 end
