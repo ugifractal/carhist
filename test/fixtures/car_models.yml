@@ -1,4 +1,4 @@
-model:
-  car_brand: suzuki
-  model: Model
-  
+escudo:
+  car_brand: :suzuki
+  model: Escudo
+

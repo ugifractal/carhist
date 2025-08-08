@@ -7,42 +7,45 @@
 
 <div class="mt-4">
   <table class="w-full border border-red-500">
-    <tr class="bg-red-100 text-red-800 font-semibold">
-      <th class="py-2 px-4 text-center">No</th>
-      <th class="py-2 px-4 text-center">Brand</th>
-      <th class="py-2 px-4 text-center">Model</th>
-      <th class="py-2 px-4 text-center">Year</th>
-      <th class="py-2 px-4 text-center">Action</th>
-    </tr>
-
-    <% @car_models.each_with_index do |car_model, index| %>
-      <tr>
-        <td class="text-center py-2 px-4">
-          <%= index + 1 + (@car_models.current_page - 1) * 5 %>
-        </td>
-        <td class="text-center py-2 px-4">
-          <%= car_model.car_brand.name %>
-        </td>
-        <td class="text-center py-2 px-4">
-          <%= car_model.model %>
-        </td>
-        <td class="text-center py-2 px-4">
-          <%= car_model.year %>
-        </td>
-
-        <td class="text-center py-2 px-4 space-x-2 flex justify-center">
-          <%= link_to edit_admin_car_model_path(car_model), class: "text-blue-600 hover:underline" do %>
-            <%= image_tag "edit.svg", class: "w-4 h-4 inline mt-1" %>
-          <% end %>
-          <%= link_to admin_car_model_path(car_model), class: "flex items-center justify-center" do %>
-            <%= image_tag "show.svg", class: "w-4 h-4 inline" %>
-          <% end %>
-          <%= button_to admin_car_model_path(car_model), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
-            <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
-          <% end %>
-        </td>
+    <thead>
+      <tr class="bg-red-100 text-red-800 font-semibold">
+        <th class="py-2 px-4 text-center">No</th>
+        <th class="py-2 px-4 text-center">Brand</th>
+        <th class="py-2 px-4 text-center">Model</th>
+        <th class="py-2 px-4 text-center">Year</th>
+        <th class="py-2 px-4 text-center">Action</th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% @car_models.each_with_index do |car_model, index| %>
+        <tr>
+          <td class="text-center py-2 px-4">
+            <%= index + 1 + (@car_models.current_page - 1) * 5 %>
+          </td>
+          <td class="text-center py-2 px-4">
+            <%= car_model.car_brand.name %>
+          </td>
+          <td class="text-center py-2 px-4">
+            <%= car_model.model %>
+          </td>
+          <td class="text-center py-2 px-4">
+            <%= car_model.year %>
+          </td>
+
+          <td class="text-center py-2 px-4 space-x-2 flex justify-center">
+            <%= link_to edit_admin_car_model_path(car_model), class: "text-blue-600 hover:underline" do %>
+              <%= image_tag "edit.svg", class: "w-4 h-4 inline mt-1" %>
+            <% end %>
+            <%= link_to admin_car_model_path(car_model), class: "flex items-center justify-center" do %>
+              <%= image_tag "show.svg", class: "w-4 h-4 inline" %>
+            <% end %>
+            <%= button_to admin_car_model_path(car_model), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1", title: "Delete" do %>
+              <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 </div>
 

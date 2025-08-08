@@ -26,7 +26,7 @@
             <%= link_to edit_admin_car_brand_path(car_brand), class: "text-blue-600 hover:underline" do %>
               <%= image_tag "edit.svg", class: "w-4 h-4 inline mt-1" %>
             <% end %>
-            <%= button_to admin_car_brand_path(car_brand), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
+            <%= button_to admin_car_brand_path(car_brand), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1", title: "Delete" do %>
               <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
             <% end %>
           </td>

@@ -50,7 +50,7 @@ module Admin
       @car_model.destroy
 
       respond_to do |format|
-        format.html { redirect_to admin_car_models_path, status: :see_other, notice: "Car was successfully destroyed." }
+        format.html { redirect_to admin_car_models_path, status: :see_other, notice: "Car model was successfully destroyed." }
         format.json { head :no_content }
       end
     end
