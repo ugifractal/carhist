@@ -2,25 +2,33 @@
 
 <% content_for :title, "Car brands" %>
 
-<h1>Car brands</h1>
+<h1 class="text-2xl">
+  Car brands
+</h1>
 
-<div id="car_brands">
-  <table border="1" width="30%" style="border-collapse: collapse;">
-    <tr>
-      <th>No</th>
-      <th>Brand Name</th>
-    </tr>
+<div class="mt-4">
+  <table class="w-full border border-red-500">
+    <thead>
+      <tr>
+        <th class="py-2 px-4 text-center">No</th>
+        <th class="py-2 px-4 text-center">Brand Name</th>
+        <th class="py-2 px-4 text-center">Action</th>
+      </tr>
+    </thead>
+    <tbody>
       <% @car_brands.each_with_index do |car_brand, index| %>
         <tr>
-          <td>
+          <td class="text-center py-2 px-4">
             <%= index + 1 + (@car_brands.current_page-1)*5 %>
           </td>
-          <td><%= car_brand.name %></td>
-          <td>
-            <%= link_to "Edit", edit_admin_car_brand_path(car_brand) %>
-          </td>
-          <td>
-            <%= button_to "Delete", admin_car_brand_path(car_brand)  , method: :delete %>
+          <td class="text-center py-2 px-4"><%= car_brand.name %></td>
+          <td class="text-center py-2 px-4 space-x-2 flex justify-center">
+            <%= link_to edit_admin_car_brand_path(car_brand), class: "text-blue-600 hover:underline" do %>
+              <%= image_tag "edit.svg", class: "w-4 h-4 inline mt-1" %>
+            <% end %>
+            <%= button_to admin_car_brand_path(car_brand), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
+              <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
+            <% end %>
           </td>
         </tr>
       <% end %>
