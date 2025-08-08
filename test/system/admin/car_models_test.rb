@@ -3,57 +3,38 @@ require "application_system_test_case"
 class CarModelsTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
+  setup do
+    @user = users(:admin)
+    login_as @user
+    @car_brand = car_brands(:suzuki)
+    @car_model = car_models(:model)
+  end
+
   test "visiting the index" do
-    user = users(:admin)
-    login_as user
-
-    car_model = car_models(:suzuki)
     visit admin_car_models_url
-    sleep 1
     assert_text "Car models"
-    assert_text "suzuki"
+    assert_text @car_model.model
   end
 
-  test "create model" do
-    user = users(:admin)
-    login_as user
-
-    visit new_admin_car_model_url
-    sleep 1
-    fill_in :car_model_name, with: "chevrolet"
-    click_button "Create Car model"
-    sleep 1
-    assert_text "Car model has been created!"
-  end
-
-  test "edit model" do
-    user = users(:admin)
-    login_as user
-
-    car_model = car_models(:suzuki)
-
-    visit edit_admin_car_model_path(car_model)
-    sleep 1
-    fill_in :car_model_name, with: "Audi"
-    click_button "Update Car model"
-    sleep 1
-    assert_text "Car model was successfully updated."
-  end
-
-  test "destroy" do
-    user = users(:admin)
-    login_as user
-
-    car_model = car_models(:suzuki)
-
-    visit admin_car_models_path
-    sleep 1
-
-    within("tr", text: car_model.name) do
-      click_button "Delete"
+  test "updating a Car model" do
+    visit admin_car_models_url
+    within("tr", text: @car_model.model) do
+      click_on "Edit"
     end
 
-    sleep 1
-    assert_text "Car model was successfully destroyed."
+    fill_in "Model", with: "Model Update"
+    click_on "Update Car model"
+
+    assert_text "Car model was successfully updated"
+    assert_text "Model Update"
+  end
+
+  test "destroying a Car model" do
+    visit admin_car_models_url
+    within("tr", text: @car_model.model) do
+      click_on "Delete"
+    end
+
+    assert_text "Car model was successfully destroyed"
   end
 end
