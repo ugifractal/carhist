@@ -3,31 +3,41 @@ require "application_system_test_case"
 class CarModelsTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
-  # setup do
-  #   @user = users(:admin)
-  #   login_as @user
-  #   @car_brand = car_brands(:suzuki)
-  #   @car_model = car_models(:model)
-  # end
+  setup do
+    @user = users(:admin)
+    login_as @user
+    @car_brand = car_brands(:suzuki)
+    @car_model = car_models(:escudo)
+  end
 
-  # test "visiting the index" do
-  #   visit admin_car_models_url
-  #   assert_text "Car models"
-  #   assert_text @car_model.model
-  # end
+  test "visiting the index" do
+    visit admin_car_models_url
+    assert_text "Your Car Models"
+    assert_text @car_model.model
+  end
 
-  # test "updating a Car model" do
-  #   visit admin_car_models_url
-  #   within("tr", text: @car_model.model) do
-  #     click_on "Edit"
-  #   end
+  
 
-  #   fill_in "Model", with: "Model Update"
-  #   click_on "Update Car model"
+  test "edit model" do
+    user = users(:admin)
+    login_as user
 
-  #   assert_text "Car model was successfully updated"
-  #   assert_text "Model Update"
-  # end
+    car_model = car_models(:escudo)
+
+    visit edit_admin_car_model_path(car_model)
+    sleep 1
+    select "suzuki", from: "Brand"
+    fill_in "Model", with: "Brio"
+    fill_in "Year", with: 2025
+    fill_in "Overall width", with: 1800
+    fill_in "Overall height", with: 1400
+    fill_in "Overall length", with: 3800
+    fill_in "Wheelbase", with: 2500
+    fill_in "Tank capacity", with: 50
+    click_button "Update"
+    sleep 1
+    assert_text "Car model was successfully updated."
+  end
 
   test "destroy" do
     user = users(:admin)

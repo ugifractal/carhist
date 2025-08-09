@@ -36,7 +36,7 @@ module Admin
     def update
       respond_to do |format|
         if @car_model.update(car_model_params)
-          format.html { redirect_to admin_car_models_path, notice: "Car was successfully updated." }
+          format.html { redirect_to admin_car_models_path, notice: "Car model was successfully updated." }
           format.json { render :show, status: :ok, location: @car_model }
         else
           format.html { render :edit, status: :unprocessable_entity }

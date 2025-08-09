@@ -1,6 +1,6 @@
   <div>
-    <div><%= "Brand" %></div>
     <div class="mt-2">
+      <%= form.label :car_brand_id, "Brand", style: "display: block" %>
       <%= form.select(:car_brand_id, CarBrand.all.map { |b| [b.name, b.id] }, { include_blank: "- Pilih Brand -" }) %>
     </div>
 
@@ -37,11 +37,6 @@
 
     <div class="mt-2">
       <%= form.label :tank_capacity, style: "display: block" %>
-      <%= form.number_field :overall_width, class: 'border' %>
-    </div>
-
-    <div class="mt-2">
-      <%= form.select(:company,
-       [['PT', 'PT'],['Contoh 1', 'contoh 1'],['Tire Repair', 'tire_repair'],['Other', 'other']], {}, class:"border border-red-800 rounded text-sm") %>
+      <%= form.number_field :tank_capacity, class: 'border' %>
     </div>
   </div>
