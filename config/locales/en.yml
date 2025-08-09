@@ -1,13 +1,25 @@
 en:
   activerecord:
     errors:
+      attributes:
+        company:
+          required:
+      messages:
+        required:
       models:
+        car:
+          required:
+          attributes:
+            company:
+              required:
         car_maintenance:
           attributes:
             title:
               blank: empty
             description:
               blank: empty
+        messages:
+          required:
   hello: "Hello world"
   date:
     order:

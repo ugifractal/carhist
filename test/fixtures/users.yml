@@ -1,0 +1,10 @@
+user_base: &user_base
+  email: base@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: 2016-01-02 08:31:23
+  confirmation_sent_at: 2016-01-02 08:30:59
+
+admin:
+  <<: *user_base
+  email: admin@example.com
+  admin: true

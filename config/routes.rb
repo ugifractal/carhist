@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     resources :users, except: [ :show ]
     resources :car_brands
     resources :car_models
+    resources :cars
     resources :car_shops do
       member do
         patch :approve

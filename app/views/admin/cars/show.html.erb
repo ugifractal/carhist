@@ -1,0 +1,26 @@
+<div>
+  <%= link_to("/", class: 'text-red-800') do %>
+    &larr; <%= t('views.cars.back') %>
+  <% end %>
+</div>
+<p style="color: green"><%= notice %></p>
+
+<%= render @car %>
+
+<div class="mt-6">
+  <div>
+  <% if @car.image %>
+    <%= link_to @car.image.url do %>
+      <%= image_tag(@car.image.url, class:"px-5 w-60 h-60 object-cover") %>
+    <% end %>
+  <% else %>
+    <p>No image available.</p>
+  <% end %>
+</div>
+
+<div class="flex space-x-2">
+  <%= link_to "Edit this car", edit_car_path(@car),
+    class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-800 hover:bg-red-500 font-medium cursor-pointer" %>
+  <%= button_to "Destroy this car", @car, method: :delete,
+    class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-800 hover:bg-red-500 font-medium cursor-pointer" %>
+</div>

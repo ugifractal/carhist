@@ -9,7 +9,7 @@
 
 <div class="mt-4">
   <% if (current_user.company.plan == 'free' && current_user.cars.count < 2) || (current_user.company.plan == 'paid' && current_user.cars.count < 6) %>
-    <%= link_to new_car_path(@car) do %>
+    <%= link_to new_admin_car_path(@car) do %>
       <%= image_tag "add.svg", alt: "Add", class: "w-8 h-8 inline" %>
     <% end %>
   <% end %>
@@ -24,6 +24,7 @@
           <th class="py-2 px-4 text-center">Brand & Model</th>
           <th class="py-2 px-4 text-center">Maintenance</th>
           <th class="py-2 px-4 text-center">Fuelings</th>
+          <th class="py-2 px-4 text-center">Company</th>
           <th class="py-2 px-4 text-center">Action</th>
         </tr>
       </thead>
@@ -44,14 +45,17 @@
               <td class="text-center py-2 px-4">
                 <%= link_to "Fuelings", car_car_fuelings_path(car), class: 'underline text-red-700' %>
               </td>
+              <td class="text-center py-2 px-4">
+                <%= link_to car.company_id, class: "underline text-blue-600" %>
+              </td>
               <td class="text-center py-2 px-4 space-x-2 flex justify-center">
-                <%= link_to edit_car_path(car), class: "text-blue-600 hover:underline" do %>
+                <%= link_to edit_admin_car_path(car), class: "text-blue-600 hover:underline" do %>
                   <%= image_tag "edit.svg", class: "w-4 h-4 inline mt-1" %>
                 <% end %>
-                <%= link_to car_path(car.id), class: "flex items-center justify-center" do %>
+                <%= link_to admin_car_path(car.id), class: "flex items-center justify-center" do %>
                   <%= image_tag "show.svg", class: "w-4 h-4 inline" %>
                 <% end %>
-                <%= button_to car_path(car), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
+                <%= button_to admin_car_path(car), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
                   <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
                 <% end %>
               </td>

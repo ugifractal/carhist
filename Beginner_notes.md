@@ -106,3 +106,13 @@ git add
 git rebase --continue
 git push
 ```
+
+## Cara Mencari sebuah Car berdasarkan id
+```ruby
+Car.find(id)
+```
+
+## Cara Meghapus sebuah Car berdasarkan id
+```ruby
+Car.find(id).destroy
+```

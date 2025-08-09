@@ -1,11 +1,18 @@
-<% content_for :title, "New car" %>
+<div>
+  <%= link_to(admin_car_models_path, class: 'text-red-800') do %>
+    &larr; <%= t('views.cars.back') %>
+  <% end %>
+</div>
+
+<% content_for :title, "New Car" %>
 
 <h1>New Model</h1>
 
-<%= render "form", car_model: @car_model %>
+<%= form_with(model: [:admin, @car_model], local: true) do |form| %>
+  <%= render "form", car_model: @car_model, form: form %>
+  <div class="mt-2">
+    <%= form.submit 'Create' %>
+  </div>
+<% end %>
 
 <br>
-
-<div>
-  <%= link_to "Back to cars", admin_car_models_path %>
-</div>

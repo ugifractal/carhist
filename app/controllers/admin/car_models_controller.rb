@@ -36,7 +36,7 @@ module Admin
     def update
       respond_to do |format|
         if @car_model.update(car_model_params)
-          format.html { redirect_to admin_car_models_path, notice: "Car was successfully updated." }
+          format.html { redirect_to admin_car_models_path, notice: "Car model was successfully updated." }
           format.json { render :show, status: :ok, location: @car_model }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -50,7 +50,7 @@ module Admin
       @car_model.destroy
 
       respond_to do |format|
-        format.html { redirect_to admin_car_models_path, status: :see_other, notice: "Car was successfully destroyed." }
+        format.html { redirect_to admin_car_models_path, status: :see_other, notice: "Car model was successfully destroyed." }
         format.json { head :no_content }
       end
     end
@@ -63,7 +63,7 @@ module Admin
 
       # Only allow a list of trusted parameters through.
       def car_model_params
-        params.require(:car_model).permit(:car_brand_id, :model, :year)
+        params.require(:car_model).permit(:car_brand_id, :model, :year, :overall_width, :overall_height, :overall_length, :wheelbase, :tank_capacity, :company)
       end
   end
 end
