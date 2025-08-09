@@ -27,7 +27,7 @@ class HistoryImagesController < ApplicationController
   private
 
   def set_car_maintenance
-    @car = current_user.cars.find(params[:car_id])
+    @car = current_user.company.cars.find(params[:car_id])
     @car_maintenance = @car.car_maintenances.find(params[:car_maintenance_id])
   end
 end
