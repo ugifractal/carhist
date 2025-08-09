@@ -16,7 +16,26 @@ class CarModelsTest < ApplicationSystemTestCase
     assert_text @car_model.model
   end
 
-  
+  test "create model" do
+    user = users(:admin)
+    login_as user
+
+    car_model = car_models(:escudo)
+
+    visit new_admin_car_model_path(car_model)
+    sleep 1
+    select "suzuki", from: "Brand"
+    fill_in "Model", with: "Pajero"
+    fill_in "Year", with: 2030
+    fill_in "Overall width", with: 2000
+    fill_in "Overall height", with: 2000
+    fill_in "Overall length", with: 2000
+    fill_in "Wheelbase", with: 2000
+    fill_in "Tank capacity", with: 2000
+    click_button "Create"
+    sleep 1
+    assert_text "Car model has been created!"
+  end
 
   test "edit model" do
     user = users(:admin)
