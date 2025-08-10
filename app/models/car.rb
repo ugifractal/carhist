@@ -5,7 +5,6 @@ class Car < ApplicationRecord
   has_many :car_maintenances, dependent: :destroy
   has_many :car_fuelings, dependent: :destroy
   has_one :maintenance_setting, dependent: :destroy
-  belongs_to :company
 
   validates :name, presence: true
 

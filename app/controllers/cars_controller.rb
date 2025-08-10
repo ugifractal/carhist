@@ -28,7 +28,7 @@ class CarsController < ApplicationController
 
     respond_to do |format|
       if @car.save
-        format.html { redirect_to @car, notice: "Car was successfully created." }
+        format.html { redirect_to cars_path, notice: "Car was successfully created." }
         format.json { render :show, status: :created, location: @car }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,7 +41,7 @@ class CarsController < ApplicationController
   def update
     respond_to do |format|
       if @car.update(car_params)
-        format.html { redirect_to @car, notice: "Car was successfully updated." }
+        format.html { redirect_to cars_path, notice: "Car was successfully updated." }
         format.json { render :show, status: :ok, location: @car }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -72,7 +72,7 @@ class CarsController < ApplicationController
     end
 
     def check_car_limit
-      limit = current_user.company.company.plan == "free" ? 2 : 6
+      limit = current_user.company.plan == "free" ? 2 : 6
       if current_user.company.cars.count >= limit
         redirect_to cars_path, alert: t("alerts.car_limit_reached")
       end

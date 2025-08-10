@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
 
-  has_many :cars, dependent: :destroy
+  has_many :cars, through: :company
   has_many :car_shops
   has_one :api_key, dependent: :destroy
   has_one :setting, dependent: :destroy

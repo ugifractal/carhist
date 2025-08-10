@@ -1,4 +1,3 @@
-escudo:
-  car_brand: :suzuki
-  model: Escudo
-
+skyline:
+  name: :skyline
+  year: :2025
