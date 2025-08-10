@@ -7,8 +7,8 @@ class CarsTest < ApplicationSystemTestCase
     user = users(:admin)
     login_as user
 
-    car_ = cars(:suzuki)
-    visit admin_car_brans_url
+    car_ = cars(:skyline)
+    visit car_url
     sleep 1
     assert_text "Cars"
     assert_text "skyline"
@@ -18,13 +18,16 @@ class CarsTest < ApplicationSystemTestCase
     user = users(:admin)
     login_as user
 
-    visit new_car_url
+    car = cars(:skyline)
+
+    visit new_admin_car_path
     sleep 1
-    fill_in "Model", with: "Honda"
-    select "2024", from: "year"
-    select "skyline", from: "t('views.cars.model')"
+    fill_in "nama", with: "Pajero"
+    select "2024", from: "Year"
+    select "skyline", from: I18n.t('views.cars.model')
+
     click_button "Create Car"
-    sleep 1
+
     assert_text "Car has been created!"
   end
 end

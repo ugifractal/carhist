@@ -72,7 +72,7 @@ module Admin
       end
 
       def check_car_limit
-        limit = current_user.company.company.plan == "free" ? 2 : 6
+        limit = current_user.company.plan == "free" ? 2 : 6
         if current_user.company.cars.count >= limit
           redirect_to cars_path, alert: t("alerts.car_limit_reached")
         end
