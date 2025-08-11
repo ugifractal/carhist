@@ -34,4 +34,22 @@ class CarsTest < ApplicationSystemTestCase
     
     assert_text "Car was successfully created."
   end
+
+  test "edit car" do
+    user = users(:sakib)
+    login_as user
+
+    car = cars(:skyline)
+    model = car_models(:escudo)
+
+    visit edit_car_path(car)
+    sleep 1
+
+    fill_in "car_name", with: "avanza"
+    select "2021", from: "car_year"
+    page.find(:xpath,"//option[@value='#{model.id}']").click
+    click_button "Update"
+    sleep 1
+    assert_text "Car was successfully updated."
+  end
 end
