@@ -27,8 +27,7 @@ class CarsTest < ApplicationSystemTestCase
 
     fill_in "car_name", with: "Pajero"
     select "2024", from: "car_year"
-    page.find(:xpath,"//option[@value='#{model.id}']").click
-
+    select "suzuki Escudo", from: "car_car_model_id"
     click_button "Tambah"
     sleep 1
     
@@ -47,9 +46,25 @@ class CarsTest < ApplicationSystemTestCase
 
     fill_in "car_name", with: "avanza"
     select "2021", from: "car_year"
-    page.find(:xpath,"//option[@value='#{model.id}']").click
+    select "nissan skyline", from: "car_car_model_id"
     click_button "Update"
     sleep 1
     assert_text "Car was successfully updated."
+  end
+
+  test "destroy" do
+    user = users(:sakib)
+    login_as user
+
+    car = cars(:skyline)
+
+    visit cars_path
+    sleep 1
+
+    accept_confirm do
+      page.find(:xpath, "//tbody/tr[1]//button[@data-turbo-confirm='Are you sure?']").click
+    end
+
+    assert_text "Car was successfully destroyed."
   end
 end

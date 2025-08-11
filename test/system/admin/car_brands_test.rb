@@ -49,9 +49,9 @@
 #     visit admin_car_brands_path
 #     sleep 1
 
-#     accept_confirm do
-#       page.find(:xpath, "//tbody/tr[position()=1]/td[position()=3]/*/button[@title='Delete']").click
-#     end
+    # accept_confirm do
+    #   page.find(:xpath, "//tbody/tr[position()=1]/td[position()=3]/*/button[@title='Delete']").click
+    # end
 
 #     assert_text "Car brand was successfully destroyed."
 #   end
