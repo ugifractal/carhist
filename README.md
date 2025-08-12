@@ -13,7 +13,7 @@ yarn build --watch
 ```
 
 ```bash
-bundle exec rails tailwindcss:watch
+yarn css:watch
 ```
 
 ```bash

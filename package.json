@@ -7,13 +7,17 @@
   "scripts": {
     "build-legacy": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
     "build": "node build.mjs",
-    "build:watch": "node build.mjs --watch"
+    "build:watch": "node build.mjs --watch",
+    "css:build": "tailwindcss -i app/assets/tailwind/application.css -o app/assets/build/tailwind.css",
+    "css:watch": "tailwindcss -i app/assets/tailwind/application.css -o app/assets/build/tailwind.css --watch"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo": "^8.0.13",
+    "@tailwindcss/cli": "^4.1.11",
     "esbuild-plugin-stimulus": "^0.1.5",
     "eslint": "^9.29.0",
-    "maplibre-gl": "^5.6.1"
+    "maplibre-gl": "^5.6.1",
+    "tailwindcss": "^4.1.11"
   }
 }
