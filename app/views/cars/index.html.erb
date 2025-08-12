@@ -8,13 +8,13 @@
 </h1>
 
 <div class="mt-4">
-<% if (current_user.company.plan == 'free' && current_user.company.cars.count < 2) || (current_user.company.plan == 'paid' && current_user.company.cars.count < 6) %>  
+<% if (current_user.company.plan == 'free' && current_user.company.cars.count < 2) || (current_user.company.plan == 'paid' && current_user.company.cars.count < 6) %>
     <%= link_to new_car_path(@car) do %>
       <%= image_tag "add.svg", alt: "Add", class: "w-8 h-8 inline" %>
     <% end %>
   <% end %>
 </div>
-<div class="mt-4">
+<div class="mt-4 overflow-x-scroll">
   <% if @cars.any? %>
     <table class="w-full border border-red-500">
       <thead>
@@ -35,7 +35,7 @@
               <td class="text-center py-2 px-4">
                 <%= link_to car.name, class: "underline text-blue-600" %>
               </td>
-              <td class="text-center py-2 px-4">              
+              <td class="text-center py-2 px-4">
                 <%= car.car_model.car_brand.name %> <%= car.car_model.model %> <%= car.car_model.year %>
               </td>
               <td class="text-center py-2 px-4">
