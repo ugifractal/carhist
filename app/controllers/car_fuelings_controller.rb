@@ -45,6 +45,6 @@ class CarFuelingsController < ApplicationController
   end
 
   def set_car
-    @car = current_user.cars.find(params[:car_id])
+    @car = current_user.company.cars.find(params[:car_id])
   end
 end

@@ -8,3 +8,9 @@ admin:
   <<: *user_base
   email: admin@example.com
   admin: true
+
+sakib:
+  <<: *user_base
+  email: sakib@example.com
+  admin: false
+  company: :garuda

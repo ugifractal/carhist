@@ -98,7 +98,7 @@ class CarMaintenancesController < ApplicationController
   private
 
   def set_car
-    @car = current_user.cars.find(params[:car_id])
+    @car = current_user.company.cars.find(params[:car_id])
   end
     # Use callbacks to share common setup or constraints between actions.
     def set_car_maintenance

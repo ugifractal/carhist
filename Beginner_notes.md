@@ -116,3 +116,9 @@ Car.find(id)
 ```ruby
 Car.find(id).destroy
 ```
+
+## Cara Menjalankan migrasi di environment
+```ruby
+history | grep RAILS_ENV
+RAILS_ENV=test bundle exec rails db:migrate
+```

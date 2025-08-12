@@ -2,3 +2,6 @@ escudo:
   car_brand: :suzuki
   model: Escudo
 
+skyline:
+  car_brand: :nissan
+  model: skyline

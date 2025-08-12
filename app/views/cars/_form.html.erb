@@ -1,4 +1,3 @@
-<%= form_with(model: car) do |form| %>
   <% if car.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
@@ -12,7 +11,7 @@
   <% end %>
 
   <div class="mt-2">
-    <%= form.label :name,t('views.cars.nama'), style: "display: block" %>
+    <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name, class: 'border' %>
   </div>
 
@@ -30,8 +29,3 @@
     <%= form.label :image %>
     <%= form.file_field :image %>
   </div>
-
-  <div class="mt-4">
-    <%= form.submit t('views.cars.tambah'), class: 'bg-red-800 text-white rounded py-2 px-3' %>
-  </div>
-<% end %>

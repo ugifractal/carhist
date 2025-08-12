@@ -5,7 +5,7 @@ module Admin
 
     # GET /cars or /cars.json
     def index
-      @cars = current_user.cars.order(name: :asc)
+      @cars = current_user.company.cars.order(name: :asc)
     end
 
     # GET /cars/1 or /cars/1.json
@@ -24,7 +24,7 @@ module Admin
 
     # POST /cars or /cars.json
     def create
-      @car = current_user.cars.new(car_params)
+      @car = current_user.company.cars.new(car_params)
 
       respond_to do |format|
         if @car.save
@@ -73,7 +73,7 @@ module Admin
 
       def check_car_limit
         limit = current_user.company.plan == "free" ? 2 : 6
-        if current_user.cars.count >= limit
+        if current_user.company.cars.count >= limit
           redirect_to cars_path, alert: t("alerts.car_limit_reached")
         end
       end

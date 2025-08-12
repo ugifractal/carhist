@@ -22,7 +22,7 @@
           </div>
           <div data-sidebar-target="menu" class="hidden absolute w-full bg-white left-0 top-20 text-red-800 border border-red-800 pb-5">
           <% if user_signed_in? %>
-            <% current_user.cars.each do |car| %>
+            <% current_user.company.cars.each do |car| %>
               <div class="py-2">
                 <%= link_to( car.name, car_car_maintenances_path(car), class: 'underline text-red ml-3' ) if car.persisted? %>
               </div>
@@ -118,10 +118,10 @@
 
           <div>
             <% if user_signed_in? %>
-              <% current_user.cars.each do |car| %>
+              <% current_user.company.cars.each do |car| %>
                 <div>
                   <%= link_to( car.name, car_car_maintenances_path(car), class: 'underline text-white ml-5' ) if car.persisted? %>
-                </div>
+                </div>s 
               <% end %>
             <% end %>
           </div>
