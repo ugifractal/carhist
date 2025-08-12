@@ -26,6 +26,7 @@ jobs:
       DATABASE_CABLE_URL: "postgres://postgres:postgres@localhost:5432/carhist_test"
       DATABASE_QUEUE_URL: "postgres://postgres:postgres@localhost:5432/carhist_test"
       CI: "y"
+      SMTP_USERNAME: "x"
 
     steps:
       - name: Checkout code
