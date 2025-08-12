@@ -72,8 +72,8 @@ RUN chmod +x bin/* && \
     sed -i 's/ruby\.exe$/ruby/' bin/*
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
+RUN RAILS_ENV=production TAILWINDCSS_DEBUG=y SECRET_KEY_BASE_DUMMY=1 bundle exec tailwindcss -i app/assets/tailwind/application.css
 RUN . $NVM_DIR/nvm.sh && \
-    RAILS_ENV=production TAILWINDCSS_DEBUG=y SECRET_KEY_BASE_DUMMY=1 bundle exec tailwindcss -i app/assets/tailwind/application.css && \
     TAILWINDCSS_DEBUG=y SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
 
 
@@ -85,9 +85,6 @@ FROM base
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
-
-RUN . $NVM_DIR/nvm.sh && \
-    RAILS_ENV=production TAILWINDCSS_DEBUG=y SECRET_KEY_BASE_DUMMY=1 bundle exec tailwindcss -i app/assets/tailwind/application.css
 
 # Run and own only the runtime files as a non-root user for security
 RUN groupadd --system --gid 1000 rails && \
