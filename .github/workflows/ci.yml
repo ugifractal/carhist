@@ -57,7 +57,7 @@ jobs:
       - name: Set up database schema
         run: bundle exec rails db:schema:load
       - name: Precompile assets
-        run: yarn build && bundle exec rails assets:precompile
+        run: yarn build && yarn css:build && bundle exec rails assets:precompile
       - name: Run test models
         run: bundle exec rails test:models
       - name: Run test system
