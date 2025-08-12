@@ -2,14 +2,49 @@
   <head>
     <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
     <div>
-      <div class="bg-red-800 text-white py-5 px-3">
-        <%= link_to('Carhist Admin', '/admin', class: 'text-xl lg:text-4xl') %>
+      <div data-controller="sidebar" class="flex justify-between items-center bg-red-800 lg:hidden">
+        <div class="w-8 cursor-pointer">
+          <span class="ml-3"><svg data-sidebar-target="openIcon" data-action="click->sidebar#toggle" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 18L20 18" stroke="#ffffff" stroke-width="2" stroke-linecap="round"></path> <path d="M4 12L20 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round"></path> <path d="M4 6L20 6" stroke="#ffffff" stroke-width="2" stroke-linecap="round"></path> </g></svg></span>
+          <span data-sidebar-target="closeIcon" data-action="click->sidebar#toggle" class="ml-3 hidden text-4xl text-white">&times;</span>
+        </div>
+        <div data-sidebar-target="menu" class="hidden absolute w-full bg-white left-0 top-20 text-red-800 border border-red-800 pb-5">
+          <div class="py-2">
+            <%= link_to('Cars', admin_cars_path, class: 'underline text-red-800 ml-3') %>
+          </div>
+          <div class="py-2">
+            <%= link_to('Brands', admin_car_brands_path, class: 'underline text-red-800 ml-3') %>
+          </div>
+          <div class="py-2">
+            <%= link_to('Models', admin_car_models_path, class: 'underline text-red-800 ml-3') %>
+          </div>
+          <div class="py-2">
+            <%= link_to('Car Shop', admin_car_shops_path, class: 'underline text-red-800 ml-3') %>
+          </div>
+          <div class="py-2">
+            <%= link_to('Users', admin_users_path, class: 'underline text-red-800 ml-3') %>
+          </div>
+          <div class="py-2">
+            <%= button_to "Logout", destroy_user_session_path, method: :delete, class: 'mt-5 underline text-red-800 ml-3' %>
+          </div>
+        </div>
+
+        <div class="text-white py-5 px-3">
+          <%= link_to('Carhist Admin', '/admin', class: 'text-xl lg:text-4xl') %>
+        </div>
       </div>
+
+      <div class="hidden lg:block">
+        <div class="bg-red-800 text-white py-5 px-3">
+          <%= link_to('Carhist Admin', '/admin', class: 'text-xl lg:text-4xl') %>
+        </div>
+      </div>
+
       <div class="flex">
-        <div class="w-80 py-3 px-2 bg-gray-600 min-h-80">
+        <div class="hidden lg:block py-3 px-2 bg-gray-600 w-80">
           <div>
             <%= link_to('Cars', admin_cars_path, class: 'underline text-white') %>
           </div>
