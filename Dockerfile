@@ -72,7 +72,9 @@ RUN chmod +x bin/* && \
     sed -i 's/ruby\.exe$/ruby/' bin/*
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN . $NVM_DIR/nvm.sh && TAILWINDCSS_DEBUG=y SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
+RUN . $NVM_DIR/nvm.sh && \
+    RAILS_ENV=production TAILWINDCSS_DEBUG=y SECRET_KEY_BASE_DUMMY=1 bundle exec tailwindcss -i app/assets/tailwind/application.css && \
+    TAILWINDCSS_DEBUG=y SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
 
 
 
