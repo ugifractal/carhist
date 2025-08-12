@@ -73,6 +73,7 @@ RUN chmod +x bin/* && \
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN . $NVM_DIR/nvm.sh && \
+    yarn install && \
     yarn css:build && \
     TAILWINDCSS_DEBUG=y SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
 
