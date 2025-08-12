@@ -30,7 +30,6 @@ class CarsTest < ApplicationSystemTestCase
     select "suzuki Escudo", from: "car_car_model_id"
     click_button "Tambah"
     sleep 1
-    
     assert_text "Car was successfully created."
   end
 
