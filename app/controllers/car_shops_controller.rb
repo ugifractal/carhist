@@ -3,7 +3,7 @@ class CarShopsController < ApplicationController
   before_action :set_car_shop, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @car_shops = current_user.car_shops
+    @car_shops = current_user.company.car_shops
                         .paginate(page: params[:page], per_page: 20)
 
     respond_to do |format|
@@ -20,7 +20,7 @@ class CarShopsController < ApplicationController
   end
 
   def create
-    @car_shop = current_user.car_shops.build(car_shop_params)
+    @car_shop = current_user.company.car_shops.build(car_shop_params)
     @car_shop.user_id = current_user.id
 
     if @car_shop.save
