@@ -9,7 +9,7 @@
   <table class="w-full border border-red-500">
     <tr class="py-2 bg-red-100 text-red-800">
       <th class="py-2 px-2">Name</th>
-      <th class="py-2 px-2">Submitted By</th>
+      <th class="py-2 px-2">Company</th>
       <th class="py-2 px-2">Status</th>
       <th></th>
       <th></th>
@@ -18,7 +18,7 @@
     <% @car_shops.each do |shop| %>
       <tr>
         <td class="text-center py-2 px-2"><%= shop.name %></td>
-        <td class="w-48 text-center py-2 px-2"><%= shop.user.email %></td>
+        <td class="text-center py-2 px-2"><%= shop.company_id %></td>
         <td class="text-center py-2 px-2">
           <% if shop.approved_at %>
             Approved

@@ -29,8 +29,10 @@
 </div>
 
 <div class="mt-2">
-  <%= form.label :user_id %>
-  <%= form.select(:user_id, @users.map {|x| [x.email, x.id] }) %>
+  <%= form.label :company_id, "Perusahaan", style: "display: block"%>
+  <%= form.select :company_id,
+              Company.all.map { |c| [c.name, c.id] },
+              { include_blank: "- Pilih Perusahaan -" } %>
 </div>
 
 <div class="mt-2 text-sm text-gray-800">
