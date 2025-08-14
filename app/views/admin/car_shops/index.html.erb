@@ -20,7 +20,7 @@
       <% @car_shops.each do |shop| %>
         <tr>
           <td class="text-center py-2 px-2"><%= shop.name %></td>
-          <td class="text-center py-2 px-2"><%= shop.company_id %></td>
+          <td class="text-center py-2 px-2"><%= shop.company&.name %></td>
           <td class="text-center py-2 px-2">
             <% if shop.approved_at %>
               Approved
