@@ -68,7 +68,7 @@ module Admin
 
       # Only allow a list of trusted parameters through.
       def car_params
-        params.expect(car: [ :user_id, :name, :year, :car_model_id, :created_at, :updated, :image, :company_id ])
+        params.expect(car: [ :name, :year, :car_model_id, :created_at, :updated, :image, :company_id ])
       end
 
       def check_car_limit
