@@ -122,3 +122,8 @@ Car.find(id).destroy
 history | grep RAILS_ENV
 RAILS_ENV=test bundle exec rails db:migrate
 ```
+
+## String Interpolation
+```ruby
+"test#{variable}"
+```
