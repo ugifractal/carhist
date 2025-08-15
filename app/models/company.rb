@@ -1,5 +1,5 @@
 class Company < ApplicationRecord
-  has_many :users, dependent: :destroy
+  has_many :car_shops, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :cars, dependent: :destroy
 

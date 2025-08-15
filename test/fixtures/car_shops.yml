@@ -1,3 +1,9 @@
+auto200:
+  name: auto200
+
+garuda:
+  name: :garuda
+
 pending:
   name: bengkel asep
   approved_at: 
