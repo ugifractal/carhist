@@ -43,6 +43,7 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     car_maintenance = car_maintenances(:history)
 
     visit "/cars/#{car.id}/car_maintenances/#{car_maintenance.id}/edit"
+    assert_text "Ubah Service Record"
     sleep 1
 
     select "AC Repair", from: "car_maintenance_maintenance_type"
@@ -55,6 +56,7 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     click_button "Update Service Record"
     sleep 1
     visit "/cars/#{car.id}/car_maintenances"
+    assert_text "Car maintenance was successfully updated."
   end
 
   test "destroy" do
@@ -64,12 +66,13 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     car = cars(:skyline)
     car_maintenance = car_maintenances(:history)
 
-    visit car_maintenances_path
+    visit "/cars/#{car.id}/car_maintenances"
     sleep 1
 
     accept_confirm do
-      page.find(:xpath, "//tbody/tr[1]//button[@data-turbo-confirm='Are you sure?']").click
+      page.find("[data-turbo-confirm='Are you sure?']", match: :first).click
     end
+
 
     assert_text "Car was successfully destroyed."
   end
