@@ -63,7 +63,7 @@ class CarMaintenancesController < ApplicationController
   def update
     respond_to do |format|
       if @car_maintenance.update(car_maintenance_params)
-        format.html { redirect_to car_car_maintenance_path(@car, @car_maintenance), notice: "Car maintenance was successfully updated." }
+        format.html { redirect_to car_car_maintenances_path, notice: "Car maintenance was successfully updated." }
         format.json { render :show, status: :ok, location: @car_maintenance }
       else
         format.html { render :edit, status: :unprocessable_entity }
