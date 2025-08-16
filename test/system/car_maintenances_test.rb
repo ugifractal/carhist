@@ -55,6 +55,22 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     click_button "Update Service Record"
     sleep 1
     visit "/cars/#{car.id}/car_maintenances"
-    assert_text "Car maintenance was successfully updated."
+  end
+
+  test "destroy" do
+    user = users(:sakib)
+    login_as user
+
+    car = cars(:skyline)
+    car_maintenance = car_maintenances(:history)
+
+    visit car_maintenances_path
+    sleep 1
+
+    accept_confirm do
+      page.find(:xpath, "//tbody/tr[1]//button[@data-turbo-confirm='Are you sure?']").click
+    end
+
+    assert_text "Car was successfully destroyed."
   end
 end
