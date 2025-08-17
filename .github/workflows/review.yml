@@ -37,7 +37,6 @@ jobs:
               1.
               2.
               3.
-        # Kamu bisa sesuaikan model, versi CLI, atau setting lain jika perlu
 
       - name: Post AI Review Comment
         uses: marocchino/sticky-pull-request-comment@v2
