@@ -1,7 +1,7 @@
 name: AI Scoring via Gemini CLI
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened]
 
 jobs:
@@ -19,14 +19,17 @@ jobs:
       - name: Get PR Diff
         id: diff
         run: |
-          gh api \
-            repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }} \
-            --jq '.diff_url' | xargs curl -s > pr.diff
-          echo "diff<<EOF" >> $GITHUB_OUTPUT
-          cat pr.diff >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          curl -sL \
+            -H "Accept: application/vnd.github.v3.diff" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }} \
+            > pr.diff
+
+          {
+            echo "diff<<EOF"
+            cat pr.diff
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
 
       - name: Run Gemini Review
         id: gemini
