@@ -15,7 +15,13 @@ class DeviceLoggersController < ApplicationController
   end
 
   def create
-    @device_logger = @car.device_loggers.new(device_logger_params)
+    @device_logger = case params[:logger_type]
+    when "hotswitch"
+      @car.hotswitch_loggers.new(device_logger_params)
+    else
+      @car.device_loggers.new(device_logger_params)
+    end
+
     if @device_logger.save
       flash[:notice] = "Device logger has been created."
       redirect_to car_device_logger_path(@car, @device_logger)
@@ -38,6 +44,6 @@ class DeviceLoggersController < ApplicationController
   end
 
   def device_logger_params
-    params.expect(device_logger: %i[name logger_type])
+    params.expect(device_logger: %i[name])
   end
 end
