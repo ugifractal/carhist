@@ -12,6 +12,7 @@ bundle install
 yarn build --watch
 ```
 
+## Run tailwind watch
 ```bash
 yarn css:watch
 ```
