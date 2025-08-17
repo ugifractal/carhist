@@ -21,6 +21,7 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     car = cars(:skyline)
 
     visit "/cars/#{car.id}/car_maintenances/new"
+    assert_text "Service Record Baru"
     sleep 1
 
     select "AC Repair", from: "car_maintenance_maintenance_type"
@@ -54,9 +55,9 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     fill_in "car_maintenance_description", with: "ini edit deskripsi"
     select "garuda", from: "car_maintenance_car_shop_id"
     click_button "Update Service Record"
+    assert_text "Car maintenance was successfully updated."
     sleep 1
     visit "/cars/#{car.id}/car_maintenances"
-    assert_text "Car maintenance was successfully updated."
   end
 
   test "destroy" do
@@ -74,6 +75,6 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     end
 
 
-    assert_text "Car was successfully destroyed."
+    assert_text "Car maintenance was successfully destroyed."
   end
 end

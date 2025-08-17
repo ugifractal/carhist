@@ -1,7 +1,9 @@
 <% content_for :title, "Car maintenances" %>
 
 <div class="w-full">
-  <%= notice %>
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+  <% end %>
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-xl"> <%= t('views.car_maintenances.title') %> <%= @car.brand_name %> (<%= @car.name %>)</h1>
