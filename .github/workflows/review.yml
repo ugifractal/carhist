@@ -17,11 +17,12 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: Run Gemini AI Scoring & Weakness Analysis
+      - name: Run Gemini Review
         id: gemini
         uses: google-github-actions/run-gemini-cli@main
         with:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
+          pull_request_url: ${{ github.event.pull_request.html_url }}
           prompt: |
             Please evaluate the Ruby project changes in this pull request.
             1. Provide a score from 0–100, considering code quality and time efficiency.
