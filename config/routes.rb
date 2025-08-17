@@ -19,11 +19,15 @@ Rails.application.routes.draw do
       end
     end
     resources :car_fuelings
+    resources :device_loggers do
+      resources :device_logs
+    end
   end
 
   namespace :api do
     namespace :v1 do
       resources :cars, only: [ :index ]
+      resources :hotswitch_logs, only: [ :create ]
     end
   end
 

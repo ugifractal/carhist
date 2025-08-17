@@ -1,0 +1,19 @@
+<div>
+  <%= form_with(model: [@car, @device_logger]) do |f| %>
+    <div>
+      <div>Name:</div>
+      <div><%= f.text_field(:name, class: "border") %></div>
+    </div>
+
+    <div class="mt-3">
+      <div>Logger Type:</div>
+      <div>
+        <%= select_tag(:logger_type, options_for_select([["Hotswitch", "hotswitch"]]), class: "border") %>
+      </div>
+    </div>
+
+    <div class="mt-6">
+      <%= f.submit(class: "bg-red-800 text-white px-2 py-2 rounded") %>
+    </div>
+  <% end %>
+</div>
