@@ -1,5 +1,7 @@
 class DeviceLogger < ApplicationRecord
   belongs_to :car
+  has_many :device_logs, dependent: :destroy
+
   before_create :generate_token
 
   private

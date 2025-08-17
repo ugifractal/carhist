@@ -1,0 +1,14 @@
+<% if @device_logger.kind_of?(Device::HotswitchLogger) %>
+  <table>
+    <tr>
+      <th>Time</th>
+      <th>ECT voltage</th>
+    </tr>
+    <% @logs.each do |log| %>
+      <tr>
+        <td class="text-center"><%= log.created_at.strftime("%d %b %Y %H:%M:%S") %></td>
+        <td class="text-center"><%= log.raw.dig("ect_voltage") %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
