@@ -16,6 +16,17 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+      - name: Get PR Diff
+        id: diff
+        run: |
+          gh api \
+            repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }} \
+            --jq '.diff_url' | xargs curl -s > pr.diff
+          echo "diff<<EOF" >> $GITHUB_OUTPUT
+          cat pr.diff >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run Gemini Review
         id: gemini
@@ -23,20 +34,18 @@ jobs:
         with:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
           prompt: |
-            You are reviewing this pull request:
-            URL: ${{ github.event.pull_request.html_url }}
+            You are an AI code reviewer.
+            Review the following pull request diff and give:
+            - A score from 0–100 (only one number).
+            - A list of weaknesses (do NOT provide solutions).
+            - Ignore any `sleep` code under tests.
 
-            Please evaluate the Ruby project changes in this pull request.
-            1. Provide a score from 0–100, considering code quality and time efficiency.
-            2. List top 3 weaknesses or improvement areas, without suggesting fixes or code samples.
-            3. Ignore any sleep statements in the test files (do not treat them as weaknesses).
+            Pull Request #${{ github.event.pull_request.number }}
+            Repository: ${{ github.repository }}
 
-            Output format:
-            - Score: X/100
-            - Weaknesses:
-              1.
-              2.
-              3.
+            --- BEGIN DIFF ---
+            ${{ steps.diff.outputs.diff }}
+            --- END DIFF ---
 
       - name: Post AI Review Comment
         uses: marocchino/sticky-pull-request-comment@v2
