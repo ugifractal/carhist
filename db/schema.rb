@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_12_223918) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_16_233305) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -81,7 +81,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_12_223918) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
-    t.string "car_shop_id"
   end
 
   create_table "car_models", force: :cascade do |t|
@@ -129,6 +128,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_12_223918) do
     t.string "name"
     t.string "plan", default: "free"
     t.datetime "paid_until"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "device_loggers", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "logger_type"
+    t.string "status"
+    t.string "token"
+    t.integer "car_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

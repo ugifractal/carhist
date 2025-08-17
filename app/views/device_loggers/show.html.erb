@@ -1,0 +1,14 @@
+<div>
+  <%= link_to(car_device_loggers_path(@car), class: 'text-red-800') do %>
+    &larr; <%= t('views.cars.back') %>
+  <% end %>
+</div>
+
+<div class="mt-6">
+  <div>
+    Token
+  </div>
+  <div>
+    <%= @device_logger.token %>
+  </div>
+</div>

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       end
     end
     resources :car_fuelings
+    resources :device_loggers
   end
 
   namespace :api do

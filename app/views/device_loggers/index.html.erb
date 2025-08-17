@@ -1,0 +1,32 @@
+<div>
+  <%= link_to("Add Device Logger", new_car_device_logger_path(@car), class: "bg-red-800 text-white px-2 py-2 text-white rounded") %>
+</div>
+
+<div class="mt-6">
+  <% if @device_loggers.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @device_loggers.each do |logger| %>
+          <tr>
+            <td><%= link_to(logger.name, car_device_logger_path(@car, logger), class: "text-red-800 underline") %></td>
+            <td><%= logger.logger_type %></td>
+            <td>
+              <%= button_to car_device_logger_path(@car, logger), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
+                <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div>You don't have any loggers</div>
+  <% end %>
+</div>
