@@ -1,0 +1,3653 @@
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="turbo-visit-control" content="reload">
+  <title>Action Controller: Exception caught</title>
+  <style>
+    body {
+      background-color: #FAFAFA;
+      color: #333;
+      color-scheme: light dark;
+      supported-color-schemes: light dark;
+      margin: 0px;
+    }
+
+    body, p, ol, ul, td {
+      font-family: helvetica, verdana, arial, sans-serif;
+      font-size:   13px;
+      line-height: 18px;
+    }
+
+    pre {
+      font-size: 11px;
+      white-space: pre-wrap;
+    }
+
+    pre.box {
+      border: 1px solid #EEE;
+      padding: 10px;
+      margin: 0px;
+      width: 958px;
+    }
+
+    header {
+      color: #F0F0F0;
+      background: #C00;
+      padding: 0.5em 1.5em;
+    }
+
+    h1 {
+      overflow-wrap: break-word;
+      margin: 0.2em 0;
+      line-height: 1.1em;
+      font-size: 2em;
+    }
+
+    h2 {
+      color: #C00;
+      line-height: 25px;
+    }
+
+    code.traces {
+      font-size: 11px;
+    }
+
+    .response-heading, .request-heading {
+      margin-top: 30px;
+    }
+
+    .exception-message {
+      padding: 8px 0;
+    }
+
+    .exception-message .message {
+      margin-bottom: 8px;
+      line-height: 25px;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #C00;
+    }
+
+    .details {
+      border: 1px solid #D0D0D0;
+      border-radius: 4px;
+      margin: 1em 0px;
+      display: block;
+      max-width: 978px;
+    }
+
+    .summary {
+      padding: 8px 15px;
+      border-bottom: 1px solid #D0D0D0;
+      display: block;
+    }
+
+    a.summary {
+      color: #F0F0F0;
+      text-decoration: none;
+      background: #C52F24;
+      border-bottom: none;
+    }
+
+    .details pre {
+      margin: 5px;
+      border: none;
+    }
+
+    #container {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 0 1.5em;
+    }
+
+    .source * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .source {
+      border: 1px solid #D9D9D9;
+      background: #ECECEC;
+      max-width: 978px;
+    }
+
+    .source pre {
+      padding: 10px 0px;
+      border: none;
+    }
+
+    .source .data {
+      font-size: 80%;
+      overflow: auto;
+      background-color: #FFF;
+    }
+
+    .info {
+      padding: 0.5em;
+    }
+
+    .source .data .line_numbers {
+      background-color: #ECECEC;
+      color: #555;
+      padding: 1em .5em;
+      border-right: 1px solid #DDD;
+      text-align: right;
+    }
+
+    .line {
+      padding-left: 10px;
+      white-space: pre;
+    }
+
+    .line:hover {
+      background-color: #F6F6F6;
+    }
+
+    .line.active {
+      background-color: #FCC;
+    }
+
+    .error_highlight {
+      display: inline-block;
+      background-color: #FF9;
+      text-decoration: #F00 wavy underline;
+    }
+
+    .error_highlight_tip {
+      color: #666;
+      padding: 2px 2px;
+      font-size: 10px;
+    }
+
+    .button_to {
+      display: inline-block;
+      margin-top: 0.75em;
+      margin-bottom: 0.75em;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .correction {
+      list-style-type: none;
+    }
+
+    input[type="submit"] {
+      color: white;
+      background-color: #C00;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 3px #F99;
+      font-size: 13px;
+      font-weight: bold;
+      margin: 0;
+      padding: 10px 18px;
+      cursor: pointer;
+      -webkit-appearance: none;
+    }
+    input[type="submit"]:focus,
+    input[type="submit"]:hover {
+      opacity: 0.8;
+    }
+    input[type="submit"]:active {
+      box-shadow: 0 2px #F99;
+      transform: translateY(1px)
+    }
+
+    a { color: #980905; }
+    a:visited { color: #666; }
+    a.trace-frames {
+      color: #666;
+      overflow-wrap: break-word;
+    }
+    a:hover, a.trace-frames.selected { color: #C00; }
+    a.summary:hover { color: #FFF; }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #222;
+        color: #ECECEC;
+      }
+
+      .details, .summary {
+        border-color: #666;
+      }
+
+      .source {
+        border-color: #555;
+        background-color: #333;
+      }
+
+      .source .data {
+        background: #444;
+      }
+
+      .source .data .line_numbers {
+        background: #333;
+        border-color: #222;
+      }
+
+      .line:hover {
+        background: #666;
+      }
+
+      .line.active {
+        background-color: #900;
+      }
+
+      .error_highlight {
+        color: #333;
+      }
+
+      input[type="submit"] {
+        box-shadow: 0 3px #800;
+      }
+      input[type="submit"]:active {
+        box-shadow: 0 2px #800;
+      }
+
+      a { color: #C00; }
+      a.trace-frames { color: #999; }
+      a:hover, a.trace-frames.selected { color: #E9382B; }
+    }
+
+    
+  </style>
+
+  <script>
+    var toggle = function(id) {
+      document.getElementById(id).classList.toggle('hidden');
+      return false;
+    }
+    var show = function(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+    var hide = function(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+    var toggleSessionDump = function() {
+      return toggle('session_dump');
+    }
+    var toggleEnvDump = function() {
+      return toggle('env_dump');
+    }
+  </script>
+</head>
+<body>
+
+  <header>
+  <h1>
+    ActiveRecord::RecordNotFound
+      in CarMaintenancesController#edit
+  </h1>
+</header>
+
+<main role="main" id="container">
+    <div class="exception-message">
+    <div class="message">Couldn't find CarMaintenance with 'id'=666529867 [WHERE "car_maintenances"."car_id" = $1]</div>
+  </div>
+
+  
+
+
+  
+    <div class="source hidden" id="frame-source-0-0">
+      <div class="info">
+        Extracted source (around line <strong>#428</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>426</span>
+<span>427</span>
+<span>428</span>
+<span>429</span>
+<span>430</span>
+<span>431</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      elsif Array.wrap(ids).size == 1
+</div><div class="line">        error = "Couldn't find #{name} with '#{key}'=#{ids}#{conditions}"
+</div><div class="line active">        <span class="error_highlight">raise</span> RecordNotFound.new(error, name, key, ids)
+</div><div class="line">      else
+</div><div class="line">        error = +"Couldn't find all #{name.pluralize} with '#{key}': "
+</div><div class="line">        error &lt;&lt; "(#{ids.join(", ")})#{conditions} (found #{result_size} results, but was looking for #{expected_size})."
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-1">
+      <div class="info">
+        Extracted source (around line <strong>#536</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>534</span>
+<span>535</span>
+<span>536</span>
+<span>537</span>
+<span>538</span>
+<span>539</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        record = relation.take
+</div><div class="line">
+</div><div class="line active">        <span class="error_highlight">raise_record_not_found_exception!</span>(id, 0, 1) unless record
+</div><div class="line">
+</div><div class="line">        record
+</div><div class="line">      end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-2">
+      <div class="info">
+        Extracted source (around line <strong>#513</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>511</span>
+<span>512</span>
+<span>513</span>
+<span>514</span>
+<span>515</span>
+<span>516</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          raise RecordNotFound.new(error_message, model_name, primary_key)
+</div><div class="line">        when 1
+</div><div class="line active">          result = <span class="error_highlight">find_one</span>(ids.first)
+</div><div class="line">          expects_array ? [ result ] : result
+</div><div class="line">        else
+</div><div class="line">          find_some(ids)
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-3">
+      <div class="info">
+        Extracted source (around line <strong>#100</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>98</span>
+<span>99</span>
+<span>100</span>
+<span>101</span>
+<span>102</span>
+<span>103</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def find(*args)
+</div><div class="line">      return super if block_given?
+</div><div class="line active">      <span class="error_highlight">find_with_ids</span>(*args)
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    # Finds the first record matching the specified conditions. There
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-4">
+      <div class="info">
+        Extracted source (around line <strong>#113</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>111</span>
+<span>112</span>
+<span>113</span>
+<span>114</span>
+<span>115</span>
+<span>116</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          end
+</div><div class="line">        else
+</div><div class="line active">          scope<span class="error_highlight">.find</span>(*args)
+</div><div class="line">        end
+</div><div class="line">      end
+</div><div class="line">
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-5">
+      <div class="info">
+        Extracted source (around line <strong>#140</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>138</span>
+<span>139</span>
+<span>140</span>
+<span>141</span>
+<span>142</span>
+<span>143</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      def find(*args)
+</div><div class="line">        return super if block_given?
+</div><div class="line active">        @association<span class="error_highlight">.find</span>(*args)
+</div><div class="line">      end
+</div><div class="line">
+</div><div class="line">      ##
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source " id="frame-source-0-6">
+      <div class="info">
+        Extracted source (around line <strong>#105</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>103</span>
+<span>104</span>
+<span>105</span>
+<span>106</span>
+<span>107</span>
+<span>108</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    # Use callbacks to share common setup or constraints between actions.
+</div><div class="line">    def set_car_maintenance
+</div><div class="line active">      @car_maintenance = @car.car_maintenances<span class="error_highlight">.find</span>(params[:id])
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    # Only allow a list of trusted parameters through.
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-7">
+      <div class="info">
+        Extracted source (around line <strong>#361</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>359</span>
+<span>360</span>
+<span>361</span>
+<span>362</span>
+<span>363</span>
+<span>364</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          def make_lambda
+</div><div class="line">            lambda do |target, value, &amp;block|
+</div><div class="line active">              target<span class="error_highlight">.send</span>(@method_name, &amp;block)
+</div><div class="line">            end
+</div><div class="line">          end
+</div><div class="line">
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-8">
+      <div class="info">
+        Extracted source (around line <strong>#178</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>176</span>
+<span>177</span>
+<span>178</span>
+<span>179</span>
+<span>180</span>
+<span>181</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">            if !halted &amp;&amp; user_conditions.all? { |c| c.call(target, value) }
+</div><div class="line active">              result_lambda = -&gt; { user_callback<span class="error_highlight">.call</span> target, value }
+</div><div class="line">              env.halted = halted_lambda.call(target, result_lambda)
+</div><div class="line">              if env.halted
+</div><div class="line">                target.send :halted_callback_hook, filter, name
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-9">
+      <div class="info">
+        Extracted source (around line <strong>#34</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>32</span>
+<span>33</span>
+<span>34</span>
+<span>35</span>
+<span>36</span>
+<span>37</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    included do
+</div><div class="line">      define_callbacks :process_action,
+</div><div class="line active">                       terminator: -&gt;(controller, result_lambda) { result_lambda<span class="error_highlight">.call</span>; controller.performed? },
+</div><div class="line">                       skip_after_callbacks_if_terminated: true
+</div><div class="line">      mattr_accessor :raise_on_missing_callback_actions, default: false
+</div><div class="line">    end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-10">
+      <div class="info">
+        Extracted source (around line <strong>#179</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>177</span>
+<span>178</span>
+<span>179</span>
+<span>180</span>
+<span>181</span>
+<span>182</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">            if !halted &amp;&amp; user_conditions.all? { |c| c.call(target, value) }
+</div><div class="line">              result_lambda = -&gt; { user_callback.call target, value }
+</div><div class="line active">              env.halted = halted_lambda<span class="error_highlight">.call</span>(target, result_lambda)
+</div><div class="line">              if env.halted
+</div><div class="line">                target.send :halted_callback_hook, filter, name
+</div><div class="line">              end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-11">
+      <div class="info">
+        Extracted source (around line <strong>#559</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>557</span>
+<span>558</span>
+<span>559</span>
+<span>560</span>
+<span>561</span>
+<span>562</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">        def invoke_before(arg)
+</div><div class="line active">          @before&amp;.each { |b| b<span class="error_highlight">.call</span>(arg) }
+</div><div class="line">        end
+</div><div class="line">
+</div><div class="line">        def invoke_after(arg)
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-12">
+      <div class="info">
+        Extracted source (around line <strong>#559</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>557</span>
+<span>558</span>
+<span>559</span>
+<span>560</span>
+<span>561</span>
+<span>562</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">        def invoke_before(arg)
+</div><div class="line active">          @before<span class="error_highlight">&amp;.each</span> { |b| b.call(arg) }
+</div><div class="line">        end
+</div><div class="line">
+</div><div class="line">        def invoke_after(arg)
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-13">
+      <div class="info">
+        Extracted source (around line <strong>#559</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>557</span>
+<span>558</span>
+<span>559</span>
+<span>560</span>
+<span>561</span>
+<span>562</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">        def invoke_before(arg)
+</div><div class="line active">          @before<span class="error_highlight">&amp;.each</span> { |b| b.call(arg) }
+</div><div class="line">        end
+</div><div class="line">
+</div><div class="line">        def invoke_after(arg)
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-14">
+      <div class="info">
+        Extracted source (around line <strong>#118</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>116</span>
+<span>117</span>
+<span>118</span>
+<span>119</span>
+<span>120</span>
+<span>121</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">            while true
+</div><div class="line">              current = next_sequence
+</div><div class="line active">              current<span class="error_highlight">.invoke_before</span>(env)
+</div><div class="line">              if current.final?
+</div><div class="line">                env.value = !env.halted &amp;&amp; (!block_given? || yield)
+</div><div class="line">              elsif current.skip?(env)
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-15">
+      <div class="info">
+        Extracted source (around line <strong>#24</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def with_request_id(request_id)
+</div><div class="line">      old_request_id, self.current_request_id = self.current_request_id, request_id
+</div><div class="line active">      yield
+</div><div class="line">    ensure
+</div><div class="line">      self.current_request_id = old_request_id
+</div><div class="line">    end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-16">
+      <div class="info">
+        Extracted source (around line <strong>#10</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>8</span>
+<span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">  private
+</div><div class="line">    def turbo_tracking_request_id(&amp;block)
+</div><div class="line active">      Turbo<span class="error_highlight">.with_request_id</span>(request.headers["X-Turbo-Request-Id"], &amp;block)
+</div><div class="line">    end
+</div><div class="line">end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-17">
+      <div class="info">
+        Extracted source (around line <strong>#129</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>127</span>
+<span>128</span>
+<span>129</span>
+<span>130</span>
+<span>131</span>
+<span>132</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">                begin
+</div><div class="line">                  target, block, method, *arguments = current.expand_call_template(env, invoke_sequence)
+</div><div class="line active">                  target<span class="error_highlight">.send</span>(method, *arguments, &amp;block)
+</div><div class="line">                ensure
+</div><div class="line">                  next_sequence = current
+</div><div class="line">                end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-18">
+      <div class="info">
+        Extracted source (around line <strong>#25</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        previous_renderer = self.renderer
+</div><div class="line">        self.renderer = renderer
+</div><div class="line active">        yield
+</div><div class="line">      ensure
+</div><div class="line">        self.renderer = previous_renderer
+</div><div class="line">      end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-19">
+      <div class="info">
+        Extracted source (around line <strong>#71</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>69</span>
+<span>70</span>
+<span>71</span>
+<span>72</span>
+<span>73</span>
+<span>74</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        ActiveSupport.on_load(base) do
+</div><div class="line">          around_action do |controller, action|
+</div><div class="line active">            ActionText::Content<span class="error_highlight">.with_renderer</span>(controller, &amp;action)
+</div><div class="line">          end
+</div><div class="line">        end
+</div><div class="line">      end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-20">
+      <div class="info">
+        Extracted source (around line <strong>#129</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>127</span>
+<span>128</span>
+<span>129</span>
+<span>130</span>
+<span>131</span>
+<span>132</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">                begin
+</div><div class="line">                  target, block, method, *arguments = current.expand_call_template(env, invoke_sequence)
+</div><div class="line active">                  target<span class="error_highlight">.send</span>(method, *arguments, &amp;block)
+</div><div class="line">                ensure
+</div><div class="line">                  next_sequence = current
+</div><div class="line">                end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-21">
+      <div class="info">
+        Extracted source (around line <strong>#129</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>127</span>
+<span>128</span>
+<span>129</span>
+<span>130</span>
+<span>131</span>
+<span>132</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">                begin
+</div><div class="line">                  target, block, method, *arguments = current.expand_call_template(env, invoke_sequence)
+</div><div class="line active">                  target<span class="error_highlight">.send</span>(method, *arguments, &amp;block)
+</div><div class="line">                ensure
+</div><div class="line">                  next_sequence = current
+</div><div class="line">                end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-22">
+      <div class="info">
+        Extracted source (around line <strong>#140</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>138</span>
+<span>139</span>
+<span>140</span>
+<span>141</span>
+<span>142</span>
+<span>143</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          end
+</div><div class="line">
+</div><div class="line active">          invoke_sequence<span class="error_highlight">.call</span>
+</div><div class="line">        end
+</div><div class="line">      end
+</div><div class="line">    end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-23">
+      <div class="info">
+        Extracted source (around line <strong>#260</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>258</span>
+<span>259</span>
+<span>260</span>
+<span>261</span>
+<span>262</span>
+<span>263</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      # callbacks around the normal behavior.
+</div><div class="line">      def process_action(...)
+</div><div class="line active">        <span class="error_highlight">run_callbacks</span>(:process_action) do
+</div><div class="line">          super
+</div><div class="line">        end
+</div><div class="line">      end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-24">
+      <div class="info">
+        Extracted source (around line <strong>#27</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    private
+</div><div class="line">      def process_action(*)
+</div><div class="line active">        super
+</div><div class="line">      rescue Exception =&gt; exception
+</div><div class="line">        request.env["action_dispatch.show_detailed_exceptions"] ||= show_detailed_exceptions?
+</div><div class="line">        rescue_with_handler(exception) || raise
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-25">
+      <div class="info">
+        Extracted source (around line <strong>#76</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>74</span>
+<span>75</span>
+<span>76</span>
+<span>77</span>
+<span>78</span>
+<span>79</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">        ActiveSupport::Notifications.instrument("process_action.action_controller", raw_payload) do |payload|
+</div><div class="line active">          result = super
+</div><div class="line">          payload[:response] = response
+</div><div class="line">          payload[:status]   = response.status
+</div><div class="line">          result
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-26">
+      <div class="info">
+        Extracted source (around line <strong>#210</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>208</span>
+<span>209</span>
+<span>210</span>
+<span>211</span>
+<span>212</span>
+<span>213</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      def instrument(name, payload = {})
+</div><div class="line">        if notifier.listening?(name)
+</div><div class="line active">          instrumenter.instrument(name, payload) { yield payload if block_given? }
+</div><div class="line">        else
+</div><div class="line">          yield payload if block_given?
+</div><div class="line">        end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-27">
+      <div class="info">
+        Extracted source (around line <strong>#58</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>56</span>
+<span>57</span>
+<span>58</span>
+<span>59</span>
+<span>60</span>
+<span>61</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        handle.start
+</div><div class="line">        begin
+</div><div class="line active">          yield payload if block_given?
+</div><div class="line">        rescue Exception =&gt; e
+</div><div class="line">          payload[:exception] = [e.class.name, e.message]
+</div><div class="line">          payload[:exception_object] = e
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-28">
+      <div class="info">
+        Extracted source (around line <strong>#210</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>208</span>
+<span>209</span>
+<span>210</span>
+<span>211</span>
+<span>212</span>
+<span>213</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      def instrument(name, payload = {})
+</div><div class="line">        if notifier.listening?(name)
+</div><div class="line active">          instrumenter<span class="error_highlight">.instrument</span>(name, payload) { yield payload if block_given? }
+</div><div class="line">        else
+</div><div class="line">          yield payload if block_given?
+</div><div class="line">        end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-29">
+      <div class="info">
+        Extracted source (around line <strong>#75</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>73</span>
+<span>74</span>
+<span>75</span>
+<span>76</span>
+<span>77</span>
+<span>78</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        ActiveSupport::Notifications.instrument("start_processing.action_controller", raw_payload)
+</div><div class="line">
+</div><div class="line active">        ActiveSupport::Notifications<span class="error_highlight">.instrument</span>("process_action.action_controller", raw_payload) do |payload|
+</div><div class="line">          result = super
+</div><div class="line">          payload[:response] = response
+</div><div class="line">          payload[:status]   = response.status
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-30">
+      <div class="info">
+        Extracted source (around line <strong>#259</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>257</span>
+<span>258</span>
+<span>259</span>
+<span>260</span>
+<span>261</span>
+<span>262</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      def process_action(*)
+</div><div class="line">        _perform_parameter_wrapping if _wrapper_enabled?
+</div><div class="line active">        super
+</div><div class="line">      end
+</div><div class="line">
+</div><div class="line">      # Returns the wrapper key which will be used to store wrapped parameters.
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-31">
+      <div class="info">
+        Extracted source (around line <strong>#39</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>37</span>
+<span>38</span>
+<span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          # and it won't be cleaned up by the method below.
+</div><div class="line">          ActiveRecord::RuntimeRegistry.reset
+</div><div class="line active">          super
+</div><div class="line">        end
+</div><div class="line">
+</div><div class="line">        def cleanup_view_runtime
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-32">
+      <div class="info">
+        Extracted source (around line <strong>#163</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>161</span>
+<span>162</span>
+<span>163</span>
+<span>164</span>
+<span>165</span>
+<span>166</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      @_response_body = nil
+</div><div class="line">
+</div><div class="line active">      <span class="error_highlight">process_action</span>(action_name, ...)
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    # Delegates to the class's ::controller_path.
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-33">
+      <div class="info">
+        Extracted source (around line <strong>#40</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>38</span>
+<span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def process(...) # :nodoc:
+</div><div class="line">      old_config, I18n.config = I18n.config, I18nProxy.new(I18n.config, lookup_context)
+</div><div class="line active">      super
+</div><div class="line">    ensure
+</div><div class="line">      I18n.config = old_config
+</div><div class="line">    end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-34">
+      <div class="info">
+        Extracted source (around line <strong>#252</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>250</span>
+<span>251</span>
+<span>252</span>
+<span>253</span>
+<span>254</span>
+<span>255</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      set_request!(request)
+</div><div class="line">      set_response!(response)
+</div><div class="line active">      <span class="error_highlight">process</span>(name)
+</div><div class="line">      request.commit_flash
+</div><div class="line">      to_a
+</div><div class="line">    end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-35">
+      <div class="info">
+        Extracted source (around line <strong>#335</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>333</span>
+<span>334</span>
+<span>335</span>
+<span>336</span>
+<span>337</span>
+<span>338</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        middleware_stack.build(name) { |env| new.dispatch(name, req, res) }.call req.env
+</div><div class="line">      else
+</div><div class="line active">        new<span class="error_highlight">.dispatch</span>(name, req, res)
+</div><div class="line">      end
+</div><div class="line">    end
+</div><div class="line">  end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-36">
+      <div class="info">
+        Extracted source (around line <strong>#67</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>65</span>
+<span>66</span>
+<span>67</span>
+<span>68</span>
+<span>69</span>
+<span>70</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">          def dispatch(controller, action, req, res)
+</div><div class="line active">            controller<span class="error_highlight">.dispatch</span>(action, req, res)
+</div><div class="line">          end
+</div><div class="line">      end
+</div><div class="line">
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-37">
+      <div class="info">
+        Extracted source (around line <strong>#50</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>48</span>
+<span>49</span>
+<span>50</span>
+<span>51</span>
+<span>52</span>
+<span>53</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          controller = controller req
+</div><div class="line">          res        = controller.make_response! req
+</div><div class="line active">          <span class="error_highlight">dispatch</span>(controller, params[:action], req, res)
+</div><div class="line">        rescue ActionController::RoutingError
+</div><div class="line">          if @raise_on_name_error
+</div><div class="line">            raise
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-38">
+      <div class="info">
+        Extracted source (around line <strong>#53</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>51</span>
+<span>52</span>
+<span>53</span>
+<span>54</span>
+<span>55</span>
+<span>56</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          req.route_uri_pattern = route.path.spec.to_s
+</div><div class="line">
+</div><div class="line active">          _, headers, _ = response = route.app<span class="error_highlight">.serve</span>(req)
+</div><div class="line">
+</div><div class="line">          if "pass" == headers[Constants::X_CASCADE]
+</div><div class="line">            req.script_name     = script_name
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-39">
+      <div class="info">
+        Extracted source (around line <strong>#133</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>131</span>
+<span>132</span>
+<span>133</span>
+<span>134</span>
+<span>135</span>
+<span>136</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">              path_parameters[name.to_sym] = Utils.unescape_uri(val) if val
+</div><div class="line">            }
+</div><div class="line active">            yield [match_data, path_parameters, r]
+</div><div class="line">          }
+</div><div class="line">        end
+</div><div class="line">
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-40">
+      <div class="info">
+        Extracted source (around line <strong>#126</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>124</span>
+<span>125</span>
+<span>126</span>
+<span>127</span>
+<span>128</span>
+<span>129</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          routes.sort_by!(&amp;:precedence)
+</div><div class="line">
+</div><div class="line active">          routes<span class="error_highlight">.each</span> { |r|
+</div><div class="line">            match_data = r.path.match(path_info)
+</div><div class="line">            path_parameters = {}
+</div><div class="line">            match_data.names.each_with_index { |name, i|
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-41">
+      <div class="info">
+        Extracted source (around line <strong>#126</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>124</span>
+<span>125</span>
+<span>126</span>
+<span>127</span>
+<span>128</span>
+<span>129</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          routes.sort_by!(&amp;:precedence)
+</div><div class="line">
+</div><div class="line active">          routes<span class="error_highlight">.each</span> { |r|
+</div><div class="line">            match_data = r.path.match(path_info)
+</div><div class="line">            path_parameters = {}
+</div><div class="line">            match_data.names.each_with_index { |name, i|
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-42">
+      <div class="info">
+        Extracted source (around line <strong>#34</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>32</span>
+<span>33</span>
+<span>34</span>
+<span>35</span>
+<span>36</span>
+<span>37</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">      def serve(req)
+</div><div class="line active">        <span class="error_highlight">find_routes</span>(req) do |match, parameters, route|
+</div><div class="line">          set_params  = req.path_parameters
+</div><div class="line">          path_info   = req.path_info
+</div><div class="line">          script_name = req.script_name
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-43">
+      <div class="info">
+        Extracted source (around line <strong>#908</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>906</span>
+<span>907</span>
+<span>908</span>
+<span>909</span>
+<span>910</span>
+<span>911</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        req = make_request(env)
+</div><div class="line">        req.path_info = Journey::Router::Utils.normalize_path(req.path_info)
+</div><div class="line active">        @router<span class="error_highlight">.serve</span>(req)
+</div><div class="line">      end
+</div><div class="line">
+</div><div class="line">      def recognize_path(path, environment = {})
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-44">
+      <div class="info">
+        Extracted source (around line <strong>#68</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>66</span>
+<span>67</span>
+<span>68</span>
+<span>69</span>
+<span>70</span>
+<span>71</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      def call(req)
+</div><div class="line">        Rails.application&amp;.reload_routes_unless_loaded
+</div><div class="line active">        super
+</div><div class="line">      end
+</div><div class="line">
+</div><div class="line">      def draw(&amp;block)
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-45">
+      <div class="info">
+        Extracted source (around line <strong>#36</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>34</span>
+<span>35</span>
+<span>36</span>
+<span>37</span>
+<span>38</span>
+<span>39</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      result = catch(:warden) do
+</div><div class="line">        env['warden'].on_request
+</div><div class="line active">        @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">      end
+</div><div class="line">
+</div><div class="line">      result ||= {}
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-46">
+      <div class="info">
+        Extracted source (around line <strong>#34</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>32</span>
+<span>33</span>
+<span>34</span>
+<span>35</span>
+<span>36</span>
+<span>37</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">      env['warden'] = Proxy.new(env, self)
+</div><div class="line active">      result = <span class="error_highlight">catch</span>(:warden) do
+</div><div class="line">        env['warden'].on_request
+</div><div class="line">        @app.call(env)
+</div><div class="line">      end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-47">
+      <div class="info">
+        Extracted source (around line <strong>#34</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>32</span>
+<span>33</span>
+<span>34</span>
+<span>35</span>
+<span>36</span>
+<span>37</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">      env['warden'] = Proxy.new(env, self)
+</div><div class="line active">      result = <span class="error_highlight">catch</span>(:warden) do
+</div><div class="line">        env['warden'].on_request
+</div><div class="line">        @app.call(env)
+</div><div class="line">      end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-48">
+      <div class="info">
+        Extracted source (around line <strong>#20</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>18</span>
+<span>19</span>
+<span>20</span>
+<span>21</span>
+<span>22</span>
+<span>23</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">      begin
+</div><div class="line active">        _, _, body = response = @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">      rescue Exception
+</div><div class="line">        env[RACK_TEMPFILES]&amp;.each(&amp;:close!)
+</div><div class="line">        raise
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-49">
+      <div class="info">
+        Extracted source (around line <strong>#29</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">    def call(env)
+</div><div class="line active">      status, headers, body = response = @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">
+</div><div class="line">      if etag_status?(status) &amp;&amp; body.respond_to?(:to_ary) &amp;&amp; !skip_caching?(headers)
+</div><div class="line">        body = body.to_ary
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-50">
+      <div class="info">
+        Extracted source (around line <strong>#31</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+<span>33</span>
+<span>34</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      case env[REQUEST_METHOD]
+</div><div class="line">      when "GET", "HEAD"
+</div><div class="line active">        status, headers, body = response = @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">
+</div><div class="line">        if status == 200 &amp;&amp; fresh?(env, headers)
+</div><div class="line">          response[0] = 304
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-51">
+      <div class="info">
+        Extracted source (around line <strong>#15</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+<span>18</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">    def call(env)
+</div><div class="line active">      _, _, body = response = @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">
+</div><div class="line">      if env[REQUEST_METHOD] == HEAD
+</div><div class="line">        body.close if body.respond_to?(:close)
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-52">
+      <div class="info">
+        Extracted source (around line <strong>#38</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>36</span>
+<span>37</span>
+<span>38</span>
+<span>39</span>
+<span>40</span>
+<span>41</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">      def call(env)
+</div><div class="line active">        _, headers, _ = response = @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">
+</div><div class="line">        return response if policy_present?(headers)
+</div><div class="line">
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-53">
+      <div class="info">
+        Extracted source (around line <strong>#38</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>36</span>
+<span>37</span>
+<span>38</span>
+<span>39</span>
+<span>40</span>
+<span>41</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">      def call(env)
+</div><div class="line active">        status, headers, _ = response = @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">
+</div><div class="line">        # Returning CSP headers with a 304 Not Modified is harmful, since nonces in the
+</div><div class="line">        # new CSP headers might not match nonces in the cached HTML.
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-54">
+      <div class="info">
+        Extracted source (around line <strong>#274</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>272</span>
+<span>273</span>
+<span>274</span>
+<span>275</span>
+<span>276</span>
+<span>277</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          req = make_request env
+</div><div class="line">          prepare_session(req)
+</div><div class="line active">          status, headers, body = app<span class="error_highlight">.call</span>(req.env)
+</div><div class="line">          res = Rack::Response::Raw.new status, headers
+</div><div class="line">          commit_session(req, res)
+</div><div class="line">          [status, headers, body]
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-55">
+      <div class="info">
+        Extracted source (around line <strong>#268</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>266</span>
+<span>267</span>
+<span>268</span>
+<span>269</span>
+<span>270</span>
+<span>271</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">        def call(env)
+</div><div class="line active">          <span class="error_highlight">context</span>(env)
+</div><div class="line">        end
+</div><div class="line">
+</div><div class="line">        def context(env, app = @app)
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-56">
+      <div class="info">
+        Extracted source (around line <strong>#706</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>704</span>
+<span>705</span>
+<span>706</span>
+<span>707</span>
+<span>708</span>
+<span>709</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def call(env)
+</div><div class="line">      request = ActionDispatch::Request.new(env)
+</div><div class="line active">      response = @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">
+</div><div class="line">      if request.have_cookie_jar?
+</div><div class="line">        cookie_jar = request.cookie_jar
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-57">
+      <div class="info">
+        Extracted source (around line <strong>#31</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+<span>33</span>
+<span>34</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      error = nil
+</div><div class="line">      result = run_callbacks :call do
+</div><div class="line active">        @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">      rescue =&gt; error
+</div><div class="line">      end
+</div><div class="line">      raise error if error
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-58">
+      <div class="info">
+        Extracted source (around line <strong>#100</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>98</span>
+<span>99</span>
+<span>100</span>
+<span>101</span>
+<span>102</span>
+<span>103</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">      if callbacks.empty?
+</div><div class="line active">        yield if block_given?
+</div><div class="line">      else
+</div><div class="line">        env = Filters::Environment.new(self, false, nil)
+</div><div class="line">
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-59">
+      <div class="info">
+        Extracted source (around line <strong>#30</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+<span>33</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def call(env)
+</div><div class="line">      error = nil
+</div><div class="line active">      result = <span class="error_highlight">run_callbacks</span> :call do
+</div><div class="line">        @app.call(env)
+</div><div class="line">      rescue =&gt; error
+</div><div class="line">      end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-60">
+      <div class="info">
+        Extracted source (around line <strong>#18</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>16</span>
+<span>17</span>
+<span>18</span>
+<span>19</span>
+<span>20</span>
+<span>21</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def call(env)
+</div><div class="line">      request = ActionDispatch::Request.new(env)
+</div><div class="line active">      return @app<span class="error_highlight">.call</span>(env) unless actionable_request?(request)
+</div><div class="line">
+</div><div class="line">      ActiveSupport::ActionableError.dispatch(request.params[:error].to_s.safe_constantize, request.params[:action])
+</div><div class="line">
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-61">
+      <div class="info">
+        Extracted source (around line <strong>#31</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+<span>33</span>
+<span>34</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">    def call(env)
+</div><div class="line active">      _, headers, body = response = @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">
+</div><div class="line">      if headers[Constants::X_CASCADE] == "pass"
+</div><div class="line">        body.close if body.respond_to?(:close)
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-62">
+      <div class="info">
+        Extracted source (around line <strong>#32</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>30</span>
+<span>31</span>
+<span>32</span>
+<span>33</span>
+<span>34</span>
+<span>35</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">    def call(env)
+</div><div class="line active">      @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">    rescue Exception =&gt; exception
+</div><div class="line">      request = ActionDispatch::Request.new env
+</div><div class="line">      backtrace_cleaner = request.get_header("action_dispatch.backtrace_cleaner")
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-63">
+      <div class="info">
+        Extracted source (around line <strong>#41</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">          logger.info { started_request_message(request) }
+</div><div class="line active">          status, headers, body = response = @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">          body = ::Rack::BodyProxy.new(body) { finish_request_instrumentation(handle, logger_tag_pop_count) }
+</div><div class="line">
+</div><div class="line">          if response.frozen?
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-64">
+      <div class="info">
+        Extracted source (around line <strong>#29</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        end
+</div><div class="line">
+</div><div class="line active">        <span class="error_highlight">call_app</span>(request, env)
+</div><div class="line">      end
+</div><div class="line">
+</div><div class="line">      private
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-65">
+      <div class="info">
+        Extracted source (around line <strong>#96</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>94</span>
+<span>95</span>
+<span>96</span>
+<span>97</span>
+<span>98</span>
+<span>99</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      req = ActionDispatch::Request.new env
+</div><div class="line">      req.remote_ip = GetIp.new(req, check_ip, proxies)
+</div><div class="line active">      @app<span class="error_highlight">.call</span>(req.env)
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    # The GetIp class exists as a way to defer processing of the request data into
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-66">
+      <div class="info">
+        Extracted source (around line <strong>#34</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>32</span>
+<span>33</span>
+<span>34</span>
+<span>35</span>
+<span>36</span>
+<span>37</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      req = ActionDispatch::Request.new env
+</div><div class="line">      req.request_id = make_request_id(req.get_header(@env_header))
+</div><div class="line active">      @app<span class="error_highlight">.call</span>(env).tap { |_status, headers, _body| headers[@header] = req.request_id }
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    private
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-67">
+      <div class="info">
+        Extracted source (around line <strong>#28</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      end
+</div><div class="line">
+</div><div class="line active">      @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    def method_override(env)
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-68">
+      <div class="info">
+        Extracted source (around line <strong>#24</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def call(env)
+</div><div class="line">      start_time = Utils.clock_time
+</div><div class="line active">      _, headers, _ = response = @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">
+</div><div class="line">      request_time = Utils.clock_time - start_time
+</div><div class="line">
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-69">
+      <div class="info">
+        Extracted source (around line <strong>#29</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">          def call(env)
+</div><div class="line">            LocalCacheRegistry.set_cache_for(local_cache_key, LocalStore.new)
+</div><div class="line active">            response = @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">            response[2] = ::Rack::BodyProxy.new(response[2]) do
+</div><div class="line">              LocalCacheRegistry.set_cache_for(local_cache_key, nil)
+</div><div class="line">            end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-70">
+      <div class="info">
+        Extracted source (around line <strong>#16</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+<span>18</span>
+<span>19</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      state = @executor.run!(reset: true)
+</div><div class="line">      begin
+</div><div class="line active">        response = @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">
+</div><div class="line">        if env["action_dispatch.report_exception"]
+</div><div class="line">          error = env["action_dispatch.exception"]
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-71">
+      <div class="info">
+        Extracted source (around line <strong>#27</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">    def call(env)
+</div><div class="line active">      @file_handler.attempt(env) || @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">    end
+</div><div class="line">  end
+</div><div class="line">
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-72">
+      <div class="info">
+        Extracted source (around line <strong>#114</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>112</span>
+<span>113</span>
+<span>114</span>
+<span>115</span>
+<span>116</span>
+<span>117</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">    def call(env)
+</div><div class="line active">      _, headers, body = response = @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">
+</div><div class="line">      if body.respond_to?(:to_path)
+</div><div class="line">        case type = variation(env)
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-73">
+      <div class="info">
+        Extracted source (around line <strong>#535</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>533</span>
+<span>534</span>
+<span>535</span>
+<span>536</span>
+<span>537</span>
+<span>538</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    def call(env)
+</div><div class="line">      req = build_request env
+</div><div class="line active">      app<span class="error_highlight">.call</span> req.env
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    # Defines additional Rack env configuration that is added on each call.
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-74">
+      <div class="info">
+        Extracted source (around line <strong>#76</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>74</span>
+<span>75</span>
+<span>76</span>
+<span>77</span>
+<span>78</span>
+<span>79</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        env[PATH_INFO] = rest
+</div><div class="line">
+</div><div class="line active">        return app<span class="error_highlight">.call</span>(env)
+</div><div class="line">      end
+</div><div class="line">
+</div><div class="line">      [404, { CONTENT_TYPE =&gt; "text/plain", "x-cascade" =&gt; "pass" }, ["Not Found: #{path}"]]
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-75">
+      <div class="info">
+        Extracted source (around line <strong>#60</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>58</span>
+<span>59</span>
+<span>60</span>
+<span>61</span>
+<span>62</span>
+<span>63</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      is_host_known = @known_hosts.include? http_host
+</div><div class="line">
+</div><div class="line active">      @mapping<span class="error_highlight">.each</span> do |host, location, match, app|
+</div><div class="line">        unless casecmp?(http_host, host) \
+</div><div class="line">            || casecmp?(server_name, host) \
+</div><div class="line">            || (!host &amp;&amp; is_same_server) \
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-76">
+      <div class="info">
+        Extracted source (around line <strong>#60</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>58</span>
+<span>59</span>
+<span>60</span>
+<span>61</span>
+<span>62</span>
+<span>63</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      is_host_known = @known_hosts.include? http_host
+</div><div class="line">
+</div><div class="line active">      @mapping<span class="error_highlight">.each</span> do |host, location, match, app|
+</div><div class="line">        unless casecmp?(http_host, host) \
+</div><div class="line">            || casecmp?(server_name, host) \
+</div><div class="line">            || (!host &amp;&amp; is_same_server) \
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-77">
+      <div class="info">
+        Extracted source (around line <strong>#283</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>281</span>
+<span>282</span>
+<span>283</span>
+<span>284</span>
+<span>285</span>
+<span>286</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">    # every time it is called, so it should not be used if performance is important.
+</div><div class="line">    def call(env)
+</div><div class="line active">      to_app<span class="error_highlight">.call</span>(env)
+</div><div class="line">    end
+</div><div class="line">
+</div><div class="line">    private
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-78">
+      <div class="info">
+        Extracted source (around line <strong>#60</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>58</span>
+<span>59</span>
+<span>60</span>
+<span>61</span>
+<span>62</span>
+<span>63</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">          begin
+</div><div class="line active">            @extended_app<span class="error_highlight">.call</span>(env)
+</div><div class="line">          rescue *@server_errors =&gt; e
+</div><div class="line">            @error ||= e
+</div><div class="line">            raise e
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-79">
+      <div class="info">
+        Extracted source (around line <strong>#279</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>277</span>
+<span>278</span>
+<span>279</span>
+<span>280</span>
+<span>281</span>
+<span>282</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      def call(env)
+</div><div class="line">        env[Const::PUMA_CONFIG] = @config
+</div><div class="line active">        @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">      end
+</div><div class="line">    end
+</div><div class="line">
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-80">
+      <div class="info">
+        Extracted source (around line <strong>#99</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>97</span>
+<span>98</span>
+<span>99</span>
+<span>100</span>
+<span>101</span>
+<span>102</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        if @supported_http_methods == :any || @supported_http_methods.key?(env[REQUEST_METHOD])
+</div><div class="line">          status, headers, app_body = @thread_pool.with_force_shutdown do
+</div><div class="line active">            @app<span class="error_highlight">.call</span>(env)
+</div><div class="line">          end
+</div><div class="line">        else
+</div><div class="line">          @log_writer.log "Unsupported HTTP method used: #{env[REQUEST_METHOD]}"
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-81">
+      <div class="info">
+        Extracted source (around line <strong>#390</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>388</span>
+<span>389</span>
+<span>390</span>
+<span>391</span>
+<span>392</span>
+<span>393</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        t[:with_force_shutdown] = true
+</div><div class="line">      end
+</div><div class="line active">      yield
+</div><div class="line">    ensure
+</div><div class="line">      t[:with_force_shutdown] = false
+</div><div class="line">    end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-82">
+      <div class="info">
+        Extracted source (around line <strong>#98</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>96</span>
+<span>97</span>
+<span>98</span>
+<span>99</span>
+<span>100</span>
+<span>101</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      begin
+</div><div class="line">        if @supported_http_methods == :any || @supported_http_methods.key?(env[REQUEST_METHOD])
+</div><div class="line active">          status, headers, app_body = @thread_pool<span class="error_highlight">.with_force_shutdown</span> do
+</div><div class="line">            @app.call(env)
+</div><div class="line">          end
+</div><div class="line">        else
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-83">
+      <div class="info">
+        Extracted source (around line <strong>#472</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>470</span>
+<span>471</span>
+<span>472</span>
+<span>473</span>
+<span>474</span>
+<span>475</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">        while true
+</div><div class="line">          @requests_count += 1
+</div><div class="line active">          case <span class="error_highlight">handle_request</span>(client, requests + 1)
+</div><div class="line">          when false
+</div><div class="line">            break
+</div><div class="line">          when :async
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-84">
+      <div class="info">
+        Extracted source (around line <strong>#254</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>252</span>
+<span>253</span>
+<span>254</span>
+<span>255</span>
+<span>256</span>
+<span>257</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">      @status = :run
+</div><div class="line">
+</div><div class="line active">      @thread_pool = ThreadPool.new(thread_name, options) { |client| <span class="error_highlight">process_client</span> client }
+</div><div class="line">
+</div><div class="line">      if @queue_requests
+</div><div class="line">        @reactor = Reactor.new(@io_selector_backend) { |c| reactor_wakeup c }
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="source hidden" id="frame-source-0-85">
+      <div class="info">
+        Extracted source (around line <strong>#167</strong>):
+      </div>
+      <div class="data">
+        <table cellpadding="0" cellspacing="0" class="lines">
+          <tbody><tr>
+            <td>
+              <pre class="line_numbers"><span>165</span>
+<span>166</span>
+<span>167</span>
+<span>168</span>
+<span>169</span>
+<span>170</span>
+              </pre>
+            </td>
+<td width="100%">
+<pre><div class="line">
+</div><div class="line">          begin
+</div><div class="line active">            @out_of_band_pending = true if block<span class="error_highlight">.call</span>(work)
+</div><div class="line">          rescue Exception =&gt; e
+</div><div class="line">            STDERR.puts "Error reached top of thread-pool: #{e.message} (#{e.class})"
+</div><div class="line">          end
+</div>
+</pre>
+</td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+
+  
+<p><code>Rails.root: /home/kib/carhist</code></p>
+
+<div id="traces-0">
+    <a href="#" onclick="hide('Framework-Trace-0');hide('Full-Trace-0');show('Application-Trace-0');; return false;">Application Trace</a> |
+    <a href="#" onclick="hide('Application-Trace-0');hide('Full-Trace-0');show('Framework-Trace-0');; return false;">Framework Trace</a> |
+    <a href="#" onclick="hide('Application-Trace-0');hide('Framework-Trace-0');show('Full-Trace-0');; return false;">Full Trace</a> 
+
+    <div id="Application-Trace-0" style="display: block;">
+      <code class="traces">
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="6" href="#">
+            app/controllers/car_maintenances_controller.rb:105:in 'CarMaintenancesController#set_car_maintenance'
+          </a>
+          <br>
+      </code>
+    </div>
+    <div id="Framework-Trace-0" style="display: none;">
+      <code class="traces">
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="0" href="#">
+            activerecord (8.0.2) lib/active_record/relation/finder_methods.rb:428:in 'ActiveRecord::FinderMethods#raise_record_not_found_exception!'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="1" href="#">
+            activerecord (8.0.2) lib/active_record/relation/finder_methods.rb:536:in 'ActiveRecord::FinderMethods#find_one'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="2" href="#">
+            activerecord (8.0.2) lib/active_record/relation/finder_methods.rb:513:in 'ActiveRecord::FinderMethods#find_with_ids'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="3" href="#">
+            activerecord (8.0.2) lib/active_record/relation/finder_methods.rb:100:in 'ActiveRecord::FinderMethods#find'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="4" href="#">
+            activerecord (8.0.2) lib/active_record/associations/collection_association.rb:113:in 'ActiveRecord::Associations::CollectionAssociation#find'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="5" href="#">
+            activerecord (8.0.2) lib/active_record/associations/collection_proxy.rb:140:in 'ActiveRecord::Associations::CollectionProxy#find'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="7" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:361:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="8" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:178:in 'block in ActiveSupport::Callbacks::Filters::Before#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="9" href="#">
+            actionpack (8.0.2) lib/abstract_controller/callbacks.rb:34:in 'block (2 levels) in &lt;module:Callbacks&gt;'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="10" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:179:in 'ActiveSupport::Callbacks::Filters::Before#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="11" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:559:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="12" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:559:in 'Array#each'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="13" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:559:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="14" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:118:in 'block in ActiveSupport::Callbacks#run_callbacks'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="15" href="#">
+            turbo-rails (2.0.16) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="16" href="#">
+            turbo-rails (2.0.16) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="17" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:129:in 'block in ActiveSupport::Callbacks#run_callbacks'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="18" href="#">
+            actiontext (8.0.2) lib/action_text/rendering.rb:25:in 'ActionText::Rendering::ClassMethods#with_renderer'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="19" href="#">
+            actiontext (8.0.2) lib/action_text/engine.rb:71:in 'block (4 levels) in &lt;class:Engine&gt;'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="20" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:129:in 'BasicObject#instance_exec'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="21" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:129:in 'block in ActiveSupport::Callbacks#run_callbacks'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="22" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:140:in 'ActiveSupport::Callbacks#run_callbacks'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="23" href="#">
+            actionpack (8.0.2) lib/abstract_controller/callbacks.rb:260:in 'AbstractController::Callbacks#process_action'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="24" href="#">
+            actionpack (8.0.2) lib/action_controller/metal/rescue.rb:27:in 'ActionController::Rescue#process_action'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="25" href="#">
+            actionpack (8.0.2) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="26" href="#">
+            activesupport (8.0.2) lib/active_support/notifications.rb:210:in 'block in ActiveSupport::Notifications.instrument'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="27" href="#">
+            activesupport (8.0.2) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="28" href="#">
+            activesupport (8.0.2) lib/active_support/notifications.rb:210:in 'ActiveSupport::Notifications.instrument'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="29" href="#">
+            actionpack (8.0.2) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="30" href="#">
+            actionpack (8.0.2) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="31" href="#">
+            activerecord (8.0.2) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="32" href="#">
+            actionpack (8.0.2) lib/abstract_controller/base.rb:163:in 'AbstractController::Base#process'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="33" href="#">
+            actionview (8.0.2) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="34" href="#">
+            actionpack (8.0.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="35" href="#">
+            actionpack (8.0.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="36" href="#">
+            actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="37" href="#">
+            actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="38" href="#">
+            actionpack (8.0.2) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="39" href="#">
+            actionpack (8.0.2) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="40" href="#">
+            actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="41" href="#">
+            actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="42" href="#">
+            actionpack (8.0.2) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="43" href="#">
+            actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="44" href="#">
+            railties (8.0.2) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="45" href="#">
+            warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="46" href="#">
+            warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="47" href="#">
+            warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="48" href="#">
+            rack (3.2.0) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="49" href="#">
+            rack (3.2.0) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="50" href="#">
+            rack (3.2.0) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="51" href="#">
+            rack (3.2.0) lib/rack/head.rb:15:in 'Rack::Head#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="52" href="#">
+            actionpack (8.0.2) lib/action_dispatch/http/permissions_policy.rb:38:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="53" href="#">
+            actionpack (8.0.2) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="54" href="#">
+            rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="55" href="#">
+            rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="56" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/cookies.rb:706:in 'ActionDispatch::Cookies#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="57" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="58" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="59" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="60" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="61" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="62" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="63" href="#">
+            railties (8.0.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="64" href="#">
+            railties (8.0.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="65" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="66" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="67" href="#">
+            rack (3.2.0) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="68" href="#">
+            rack (3.2.0) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="69" href="#">
+            activesupport (8.0.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="70" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="71" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="72" href="#">
+            rack (3.2.0) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="73" href="#">
+            railties (8.0.2) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="74" href="#">
+            rack (3.2.0) lib/rack/urlmap.rb:76:in 'block in Rack::URLMap#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="75" href="#">
+            rack (3.2.0) lib/rack/urlmap.rb:60:in 'Array#each'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="76" href="#">
+            rack (3.2.0) lib/rack/urlmap.rb:60:in 'Rack::URLMap#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="77" href="#">
+            rack (3.2.0) lib/rack/builder.rb:283:in 'Rack::Builder#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="78" href="#">
+            capybara (3.40.0) lib/capybara/server/middleware.rb:60:in 'Capybara::Server::Middleware#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="79" href="#">
+            puma (6.6.1) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="80" href="#">
+            puma (6.6.1) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="81" href="#">
+            puma (6.6.1) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="82" href="#">
+            puma (6.6.1) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="83" href="#">
+            puma (6.6.1) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="84" href="#">
+            puma (6.6.1) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="85" href="#">
+            puma (6.6.1) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+          </a>
+          <br>
+      </code>
+    </div>
+    <div id="Full-Trace-0" style="display: none;">
+      <code class="traces">
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="0" href="#">
+            activerecord (8.0.2) lib/active_record/relation/finder_methods.rb:428:in 'ActiveRecord::FinderMethods#raise_record_not_found_exception!'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="1" href="#">
+            activerecord (8.0.2) lib/active_record/relation/finder_methods.rb:536:in 'ActiveRecord::FinderMethods#find_one'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="2" href="#">
+            activerecord (8.0.2) lib/active_record/relation/finder_methods.rb:513:in 'ActiveRecord::FinderMethods#find_with_ids'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="3" href="#">
+            activerecord (8.0.2) lib/active_record/relation/finder_methods.rb:100:in 'ActiveRecord::FinderMethods#find'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="4" href="#">
+            activerecord (8.0.2) lib/active_record/associations/collection_association.rb:113:in 'ActiveRecord::Associations::CollectionAssociation#find'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="5" href="#">
+            activerecord (8.0.2) lib/active_record/associations/collection_proxy.rb:140:in 'ActiveRecord::Associations::CollectionProxy#find'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="6" href="#">
+            app/controllers/car_maintenances_controller.rb:105:in 'CarMaintenancesController#set_car_maintenance'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="7" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:361:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="8" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:178:in 'block in ActiveSupport::Callbacks::Filters::Before#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="9" href="#">
+            actionpack (8.0.2) lib/abstract_controller/callbacks.rb:34:in 'block (2 levels) in &lt;module:Callbacks&gt;'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="10" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:179:in 'ActiveSupport::Callbacks::Filters::Before#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="11" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:559:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="12" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:559:in 'Array#each'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="13" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:559:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="14" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:118:in 'block in ActiveSupport::Callbacks#run_callbacks'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="15" href="#">
+            turbo-rails (2.0.16) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="16" href="#">
+            turbo-rails (2.0.16) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="17" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:129:in 'block in ActiveSupport::Callbacks#run_callbacks'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="18" href="#">
+            actiontext (8.0.2) lib/action_text/rendering.rb:25:in 'ActionText::Rendering::ClassMethods#with_renderer'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="19" href="#">
+            actiontext (8.0.2) lib/action_text/engine.rb:71:in 'block (4 levels) in &lt;class:Engine&gt;'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="20" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:129:in 'BasicObject#instance_exec'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="21" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:129:in 'block in ActiveSupport::Callbacks#run_callbacks'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="22" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:140:in 'ActiveSupport::Callbacks#run_callbacks'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="23" href="#">
+            actionpack (8.0.2) lib/abstract_controller/callbacks.rb:260:in 'AbstractController::Callbacks#process_action'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="24" href="#">
+            actionpack (8.0.2) lib/action_controller/metal/rescue.rb:27:in 'ActionController::Rescue#process_action'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="25" href="#">
+            actionpack (8.0.2) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="26" href="#">
+            activesupport (8.0.2) lib/active_support/notifications.rb:210:in 'block in ActiveSupport::Notifications.instrument'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="27" href="#">
+            activesupport (8.0.2) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="28" href="#">
+            activesupport (8.0.2) lib/active_support/notifications.rb:210:in 'ActiveSupport::Notifications.instrument'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="29" href="#">
+            actionpack (8.0.2) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="30" href="#">
+            actionpack (8.0.2) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="31" href="#">
+            activerecord (8.0.2) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="32" href="#">
+            actionpack (8.0.2) lib/abstract_controller/base.rb:163:in 'AbstractController::Base#process'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="33" href="#">
+            actionview (8.0.2) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="34" href="#">
+            actionpack (8.0.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="35" href="#">
+            actionpack (8.0.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="36" href="#">
+            actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="37" href="#">
+            actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="38" href="#">
+            actionpack (8.0.2) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="39" href="#">
+            actionpack (8.0.2) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="40" href="#">
+            actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="41" href="#">
+            actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="42" href="#">
+            actionpack (8.0.2) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="43" href="#">
+            actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="44" href="#">
+            railties (8.0.2) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="45" href="#">
+            warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="46" href="#">
+            warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="47" href="#">
+            warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="48" href="#">
+            rack (3.2.0) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="49" href="#">
+            rack (3.2.0) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="50" href="#">
+            rack (3.2.0) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="51" href="#">
+            rack (3.2.0) lib/rack/head.rb:15:in 'Rack::Head#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="52" href="#">
+            actionpack (8.0.2) lib/action_dispatch/http/permissions_policy.rb:38:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="53" href="#">
+            actionpack (8.0.2) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="54" href="#">
+            rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="55" href="#">
+            rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="56" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/cookies.rb:706:in 'ActionDispatch::Cookies#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="57" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="58" href="#">
+            activesupport (8.0.2) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="59" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="60" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="61" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="62" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="63" href="#">
+            railties (8.0.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="64" href="#">
+            railties (8.0.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="65" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="66" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="67" href="#">
+            rack (3.2.0) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="68" href="#">
+            rack (3.2.0) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="69" href="#">
+            activesupport (8.0.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="70" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="71" href="#">
+            actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="72" href="#">
+            rack (3.2.0) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="73" href="#">
+            railties (8.0.2) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="74" href="#">
+            rack (3.2.0) lib/rack/urlmap.rb:76:in 'block in Rack::URLMap#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="75" href="#">
+            rack (3.2.0) lib/rack/urlmap.rb:60:in 'Array#each'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="76" href="#">
+            rack (3.2.0) lib/rack/urlmap.rb:60:in 'Rack::URLMap#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="77" href="#">
+            rack (3.2.0) lib/rack/builder.rb:283:in 'Rack::Builder#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="78" href="#">
+            capybara (3.40.0) lib/capybara/server/middleware.rb:60:in 'Capybara::Server::Middleware#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="79" href="#">
+            puma (6.6.1) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="80" href="#">
+            puma (6.6.1) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="81" href="#">
+            puma (6.6.1) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="82" href="#">
+            puma (6.6.1) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="83" href="#">
+            puma (6.6.1) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="84" href="#">
+            puma (6.6.1) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+          </a>
+          <br>
+          <a class="trace-frames trace-frames-0" data-exception-object-id="19456" data-frame-id="85" href="#">
+            puma (6.6.1) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+          </a>
+          <br>
+      </code>
+    </div>
+
+  <script>
+    (function() {
+      var traceFrames = document.getElementsByClassName('trace-frames-0');
+      var selectedFrame, currentSource = document.getElementById('frame-source-0-0');
+
+      // Add click listeners for all stack frames
+      for (var i = 0; i < traceFrames.length; i++) {
+        traceFrames[i].addEventListener('click', function(e) {
+          e.preventDefault();
+          var target = e.target;
+          var frame_id = target.dataset.frameId;
+
+          if (selectedFrame) {
+            selectedFrame.className = selectedFrame.className.replace("selected", "");
+          }
+
+          target.className += " selected";
+          selectedFrame = target;
+
+          // Change the extracted source code
+          changeSourceExtract(frame_id);
+        });
+
+        function changeSourceExtract(frame_id) {
+          var el = document.getElementById('frame-source-0-' + frame_id);
+          if (currentSource && el) {
+            currentSource.className += " hidden";
+            el.className = el.className.replace(" hidden", "");
+            currentSource = el;
+          }
+        }
+      }
+    })();
+  </script>
+</div>
+
+
+
+
+  <h2 class="request-heading">Request</h2>
+  <p><b>Parameters</b>:</p> <pre>{"car_id" =&gt; "642581253", "id" =&gt; "666529867"}
+</pre>
+
+<div class="details">
+  <div class="summary"><a href="#" onclick="return toggleSessionDump()">Toggle session dump</a></div>
+  <div id="session_dump" class="hidden"><pre>session_id: "8eb3a3c0c490837e6acb8dec416a3eb5"
+warden.user.user.key: [[684394817], "$2a$04$oVW16ZlYKFeVx38dynsJq."]</pre></div>
+</div>
+
+<div class="details">
+  <div class="summary"><a href="#" onclick="return toggleEnvDump()">Toggle env dump</a></div>
+  <div id="env_dump" class="hidden"><pre>GATEWAY_INTERFACE: "CGI/1.2"
+HTTP_ACCEPT: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+HTTP_ACCEPT_ENCODING: "gzip, deflate, br, zstd"
+HTTP_ACCEPT_LANGUAGE: "en-US,en;q=0.9"
+HTTP_VERSION: "HTTP/1.1"
+ORIGINAL_SCRIPT_NAME: ""
+REMOTE_ADDR: "127.0.0.1"
+SERVER_NAME: "127.0.0.1"
+SERVER_PROTOCOL: "HTTP/1.1"</pre></div>
+</div>
+
+<h2 class="response-heading">Response</h2>
+<p><b>Headers</b>:</p> <pre>None</pre>
+
+</main>
+
+
+
+
+</body></html>
