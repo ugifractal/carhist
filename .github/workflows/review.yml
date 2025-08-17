@@ -29,6 +29,8 @@ jobs:
             Please evaluate the Ruby project changes in this pull request.
             1. Provide a score from 0–100, considering code quality and time efficiency.
             2. List top 3 weaknesses or improvement areas, without suggesting fixes or code samples.
+            3. Ignore any sleep statements in the test files (do not treat them as weaknesses).
+
             Output format:
             - Score: X/100
             - Weaknesses:
