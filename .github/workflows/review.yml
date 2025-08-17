@@ -22,8 +22,10 @@ jobs:
         uses: google-github-actions/run-gemini-cli@main
         with:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
-          pull_request_url: ${{ github.event.pull_request.html_url }}
           prompt: |
+            You are reviewing this pull request:
+            URL: ${{ github.event.pull_request.html_url }}
+
             Please evaluate the Ruby project changes in this pull request.
             1. Provide a score from 0–100, considering code quality and time efficiency.
             2. List top 3 weaknesses or improvement areas, without suggesting fixes or code samples.
