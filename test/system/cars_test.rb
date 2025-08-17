@@ -3,6 +3,11 @@ require "application_system_test_case"
 class CarsTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
+  setup do
+    # Set language
+    I18n.locale = :id
+  end
+
   test "visiting the index" do
     user = users(:sakib)
     login_as user
@@ -11,7 +16,7 @@ class CarsTest < ApplicationSystemTestCase
 
     visit cars_url
     sleep 1
-    assert_text "Daftar Mobil"
+    assert_text t("cars.index.title")
     assert_text "skyline"
   end
 
