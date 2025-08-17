@@ -1,0 +1,44 @@
+name: AI Scoring via Gemini CLI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  score-and-analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - name: Checkout PR code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Run Gemini AI Scoring & Weakness Analysis
+        id: gemini
+        uses: google-github-actions/run-gemini-cli@v1
+        with:
+          gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
+          prompt: |
+            Please evaluate the Ruby project changes in this pull request.
+            1. Provide a score from 0–100, considering code quality and time efficiency.
+            2. List top 3 weaknesses or improvement areas, without suggesting fixes or code samples.
+            Output format:
+            - Score: X/100
+            - Weaknesses:
+              1.
+              2.
+              3.
+        # Kamu bisa sesuaikan model, versi CLI, atau setting lain jika perlu
+
+      - name: Post AI Review Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: gemini-score
+          message: |
+            🤖 **Gemini AI Score & Analysis**
+            ---
+            ${{ steps.gemini.outputs.summary }}
