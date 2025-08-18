@@ -42,6 +42,10 @@ jobs:
             - A score from 0–100 (only one number).
             - A list of weaknesses (do NOT provide solutions).
             - Ignore any `sleep` code under tests.
+            - Analyze developer efficiency based on PR timing.
+
+            PR submitted at: ${{ github.event.pull_request.created_at }}
+            PR last updated at: ${{ github.event.pull_request.updated_at }}
 
             Pull Request #${{ github.event.pull_request.number }}
             Repository: ${{ github.repository }}
