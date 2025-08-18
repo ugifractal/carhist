@@ -50,7 +50,7 @@ class CarMaintenancesController < ApplicationController
 
     respond_to do |format|
       if @car_maintenance.save
-        format.html { redirect_to car_car_maintenance_history_images_path(@car, @car_maintenance), notice: "Car maintenance was successfully created." }
+        format.html { redirect_to car_car_maintenance_history_images_path(@car, @car_maintenance), notice: "#{t('views.item.car_maintenance')} #{t('views.flash.notice_created')}." }
         format.json { render :show, status: :created, location: @car_maintenance }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -63,7 +63,7 @@ class CarMaintenancesController < ApplicationController
   def update
     respond_to do |format|
       if @car_maintenance.update(car_maintenance_params)
-        format.html { redirect_to car_car_maintenances_path, notice: "Car maintenance was successfully updated." }
+        format.html { redirect_to car_car_maintenances_path, notice: "#{t('views.item.car_maintenance')} #{t('views.flash.notice_updated')}." }
         format.json { render :show, status: :ok, location: @car_maintenance }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -76,7 +76,7 @@ class CarMaintenancesController < ApplicationController
   def destroy
     @car_maintenance.destroy!
     respond_to do |format|
-      format.html { redirect_to car_maintenances_path, status: :see_other, notice: "Car maintenance was successfully destroyed." }
+      format.html { redirect_to car_car_maintenances_path, status: :see_other, notice: "#{t('views.item.car_maintenance')} #{t('views.flash.notice_deleted')}." }
       format.json { head :no_content }
     end
   end

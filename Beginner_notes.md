@@ -127,3 +127,8 @@ RAILS_ENV=test bundle exec rails db:migrate
 ```ruby
 "test#{variable}"
 ```
+
+## Menjalankan Sebuah Test
+```bash
+bundle exec ruby -Itest test/system/car_maintenances_test.rb
+```
