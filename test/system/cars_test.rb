@@ -37,7 +37,7 @@ class CarsTest < ApplicationSystemTestCase
     click_button t("views.cars.tambah")
     sleep 1
     assert_text "my-scud"
-    assert_text "Car was successfully created."
+    assert_text "Car #{t('views.flash.notice_created')}."
   end
 
   test "edit car" do
@@ -55,7 +55,7 @@ class CarsTest < ApplicationSystemTestCase
     select "nissan skyline", from: "car_car_model_id"
     click_button "Update"
     sleep 1
-    assert_text "Car was successfully updated."
+    assert_text "Car #{t('views.flash.notice_updated')}."
   end
 
   test "destroy" do
