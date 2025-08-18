@@ -1,69 +1,76 @@
-# require "application_system_test_case"
+require "application_system_test_case"
 
-# class CarsTest < ApplicationSystemTestCase
-#   include Devise::Test::IntegrationHelpers
+class CarsTest < ApplicationSystemTestCase
+  include Devise::Test::IntegrationHelpers
 
-#   test "visiting the index" do
-#     user = users(:sakib)
-#     login_as user
+  setup do
+    # Set language
+    I18n.locale = :id
+  end
 
-#     car = cars(:skyline)
+  test "visiting the index" do
+    user = users(:sakib)
+    login_as user
 
-#     visit cars_url
-#     sleep 1
-#     assert_text "Daftar Mobil"
-#     assert_text "skyline"
-#   end
+    car = cars(:skyline)
 
-#   test "create car" do
-#     user = users(:sakib)
-#     login_as user
+    visit cars_url
+    sleep 1
+    assert_text t("cars.index.title")
+    assert_text "skyline"
+  end
 
-#     car = cars(:skyline)
-#     model = car_models(:escudo)
+  test "create car" do
+    user = users(:sakib)
+    login_as user
 
-#     visit new_car_path(car)
-#     sleep 1
+    car = cars(:skyline)
+    model = car_models(:escudo)
 
-#     fill_in "car_name", with: "Pajero"
-#     select "2024", from: "car_year"
-#     select "suzuki Escudo", from: "car_car_model_id"
-#     click_button "Tambah"
-#     sleep 1
-#     assert_text "Car was successfully created."
-#   end
+    visit new_car_path(car)
+    sleep 1
 
-#   test "edit car" do
-#     user = users(:sakib)
-#     login_as user
+    fill_in "car_name", with: "my-scud"
+    select "1996", from: "car_year"
+    select "suzuki Escudo", from: "car_car_model_id"
 
-#     car = cars(:skyline)
-#     model = car_models(:escudo)
+    click_button t("views.cars.tambah")
+    sleep 1
+    assert_text "my-scud"
+    assert_text "#{t('views.item.car')} #{t('views.flash.notice_created')}."
+  end
 
-#     visit edit_car_path(car)
-#     sleep 1
+  test "edit car" do
+    user = users(:sakib)
+    login_as user
 
-#     fill_in "car_name", with: "avanza"
-#     select "2021", from: "car_year"
-#     select "nissan skyline", from: "car_car_model_id"
-#     click_button "Update"
-#     sleep 1
-#     assert_text "Car was successfully updated."
-#   end
+    car = cars(:skyline)
+    model = car_models(:escudo)
 
-#   test "destroy" do
-#     user = users(:sakib)
-#     login_as user
+    visit edit_car_path(car)
+    sleep 1
 
-#     car = cars(:skyline)
+    fill_in "car_name", with: "avanza"
+    select "2021", from: "car_year"
+    select "nissan skyline", from: "car_car_model_id"
+    click_button "Update"
+    sleep 1
+    assert_text "#{t('views.item.car')} #{t('views.flash.notice_updated')}."
+  end
 
-#     visit cars_path
-#     sleep 1
+  test "destroy" do
+    user = users(:sakib)
+    login_as user
 
-#     accept_confirm do
-#       page.find(:xpath, "//tbody/tr[1]//button[@data-turbo-confirm='Are you sure?']").click
-#     end
+    car = cars(:skyline)
 
-#     assert_text "Car was successfully destroyed."
-#   end
-# end
+    visit cars_path
+    sleep 1
+
+    accept_confirm do
+      page.find(:xpath, "//tbody/tr[1]//button[@data-turbo-confirm='Are you sure?']").click
+    end
+
+    assert_text "Car was successfully destroyed."
+  end
+end
