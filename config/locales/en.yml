@@ -32,7 +32,7 @@ en:
 
   views:
     item:
-      car: mobil
+      car: car
     flash:
       notice_created: "was successfully created"
       notice_updated: "was successfully updated"
