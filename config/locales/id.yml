@@ -45,6 +45,7 @@ id:
   views:
     item:
       car: mobil
+      car_maintenance: service
     flash:
       notice_created: "berhasil dibuat"
       notice_updated: "berhasil diupdate"
