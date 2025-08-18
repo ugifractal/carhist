@@ -44,8 +44,8 @@ id:
 
   views:
     flash:
-      notice_created: "was successfully created"
-      notice_updated: "was successfully updated"
+      notice_created: "berhasil dibuat"
+      notice_updated: "berhasil diupdate"
     history_images:
       back: "kembali"
       upload_photo: "Unggah Foto"
