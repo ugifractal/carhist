@@ -49,6 +49,7 @@ id:
     flash:
       notice_created: "berhasil dibuat"
       notice_updated: "berhasil diupdate"
+      notice_deleted: "berhasil dihapus"
     history_images:
       back: "kembali"
       upload_photo: "Unggah Foto"

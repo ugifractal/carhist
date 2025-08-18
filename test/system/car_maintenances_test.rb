@@ -3,6 +3,11 @@ require "application_system_test_case"
 class CarMaintenancesTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
+  setup do
+    # Set language
+    I18n.locale = :id
+  end
+
   test "visiting the index" do
     user = users(:sakib)
     login_as user
@@ -55,8 +60,9 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     fill_in "car_maintenance_description", with: "ini edit deskripsi"
     select "garuda", from: "car_maintenance_car_shop_id"
     click_button "Update Service Record"
-    assert_text "Car maintenance was successfully updated."
     sleep 1
+    assert_text "#{t('views.item.car_maintenance')} #{t('views.flash.notice_updated')}."
+
     visit "/cars/#{car.id}/car_maintenances"
   end
 
@@ -74,7 +80,6 @@ class CarMaintenancesTest < ApplicationSystemTestCase
       page.find("[data-turbo-confirm='Are you sure?']", match: :first).click
     end
 
-
-    assert_text "Car maintenance was successfully destroyed."
+    assert_text "#{t('views.item.car_maintenance')} #{t('views.flash.notice_deleted')}."
   end
 end
