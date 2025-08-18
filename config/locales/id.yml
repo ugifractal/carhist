@@ -33,7 +33,7 @@ id:
             volume:
               not_a_number: bukan angka
               greater_than: lebih besar dari %{count}
-        car_shop: 
+        car_shop:
           attributes:
             name:
               blank: "Nama tidak boleh kosong"
@@ -43,6 +43,9 @@ id:
               blank: "Deskripsi tidak boleh kosong"
 
   views:
+    flash:
+      notice_created: "was successfully created"
+      notice_updated: "was successfully updated"
     history_images:
       back: "kembali"
       upload_photo: "Unggah Foto"
@@ -82,7 +85,7 @@ id:
 
   alerts:
     car_limit_reached: "Anda telah mencapai jumlah mobil maksimum yang diizinkan untuk paket Anda."
-    
+
 
   support:
     array:
