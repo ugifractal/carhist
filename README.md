@@ -17,6 +17,7 @@ yarn build --watch
 yarn css:watch
 ```
 
+## Run rails server
 ```bash
 bundle exec rails s
 ```
