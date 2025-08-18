@@ -43,6 +43,8 @@ id:
               blank: "Deskripsi tidak boleh kosong"
 
   views:
+    item:
+      car: mobil
     flash:
       notice_created: "berhasil dibuat"
       notice_updated: "berhasil diupdate"

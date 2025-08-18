@@ -31,6 +31,8 @@ en:
     day_names: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
 
   views:
+    item:
+      car: mobil
     flash:
       notice_created: "was successfully created"
       notice_updated: "was successfully updated"
