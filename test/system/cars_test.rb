@@ -30,11 +30,13 @@ class CarsTest < ApplicationSystemTestCase
     visit new_car_path(car)
     sleep 1
 
-    fill_in "car_name", with: "Pajero"
-    select "2024", from: "car_year"
+    fill_in "car_name", with: "my-scud"
+    select "1996", from: "car_year"
     select "suzuki Escudo", from: "car_car_model_id"
-    click_button "Tambah"
+
+    click_button t("views.cars.tambah")
     sleep 1
+    assert_text "my-scud"
     assert_text "Car was successfully created."
   end
 
