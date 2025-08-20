@@ -10,7 +10,7 @@
 <%= form_with model: @car, url: cars_path(@car), local: true do |form| %>
   <%= render 'form', car: @car, form: form %>
   <div class="mt-2">
-    <%= form.submit t('views.cars.add'), class: 'bg-red-800 text-white rounded py-2 px-3' %>
+    <%= form.submit t('views.cars.create'), class: 'bg-red-800 text-white rounded py-2 px-3' %>
   </div>
 <% end %>
 <br>
