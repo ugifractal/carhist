@@ -78,10 +78,10 @@ id:
     cars:
       new: "Tambah Mobil"
       back: "Kembali"
-      nama: "Nama"
-      tahun: "Tahun"
+      name: "Nama"
+      year: "Tahun"
       model: "Model Mobil"
-      tambah: "Tambah"
+      add: "Tambah"
     car_shops:
       title: "Bengkel"
     car_models:
