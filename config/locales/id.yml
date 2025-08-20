@@ -81,7 +81,7 @@ id:
       name: "Nama"
       year: "Tahun"
       model: "Model Mobil"
-      add: "Tambah"
+      create: "Tambah"
     car_shops:
       title: "Bengkel"
     car_models:
