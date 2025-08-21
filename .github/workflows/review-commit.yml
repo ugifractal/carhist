@@ -55,7 +55,7 @@ jobs:
             --- END DIFF ---
 
       - name: Post AI Review Comment
-        uses: peter-evans/create-comment@v4
+        uses: peter-evans/create-issue-comment@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
