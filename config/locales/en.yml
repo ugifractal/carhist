@@ -62,10 +62,10 @@ en:
     cars:
       new: "Add Car"
       back: "Back to cars"
-      nama: "Name"
+      name: "Name"
       tahun: "Year"
       model: "Car Model"
-      tambah: "Create Car"
+      create: "Create Car"
     car_shops:
       title: "Car Shops"
     car_models:
