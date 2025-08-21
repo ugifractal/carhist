@@ -55,7 +55,7 @@ class CarsController < ApplicationController
     @car.destroy!
 
     respond_to do |format|
-      format.html { redirect_to cars_path, status: :see_other, notice: "Car was successfully destroyed." }
+      format.html { redirect_to cars_path, status: :see_other, notice: "#{t('views.item.car')} #{t('views.flash.notice_deleted')}." }
       format.json { head :no_content }
     end
   end

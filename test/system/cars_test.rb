@@ -71,6 +71,6 @@ class CarsTest < ApplicationSystemTestCase
       page.find(:xpath, "//tbody/tr[1]//button[@data-turbo-confirm='Are you sure?']").click
     end
 
-    assert_text "Car was successfully destroyed."
+    assert_text "#{t('views.item.car')} #{t('views.flash.notice_deleted')}."
   end
 end
