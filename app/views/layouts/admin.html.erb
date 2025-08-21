@@ -30,6 +30,9 @@
             <%= link_to('Users', admin_users_path, class: 'underline text-red-800 ml-3') %>
           </div>
           <div class="py-2">
+            <%= link_to('Car Maintenances', admin_car_maintenances_path, class: 'underline text-red-800 ml-3') %>
+          </div>
+          <div class="py-2">
             <%= button_to "Logout", destroy_user_session_path, method: :delete, class: 'mt-5 underline text-red-800 ml-3' %>
           </div>
         </div>
