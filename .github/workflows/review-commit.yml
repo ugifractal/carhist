@@ -1,0 +1,65 @@
+name: AI Scoring via Gemini CLI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  score-and-analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - name: Checkout PR code
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Get Latest Commit Diff
+        id: diff
+        run: |
+          COMMIT_SHA="${{ github.event.pull_request.head.sha }}"
+          curl -sL \
+            -H "Accept: application/vnd.github.v3.diff" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/${{ github.repository }}/commits/$COMMIT_SHA \
+            > commit.diff
+
+          {
+            echo "diff<<EOF"
+            cat commit.diff
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
+
+      - name: Run Gemini Review
+        id: gemini
+        uses: google-github-actions/run-gemini-cli@main
+        with:
+          gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
+          prompt: |
+            You are an AI code reviewer.
+            Review the following pull request diff and give:
+            - A score from 0–100 (only one number).
+            - A list of weaknesses with numbers 1,2,3 format (do NOT provide solutions).
+            - Ignore any `sleep` code under tests.
+            - Analyze developer efficiency based on PR timing.
+
+            Commit SHA: ${{ github.event.pull_request.head.sha }}
+            PR submitted at: ${{ github.event.pull_request.created_at }}
+            PR last updated at: ${{ github.event.pull_request.updated_at }}
+
+            --- BEGIN DIFF ---
+            ${{ steps.diff.outputs.diff }}
+            --- END DIFF ---
+
+      - name: Post AI Review Comment
+        uses: peter-evans/create-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            🤖 **Gemini AI Score & Analysis (Latest Commit: ${{ github.event.pull_request.head.sha }})**
+            ---
+            ${{ steps.gemini.outputs.summary }}
