@@ -34,6 +34,8 @@ jobs:
       - name: Run Gemini Review
         id: gemini
         uses: google-github-actions/run-gemini-cli@main
+        env:
+          CI: true
         with:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
           prompt: |
@@ -58,6 +60,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: gemini-score
+          recreate: true
           message: |
             🤖 **Gemini AI Score & Analysis**
             ---
