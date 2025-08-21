@@ -55,11 +55,8 @@ jobs:
             --- END DIFF ---
 
       - name: Post AI Review Comment
-        uses: peter-evans/create-issue-comment@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            🤖 **Gemini AI Score & Analysis (Latest Commit: ${{ github.event.pull_request.head.sha }})**
-            ---
-            ${{ steps.gemini.outputs.summary }}
+        run: |
+          gh api repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
+            -f body=$'🤖 **Gemini AI Score & Analysis (Latest Commit: ${{ github.event.pull_request.head.sha }})**\n---\n${{ steps.gemini.outputs.summary }}'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
