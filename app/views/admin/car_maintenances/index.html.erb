@@ -6,31 +6,12 @@
   <% end %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-xl"> <%= t('views.car_maintenances.title') %> <%= @car.brand_name %> (<%= @car.name %>)</h1>
+    <h1 class="font-bold text-xl"> <%= t('views.car_maintenances.title') %></h1>
     <%= link_to t('views.car_maintenances.name'), new_admin_car_maintenance_path(@car), class: "rounded-md px-3.5 py-2.5 bg-red-800 hover:bg-red-500 text-white block font-medium" %>
-  </div>
-  <div class="flex justify-end mt-3">
-    <%= link_to("Car fuelings", car_car_fuelings_path(@car), class: "bg-red-800 px-2 py-2 text-white rounded") %>
   </div>
 
   <% if @car_maintenances.any? %>
-    <div class="flex justify-end mt-3">
-      <div data-controller="dropdown" class="relative inline-block text-left">
-        <div data-action="click->dropdown#toggle">
-          <span class="bg-red-800 px-3 py-2 rounded text-white">
-            Actions
-            <%= image_tag "arroww.svg", class: "g-red-800 w-2 h-2 inline" %>
-          </span>
-        </div>
-        <div data-dropdown-target="drop" class="hidden absolute z-50 mt-2 right-0 w-36 bg-white border border-red-700 rounded shadow-lg">
-          <%= link_to 'Generate PDF', export_pdf_car_car_maintenances_path(@car), method: :get,
-              class: 'block w-full text-left px-4 py-2 text-sm text-white bg-red-800 hover:bg-red-700 rounded',
-              data: { action: 'click->dropdown#hide' } %>
-        </div>
-      </div>
-    </div>
-
-      <%= form_tag car_car_maintenances_path(@car), method: :get, local: true do %>
+      <%= form_tag admin_car_maintenances_path, method: :get, local: true do %>
         <div class="flex justify-end items-center mt-3">
           <div class="mr-2">
             <%= text_field_tag :search, params[:search], placeholder: t('views.car_maintenances.column'), class: "border border-red-800" %>
@@ -51,7 +32,6 @@
               <th class="px-4 py-3 text-left"><%= t('views.car_maintenances.date') %></th>
               <th class="px-4 py-3">Title</th>
               <th class="px-4 py-3 text-center"><%= t('views.car_maintenances.type') %></th>
-              <th class="px-4 py-3 text-center"><%= t('views.car_maintenances.photos') %></th>
               <th></th>
             </tr>
           </thead>
@@ -59,17 +39,8 @@
             <% @car_maintenances.each do |car_maintenance| %>
               <tr>
                 <td class="px-4 py-3"><%= car_maintenance.performed_at&.strftime('%d %b %Y') %></td>
-                <th class="px-4 py-3 text-red-800"><%= link_to car_maintenance.title, car_car_maintenance_path(@car, car_maintenance) %></th>
+                <th class="px-4 py-3 text-red-800"><%= car_maintenance.title %></th>
                 <td class="px-4 py-3 text-center"><%= car_maintenance.maintenance_type&.gsub('_', ' ') || "-" %></td>
-                <td class="px-4 py-3 text-center text-red-800"><%= link_to("#{car_maintenance.history_images.count} photos", car_car_maintenance_history_images_path(@car, car_maintenance), class: 'pointer text-red-800') %></td>
-                <td class="px-4 py-3 text-center space-x-2 flex justify-center">
-                  <%= link_to edit_car_car_maintenance_path(@car, car_maintenance), class: "flex items-center justify-center" do %>
-                    <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
-                  <% end %>
-                  <%= button_to car_car_maintenance_path(@car, car_maintenance), method: :delete, data: { turbo_confirm: "Are you sure?" } do %>
-                    <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
-                  <% end %>
-                </td>
               </tr>
             <% end %>
           </tbody>

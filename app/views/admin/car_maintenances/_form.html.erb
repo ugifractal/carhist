@@ -1,4 +1,4 @@
-<%= form_with(model: [@car, @car_maintenance], class: "contents") do |form| %>
+<%= form_with(model: [@car_maintenance], class: "contents") do |form| %>
   <% if car_maintenance.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
       <h2><%= pluralize(car_maintenance.errors.count, "error") %> prohibited this car_maintenance from being saved:</h2>
@@ -46,6 +46,11 @@
       <%= form.select :car_shop_id,
         options_for_select([["DIY", nil]] + @car_shops.map { |shop| [shop.name, shop.id] }, selected: @car_maintenance.car_shop_id),
         {}, class: "border border-red-800 rounded px-2 py-1 text-sm w-auto" %>
+    </div>
+
+    <div class="mt-2">
+      <%= form.label :car_id, "Car", style: "display: block" %>
+      <%= form.select(:car_id, Car.all.map { |b| [b.name, b.id] }, { include_blank: "- Pilih Car -" }) %>
     </div>
 
     <div class="mt-8">

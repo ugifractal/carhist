@@ -1,18 +1,17 @@
-module admin
+module Admin
   class CarMaintenancesController < AdminBaseController
     before_action :authenticate_user!
-    before_action :set_car
-    before_action :set_car_maintenance, only: %i[ show edit update destroy manage_photos ]
+    before_action :set_car_maintenance, only: %i[ show edit update destroy ]
 
     # GET /car_maintenances or /car_maintenances.json
     def index
       if params[:search].present?
-        @car_maintenances = @car.car_maintenances
+        @car_maintenances = CarMaintenance.all
           .where("LOWER(description) LIKE ?", "%#{params[:search].downcase}%")
           .order(performed_at: :desc)
           .paginate(page: params[:page], per_page: 15)
       else
-        @car_maintenances = @car.car_maintenances
+        @car_maintenances = CarMaintenance.all
           .order(performed_at: :desc)
           .paginate(page: params[:page], per_page: 15)
       end
@@ -36,18 +35,18 @@ module admin
 
     # GET /car_maintenances/new
     def new
-      @car_maintenance = @car.car_maintenances.new
+      @car_maintenance = CarMaintenances.new
       @car_shops = CarShop.all
     end
 
     # GET /car_maintenances/1/edit
     def edit
-      @car_shops = CarShop.all
+      @car_maintenance = CarMaintenance.all
     end
 
     # POST /car_maintenances or /car_maintenances.json
     def create
-      @car_maintenance = @car.car_maintenances.new(car_maintenance_params)
+      @car_maintenance = CarMaintenances.new(car_maintenance_params)
 
       respond_to do |format|
         if @car_maintenance.save
@@ -82,28 +81,10 @@ module admin
       end
     end
 
-    def manage_photos
-    end
-
-    def export_pdf
-      @car = Car.find(params[:car_id])
-      pdf_data = @car.generate_maintenance_pdf
-      @car_maintenances = @car.car_maintenances.order(performed_at: :desc)
-
-      send_data pdf_data,
-                filename: "maintenance_report_#{@car.name.parameterize}_#{Time.current.strftime('%Y%m%d')}.pdf",
-                type: "application/pdf",
-                disposition: "attachment"
-    end
-
     private
-
-    def set_car
-      @car = current_user.company.cars.find(params[:car_id])
-    end
       # Use callbacks to share common setup or constraints between actions.
       def set_car_maintenance
-        @car_maintenance = @car.car_maintenances.find(params[:id])
+        @car_maintenance = CarMaintenances.find(params[:id])
       end
 
       # Only allow a list of trusted parameters through.
