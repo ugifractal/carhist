@@ -1,4 +1,4 @@
-name: AI Scoring via Gemini CLI
+name: AI PR Scoring
 
 on:
   workflow_dispatch:
