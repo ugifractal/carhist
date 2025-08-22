@@ -54,15 +54,12 @@ jobs:
             ${{ steps.diff.outputs.diff }}
             --- END DIFF ---
 
-      - name: Post AI Review Comment
-        run: |
-          {
-            echo "🤖 **AI Score & Analysis (Latest Commit: ${{ github.event.pull_request.head.sha }})**"
-            echo "---"
-            echo "${{ steps.gemini.outputs.summary }}"
-          } > comment.md
-
-          gh api repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
-            --fieldf body=$(cat comment.md)
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Post comment per commit
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            🤖 **Gemini AI Score & Analysis (Latest Commit: ${{ github.event.pull_request.head.sha }})**
+            ---
+            ${{ steps.gemini.outputs.summary }}
