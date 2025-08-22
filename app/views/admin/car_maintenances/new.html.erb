@@ -1,14 +1,16 @@
 <div>
-  <%= link_to(car_car_maintenances_path(@car), class: 'text-red-800') do %>
+  <%= link_to(admin_car_maintenances_path, class: 'text-red-800') do %>
     &larr; <%= t('views.history_images.back') %>
   <% end %>
 </div>
 
 <% content_for :title, "New car maintenance" %>
 
-<div>
-  <h1 class="font-bold text-4xl"><%= t('views.car_maintenances.new.head') %></h1>
-
-  <%= render "form", car_maintenance: @car_maintenance %>
-
-</div>
+<h1 class="font-bold text-4xl"><%= t('views.car_maintenances.new.head') %></h1>
+<%= form_with model: @car_maintenance, url: admin_car_maintenances_path(@car_maintenance), local: true do |form| %>
+  <%= render 'form', car_maintenance: @car_maintenance, form: form %>
+  <div class="mt-8">
+    <%= form.submit t(@car_maintenance.new_record? ? 'views.car_maintenances.new.create' : 'views.car_maintenances.edit'),
+      class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-red-800 hover:bg-red-500 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

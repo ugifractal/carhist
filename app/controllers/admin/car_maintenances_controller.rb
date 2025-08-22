@@ -30,11 +30,12 @@ module Admin
     # GET /car_maintenances/new
     def new
       @car_maintenance = CarMaintenance.new
+      @car_shops = CarShop.all
     end
 
     # GET /car_maintenances/1/edit
     def edit
-      # sudah otomatis pakai @car_maintenance dari before_action
+      @car_shops = CarShop.all  
     end
 
     # POST /car_maintenances
