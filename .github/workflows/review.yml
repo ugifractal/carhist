@@ -1,9 +1,9 @@
 name: AI PR Scoring
 
 on:
-  workflow_dispatch:
-  # pull_request_target:
-  #   types: [opened, synchronize, reopened]
+  # workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   score-and-analyze:
