@@ -1,4 +1,4 @@
-name: AI Scoring via Gemini CLI
+name: Commit Scoring
 
 on:
   pull_request:
