@@ -1,9 +1,8 @@
-name: AI PR Scoring
+name: AI Commit Scoring
 
 on:
-  workflow_dispatch:
-  # pull_request_target:
-  #   types: [opened, synchronize, reopened]
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   score-and-analyze:
@@ -17,52 +16,47 @@ jobs:
         uses: actions/checkout@v5
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - name: Get PR Diff
+
+      - name: Get Latest Commit Diff
         id: diff
         run: |
+          COMMIT_SHA="${{ github.event.pull_request.head.sha }}"
           curl -sL \
             -H "Accept: application/vnd.github.v3.diff" \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }} \
-            > pr.diff
+            https://api.github.com/repos/${{ github.repository }}/commits/$COMMIT_SHA \
+            > commit.diff
 
           {
             echo "diff<<EOF"
-            cat pr.diff
+            cat commit.diff
             echo "EOF"
           } >> $GITHUB_OUTPUT
 
       - name: Run Gemini Review
         id: gemini
         uses: google-github-actions/run-gemini-cli@main
-        env:
-          CI: true
         with:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
           prompt: |
             You are an AI code reviewer.
             Review the following pull request diff and give:
             - A score from 0–100 (only one number).
-            - A list of weaknesses (do NOT provide solutions).
+            - A list of weaknesses with numbers 1,2,3 format (do NOT provide solutions).
             - Ignore any `sleep` code under tests.
             - Analyze developer efficiency based on PR timing.
 
+            Commit SHA: ${{ github.event.pull_request.head.sha }}
             PR submitted at: ${{ github.event.pull_request.created_at }}
             PR last updated at: ${{ github.event.pull_request.updated_at }}
-
-            Pull Request #${{ github.event.pull_request.number }}
-            Repository: ${{ github.repository }}
 
             --- BEGIN DIFF ---
             ${{ steps.diff.outputs.diff }}
             --- END DIFF ---
 
       - name: Post AI Review Comment
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          header: gemini-score
-          recreate: true
-          message: |
-            🤖 **Gemini AI Score & Analysis**
-            ---
-            ${{ steps.gemini.outputs.summary }}
+        run: |
+          gh api repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
+            -f body=$'🤖 **Gemini AI Score & Analysis (Latest Commit: ${{ github.event.pull_request.head.sha }})**\n---\n${{ steps.gemini.outputs.summary }}'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
