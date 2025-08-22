@@ -32,7 +32,7 @@ jobs:
             echo "EOF"
           } >> $GITHUB_OUTPUT
 
-      - name: Run Gemini Review
+      - name: Run Gemini AI Review
         id: gemini
         uses: google-github-actions/run-gemini-cli@main
         env:
