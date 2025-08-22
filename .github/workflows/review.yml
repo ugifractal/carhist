@@ -63,6 +63,6 @@ jobs:
           header: gemini-score
           recreate: true
           message: |
-            🤖 **Gemini AI Score & Analysis**
+            🤖 **Gemini AI Pull Request Analysis**
             ---
             ${{ steps.gemini.outputs.summary }}

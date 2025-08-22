@@ -60,6 +60,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            🤖 **Gemini AI Score & Analysis (Latest Commit: ${{ github.event.pull_request.head.sha }})**
+            🤖 **Gemini AI Commit Analysis (${{ github.event.pull_request.head.sha }})**
             ---
             ${{ steps.gemini.outputs.summary }}
