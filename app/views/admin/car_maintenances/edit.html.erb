@@ -1,0 +1,14 @@
+<div>
+  <%= link_to(car_car_maintenances_path(@car), class: 'text-red-800') do %>
+    &larr; <%= t('views.history_images.back') %>
+  <% end %>
+</div>
+
+<% content_for :title, "Editing car maintenance" %>
+
+<div class="md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl"> <%= t('views.car_maintenances.editing') %></h1>
+
+  <%= render "form", car_maintenance: @car_maintenance %>
+
+</div>

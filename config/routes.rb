@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     resource :dashboards, only: %i[show]
     resources :users, except: [ :show ]
     resources :car_brands
+    resources :car_maintenances
     resources :car_models
     resources :cars
     resources :car_shops do

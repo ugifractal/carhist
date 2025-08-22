@@ -1,0 +1,54 @@
+<% content_for :title, "Admin Car maintenances" %>
+
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-xl"> <%= t('views.car_maintenances.title') %></h1>
+    <%= link_to t('views.car_maintenances.name'), new_admin_car_maintenance_path, class: "rounded-md px-3.5 py-2.5 bg-red-800 hover:bg-red-500 text-white block font-medium" %>
+  </div>
+
+  <% if @car_maintenances.any? %>
+      <%= form_tag admin_car_maintenances_path, method: :get, local: true do %>
+        <div class="flex justify-end items-center mt-3">
+          <div class="mr-2">
+            <%= text_field_tag :search, params[:search], placeholder: t('views.car_maintenances.column'), class: "border border-red-800" %>
+          </div>
+          <div>
+            <%= submit_tag t('views.car_maintenances.button'),
+              class: "rounded-md bg-red-800 text-white px-4 py-1 rounded-r-md hover:bg-red-500 font-medium" %>
+          </div>
+        </div>
+      <% end %>
+  <% end %>
+
+  <div id="car_maintenances" class="min-w-full divide-y divide-gray-200 space-y-5 mt-4">
+    <% if @car_maintenances.any? %>
+        <table class="w-full border border-red-500">
+          <thead>
+            <tr class="py-2 bg-red-100 text-red-800">
+              <th class="px-4 py-3 text-left"><%= t('views.car_maintenances.date') %></th>
+              <th class="px-4 py-3">Title</th>
+              <th class="px-4 py-3 text-center"><%= t('views.car_maintenances.type') %></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @car_maintenances.each do |car_maintenance| %>
+              <tr>
+                <td class="px-4 py-3"><%= car_maintenance.performed_at&.strftime('%d %b %Y') %></td>
+                <th class="px-4 py-3 text-red-800"><%= car_maintenance.title %></th>
+                <td class="px-4 py-3 text-center"><%= car_maintenance.maintenance_type&.gsub('_', ' ') || "-" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    <% else %>
+      <p class="text-center my-10">No car maintenances found.</p>
+    <% end %>
+  </div>
+
+  <%= will_paginate(@car_maintenances) %>
+</div>

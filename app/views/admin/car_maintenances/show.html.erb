@@ -1,0 +1,32 @@
+<div>
+  <%= link_to(car_car_maintenances_path(@car), class: 'text-red-800') do %>
+    &larr; <%= t('views.history_images.back') %>
+  <% end %>
+</div>
+
+<% content_for :title, "Showing car maintenance" %>
+
+<div class="md:w-2/3 w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <h1 class="font-bold text-4xl">Showing car maintenance</h1>
+
+  <div>
+    Maintenance Type: <%= @car_maintenance.maintenance_type %>
+  </div>
+  <div>
+    <%= t('views.car_maintenances.description') %>
+    <%= @car_maintenance.description %>
+  </div>
+
+  <%= link_to edit_car_car_maintenance_path(@car, @car_maintenance) do %>
+    <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
+    <%= t('views.car_maintenances.edit-view') %>
+  <% end %>
+  <%= button_to car_car_maintenance_path(@car, @car_maintenance), method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", data: { turbo_confirm: "Are you sure?" } do %>
+    <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
+    <%= t('views.car_maintenances.destroy') %>
+  <% end %>
+</div>
