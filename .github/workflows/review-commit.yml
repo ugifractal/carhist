@@ -1,4 +1,4 @@
-name: Commit Scoring
+name: AI Commit Scoring
 
 on:
   pull_request:
