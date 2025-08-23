@@ -40,10 +40,10 @@ jobs:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
           prompt: |
             Kamu adalah AI code reviewer.
-            Review commit diff berikut adan berikan:
+            Review commit diff berikut dan berikan:
             - Sebuah skor dari 0–100 (hanya sebuah angka saja).
-            - List kekurangan / keleman dengan format nomer 1,2,3 format berikan saran juga.
-            - Abaukan semua code `sleep` pada tests.
+            - List kekurangan / kelemahan dengan format nomer 1,2,3 format berikan saran juga.
+            - Abaikan semua code `sleep` pada tests.
             - Analisa efisiensi waktu developer berdasarkan waktu PR.
 
             Commit SHA: ${{ github.event.pull_request.head.sha }}
