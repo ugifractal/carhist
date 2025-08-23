@@ -39,16 +39,16 @@ jobs:
         with:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
           prompt: |
-            You are an AI code reviewer.
-            Review the following pull request diff and give:
-            - A score from 0–100 (only one number).
-            - A list of weaknesses with numbers 1,2,3 format (do NOT provide solutions).
-            - Ignore any `sleep` code under tests.
-            - Analyze developer efficiency based on PR timing.
+            Kamu adalah AI code reviewer.
+            Review commit diff berikut adan berikan:
+            - Sebuah skor dari 0–100 (hanya sebuah angka saja).
+            - List kekurangan / keleman dengan format nomer 1,2,3 format berikan saran juga.
+            - Abaukan semua code `sleep` pada tests.
+            - Analisa efisiensi waktu developer berdasarkan waktu PR.
 
             Commit SHA: ${{ github.event.pull_request.head.sha }}
-            PR submitted at: ${{ github.event.pull_request.created_at }}
-            PR last updated at: ${{ github.event.pull_request.updated_at }}
+            PR dikirim pada: ${{ github.event.pull_request.created_at }}
+            PR terkahir diupdate pada: ${{ github.event.pull_request.updated_at }}
 
             --- BEGIN DIFF ---
             ${{ steps.diff.outputs.diff }}
