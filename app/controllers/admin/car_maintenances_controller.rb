@@ -44,7 +44,7 @@ module Admin
 
       respond_to do |format|
         if @car_maintenance.save
-          format.html { redirect_to admin_car_maintenance_path(@car_maintenance), notice: t("car_maintenances.created") }
+          format.html { redirect_to admin_car_maintenances_path, notice: "#{t('views.item.car_maintenance')} #{t('views.flash.notice_created')}." }
           format.json { render :show, status: :created, location: @car_maintenance }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -57,7 +57,7 @@ module Admin
     def update
       respond_to do |format|
         if @car_maintenance.update(car_maintenance_params)
-          format.html { redirect_to admin_car_maintenance_path(@car_maintenance), notice: t("car_maintenances.updated") }
+          format.html { redirect_to admin_car_maintenances_path, notice: "#{t('views.item.car_maintenance')} #{t('views.flash.notice_updated')}." }
           format.json { render :show, status: :ok, location: @car_maintenance }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -70,7 +70,7 @@ module Admin
     def destroy
       @car_maintenance.destroy!
       respond_to do |format|
-        format.html { redirect_to admin_car_maintenances_path, status: :see_other, notice: t("car_maintenances.destroyed") }
+        format.html { redirect_to admin_car_maintenances_path, status: :see_other, notice: "#{t('views.item.car_maintenance')} #{t('views.flash.notice_deleted')}." }
         format.json { head :no_content }
       end
     end
@@ -82,7 +82,7 @@ module Admin
       end
 
       def car_maintenance_params
-        params.require(:car_maintenance).permit(:title, :maintenance_type, :description, :performed_at)
+        params.require(:car_maintenance).permit(:car_id, :car_shop_id, :title, :maintenance_type, :description, :performed_at)
       end
   end
 end

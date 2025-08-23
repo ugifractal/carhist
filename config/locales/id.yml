@@ -18,7 +18,7 @@ id:
           attributes:
             current_password:
               blank: kosong
-        car:
+        car_model:
           attributes:
             car_model:
               required: "Car model harus diisi"
