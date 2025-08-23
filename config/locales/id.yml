@@ -28,6 +28,8 @@ id:
               blank: kosong
             description:
               blank: kosong
+            car_id:
+              blank: kosong
         car_fueling:
           attributes:
             volume:

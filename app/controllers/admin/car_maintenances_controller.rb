@@ -35,7 +35,7 @@ module Admin
 
     # GET /car_maintenances/1/edit
     def edit
-      @car_shops = CarShop.all  
+      @car_shops = CarShop.all
     end
 
     # POST /car_maintenances
@@ -82,7 +82,7 @@ module Admin
       end
 
       def car_maintenance_params
-        params.require(:car_maintenance).permit(:car_id, :title, :maintenance_type, :description, :performed_at)
+        params.require(:car_maintenance).permit(:title, :maintenance_type, :description, :performed_at)
       end
   end
 end
