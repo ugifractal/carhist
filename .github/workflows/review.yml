@@ -46,6 +46,7 @@ jobs:
             - A list of weaknesses (do NOT provide solutions).
             - Ignore any `sleep` code under tests.
             - Analyze developer efficiency based on PR timing.
+            - Use Indonesian language
 
             PR submitted at: ${{ github.event.pull_request.created_at }}
             PR last updated at: ${{ github.event.pull_request.updated_at }}
