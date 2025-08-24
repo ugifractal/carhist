@@ -32,8 +32,9 @@ en:
 
   views:
     item:
-      car: car
-      car_maintenance: car maintenance
+      car: Car
+      car_maintenance: Car Maintenance
+      car_shop: Car Shop
     flash:
       notice_created: "was successfully created"
       notice_updated: "was successfully updated"

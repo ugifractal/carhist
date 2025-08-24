@@ -46,8 +46,9 @@ id:
 
   views:
     item:
-      car: mobil
-      car_maintenance: service
+      car: Mobil
+      car_maintenance: Service
+      car_shop: Bengkel
     flash:
       notice_created: "berhasil dibuat"
       notice_updated: "berhasil diupdate"

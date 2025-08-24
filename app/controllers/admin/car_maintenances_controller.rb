@@ -30,7 +30,7 @@ module Admin
     # GET /car_maintenances/new
     def new
       @car_maintenance = CarMaintenance.new
-      @car_shops = CarShop.all
+      @car_shops = CarShop.order(name: :asc)
     end
 
     # GET /car_maintenances/1/edit
