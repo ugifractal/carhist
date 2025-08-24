@@ -1,23 +1,44 @@
 <div>
-  <%= link_to("New Fueling", new_car_car_fueling_path(@car), class: "px-2 py-2 bg-red-800 rounded text-white") %>
+  <%= link_to(cars_path, class: 'text-red-800') do %>
+    &larr; <%= t('views.cars.back') %>
+  <% end %>
 </div>
-<div class="mt-3">
-  <table>
-    <tr>
-      <th>Filled date</th>
-      <th>Price</th>
-      <th>Volume</th>
-      <th></th>
-    </tr>
-    <% @car_fuelings.each do |car_fueling| %>
-      <tr>
-        <td><%= car_fueling.filled_at %></td>
-        <td><%= car_fueling.price %></td>
-        <td><%= (car_fueling.volume).round(2)%></td>
-        <td>
-          <%= link_to('edit', edit_car_car_fueling_path(@car, car_fueling)) %>
-        </td>
+
+<div class="mt-5">
+  <%= link_to("New Fueling", new_car_car_fueling_path(@car), class: "px-2 py-2 bg-white rounded text-red-800 border-red-800 border-2") %>
+</div>
+
+<div class="mt-5">
+  <% if @car_fuelings.any? %>
+    <table class="w-full border border-red-500">
+      <tr class="py-2 bg-red-100 text-red-800">
+        <th class="px-4 py-3 text-left">Refuel at</th>
+        <th class="px-4 py-3 text-center">Price</th>
+        <th class="px-4 py-3 text-center">Volume</th>
+        <th class="px-4 py-3 text-center">Distance</th>
+        <th class="px-4 py-3 text-center">Average</th>
+        <th></th>
       </tr>
-    <% end %>
-  </table>
+      <% @car_fuelings.each do |car_fueling| %>
+        <tr>
+          <td class="px-4 py-3 text-left"><%= car_fueling.filled_at %></td>
+          <td class="px-4 py-3 text-center"><%= car_fueling.price %></td>
+          <td class="px-4 py-3 text-center"><%= (car_fueling.volume).round(2) %></td>
+          <td class="px-4 py-3 text-center"><%= (car_fueling.distance).round(1) %></td>
+          <td class="px-4 py-3 text-center">
+            <%= car_fueling.fuel_avg if car_fueling.fuel_avg %>
+          </td>
+          <td>
+            <%= link_to(edit_car_car_fueling_path(@car, car_fueling)) do %>
+              <%= image_tag "edit.svg", class: "w-4 h-4 inline mt-1" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <div class="text-center py-7 text-red-800 border rounded border-red-800">
+      No car fuelings data available.
+    </div>
+  <% end %>
 </div>

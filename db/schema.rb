@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_17_224346) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_24_222110) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -62,10 +62,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_17_224346) do
     t.integer "car_id"
     t.datetime "filled_at"
     t.integer "price"
-    t.integer "km"
+    t.integer "distance"
     t.integer "ron_number"
     t.string "location"
-    t.integer "fuel_range"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "volume", precision: 8, scale: 2

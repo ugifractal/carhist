@@ -1,2 +1,9 @@
-<h2 class="text-xl">Edit Fuel filling</h2>
-<%= render partial: 'car_fuelings/form' %>
+<div>
+  <%= link_to(cars_path, class: 'text-red-800') do %>
+    &larr; <%= t('views.cars.back') %>
+  <% end %>
+</div>
+<div class="mt-3">
+  <h2 class="text-xl">Edit Fuel filling</h2>
+  <%= render partial: 'car_fuelings/form' %>
+</div>
