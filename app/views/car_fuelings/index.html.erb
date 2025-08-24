@@ -1,6 +1,6 @@
 <div>
   <%= link_to(cars_path, class: 'text-red-800') do %>
-    &larr; <%= t('views.cars.back') %>
+    &larr; <%= t('views.common.back') %>
   <% end %>
 </div>
 
@@ -26,7 +26,7 @@
           <td class="px-4 py-3 text-center"><%= (car_fueling.volume).round(2) %></td>
           <td class="px-4 py-3 text-center"><%= (car_fueling.distance).round(1) %></td>
           <td class="px-4 py-3 text-center">
-            <%= car_fueling.fuel_avg if car_fueling.fuel_avg %>
+            <%= "1 : #{car_fueling.fuel_avg.round(1)}" %>
           </td>
           <td>
             <%= link_to(edit_car_car_fueling_path(@car, car_fueling)) do %>

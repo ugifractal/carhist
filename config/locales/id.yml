@@ -46,6 +46,8 @@ id:
     item:
       car: mobil
       car_maintenance: service
+    common:
+      back: kembali
     flash:
       notice_created: "berhasil dibuat"
       notice_updated: "berhasil diupdate"

@@ -34,6 +34,8 @@ en:
     item:
       car: car
       car_maintenance: car maintenance
+    common:
+      back: back
     flash:
       notice_created: "was successfully created"
       notice_updated: "was successfully updated"
