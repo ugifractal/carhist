@@ -10,7 +10,6 @@
 <%= form_with model: @car_maintenance, url: admin_car_maintenances_path(@car_maintenance), local: true do |form| %>
   <%= render 'form', car_maintenance: @car_maintenance, form: form %>
   <div class="mt-8">
-    <%= form.submit t(@car_maintenance.new_record? ? 'views.car_maintenances.new.create' : 'views.car_maintenances.edit'),
-      class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-red-800 hover:bg-red-500 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit 'Create', class: 'bg-red-800 text-white rounded py-2 px-3' %>
   </div>
 <% end %>
