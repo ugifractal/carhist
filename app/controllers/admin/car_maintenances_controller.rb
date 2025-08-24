@@ -2,6 +2,7 @@ module Admin
   class CarMaintenancesController < AdminBaseController
     before_action :authenticate_user!
     before_action :set_car_maintenance, only: %i[ show edit update destroy ]
+    before_action :set_collections, only: [:new, :edit]
 
     # GET /car_maintenances
     def index
@@ -30,14 +31,10 @@ module Admin
     # GET /car_maintenances/new
     def new
       @car_maintenance = CarMaintenance.new
-      @car_shops = CarShop.order(name: :asc)
-      @cars = Car.order(name: :asc)
     end
 
     # GET /car_maintenances/1/edit
     def edit
-      @car_shops = CarShop.order(name: :asc)
-      @cars = Car.order(name: :asc)
     end
 
     # POST /car_maintenances
@@ -85,6 +82,11 @@ module Admin
 
       def car_maintenance_params
         params.require(:car_maintenance).permit(:car_id, :car_shop_id, :title, :maintenance_type, :description, :performed_at)
+      end
+
+      def set_collections
+        @car_shops = CarShop.order(name: :asc)
+        @cars = Car.order(name: :asc)
       end
   end
 end
