@@ -88,6 +88,9 @@ id:
       title: "Bengkel"
     car_models:
       title: "Spek Mobil"
+    car_fuelings:
+      common:
+        refuel_at: "terakhir diisi pada"
 
   alerts:
     car_limit_reached: "Anda telah mencapai jumlah mobil maksimum yang diizinkan untuk paket Anda."

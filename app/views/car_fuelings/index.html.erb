@@ -12,7 +12,7 @@
   <% if @car_fuelings.any? %>
     <table class="w-full border border-red-500">
       <tr class="py-2 bg-red-100 text-red-800">
-        <th class="px-4 py-3 text-left">Refuel at</th>
+        <th class="px-4 py-3 text-left"><%= t('views.car_fuelings.common.refuel_at').capitalize %></th>
         <th class="px-4 py-3 text-center">Price</th>
         <th class="px-4 py-3 text-center">Volume</th>
         <th class="px-4 py-3 text-center">Distance</th>
@@ -26,7 +26,7 @@
           <td class="px-4 py-3 text-center"><%= (car_fueling.volume).round(2) %></td>
           <td class="px-4 py-3 text-center"><%= (car_fueling.distance).round(1) %></td>
           <td class="px-4 py-3 text-center">
-            <%= "1 : #{car_fueling.fuel_avg.round(1)}" %>
+            <%= format_avg(car_fueling.fuel_avg) %>
           </td>
           <td>
             <%= link_to(edit_car_car_fueling_path(@car, car_fueling)) do %>
