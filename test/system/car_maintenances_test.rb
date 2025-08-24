@@ -8,7 +8,7 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     I18n.locale = :id
   end
 
-  test "visiting the index" do
+  test "list car maintenances" do
     user = users(:sakib)
     login_as user
 
