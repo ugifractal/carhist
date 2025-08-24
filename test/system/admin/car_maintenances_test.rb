@@ -32,7 +32,7 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     fill_in "car_maintenance_description", with: "ganti oli rutin"
     select "auto200", from: "car_maintenance_car_shop"
 
-    click_button "Create"
+    click_button "#{t('views.cars.create')}"
     sleep 1
 
     assert_text "service oli"

@@ -10,6 +10,6 @@
 <%= form_with model: @car_maintenance, url: admin_car_maintenances_path(@car_maintenance), local: true do |form| %>
   <%= render 'form', car_maintenance: @car_maintenance, form: form %>
   <div class="mt-8">
-    <%= form.submit 'Create', class: 'bg-red-800 text-white rounded py-2 px-3' %>
+    <%= form.submit t('views.cars.create'), class: 'bg-red-800 text-white rounded py-2 px-3' %>
   </div>
 <% end %>

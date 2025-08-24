@@ -38,7 +38,7 @@
 
 <div class="mt-2">
   <div><%= t('views.item.car_shop') %></div>
-  <%= form.select :car_shop,
-              @car_shops.map { |c| [c.name, c.id] },
+  <%= form.select :car_shop_id,
+              @car_shops_id.map { |c| [c.name, c.id] },
               { include_blank: "- Pilih Bengkel -" }, class: "border border-red-800 rounded text-sm" %>
 </div>

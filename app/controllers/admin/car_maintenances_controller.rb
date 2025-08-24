@@ -85,7 +85,7 @@ module Admin
       end
 
       def set_collections
-        @car_shops = CarShop.order(name: :asc)
+        @car_shops_id = CarShop.order(name: :asc)
         @cars = Car.order(name: :asc)
       end
   end
