@@ -31,11 +31,13 @@ module Admin
     def new
       @car_maintenance = CarMaintenance.new
       @car_shops = CarShop.order(name: :asc)
+      @cars = Car.order(name: :asc)
     end
 
     # GET /car_maintenances/1/edit
     def edit
-      @car_shops = CarShop.all
+      @car_shops = CarShop.order(name: :asc)
+      @cars = Car.order(name: :asc)
     end
 
     # POST /car_maintenances

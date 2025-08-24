@@ -7,8 +7,8 @@
 <% content_for :title, "Editing car maintenance" %>
 
 <h1 class="font-bold text-4xl"> <%= t('views.car_maintenances.editing') %></h1>
-<%= form_with model: @car_maintenance, url: admin_car_maintenances_path(@car_maintenance), local: true do |form| %>
-  <%= render "form", car_maintenance: @car_maintenance %>
+<%= form_with model: @car_maintenance, url: admin_car_maintenance_path(@car_maintenance), local: true do |form| %>
+  <%= render 'form', car_maintenance: @car_maintenance, form: form %>
   <div class="mt-8">
     <%= form.submit 'Update', class: 'bg-red-800 text-white rounded py-2 px-3' %>
   </div>
