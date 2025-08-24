@@ -34,6 +34,8 @@ en:
     item:
       car: car
       car_maintenance: car maintenance
+    common:
+      back: back
     flash:
       notice_created: "was successfully created"
       notice_updated: "was successfully updated"
@@ -70,6 +72,9 @@ en:
       title: "Car Shops"
     car_models:
       title: "Car Models"
+    car_fuelings:
+      common:
+        refuel_at: "refuel at"
 
   alerts:
     car_limit_reached: "You have reached the maximum number of cars allowed for your plan."

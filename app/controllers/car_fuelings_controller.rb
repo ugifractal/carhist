@@ -41,7 +41,7 @@ class CarFuelingsController < ApplicationController
   private
 
   def car_fueling_params
-    params.require(:car_fueling).permit(:km, :location, :filled_at, :ron_number, :fuel_range, :price, :volume)
+    params.require(:car_fueling).permit(:distance, :location, :filled_at, :ron_number, :price, :volume)
   end
 
   def set_car
