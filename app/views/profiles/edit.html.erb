@@ -7,6 +7,12 @@
       <div><%= f.label :timezone, "Timezone" %></div>
       <div><%= f.select :timezone, ActiveSupport::TimeZone::MAPPING.to_a, {}, class: "border" %></div>
     </div>
+
+    <div class="mt-3">
+      <%= f.label :image, "Upload Avatar" %>
+      <%= f.file_field :image %>
+    </div>
+
     <div class="mt-3">
       <%= f.submit "Update", class: "px-2 py-2 bg-white rounded text-red-800 border-red-800 border-2" %>
     </div>

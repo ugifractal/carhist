@@ -31,11 +31,6 @@
     <%= f.password_field :current_password, autocomplete: "current-password", class: "border" %>
   </div>
 
-  <div class="mt-3">
-    <%= f.label :image, "Upload Avatar" %>
-    <%= f.file_field :image %>
-  </div>
-
   <% if resource.image&.url %>
     <div class="mt-3">
       <%= image_tag resource.avatar.variant(resize_to_fill: [100, 100]) %>
