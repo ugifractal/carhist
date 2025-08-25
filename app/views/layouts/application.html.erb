@@ -40,7 +40,7 @@
         </div>
         <% if user_signed_in? %>
           <div data-controller="account">
-            <div data-action="click->account#toggle" class="rounded-full bg-white w-12 h-12 flex items-center justify-center cursor-pointer">
+            <div data-btn="right-top-menu" data-action="click->account#toggle" class="rounded-full bg-white w-12 h-12 flex items-center justify-center cursor-pointer">
               <% if current_user.image&.url %>
                 <%= image_tag current_user.image.url, class: "rounded-full w-12 h-12 object-cover" %>
               <% else %>
@@ -59,7 +59,7 @@
                 </div>
               <% end %>
               <div class="mt-4">
-                <%= link_to(current_user.email, 'users/edit') %>
+                <%= link_to(current_user.email, edit_user_registration_path) %>
               </div>
               <div class="mt-4">
                 <%= button_to "Logout", destroy_user_session_path, method: :delete %>
