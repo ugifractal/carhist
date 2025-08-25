@@ -59,7 +59,7 @@
                 </div>
               <% end %>
               <div class="mt-4">
-                <%= link_to(current_user.email, edit_user_registration_path) %>
+                <%= link_to(current_user.email, edit_profiles_path) %>
               </div>
               <div class="mt-4">
                 <%= button_to "Logout", destroy_user_session_path, method: :delete %>

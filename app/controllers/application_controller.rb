@@ -2,9 +2,8 @@ class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: { safari: 16.4, firefox: 121, ie: false }
 
-  before_action :set_cars
   before_action :set_locale
-
+  before_action :set_timezone
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -16,11 +15,15 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def set_cars
-    @cars = Car.all
-  end
-
   def set_locale
     I18n.locale = :id
+  end
+
+  def set_timezone
+    if current_user&.timezone
+      @tz = current_user&.timezone
+    else
+      @tz = "Asia/Jakarta"
+    end
   end
 end
