@@ -35,6 +35,8 @@ en:
       car: Car
       car_maintenance: Car Maintenance
       car_shop: Car Shop
+    common:
+      back: kembali
     flash:
       notice_created: "was successfully created"
       notice_updated: "was successfully updated"

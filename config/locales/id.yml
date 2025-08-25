@@ -49,6 +49,8 @@ id:
       car: Mobil
       car_maintenance: Service
       car_shop: Bengkel
+    common:
+      back: kembali
     flash:
       notice_created: "berhasil dibuat"
       notice_updated: "berhasil diupdate"
