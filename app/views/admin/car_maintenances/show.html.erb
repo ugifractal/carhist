@@ -1,5 +1,5 @@
 <div>
-  <%= link_to(car_car_maintenances_path(@car), class: 'text-red-800') do %>
+  <%= link_to(admin_car_maintenances_path, class: 'text-red-800') do %>
     &larr; <%= t('views.history_images.back') %>
   <% end %>
 </div>
@@ -21,11 +21,11 @@
     <%= @car_maintenance.description %>
   </div>
 
-  <%= link_to edit_car_car_maintenance_path(@car, @car_maintenance) do %>
+  <%= link_to edit_car_car_maintenance_path(@car_maintenance) do %>
     <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
     <%= t('views.car_maintenances.edit-view') %>
   <% end %>
-  <%= button_to car_car_maintenance_path(@car, @car_maintenance), method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", data: { turbo_confirm: "Are you sure?" } do %>
+  <%= button_to car_car_maintenance_path(@car_maintenance), method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", data: { turbo_confirm: "Are you sure?" } do %>
     <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
     <%= t('views.car_maintenances.destroy') %>
   <% end %>

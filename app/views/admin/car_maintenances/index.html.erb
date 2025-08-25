@@ -10,20 +10,6 @@
     <%= link_to t('views.car_maintenances.name'), new_admin_car_maintenance_path, class: "rounded-md px-3.5 py-2.5 bg-red-800 hover:bg-red-500 text-white block font-medium" %>
   </div>
 
-  <% if @car_maintenances.any? %>
-      <%= form_tag admin_car_maintenances_path, method: :get, local: true do %>
-        <div class="flex justify-end items-center mt-3">
-          <div class="mr-2">
-            <%= text_field_tag :search, params[:search], placeholder: t('views.car_maintenances.column'), class: "border border-red-800" %>
-          </div>
-          <div>
-            <%= submit_tag t('views.car_maintenances.button'),
-              class: "rounded-md bg-red-800 text-white px-4 py-1 rounded-r-md hover:bg-red-500 font-medium" %>
-          </div>
-        </div>
-      <% end %>
-  <% end %>
-
   <div id="car_maintenances" class="min-w-full divide-y divide-gray-200 space-y-5 mt-4">
     <% if @car_maintenances.any? %>
         <table class="w-full border border-red-500">
@@ -41,6 +27,17 @@
                 <td class="px-4 py-3"><%= car_maintenance.performed_at&.strftime('%d %b %Y') %></td>
                 <th class="px-4 py-3 text-red-800"><%= car_maintenance.title %></th>
                 <td class="px-4 py-3 text-center"><%= car_maintenance.maintenance_type&.gsub('_', ' ') || "-" %></td>
+                <td class="text-center py-2 px-4 space-x-2 flex justify-center">
+                <%= link_to edit_admin_car_maintenance_path(car_maintenance), class: "text-blue-600 hover:underline" do %>
+                  <%= image_tag "edit.svg", class: "w-4 h-4 inline mt-1" %>
+                <% end %>
+                <%= link_to admin_car_maintenance_path(car_maintenance.id), class: "flex items-center justify-center" do %>
+                  <%= image_tag "show.svg", class: "w-4 h-4 inline" %>
+                <% end %>
+                <%= button_to admin_car_maintenance_path(car_maintenance), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
+                  <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
+                <% end %>
+              </td>
               </tr>
             <% end %>
           </tbody>

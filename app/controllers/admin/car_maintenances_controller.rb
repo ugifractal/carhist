@@ -2,6 +2,7 @@ module Admin
   class CarMaintenancesController < AdminBaseController
     before_action :authenticate_user!
     before_action :set_car_maintenance, only: %i[ show edit update destroy ]
+    before_action :set_collections, only: [:new, :edit]
 
     # GET /car_maintenances
     def index
@@ -34,7 +35,6 @@ module Admin
 
     # GET /car_maintenances/1/edit
     def edit
-      # sudah otomatis pakai @car_maintenance dari before_action
     end
 
     # POST /car_maintenances
@@ -43,7 +43,7 @@ module Admin
 
       respond_to do |format|
         if @car_maintenance.save
-          format.html { redirect_to admin_car_maintenance_path(@car_maintenance), notice: t("car_maintenances.created") }
+          format.html { redirect_to admin_car_maintenances_path, notice: "#{t('views.item.car_maintenance')} #{t('views.flash.notice_created')}." }
           format.json { render :show, status: :created, location: @car_maintenance }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -56,7 +56,7 @@ module Admin
     def update
       respond_to do |format|
         if @car_maintenance.update(car_maintenance_params)
-          format.html { redirect_to admin_car_maintenance_path(@car_maintenance), notice: t("car_maintenances.updated") }
+          format.html { redirect_to admin_car_maintenances_path, notice: "#{t('views.item.car_maintenance')} #{t('views.flash.notice_updated')}." }
           format.json { render :show, status: :ok, location: @car_maintenance }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -69,7 +69,7 @@ module Admin
     def destroy
       @car_maintenance.destroy!
       respond_to do |format|
-        format.html { redirect_to admin_car_maintenances_path, status: :see_other, notice: t("car_maintenances.destroyed") }
+        format.html { redirect_to admin_car_maintenances_path, status: :see_other, notice: "#{t('views.item.car_maintenance')} #{t('views.flash.notice_deleted')}." }
         format.json { head :no_content }
       end
     end
@@ -81,7 +81,12 @@ module Admin
       end
 
       def car_maintenance_params
-        params.require(:car_maintenance).permit(:car_id, :title, :maintenance_type, :description, :performed_at)
+        params.require(:car_maintenance).permit(:car_id, :car_shop_id, :title, :maintenance_type, :description, :performed_at)
+      end
+
+      def set_collections
+        @car_shops_id = CarShop.order(name: :asc)
+        @cars = Car.order(name: :asc)
       end
   end
 end
