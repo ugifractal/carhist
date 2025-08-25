@@ -1,0 +1,17 @@
+<div>
+  <div>
+    <h1>Edit Profile</h1>
+  </div>
+  <%= form_with(model: @user, url: profiles_path) do |f| %>
+    <div class="mt-3">
+      <div><%= f.label :timezone, "Timezone" %></div>
+      <div><%= f.select :timezone, ActiveSupport::TimeZone::MAPPING.to_a, {}, class: "border" %></div>
+    </div>
+    <div class="mt-3">
+      <%= f.submit "Update", class: "px-2 py-2 bg-white rounded text-red-800 border-red-800 border-2" %>
+    </div>
+  <% end %>
+  <div class="mt-7">
+    <%= link_to("edit account", edit_user_registration_path, class: "text-red-800 underline") %>
+  </div>
+</div>

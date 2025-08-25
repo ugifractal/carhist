@@ -17,6 +17,6 @@ class AccountTest < ApplicationSystemTestCase
     page.find(:xpath, "//div[@data-btn='right-top-menu']").click
     page.find(:xpath, "//a[contains(text(), '#{user.email}')]").click
     sleep 1
-    assert_text "Edit User"
+    assert_text "Edit Profile"
   end
 end
