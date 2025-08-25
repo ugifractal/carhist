@@ -23,16 +23,18 @@
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "border" %>
   </div>
 
   <div class="field">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+    <%= f.password_field :current_password, autocomplete: "current-password", class: "border" %>
   </div>
 
-  <%= f.label :image, "Upload Avatar" %>
-  <%= f.file_field :image %>
+  <div class="mt-3">
+    <%= f.label :image, "Upload Avatar" %>
+    <%= f.file_field :image %>
+  </div>
 
   <% if resource.image&.url %>
     <div class="mt-3">
@@ -40,8 +42,8 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
+  <div class="actions mt-6">
+    <%= f.submit "Update", class: "px-2 py-2 bg-white rounded text-red-800 border-red-800 border-2" %>
   </div>
 <% end %>
 

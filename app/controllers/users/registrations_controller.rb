@@ -2,7 +2,9 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   layout "registration"
+
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_scope!, only: %i[ edit update destroy ]
 
   # GET /resource/edit
   def edit
@@ -12,8 +14,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [ :image ])
-    devise_parameter_sanitizer.permit(:account_update, keys: [ :image ])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[image])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[image])
   end
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
@@ -25,13 +27,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   # def create
-  #   super
-  # end
-
-
-
-  # PUT /resource
-  # def update
   #   super
   # end
 
