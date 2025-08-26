@@ -30,7 +30,7 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     select "January", from: "car_maintenance_performed_at_2i"
     select "1", from: "car_maintenance_performed_at_3i"
     fill_in "car_maintenance_description", with: "ganti oli rutin"
-    select "auto200", from: "car_maintenance_car_shop"
+    select "auto200", from: "car_maintenance_car_shop_id"
 
     click_button "#{t('views.cars.create')}"
     sleep 1
@@ -55,7 +55,7 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     select "July", from: "car_maintenance_performed_at_2i"
     select "2", from: "car_maintenance_performed_at_3i"
     fill_in "car_maintenance_description", with: "ganti oli mesin rutin"
-    select "auto200", from: "car_maintenance_car_shop"
+    select "auto200", from: "car_maintenance_car_shop_id"
 
     click_button "Update"
     sleep 1

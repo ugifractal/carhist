@@ -17,7 +17,7 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     assert_text "Service Record dari"
   end
 
-  test "create car maintenance" do
+  test "create service" do
     car = cars(:skyline)
 
     visit "/cars/#{car.id}/car_maintenances/new"
@@ -36,7 +36,7 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     visit "/cars/#{car.id}/car_maintenances"
   end
 
-  test "edit car maintenance" do
+  test "edit service" do
     car = cars(:skyline)
     car_maintenance = car_maintenances(:history)
 
@@ -58,7 +58,7 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     visit "/cars/#{car.id}/car_maintenances"
   end
 
-  test "destroy" do
+  test "destroy service" do
     car = cars(:skyline)
     car_maintenance = car_maintenances(:history)
 
