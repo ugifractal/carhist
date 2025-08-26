@@ -21,6 +21,12 @@ class CarMaintenancesTest < ApplicationSystemTestCase
   end
 
   test "create service" do
+<<<<<<< HEAD
+=======
+    user = users(:sakib)
+    login_as user
+
+>>>>>>> e91829c ([#402] fix error test)
     car = cars(:skyline)
 
     visit "/cars/#{car.id}/car_maintenances/new"
@@ -40,6 +46,9 @@ class CarMaintenancesTest < ApplicationSystemTestCase
   end
 
   test "edit service" do
+    user = users(:sakib)
+    login_as user
+
     car = cars(:skyline)
     car_maintenance = car_maintenances(:history)
 
@@ -62,6 +71,12 @@ class CarMaintenancesTest < ApplicationSystemTestCase
   end
 
   test "destroy service" do
+<<<<<<< HEAD
+=======
+    user = users(:sakib)
+    login_as user
+
+>>>>>>> e91829c ([#402] fix error test)
     car = cars(:skyline)
     car_maintenance = car_maintenances(:history)
 
