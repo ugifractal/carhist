@@ -13,7 +13,10 @@
 
   <div>
     <div>Filled At</div>
-    <div><%= f.date_select(:filled_at) %></div>
+    <div data-controller="datepicker" class="flex items-center">
+      <%= f.text_field(:filled_at, { readonly: true, value: @car_fueling.filled_at.strftime('%Y-%m-%d'), class: 'border block', data: { 'datepicker-target': 'input' } } ) %>
+      <div data-datepicker-target="toggle" class="-ml-6"><%= image_tag('calendar.svg', width: 20) %></div>
+    </div>
   </div>
   <div>
     <div>Volume</div>
