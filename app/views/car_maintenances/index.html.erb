@@ -7,9 +7,9 @@
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-xl"> <%= t('views.car_maintenances.title') %> <%= @car.brand_name %> (<%= @car.name %>)</h1>
-    <%= link_to t('views.car_maintenances.name'), new_car_car_maintenance_path(@car), class: "rounded-md px-3.5 py-2.5 bg-red-800 hover:bg-red-500 text-white block font-medium" %>
   </div>
-  <div class="flex justify-end mt-3">
+  <div class="flex justify-between items-center mt-2">
+    <%= link_to t('views.car_maintenances.name'), new_car_car_maintenance_path(@car), class: "rounded-md px-3.5 py-2.5 bg-red-800 hover:bg-red-500 text-white block font-medium" %>
     <%= link_to("Car fuelings", car_car_fuelings_path(@car), class: "bg-red-800 px-2 py-2 text-white rounded") %>
   </div>
 
@@ -24,7 +24,7 @@
         </div>
         <div data-dropdown-target="drop" class="hidden absolute z-50 mt-2 right-0 w-36 bg-white border border-red-700 rounded shadow-lg">
           <%= link_to 'Generate PDF', export_pdf_car_car_maintenances_path(@car), method: :get,
-              class: 'block w-full text-left px-4 py-2 text-sm text-white bg-red-800 hover:bg-red-700 rounded', 
+              class: 'block w-full text-left px-4 py-2 text-sm text-white bg-red-800 hover:bg-red-700 rounded',
               data: { action: 'click->dropdown#hide' } %>
         </div>
       </div>
