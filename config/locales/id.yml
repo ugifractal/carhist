@@ -35,6 +35,10 @@ id:
             volume:
               not_a_number: bukan angka
               greater_than: lebih besar dari %{count}
+              blank: tidak boleh  kosong
+            distance:
+              not_a_number: bukan angka
+              blank: tidak boleh kosong
         car_shop:
           attributes:
             name:
