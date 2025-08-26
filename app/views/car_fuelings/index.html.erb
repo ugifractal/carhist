@@ -21,7 +21,7 @@
       </tr>
       <% @car_fuelings.each do |car_fueling| %>
         <tr>
-          <td class="px-4 py-3 text-left"><%= car_fueling.filled_at %></td>
+          <td class="px-4 py-3 text-left"><%= format_date(car_fueling.filled_at) %></td>
           <td class="px-4 py-3 text-center"><%= car_fueling.price %></td>
           <td class="px-4 py-3 text-center"><%= (car_fueling.volume).round(2) %></td>
           <td class="px-4 py-3 text-center"><%= (car_fueling.distance).round(1) %></td>

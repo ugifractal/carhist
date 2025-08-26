@@ -2,6 +2,7 @@ class CarMaintenancesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_car
   before_action :set_car_maintenance, only: %i[ show edit update destroy manage_photos ]
+  before_action :set_collections, only: [ :new, :edit, :create, :update ]
 
   # GET /car_maintenances or /car_maintenances.json
   def index
@@ -100,13 +101,17 @@ class CarMaintenancesController < ApplicationController
   def set_car
     @car = current_user.company.cars.find(params[:car_id])
   end
-    # Use callbacks to share common setup or constraints between actions.
-    def set_car_maintenance
-      @car_maintenance = @car.car_maintenances.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_car_maintenance
+    @car_maintenance = @car.car_maintenances.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def car_maintenance_params
-      params.require(:car_maintenance).permit(:car_id, :title, :maintenance_type, :description, :performed_at)
-    end
+  # Only allow a list of trusted parameters through.
+  def car_maintenance_params
+    params.require(:car_maintenance).permit(:car_id, :title, :maintenance_type, :description, :performed_at, :car_shop_id)
+  end
+
+  def set_collections
+    @car_shops = current_user.company.car_shops.order(name: :asc)
+  end
 end
