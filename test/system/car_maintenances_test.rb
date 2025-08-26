@@ -8,11 +8,7 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     I18n.locale = :id
   end
 
-<<<<<<< HEAD
   test "list service history" do
-=======
-  test "list car maintenances" do
->>>>>>> admin-maintenance
     user = users(:sakib)
     login_as user
 
