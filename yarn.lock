@@ -1400,6 +1400,11 @@ source-map-js@^1.2.1:
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.1.tgz#1ce5650fddd87abc099eda37dcff024c2667ae46"
   integrity sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==
 
+stimulus-datepicker@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/stimulus-datepicker/-/stimulus-datepicker-1.0.9.tgz#57d3ee5c69ab060acd510fad0187b1236f6929fc"
+  integrity sha512-InihgKw4VXXy2cB3u7JzjR6cps4Y1CEyZviCn3hp2Ani1EKDoLy7z3lHTLRsM23bcdvQiJI18iBjR18zFIIETw==
+
 strip-json-comments@^3.1.1:
   version "3.1.1"
   resolved "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-3.1.1.tgz"

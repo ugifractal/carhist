@@ -35,7 +35,7 @@ class CarFuelingsController < ApplicationController
   end
 
   def new
-    @car_fueling = @car.car_fuelings.new
+    @car_fueling = @car.car_fuelings.new(filled_at: Time.zone.now)
   end
 
   private
