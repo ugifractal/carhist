@@ -2,7 +2,7 @@ module Admin
   class CarMaintenancesController < AdminBaseController
     before_action :authenticate_user!
     before_action :set_car_maintenance, only: %i[ show edit update destroy ]
-    before_action :set_collections, only: [:new, :edit]
+    before_action :set_collections, only: [ :new, :edit ]
 
     # GET /car_maintenances
     def index
@@ -85,7 +85,7 @@ module Admin
       end
 
       def set_collections
-        @car_shops_id = CarShop.order(name: :asc)
+        @car_shops = CarShop.order(name: :asc)
         @cars = Car.order(name: :asc)
       end
   end

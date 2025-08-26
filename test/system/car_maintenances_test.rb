@@ -6,26 +6,18 @@ class CarMaintenancesTest < ApplicationSystemTestCase
   setup do
     # Set language
     I18n.locale = :id
-  end
-
-<<<<<<< HEAD
-  test "list service history" do
-=======
-  test "list car maintenances" do
->>>>>>> admin-maintenance
     user = users(:sakib)
     login_as user
+  end
 
+  test "list service history" do
     car_maintenance = car_maintenances(:history)
     visit car_car_maintenances_path(car_maintenance.car)
     sleep 1
     assert_text "Service Record dari"
   end
 
-  test "create car maintenance" do
-    user = users(:sakib)
-    login_as user
-
+  test "create service" do
     car = cars(:skyline)
 
     visit "/cars/#{car.id}/car_maintenances/new"
@@ -44,10 +36,7 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     visit "/cars/#{car.id}/car_maintenances"
   end
 
-  test "edit car maintenance" do
-    user = users(:sakib)
-    login_as user
-
+  test "edit service" do
     car = cars(:skyline)
     car_maintenance = car_maintenances(:history)
 
@@ -69,10 +58,7 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     visit "/cars/#{car.id}/car_maintenances"
   end
 
-  test "destroy" do
-    user = users(:sakib)
-    login_as user
-
+  test "destroy service" do
     car = cars(:skyline)
     car_maintenance = car_maintenances(:history)
 
