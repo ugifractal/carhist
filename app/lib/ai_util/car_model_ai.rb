@@ -7,7 +7,7 @@ module AiUtil
           - width dimension as 'overall_width' in mm unit
           - length dimension as 'overall_length' in mm unit
           - wheelbase dimension as 'wheelbase' in mm unit
-          - tank capacity dimension as 'wheelbase' in litre unit
+          - tank capacity dimension as 'tank_capacity' in litre unit
         )
         puts api_key
         request(prompt)
