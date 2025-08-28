@@ -51,6 +51,9 @@ Rails.application.routes.draw do
         patch :pending
       end
     end
+    resource :ai_help, only: [] do
+      post :car_spec
+    end
   end
 
   get "welcome/index"

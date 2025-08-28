@@ -48,6 +48,7 @@ env:
     - MIDTRANS_CLIENT_KEY
     - MIDTRANS_SERVER_KEY
     - MIDTRANS_BASE_URL
+    - GEMINI_API_KEY
 
   clear:
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
