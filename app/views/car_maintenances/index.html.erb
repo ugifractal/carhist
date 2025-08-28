@@ -5,6 +5,12 @@
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
   <% end %>
 
+  <div>
+    <%= link_to(cars_path, class: 'text-red-800') do %>
+      &larr; <%= t('views.cars.back') %>
+    <% end %>
+  </div>
+
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-xl"> <%= t('views.car_maintenances.title') %> <%= @car.brand_name %> (<%= @car.name %>)</h1>
   </div>
