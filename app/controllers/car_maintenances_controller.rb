@@ -36,7 +36,7 @@ class CarMaintenancesController < ApplicationController
 
   # GET /car_maintenances/new
   def new
-    @car_maintenance = @car.car_maintenances.new
+    @car_maintenance = @car.car_maintenances.new(filled_at: Time.zone.now)
     @car_shops = CarShop.all
   end
 

@@ -11,7 +11,7 @@ import flatpickr from "flatpickr"
 document.addEventListener("turbo:load", () => {
   flatpickr(".datepicker", {})
 })
-
+        
 
 const app = Application.start()
 app.load(definitions)
