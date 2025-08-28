@@ -22,7 +22,9 @@
     data-ai-helper--car-model-model-value="<%= @car_model.full_name %>"
     data-ai-helper--car-model-year-value="<%= @car_model.year %>"
     >
-    <button data-action="click->ai-helper--car-model#fill">fetch from AI</button>
+    <button data-ai-helper--car-model-target="button" data-action="click->ai-helper--car-model#fill" class="bg-white border border-red-800 px-2 py-2 rounded text-red-800">
+      Fetch from AI
+    </button>
   </div>
 <% end %>
 
