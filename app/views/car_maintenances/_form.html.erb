@@ -27,7 +27,7 @@
   </div>
 
   <div>
-    <div>Filled At</div>
+    <div><%= t('views.car_maintenances.new.time') %></div>
     <div data-controller="datepicker" class="flex items-center">
       <%= form.text_field(:filled_at, { readonly: true, value: @car_maintenance.filled_at.strftime('%Y-%m-%d'), class: 'border block', data: { 'datepicker-target': 'input' } } ) %>
       <div data-datepicker-target="toggle" class="-ml-6"><%= image_tag('calendar.svg', width: 20) %></div>
