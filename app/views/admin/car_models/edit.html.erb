@@ -15,6 +15,17 @@
   </div>
 <% end %>
 
+<% if @car_model.persisted? %>
+  <div class="mt-3"
+    data-controller="ai-helper--car-model"
+    data-ai-helper--car-model-url-value="<%= car_spec_admin_ai_help_path %>"
+    data-ai-helper--car-model-model-value="<%= @car_model.full_name %>"
+    data-ai-helper--car-model-year-value="<%= @car_model.year %>"
+    >
+    <button data-action="click->ai-helper--car-model#fill">fetch from AI</button>
+  </div>
+<% end %>
+
 <br>
 
 <div>
