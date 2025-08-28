@@ -65,7 +65,7 @@ id:
       command: "Tambahkan foto service nya disini!"
     car_maintenances:
       title: "Service Record dari"
-      name: "Tambah Car Maintenance"
+      name: "Tambah Service"
       editing: "Ubah Service Record"
       button: "Cari"
       column: "Cari nama mobil..."
