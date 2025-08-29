@@ -131,4 +131,5 @@ RAILS_ENV=test bundle exec rails db:migrate
 ## Menjalankan Sebuah Test
 ```bash
 bundle exec ruby -Itest test/system/car_maintenances_test.rb
+bundle exec rails test:system
 ```
