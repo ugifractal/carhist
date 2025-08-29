@@ -6,6 +6,7 @@ module AiUtil
           get some information about car with model #{model} #{year} for indonesia market build a json response without markdown formating with following fields:
           - width dimension as 'overall_width' in mm unit
           - length dimension as 'overall_length' in mm unit
+          - height dimension as 'overall_height' in mm unit
           - wheelbase dimension as 'wheelbase' in mm unit
           - tank capacity dimension as 'tank_capacity' in litre unit
         )
