@@ -24,7 +24,7 @@ class CarMaintenancesTest < ApplicationSystemTestCase
 
     car = cars(:skyline)
 
-    visit "/cars/#{car.id}/car_maintenances/new"
+    visit new_car_car_maintenance_path(car)
     assert_text "Service Record Baru"
     sleep 1
 

@@ -42,7 +42,7 @@
         <% if user_signed_in? %>
           <div data-controller="account">
             <div data-btn="right-top-menu" data-action="click->account#toggle" class="rounded-full bg-white w-12 h-12 flex items-center justify-center cursor-pointer">
-              <% if current_user.image&.url %>
+              <% if current_user.image %>
                 <%= image_tag current_user.image.url, class: "rounded-full w-12 h-12 object-cover" %>
               <% else %>
                 <div class="text-2xl text-red-700">

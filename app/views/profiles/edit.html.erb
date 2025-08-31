@@ -13,6 +13,13 @@
 
     <div class="mt-3">
       <%= f.label :image, "Upload Avatar" %>
+
+      <% if @user.image %>
+        <div class="my-2">
+          <%= image_tag @user.image.url %>
+        </div>
+      <% end %>
+
       <%= f.file_field :image %>
     </div>
 
