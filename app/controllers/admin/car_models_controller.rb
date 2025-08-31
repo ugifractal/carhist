@@ -4,7 +4,7 @@ module Admin
 
     # GET /cars or /cars.json
     def index
-      @car_models = CarModel.paginate(page: params[:page], per_page: 20)
+      @car_models = CarModel.joins(:car_brand).order("car_brands.name ASC, model ASC").paginate(page: params[:page], per_page: 20)
     end
 
     # GET /cars/1 or /cars/1.json
@@ -14,7 +14,7 @@ module Admin
     # GET /cars/new
     def new
       @car_model = CarModel.new
-  end
+    end
 
     # GET /cars/1/edit
     def edit
