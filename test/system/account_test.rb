@@ -18,7 +18,7 @@ class AccountTest < ApplicationSystemTestCase
     assert_text "Edit Profile"
     sleep 1
 
-    attach_file "user[image]", "#{Rails.root.to_s}/app/assets/images/candy.png"
+    attach_file "user[image]", "#{Rails.root}/app/assets/images/candy.png"
     click_on "Update"
     sleep 1
     assert_text "Profile has been successfully updated."
