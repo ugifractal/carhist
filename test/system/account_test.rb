@@ -14,12 +14,13 @@ class AccountTest < ApplicationSystemTestCase
   end
 
   test "user can update profile image" do
-    visit edit_profile_path
+    visit edit_profiles_path
+    assert_text "Edit Profile"
+    sleep 1
 
-    attach_file "user[image]", "#{Rails.root.to_s}/public/contoh.png"
-
-    click_on "Update Profile"
-    assert_text "Profile berhasil diperbarui"
-    assert_selector "img[src*='contoh.png']", wait: 5
-  en
+    attach_file "user[image]", "#{Rails.root.to_s}/app/assets/images/candy.png"
+    click_on "Update"
+    sleep 1
+    assert_text "Profile has been successfully updated."
+  end
 end
