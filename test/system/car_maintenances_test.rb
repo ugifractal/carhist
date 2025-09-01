@@ -20,7 +20,7 @@ class CarMaintenancesTest < ApplicationSystemTestCase
   test "create service" do
     car = cars(:skyline)
 
-    visit new_car_car_maintenance_path
+    visit new_car_car_maintenance_path(car)
     assert_text "Service Record Baru"
     sleep 1
 
