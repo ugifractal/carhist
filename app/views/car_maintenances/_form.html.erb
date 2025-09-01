@@ -26,10 +26,11 @@
     </div>
   </div>
 
-  <div class="mt-2">
+  <div>
     <div><%= t('views.car_maintenances.new.time') %></div>
-    <div>
-      <%= form.date_select(:performed_at, {}, class:"border border-red-800 rounded text-sm") %>
+    <div data-controller="datepicker" class="flex items-center">
+      <%= form.text_field(:performed_at, { readonly: true, value: @car_maintenance.performed_at&.strftime('%Y-%m-%d'), class:"border border-red-800 rounded text-sm" , data: { 'datepicker-target': 'input' } } ) %>
+      <div data-datepicker-target="toggle" class="-ml-6"><%= image_tag('calendar.svg', width: 20) %></div>
     </div>
   </div>
 
