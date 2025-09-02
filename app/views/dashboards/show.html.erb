@@ -29,6 +29,17 @@
     <div class="w-48 h-48 border border-red-700 flex items-center justify-center text-red-700">
         Recent Service
     </div>
+    <div class="text-sm font-semibold">
+        <%= @recent_service.car_model %> <%= @recent_service.car.year %>
+      </div>
+
+      <div class="text-sm mt-2">
+        <%= truncate(@recent_service.description, length: 50) %>
+      </div>
+
+      <div class="text-xs mt-4 text-gray-600">
+        <%= @recent_service.performed_at.strftime("%-d %b %Y") %>
+      </div>
 </div>
 
 <% if @cars.empty? %>
