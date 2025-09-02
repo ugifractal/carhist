@@ -26,20 +26,12 @@
 <% end %>
 
 <div class="flex flex-wrap gap-6 justify-start my-6">
-    <div class="w-48 h-48 border border-red-700 flex items-center justify-center text-red-700">
-        Recent Service
-    </div>
-    <div class="text-sm font-semibold">
-        <%= @recent_service.car_model %> <%= @recent_service.car.year %>
-      </div>
-
-      <div class="text-sm mt-2">
-        <%= truncate(@recent_service.description, length: 50) %>
-      </div>
-
-      <div class="text-xs mt-4 text-gray-600">
-        <%= @recent_service.performed_at.strftime("%-d %b %Y") %>
-      </div>
+<div class="w-48 h-48 border border-red-700 flex flex-col items-center justify-center text-red-700 p-2 text-center">
+      <div class="mb-6">Recent Service</div>
+      <div><%= @recent_service.car.car_model.model %> <%= @recent_service.car.car_model.year %></div>
+      <div><%= truncate(@recent_service.description, length: 50) %></div>
+      <div><%= @recent_service.performed_at.strftime("%-d %b %Y") %></div>
+  </div>
 </div>
 
 <% if @cars.empty? %>
