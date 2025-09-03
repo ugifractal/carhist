@@ -8,19 +8,15 @@ class AccountTest < ApplicationSystemTestCase
     I18n.locale = :id
   end
 
-  setup do
+  test "open edit user from right menu" do
     user = users(:sakib)
     login_as user
-  end
+    visit dashboards_path
+    sleep 1
 
-  test "user can update profile image" do
-    visit edit_profiles_path
+    page.find(:xpath, "//div[@data-btn='right-top-menu']").click
+    page.find(:xpath, "//a[contains(text(), '#{user.email}')]").click
+    sleep 1
     assert_text "Edit Profile"
-    sleep 1
-
-    attach_file "user_image", "#{Rails.root}/app/assets/images/candy.png"
-    click_on "Update"
-    sleep 1
-    assert_text "Profile has been successfully updated."
   end
 end
