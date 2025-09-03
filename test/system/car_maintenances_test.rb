@@ -20,20 +20,18 @@ class CarMaintenancesTest < ApplicationSystemTestCase
   test "create service" do
     car = cars(:skyline)
 
-    visit "/cars/#{car.id}/car_maintenances/new"
+    visit new_car_car_maintenance_path(car)
     assert_text "Service Record Baru"
     sleep 1
 
     select "AC Repair", from: "car_maintenance_maintenance_type"
     fill_in "car_maintenance_title", with: "ganti oli"
-    select "30", from: "car_maintenance_performed_at_3i"
-    select "July", from: "car_maintenance_performed_at_2i"
-    select "2022", from: "car_maintenance_performed_at_1i"
+    fill_in "car_maintenance_performed_at", with: "2020-03-10"
     fill_in "car_maintenance_description", with: "ini deskripsi"
     select "garuda", from: "car_maintenance_car_shop_id"
     click_button "Buat Service Record"
     sleep 1
-    visit "/cars/#{car.id}/car_maintenances"
+    assert_text "#{t('views.history_images.command')}"
   end
 
   test "edit service" do
@@ -46,16 +44,12 @@ class CarMaintenancesTest < ApplicationSystemTestCase
 
     select "AC Repair", from: "car_maintenance_maintenance_type"
     fill_in "car_maintenance_title", with: "ganti ban"
-    select "12", from: "car_maintenance_performed_at_3i"
-    select "June", from: "car_maintenance_performed_at_2i"
-    select "2023", from: "car_maintenance_performed_at_1i"
+    fill_in "car_maintenance_performed_at", with: "2022-07-30"
     fill_in "car_maintenance_description", with: "ini edit deskripsi"
     select "garuda", from: "car_maintenance_car_shop_id"
     click_button "Update Service Record"
     sleep 1
     assert_text "#{t('views.item.car_maintenance')} #{t('views.flash.notice_updated')}."
-
-    visit "/cars/#{car.id}/car_maintenances"
   end
 
   test "destroy service" do

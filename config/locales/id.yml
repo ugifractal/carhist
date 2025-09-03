@@ -35,6 +35,10 @@ id:
             volume:
               not_a_number: bukan angka
               greater_than: lebih besar dari %{count}
+              blank: tidak boleh  kosong
+            distance:
+              not_a_number: bukan angka
+              blank: tidak boleh kosong
         car_shop:
           attributes:
             name:
@@ -61,7 +65,7 @@ id:
       command: "Tambahkan foto service nya disini!"
     car_maintenances:
       title: "Service Record dari"
-      name: "Tambah Car Maintenance"
+      name: "Tambah Service"
       editing: "Ubah Service Record"
       button: "Cari"
       column: "Cari nama mobil..."
