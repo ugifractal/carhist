@@ -21,7 +21,10 @@ Rails.application.routes.draw do
     end
     resources :car_fuelings
     resources :device_loggers do
-      resources :device_logs
+      resources :device_logs do
+        get :graph, on: :collection
+        get :graph_data, on: :collection
+      end
     end
   end
 

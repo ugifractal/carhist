@@ -5,6 +5,14 @@ class DeviceLogsController < ApplicationController
     @logs = @device_logger.device_logs.paginate(per_page: 20, page: params[:page])
   end
 
+  def graph
+  end
+
+  def graph_data
+    @logs = @device_logger.device_logs.order(created_at: :desc).limit(1000)
+    render json: @logs.map { |x| HotswitchLogSerializer.new(x, @tz).to_h }
+  end
+
   private
 
   def set_logger
