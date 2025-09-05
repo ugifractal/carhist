@@ -1,0 +1,7 @@
+<%= link_to("Table view", car_device_logger_device_logs_path(@car, @device_logger)) %>
+<div
+  data-controller="graph"
+  data-graph-url-value="<%= graph_data_car_device_logger_device_logs_path(@car, @device_logger) %>"
+  data-graph-title-value="<%= @device_logger.type %> Graph">
+  <canvas data-graph-target="canvas">canvas</canvas>
+</div>

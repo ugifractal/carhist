@@ -10,6 +10,7 @@
           <th>Name</th>
           <th>Type</th>
           <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -17,6 +18,7 @@
           <tr>
             <td><%= link_to(logger.name, car_device_logger_path(@car, logger), class: "text-red-800 underline") %></td>
             <td><%= logger.class.to_s.split(":").last %></td>
+            <td><%= link_to("logs", car_device_logger_device_logs_path(@car, logger), class: "text-red-800 underline") %></td>
             <td>
               <%= button_to car_device_logger_path(@car, logger), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
                 <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>

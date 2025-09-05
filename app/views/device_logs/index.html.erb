@@ -1,4 +1,5 @@
 <% if @device_logger.kind_of?(Device::HotswitchLogger) %>
+  <%= link_to("Graph view", graph_car_device_logger_device_logs_path(@car, @device_logger)) %>
   <table>
     <tr>
       <th>Time</th>
