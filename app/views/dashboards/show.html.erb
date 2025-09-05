@@ -25,7 +25,7 @@
   <% end %>
 <% end %>
 
-<% if @car_maintenances.empty? %>
+<% if @recent_service.present? %>
   <div class="flex flex-wrap gap-6 justify-start my-6">
     <div class="w-48 h-48 border border-red-700 flex flex-col items-center justify-center text-red-700 p-2 text-center">
       <div class="mb-6">Recent Service</div>
@@ -34,6 +34,10 @@
       <div><%= @recent_service.performed_at&.strftime("%-d %b %Y") %></div>
     </div>
   </div>
+  <% else %>
+    <div class="mt-2">
+      Belum ada riwayat maintenance.
+    </div>
 <% end %>
 
 <% if @cars.empty? %>
