@@ -1,17 +1,65 @@
 require "application_system_test_case"
 
-class PublicCarShopsTest < ApplicationSystemTestCase
+class CarShopsTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
   test "visiting the index" do
-    visit public_car_shops_url
-    assert_text "Approved Car Shops"
+    user = users(:sakib)
+    login_as user
+
+    car_shop = car_shops(:auto200)
+    visit car_shops_url
+    sleep 1
+    assert_text "Your Car Shops"
   end
 
-  test "visiting a car shop detail" do
-    car_shop = car_shops(:approved)
-    visit "/public/car_shops/#{car_shop.id}/#{car_shop.name}"
+  test "create shop" do
+    user = users(:sakib)
+    login_as user
+
+    visit new_car_shop_url
     sleep 1
-    assert_text car_shop.name
+
+    fill_in "car_shop_name", with: "Test Shop"
+    select "Tire Shop", from: "car_shop_category"
+    fill_in "car_shop_description", with: "This is a test description"
+    click_button "Create"
+    sleep 1
+    assert_text "Car shop successfully created."
+  end
+
+  test "edit shop" do
+    user = users(:sakib)
+    login_as user
+
+    car_shop = car_shops(:auto200)
+
+    visit edit_car_shop_path(car_shop)
+    sleep 1
+    fill_in "car_shop_name", with: "Yamaha"
+    select "Ecu Shop", from: "car_shop_category"
+    fill_in "car_shop_description", with: "This is a Yamaha"
+    fill_in "car_shop_lat", with: "-7.200000"
+    fill_in "car_shop_lng", with: "156.816666"
+    select "garuda", from: "car_shop_company_id"
+    click_button "Update"
+    sleep 1
+    assert_text "Car shop updated successfully."
+  end
+
+  test "destroy" do
+    user = users(:sakib)
+    login_as user
+
+    car_model = car_shops(:auto200)
+
+    visit car_shops_url
+    sleep 1
+
+    accept_confirm do
+      page.find(:xpath, "//tbody/tr[1]//button[@data-turbo-confirm='Are you sure?']").click
+    end
+    sleep 1
+    assert_text "Car shop was successfully deleted."
   end
 end
