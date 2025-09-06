@@ -39,25 +39,22 @@ class CarShopsTest < ApplicationSystemTestCase
     fill_in "car_shop_name", with: "Yamaha"
     select "Ecu Shop", from: "car_shop_category"
     fill_in "car_shop_description", with: "This is a Yamaha"
-    fill_in "car_shop_lat", with: "-7.200000"
-    fill_in "car_shop_lng", with: "156.816666"
-    select "garuda", from: "car_shop_company_id"
     click_button "Update"
     sleep 1
-    assert_text "Car shop updated successfully."
+    assert_text "Car shop successfully updated."
   end
 
   test "destroy" do
     user = users(:sakib)
     login_as user
 
-    car_model = car_shops(:auto200)
+    car_shop = car_shops(:auto200)
 
     visit car_shops_url
     sleep 1
 
     accept_confirm do
-      page.find(:xpath, "//tbody/tr[1]//button[@data-turbo-confirm='Are you sure?']").click
+      click_button "delete-shop-#{car_shop.id}"
     end
     sleep 1
     assert_text "Car shop was successfully deleted."
