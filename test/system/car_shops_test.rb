@@ -3,7 +3,7 @@ require "application_system_test_case"
 class CarShopsTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
-  test "visiting the index" do
+  test "visiting index" do
     user = users(:sakib)
     login_as user
 
@@ -13,7 +13,7 @@ class CarShopsTest < ApplicationSystemTestCase
     assert_text "Your Car Shops"
   end
 
-  test "create shop" do
+  test "new shop" do
     user = users(:sakib)
     login_as user
 
@@ -28,7 +28,7 @@ class CarShopsTest < ApplicationSystemTestCase
     assert_text "Car shop successfully created."
   end
 
-  test "edit shop" do
+  test "update shop" do
     user = users(:sakib)
     login_as user
 
@@ -44,7 +44,7 @@ class CarShopsTest < ApplicationSystemTestCase
     assert_text "Car shop successfully updated."
   end
 
-  test "destroy" do
+  test "destroy shop" do
     user = users(:sakib)
     login_as user
 
