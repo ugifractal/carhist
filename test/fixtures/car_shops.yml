@@ -1,12 +1,15 @@
 auto200:
   name: auto200
+  category: Tire Shop
+  description: Auto200 test shop
+  company: garuda
 
 garuda:
   name: :garuda
 
 pending:
   name: bengkel asep
-  approved_at: 
+  approved_at:
 
 approved:
   name: bengkel udin

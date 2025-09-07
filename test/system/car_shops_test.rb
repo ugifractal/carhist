@@ -54,9 +54,9 @@ class CarShopsTest < ApplicationSystemTestCase
     sleep 1
 
     accept_confirm do
-      click_button "delete-shop-#{car_shop.id}"
+      page.find("[data-turbo-confirm='Are you sure?']", match: :first).click
     end
     sleep 1
-    assert_text "Car shop was successfully deleted."
+    assert_text "Car shop successfully deleted."
   end
 end
