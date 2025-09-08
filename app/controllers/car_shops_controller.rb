@@ -23,7 +23,7 @@ class CarShopsController < ApplicationController
     @car_shop = current_user.company.car_shops.build(car_shop_params)
 
     if @car_shop.save
-      redirect_to car_shops_path, notice: "Car shop successfully created."
+      redirect_to car_shops_path, notice: "Car Shop Successfully Created."
     else
       render :new
     end
@@ -33,10 +33,8 @@ class CarShopsController < ApplicationController
   end
 
   def update
-    @car_shop = current_user.company.car_shops.build(car_shop_params)
-
     if @car_shop.update(car_shop_params)
-      redirect_to car_shops_path, notice: "Car shop successfully updated."
+      redirect_to car_shops_path, notice: "Car Shop Successfully Updated."
     else
       render :edit
     end
@@ -46,7 +44,7 @@ class CarShopsController < ApplicationController
   def destroy
     @car_shop.destroy!
     respond_to do |format|
-      format.html { redirect_to car_shops_path, status: :see_other, notice: "Car shop successfully deleted." }
+      format.html { redirect_to car_shops_path, status: :see_other, notice: "Car Shop Successfully Deleted." }
       format.json { head :no_content }
     end
   end
