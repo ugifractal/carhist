@@ -34,7 +34,7 @@ class CarModelsTest < ApplicationSystemTestCase
     fill_in "Tank capacity", with: 2000
     click_button "Create"
     sleep 1
-    assert_text "Car model has been created!"
+    assert_text "Car Model Successfully Created."
   end
 
   test "edit model" do
@@ -55,7 +55,7 @@ class CarModelsTest < ApplicationSystemTestCase
     fill_in "Tank capacity", with: 50
     click_button "Update"
     sleep 1
-    assert_text "Car model was successfully updated."
+    assert_text "Car Model Successfully Updated."
   end
 
   test "destroy" do
@@ -71,6 +71,6 @@ class CarModelsTest < ApplicationSystemTestCase
       page.find(:xpath, "//tbody/tr[position()=1]/td[position()=5]/*/button[@title='Delete']").click
     end
     sleep 1
-    assert_text "Car model was successfully destroyed."
+    assert_text "Car Model Successfully deleted."
   end
 end

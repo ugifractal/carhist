@@ -25,7 +25,7 @@ class CarShopsTest < ApplicationSystemTestCase
     fill_in "car_shop_description", with: "This is a test description"
     click_button "Create"
     sleep 1
-    assert_text "Car shop successfully created."
+    assert_text "Car Shop Successfully Created."
   end
 
   test "update shop" do
@@ -41,7 +41,7 @@ class CarShopsTest < ApplicationSystemTestCase
     fill_in "car_shop_description", with: "This is a Yamaha"
     click_button "Update"
     sleep 1
-    assert_text "Car shop successfully updated."
+    assert_text "Car Shop Successfully Updated."
   end
 
   test "destroy shop" do
@@ -57,6 +57,6 @@ class CarShopsTest < ApplicationSystemTestCase
       page.find("[data-turbo-confirm='Are you sure?']", match: :first).click
     end
     sleep 1
-    assert_text "Car shop successfully deleted."
+    assert_text "Car Shop Successfully Deleted."
   end
 end
