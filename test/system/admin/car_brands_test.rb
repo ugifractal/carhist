@@ -53,6 +53,6 @@ class CarBrandsTest < ApplicationSystemTestCase
       page.find(:xpath, "//tbody/tr[position()=1]/td[position()=3]/*/button[@title='Delete']").click
     end
 
-    assert_text "Car Brand successfully Deleted."
+    assert_text "Car Brand Successfully Deleted."
   end
 end

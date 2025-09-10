@@ -71,6 +71,6 @@ class CarModelsTest < ApplicationSystemTestCase
       page.find(:xpath, "//tbody/tr[position()=1]/td[position()=5]/*/button[@title='Delete']").click
     end
     sleep 1
-    assert_text "Car Model Successfully deleted."
+    assert_text "Car Model Successfully Deleted."
   end
 end
