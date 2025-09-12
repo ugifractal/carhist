@@ -21,6 +21,6 @@ class AccountTest < ApplicationSystemTestCase
     attach_file "user_image", "#{Rails.root}/app/assets/images/candy.png"
     click_on "Update"
     sleep 1
-    assert_text "Profile Successfully Updated."
+    assert_text "#{t('views.item.profile')} #{t('views.flash.notice_updated')}."
   end
 end

@@ -3,6 +3,11 @@ require "application_system_test_case"
 class CarShopsTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
+  setup do
+    # Set language
+    I18n.locale = :id
+  end
+  
   test "visiting index" do
     user = users(:sakib)
     login_as user
@@ -25,7 +30,7 @@ class CarShopsTest < ApplicationSystemTestCase
     fill_in "car_shop_description", with: "This is a test description"
     click_button "Create"
     sleep 1
-    assert_text "Car Shop Successfully Created."
+    assert_text "#{t('views.item.car_shop')} #{t('views.flash.notice_created')}."
   end
 
   test "update shop" do
@@ -41,7 +46,7 @@ class CarShopsTest < ApplicationSystemTestCase
     fill_in "car_shop_description", with: "This is a Yamaha"
     click_button "Update"
     sleep 1
-    assert_text "Car Shop Successfully Updated."
+    assert_text "#{t('views.item.car_shop')} #{t('views.flash.notice_updated')}."
   end
 
   test "destroy shop" do
@@ -57,6 +62,6 @@ class CarShopsTest < ApplicationSystemTestCase
       page.find("[data-turbo-confirm='Are you sure?']", match: :first).click
     end
     sleep 1
-    assert_text "Car Shop Successfully Deleted."
+    assert_text "#{t('views.item.car_shop')} #{t('views.flash.notice_deleted')}."
   end
 end
