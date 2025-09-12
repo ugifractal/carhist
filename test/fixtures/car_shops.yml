@@ -2,7 +2,7 @@ auto200:
   name: auto200
   category: Tire Shop
   description: Auto200 test shop
-  company: garuda
+  company: :garuda
 
 garuda:
   name: :garuda

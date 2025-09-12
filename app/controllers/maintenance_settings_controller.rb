@@ -9,7 +9,7 @@ class MaintenanceSettingsController < ApplicationController
     @maintenance_setting = @car.maintenance_setting
 
     if @maintenance_setting.update(maintenance_setting_params)
-      redirect_to car_maintenance_setting_path(@car), notice: "Settings Successfully Updated "
+      redirect_to car_maintenance_setting_path(@car), notice: "#{t('views.item.maintenance_setting')} #{t('views.flash.notice_updated')}."
     else
       render :show
     end
