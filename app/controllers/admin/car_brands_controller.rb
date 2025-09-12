@@ -25,7 +25,7 @@ module Admin
       @car_brand = CarBrand.new(car_brand_params)
 
       if @car_brand.save
-        flash[:notice] = "Car brand has been created!"
+        flash[:notice] = "Car Brand Successfully Created."
         redirect_to admin_car_brands_path
       else
         flash.now[:alert] = @car_brand.errors.full_messages.to_sentence
@@ -37,7 +37,7 @@ module Admin
     def update
       respond_to do |format|
         if @car_brand.update(car_brand_params)
-          format.html { redirect_to admin_car_brand_path(@car_brand), notice: "Car brand was successfully updated." }
+          format.html { redirect_to admin_car_brand_path(@car_brand), notice: "Car Brand Successfully Updated." }
         else
           format.html { render :edit, status: :unprocessable_entity }
           format.json { render json: @car_brand.errors, status: :unprocessable_entity }
@@ -50,7 +50,7 @@ module Admin
       @car_brand.destroy!
 
       respond_to do |format|
-        format.html { redirect_to admin_car_brands_path, status: :see_other, notice: "Car brand was successfully destroyed." }
+        format.html { redirect_to admin_car_brands_path, status: :see_other, notice: "Car Brand Successfully Deleted." }
         format.json { head :no_content }
       end
     end

@@ -28,7 +28,7 @@ class CarShopsTest < ApplicationSystemTestCase
     select "garuda", from: "car_shop_company_id"
     click_button "Create"
     sleep 1
-    assert_text "Car shop successfully created."
+    assert_text "Car Shop Successfully Created."
   end
 
   test "edit shop" do
@@ -47,7 +47,7 @@ class CarShopsTest < ApplicationSystemTestCase
     select "garuda", from: "car_shop_company_id"
     click_button "Update"
     sleep 1
-    assert_text "Car shop updated successfully."
+    assert_text "Car Shop Successfully Updated ."
   end
 
   test "destroy" do
@@ -63,6 +63,6 @@ class CarShopsTest < ApplicationSystemTestCase
       page.find(:xpath, "//tbody/tr[1]//button[@data-turbo-confirm='Are you sure?']").click
     end
     sleep 1
-    assert_text "Car shop was successfully deleted."
+    assert_text "Car Shop Successfully Deleted."
   end
 end
