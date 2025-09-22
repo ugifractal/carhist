@@ -24,12 +24,14 @@ module Admin
     def create
       @car_brand = CarBrand.new(car_brand_params)
 
-      if @car_brand.save
-        flash[:notice] = "Car Brand Successfully Created."
-        redirect_to admin_car_brands_path
-      else
-        flash.now[:alert] = @car_brand.errors.full_messages.to_sentence
-        render :new
+      respond_to do |format|
+        if @car_brand.save
+          format.html { redirect_to admin_car_brands_path, notice: "Car Brand Successfully Created." }
+          format.json { render :show, status: :created, location: @car_brand }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @car_brand.errors, status: :unprocessable_entity }
+        end
       end
     end
 

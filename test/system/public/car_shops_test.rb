@@ -3,6 +3,11 @@ require "application_system_test_case"
 class PublicCarShopsTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
+  setup do
+    # Set language
+    I18n.locale = :id
+  end
+  
   test "visiting the index" do
     visit public_car_shops_url
     assert_text "Approved Car Shops"

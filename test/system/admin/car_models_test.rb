@@ -4,6 +4,11 @@ class CarModelsTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
   setup do
+    # Set language
+    I18n.locale = :id
+  end
+  
+  setup do
     @user = users(:admin)
     login_as @user
     @car_brand = car_brands(:suzuki)
