@@ -7,7 +7,7 @@ class CarModelsTest < ApplicationSystemTestCase
     # Set language
     I18n.locale = :id
   end
-  
+
   setup do
     @user = users(:admin)
     login_as @user

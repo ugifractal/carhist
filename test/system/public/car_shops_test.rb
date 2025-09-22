@@ -7,7 +7,7 @@ class PublicCarShopsTest < ApplicationSystemTestCase
     # Set language
     I18n.locale = :id
   end
-  
+
   test "visiting the index" do
     visit public_car_shops_url
     assert_text "Approved Car Shops"
