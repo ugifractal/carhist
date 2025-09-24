@@ -28,7 +28,7 @@ module Admin
 
       respond_to do |format|
         if @car.save
-          format.html { redirect_to @car, notice: "Car Successfully Created." }
+          format.html { redirect_to @car, notice: "Car was Successfully Created." }
           format.json { render :show, status: :created, location: @car }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -41,7 +41,7 @@ module Admin
     def update
       respond_to do |format|
         if @car.update(car_params)
-          format.html { redirect_to @car, notice: "Car Successfully Updated." }
+          format.html { redirect_to @car, notice: "Car was Successfully Updated." }
           format.json { render :show, status: :ok, location: @car }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -55,7 +55,7 @@ module Admin
       @car.destroy!
 
       respond_to do |format|
-        format.html { redirect_to cars_path, status: :see_other, notice: "Car Successfully Deleted." }
+        format.html { redirect_to cars_path, status: :see_other, notice: "Car was Successfully Deleted." }
         format.json { head :no_content }
       end
     end

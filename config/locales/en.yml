@@ -38,9 +38,9 @@ en:
     common:
       back: kembali
     flash:
-      notice_created: "was successfully created"
-      notice_updated: "was successfully updated"
-      notice_deleted: "was successfully deleted"
+      notice_created: "was Successfully Created"
+      notice_updated: "was Successfully Updated"
+      notice_deleted: "was Successfully Deleted"
     history_images:
       back: "back"
       upload_photo: "Upload Photo"

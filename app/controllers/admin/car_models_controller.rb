@@ -25,7 +25,7 @@ module Admin
       @car_model = CarModel.new(car_model_params)
 
       if @car_model.save
-        flash[:notice] = "Car Model Successfully Created."
+        flash[:notice] = "Car Model was Successfully Created."
         redirect_to admin_car_models_path
       else
         render :new
@@ -36,7 +36,7 @@ module Admin
     def update
       respond_to do |format|
         if @car_model.update(car_model_params)
-          format.html { redirect_to admin_car_models_path, notice: "Car Model Successfully Updated." }
+          format.html { redirect_to admin_car_models_path, notice: "Car Model was Successfully Updated." }
           format.json { render :show, status: :ok, location: @car_model }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -50,7 +50,7 @@ module Admin
       @car_model.destroy
 
       respond_to do |format|
-        format.html { redirect_to admin_car_models_path, status: :see_other, notice: "Car Model Successfully Deleted." }
+        format.html { redirect_to admin_car_models_path, status: :see_other, notice: "Car Model was Successfully Deleted." }
         format.json { head :no_content }
       end
     end

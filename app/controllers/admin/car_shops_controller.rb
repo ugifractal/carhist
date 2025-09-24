@@ -32,7 +32,7 @@ module Admin
       @car_shop = CarShop.new(car_shop_params)
 
       if @car_shop.save
-        redirect_to admin_car_shops_path, notice: "Car Shop Successfully Created."
+        redirect_to admin_car_shops_path, notice: "Car Shop was Successfully Created."
       else
         render :new
       end
@@ -50,7 +50,7 @@ module Admin
 
     def update
       if @car_shop.update(car_shop_params)
-        redirect_to admin_car_shops_path, notice: "Car Shop Successfully Updated ."
+        redirect_to admin_car_shops_path, notice: "Car Shop was Successfully Updated."
       else
         render :edit
       end
@@ -58,7 +58,7 @@ module Admin
 
     def destroy
       @car_shop.destroy
-      redirect_to admin_car_shops_path, notice: "Car Shop Successfully Deleted."
+      redirect_to admin_car_shops_path, notice: "Car Shop was Successfully Deleted."
     end
 
     private
