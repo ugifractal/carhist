@@ -46,3 +46,13 @@
       Belum ada riwayat maintenance.
     </div>
 <% end %>
+
+<div class="mt-6">
+    You have no cars
+  </div>
+  <div class="mt-3">
+    <%= link_to(new_car_path, class: "bg-red-700 text-white px-3 py-2 rounded") do %>
+      Add Car
+    <% end %>
+  </div>
+<% end %>
