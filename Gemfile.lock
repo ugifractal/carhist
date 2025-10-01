@@ -243,7 +243,7 @@ GEM
       date
       stringio
     public_suffix (6.0.1)
-    puma (6.4.3)
+    puma (7.0.4)
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
@@ -424,7 +424,7 @@ DEPENDENCIES
   prawn
   prawn-table
   propshaft
-  puma (~> 6.4.0)
+  puma (~> 7.0.4)
   rails (~> 8.0.3)
   rubocop-rails-omakase
   selenium-webdriver
