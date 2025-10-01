@@ -3,10 +3,9 @@ class DashboardsController < ApplicationController
   before_action :set_company
 
   def show
-    @pending_order = @company.pending_order
-    @cars = @company.cars
-    @recent_service = @company.car_maintenances
-      .includes(car: :car_model)
+    @cars = current_user.company.cars
+    @pending_order = current_user.company.pending_order
+    @recent_service = current_user.company.car_maintenances
       .order(performed_at: :desc)
       .first
   end

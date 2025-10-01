@@ -47,7 +47,8 @@
     </div>
 <% end %>
 
-<div class="mt-6">
+<% if @cars.empty? %>
+  <div class="mt-6">
     You have no cars
   </div>
   <div class="mt-3">
