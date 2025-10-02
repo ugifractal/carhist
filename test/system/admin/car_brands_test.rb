@@ -23,7 +23,7 @@ class CarBrandsTest < ApplicationSystemTestCase
     fill_in :car_brand_name, with: "chevrolet"
     click_button "Create Car brand"
     sleep 1
-    assert_text "Car Brand was Successfully Created."
+    assert_text "Car Brand was successfully created."
   end
 
   test "edit brand" do
@@ -37,7 +37,7 @@ class CarBrandsTest < ApplicationSystemTestCase
     fill_in :car_brand_name, with: "Audi"
     click_button "Update Car brand"
     sleep 1
-    assert_text "Car Brand was Successfully Updated."
+    assert_text "Car Brand was successfully updated."
   end
 
   test "destroy" do
@@ -53,6 +53,6 @@ class CarBrandsTest < ApplicationSystemTestCase
       page.find(:xpath, "//tbody/tr[position()=1]/td[position()=3]/*/button[@title='Delete']").click
     end
 
-    assert_text "Car Brand was Successfully Deleted."
+    assert_text "Car Brand was successfully deleted."
   end
 end
