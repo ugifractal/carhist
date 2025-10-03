@@ -8,6 +8,7 @@ class Company < ApplicationRecord
   end
 
   def can_add_car?
-    (plan == "free" && cars.count < 2) || (plan == "paid" && @cars.count < 6)
+    (plan == "free" && cars.count < 2) ||
+    (plan == "paid" && cars.count < 6)
   end
 end
