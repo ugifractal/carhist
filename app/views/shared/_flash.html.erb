@@ -1,0 +1,7 @@
+<% flash.each do |key, message| %>
+  <% if message.present? %>
+    <div class="<%= key == "notice" ? "text-green-600" : "text-red-600" %>">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>

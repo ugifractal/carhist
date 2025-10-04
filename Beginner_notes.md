@@ -133,3 +133,8 @@ RAILS_ENV=test bundle exec rails db:migrate
 bundle exec ruby -Itest test/system/car_maintenances_test.rb
 bundle exec rails test:system
 ```
+
+## Menjalankan Rubocop
+```bash
+bundle exec rubocop -f github
+```

@@ -53,6 +53,8 @@ id:
       car: Mobil
       car_maintenance: Service
       car_shop: Bengkel
+      maintenance_setting: Pengaturan Service
+      profile: Profil
     common:
       back: kembali
     flash:
