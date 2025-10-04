@@ -6,6 +6,7 @@ module Admin
     # GET /cars or /cars.json
     def index
       @cars = current_user.company.cars.order(name: :asc)
+      @can_add_car = current_user.company.can_add_car?
     end
 
     # GET /cars/1 or /cars/1.json
