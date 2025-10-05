@@ -28,7 +28,7 @@ class CarShopsTest < ApplicationSystemTestCase
     select "garuda", from: "car_shop_company_id"
     click_button "Create"
     sleep 1
-    assert_text "Car Shop was successfully."
+    assert_text "Car Shop was successfully created."
   end
 
   test "edit shop" do

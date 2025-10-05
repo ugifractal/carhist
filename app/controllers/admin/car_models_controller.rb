@@ -25,7 +25,7 @@ module Admin
       @car_model = CarModel.new(car_model_params)
 
       if @car_model.save
-        flash[:notice] = "Car Model was successfully."
+        flash[:notice] = "Car Model was successfully created."
         redirect_to admin_car_models_path
       else
         render :new

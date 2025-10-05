@@ -39,7 +39,7 @@ class CarModelsTest < ApplicationSystemTestCase
     fill_in "Tank capacity", with: 2000
     click_button "Create"
     sleep 1
-    assert_text "Car Model was successfully."
+    assert_text "Car Model was successfully created."
   end
 
   test "edit model" do

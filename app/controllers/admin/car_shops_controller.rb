@@ -32,7 +32,7 @@ module Admin
       @car_shop = CarShop.new(car_shop_params)
 
       if @car_shop.save
-        redirect_to admin_car_shops_path, notice: "Car Shop was successfully."
+        redirect_to admin_car_shops_path, notice: "Car Shop was successfully created."
       else
         render :new
       end
