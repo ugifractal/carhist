@@ -21,7 +21,6 @@ class CarShopsController < ApplicationController
 
   def create
     @car_shop = current_user.company.car_shops.build(car_shop_params)
-    @car_shop.user_id = current_user.id
 
     if @car_shop.save
       redirect_to car_shops_path, notice: "Car shop successfully created."
