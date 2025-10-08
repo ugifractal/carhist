@@ -23,7 +23,7 @@ class CarShopsController < ApplicationController
     @car_shop = current_user.company.car_shops.build(car_shop_params)
 
     if @car_shop.save
-      redirect_to car_shops_path, notice: "Car shop successfully created."
+      redirect_to car_shops_path, notice: "#{t('views.item.car_shop')} #{t('views.flash.notice_created')}."
     else
       render :new
     end
@@ -34,7 +34,7 @@ class CarShopsController < ApplicationController
 
   def update
     if @car_shop.update(car_shop_params)
-      redirect_to car_shops_path, notice: "Car shop successfully updated."
+      redirect_to car_shops_path, notice: "#{t('views.item.car_shop')} #{t('views.flash.notice_updated')}."
     else
       render :edit
     end
@@ -44,7 +44,7 @@ class CarShopsController < ApplicationController
   def destroy
     @car_shop.destroy!
     respond_to do |format|
-      format.html { redirect_to car_shops_path, status: :see_other, notice: "Car Shop was successfully destroyed." }
+      format.html { redirect_to car_shops_path, notice: "#{t('views.item.car_shop')} #{t('views.flash.notice_deleted')}." }
       format.json { head :no_content }
     end
   end

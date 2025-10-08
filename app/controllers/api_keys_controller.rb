@@ -15,7 +15,7 @@ class ApiKeysController < ApplicationController
     else
       @api_key = current_user.build_api_key(api_key_params)
       if @api_key.save
-        redirect_to api_keys_path, notice: "API key created successfully."
+        redirect_to api_keys_path, notice: "API key created was successfully."
       else
         render :new
       end
