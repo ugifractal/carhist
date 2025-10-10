@@ -16,6 +16,6 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.expect(user: %i[ timezone image languange])
+    params.expect(user: %i[ timezone image language])
   end
 end
