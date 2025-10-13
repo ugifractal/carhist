@@ -3,11 +3,6 @@ require "application_system_test_case"
 class CarMaintenancesTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
-  setup do
-    # Set language
-    I18n.locale = :id
-  end
-
   test "list service history" do
     user = users(:sakib)
     login_as user

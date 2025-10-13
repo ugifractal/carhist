@@ -8,3 +8,6 @@ en:
   views:
     history_images:
       back: "back"
+    car_maintenances:
+      new:
+        back: "back"
