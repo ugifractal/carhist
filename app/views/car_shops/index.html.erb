@@ -4,36 +4,39 @@
 </div>
 
 <div class="mt-4 hiddenx">
-  <table class="w-full border border-red-500">
-    <thead>
-      <tr class="py-2 bg-red-100 text-red-800">
-        <th class="text-left py-2 px-2">Name</th>
-        <th class="text-center py-2 px-2">Category</th>
-        <th class="w-48 text-center py-2 px-2">Submitted By</th>
-        <th class="w-48 text-center py-2 px-2">Description</th>
-        <th class="w-48 py-2 px-2"></th>
-        <th class="w-48 py-2 px-2"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @car_shops.each do |shop| %>
-        <tr>
-          <td class="px-4 py-3"><%= shop.name %></td>
-          <td class="px-4 py-3 text-center"><%= shop.category %></td>
-          <td class="px-4 py-3 text-center"><%= shop.description %></td>
-          <td class="px-4 py-3 text-center space-x-2 flex justify-center">
-            <%= link_to edit_car_shop_path(shop), class: "flex items-center justify-center" do %>
-              <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
-            <% end %>
-            <%= link_to car_shop_path(shop), class: "flex items-center justify-center" do %>
-              <%= image_tag "show.svg", class: "w-4 h-4 inline" %>
-            <% end %>
-            <%= button_to car_shop_path(shop), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
-              <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
-            <% end %>
-          </td>
+  <% if @car_shops.present? %>
+    <table class="w-full border border-red-500">
+      <thead>
+        <tr class="py-2 bg-red-100 text-red-800">
+          <th class="text-left py-2 px-2">Name</th>
+          <th class="text-center py-2 px-2">Category</th>
+          <th class="w-48 text-center py-2 px-2">Description</th>
+          <th class="w-48 py-2 px-2"></th>
+          <th class="w-48 py-2 px-2"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @car_shops.each do |shop| %>
+          <tr>
+            <td class="px-4 py-3"><%= shop.name %></td>
+            <td class="px-4 py-3 text-center"><%= shop.category %></td>
+            <td class="px-4 py-3 text-center"><%= shop.description %></td>
+            <td class="px-4 py-3 text-center space-x-2 flex justify-center">
+              <%= link_to edit_car_shop_path(shop), class: "flex items-center justify-center" do %>
+                <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
+              <% end %>
+              <%= link_to car_shop_path(shop), class: "flex items-center justify-center" do %>
+                <%= image_tag "show.svg", class: "w-4 h-4 inline" %>
+              <% end %>
+              <%= button_to car_shop_path(shop), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
+                <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+      <p class="mt-4">No data to show</p>
+    <% end %>
 </div>
