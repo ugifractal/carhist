@@ -4,13 +4,9 @@ class AccountTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
   setup do
-    # Set language
-    I18n.locale = :id
-  end
-
-  setup do
     user = users(:sakib)
     login_as user
+I18n.locale = user.language.to_sym
   end
 
   test "user can update profile image" do

@@ -3,14 +3,10 @@ require "application_system_test_case"
 class CarsTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
-  setup do
-    # Set language
-    I18n.locale = :id
-  end
-
   test "visiting the index" do
     user = users(:sakib)
     login_as user
+I18n.locale = user.language.to_sym
 
     car = cars(:skyline)
 
@@ -23,6 +19,7 @@ class CarsTest < ApplicationSystemTestCase
   test "create car" do
     user = users(:sakib)
     login_as user
+I18n.locale = user.language.to_sym
 
     car = cars(:skyline)
     model = car_models(:escudo)
@@ -43,6 +40,7 @@ class CarsTest < ApplicationSystemTestCase
   test "edit car" do
     user = users(:sakib)
     login_as user
+I18n.locale = user.language.to_sym
 
     car = cars(:skyline)
     model = car_models(:escudo)
@@ -61,6 +59,7 @@ class CarsTest < ApplicationSystemTestCase
   test "destroy" do
     user = users(:sakib)
     login_as user
+I18n.locale = user.language.to_sym
 
     car = cars(:skyline)
 

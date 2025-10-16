@@ -24,6 +24,7 @@ class CarModelsTest < ApplicationSystemTestCase
   test "create model" do
     user = users(:admin)
     login_as user
+I18n.locale = user.language.to_sym
 
     car_model = car_models(:escudo)
 
@@ -45,6 +46,7 @@ class CarModelsTest < ApplicationSystemTestCase
   test "edit model" do
     user = users(:admin)
     login_as user
+I18n.locale = user.language.to_sym
 
     car_model = car_models(:escudo)
 
@@ -66,6 +68,7 @@ class CarModelsTest < ApplicationSystemTestCase
   test "destroy" do
     user = users(:admin)
     login_as user
+I18n.locale = user.language.to_sym
 
     car_model = car_models(:escudo)
 
