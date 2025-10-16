@@ -6,6 +6,7 @@ class CarBrandsTest < ApplicationSystemTestCase
   test "visiting the index" do
     user = users(:admin)
     login_as user
+I18n.locale = user.language.to_sym
 
     car_brand = car_brands(:suzuki)
     visit admin_car_brands_url
@@ -17,6 +18,7 @@ class CarBrandsTest < ApplicationSystemTestCase
   test "create brand" do
     user = users(:admin)
     login_as user
+I18n.locale = user.language.to_sym
 
     visit new_admin_car_brand_url
     sleep 1
@@ -29,6 +31,7 @@ class CarBrandsTest < ApplicationSystemTestCase
   test "edit brand" do
     user = users(:admin)
     login_as user
+I18n.locale = user.language.to_sym
 
     car_brand = car_brands(:suzuki)
 
@@ -43,6 +46,7 @@ class CarBrandsTest < ApplicationSystemTestCase
   test "destroy" do
     user = users(:admin)
     login_as user
+I18n.locale = user.language.to_sym
 
     car_brand = car_brands(:suzuki)
 
