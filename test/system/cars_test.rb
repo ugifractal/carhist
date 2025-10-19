@@ -6,7 +6,7 @@ class CarsTest < ApplicationSystemTestCase
   test "visiting the index" do
     user = users(:sakib)
     login_as user
-I18n.locale = user.language.to_sym
+
 
     car = cars(:skyline)
 
@@ -19,7 +19,6 @@ I18n.locale = user.language.to_sym
   test "create car" do
     user = users(:sakib)
     login_as user
-I18n.locale = user.language.to_sym
 
     car = cars(:skyline)
     model = car_models(:escudo)
@@ -40,7 +39,6 @@ I18n.locale = user.language.to_sym
   test "edit car" do
     user = users(:sakib)
     login_as user
-I18n.locale = user.language.to_sym
 
     car = cars(:skyline)
     model = car_models(:escudo)
@@ -59,7 +57,6 @@ I18n.locale = user.language.to_sym
   test "destroy" do
     user = users(:sakib)
     login_as user
-I18n.locale = user.language.to_sym
 
     car = cars(:skyline)
 

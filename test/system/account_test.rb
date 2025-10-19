@@ -6,7 +6,6 @@ class AccountTest < ApplicationSystemTestCase
   setup do
     user = users(:sakib)
     login_as user
-I18n.locale = user.language.to_sym
   end
 
   test "user can update profile image" do

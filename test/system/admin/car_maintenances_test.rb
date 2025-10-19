@@ -6,7 +6,7 @@ class CarMaintenancesTest < ApplicationSystemTestCase
   test "visiting the index" do
     user = users(:admin)
     login_as user
-I18n.locale = user.language.to_sym
+
 
     visit admin_car_maintenances_path
     assert_text "#{t('views.car_maintenances.title')}"
@@ -15,7 +15,6 @@ I18n.locale = user.language.to_sym
   test "create car maintenance" do
     user = users(:admin)
     login_as user
-I18n.locale = user.language.to_sym
 
     visit new_admin_car_maintenance_path
     sleep 1
@@ -39,7 +38,6 @@ I18n.locale = user.language.to_sym
   test "edit car maintenance" do
     user = users(:admin)
     login_as user
-I18n.locale = user.language.to_sym
 
     car_maintenance = car_maintenances(:history)
 
@@ -65,7 +63,6 @@ I18n.locale = user.language.to_sym
   test "destroy" do
     user = users(:admin)
     login_as user
-I18n.locale = user.language.to_sym
 
     car_maintenance = car_maintenances(:history)
 

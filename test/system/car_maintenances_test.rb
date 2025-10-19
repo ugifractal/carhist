@@ -6,7 +6,6 @@ class CarMaintenancesTest < ApplicationSystemTestCase
   test "list service history" do
     user = users(:sakib)
     login_as user
-I18n.locale = user.language.to_sym
 
     car_maintenance = car_maintenances(:history)
     visit car_car_maintenances_path(car_maintenance.car)
@@ -17,7 +16,6 @@ I18n.locale = user.language.to_sym
   test "create service" do
     user = users(:sakib)
     login_as user
-I18n.locale = user.language.to_sym
 
     car = cars(:skyline)
 
@@ -38,7 +36,6 @@ I18n.locale = user.language.to_sym
   test "edit service" do
     user = users(:sakib)
     login_as user
-I18n.locale = user.language.to_sym
 
     car = cars(:skyline)
     car_maintenance = car_maintenances(:history)
@@ -60,7 +57,6 @@ I18n.locale = user.language.to_sym
   test "destroy service" do
     user = users(:sakib)
     login_as user
-I18n.locale = user.language.to_sym
 
     car = cars(:skyline)
     car_maintenance = car_maintenances(:history)
