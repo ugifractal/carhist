@@ -1,5 +1,5 @@
-<h2>Upgrade</h2>
+<h1 class="text-3xl font-bold mb-4"><%= t('orders.upgrade') %></h1>
 
 <%= form_with(model: @order, url: company_orders_path(@company), data: { turbo: false }) do |f| %>
-  <%= f.submit %>
+  <%= f.submit t('orders.create_order') %>
 <% end %>
