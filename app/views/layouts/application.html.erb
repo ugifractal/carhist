@@ -127,9 +127,9 @@
               <% current_user.company.cars.each do |car| %>
                 <div>
                   <% if active_car_page?(car.id) %>
-                    <%= link_to( car.name, car_car_maintenances_path(car), class: "underline text-red-800 ml-5 bg-red-100 block px-2 py-2" ) if car.persisted? %>
+                    <%= link_to( car.name, car_path(car), class: "underline text-red-800 ml-5 bg-red-100 block px-2 py-2" ) if car.persisted? %>
                   <% else %>
-                    <%= link_to( car.name, car_car_maintenances_path(car), class: "underline text-white ml-5 block px-2 py-2" ) if car.persisted? %>
+                    <%= link_to( car.name, car_path(car), class: "underline text-white ml-5 block px-2 py-2" ) if car.persisted? %>
                   <% end %>
                 </div>
               <% end %>

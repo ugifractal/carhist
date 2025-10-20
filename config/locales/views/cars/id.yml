@@ -1,0 +1,9 @@
+id:
+  cars:
+    car:
+      name: "Nama"
+      year: "Tahun"
+      image: "Foto"
+    show:
+      car_maintenances: "Service record"
+      device_loggers: "Device Logger"
