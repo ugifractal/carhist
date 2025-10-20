@@ -1,0 +1,9 @@
+en:
+  cars:
+    car:
+      name: "Name"
+      year: "Year"
+      image: "Image"
+    show:
+      car_maintenances: "Service records"
+      device_loggers: "Device Loggers"

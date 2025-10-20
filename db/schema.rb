@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_28_235651) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_19_232617) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -96,6 +96,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_28_235651) do
     t.integer "overall_length"
     t.integer "wheelbase"
     t.integer "tank_capacity"
+  end
+
+  create_table "car_sells", force: :cascade do |t|
+    t.integer "car_id"
+    t.decimal "price", precision: 15, scale: 2
+    t.string "status"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "car_shops", force: :cascade do |t|
@@ -197,6 +206,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_28_235651) do
     t.integer "company_id"
     t.boolean "owner", default: false
     t.string "timezone"
+    t.string "language"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
