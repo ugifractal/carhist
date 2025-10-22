@@ -1,13 +1,4 @@
-id:
-  cars:
-    index:
-      title: "Daftar Mobil"
-      column_name: "Nama"
-      add_car: "Tambah Mobil"
-      maintenance_history: "Service Record"
-  views:
-    history_images:
-      back: "kembali"
-    car_maintenances:
-      new:
-        back: "kembali"
+en:
+  orders:
+    new:
+      create_order: "Create Order"

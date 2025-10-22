@@ -79,6 +79,3 @@ en:
 
   alerts:
     car_limit_reached: "You have reached the maximum number of cars allowed for your plan."
-  orders:
-    upgrade: "Upgrade"
-    create_order: "Create Order"
