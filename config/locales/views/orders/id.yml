@@ -1,0 +1,4 @@
+id:
+  orders:
+    new:
+      create_order: "Buat Pesanan"
