@@ -98,6 +98,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_234244) do
     t.integer "tank_capacity"
   end
 
+  create_table "car_sells", force: :cascade do |t|
+    t.integer "car_id"
+    t.decimal "price", precision: 15, scale: 2
+    t.string "status"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "car_shops", force: :cascade do |t|
     t.string "name"
     t.text "address"

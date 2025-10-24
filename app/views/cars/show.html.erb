@@ -1,9 +1,11 @@
-<div>
+<div class="flex gap-x-3 items-center">
   <%= link_to(cars_path, class: 'text-red-800') do %>
     &larr; <%= t('views.cars.back') %>
   <% end %>
+
+  <%= link_to(t(".car_maintenances"), car_car_maintenances_path(@car), class: "text-red-800") %>
+  <%= link_to(t(".device_loggers"), car_device_loggers_path(@car), class: "text-red-800") %>
 </div>
-<p style="color: green"><%= notice %></p>
 
 <%= render @car %>
 
@@ -16,8 +18,4 @@
   <% else %>
     <p>No image available.</p>
   <% end %>
-</div>
-
-<div class="mt-6">
-  <%= link_to("Show Device Loggers", car_device_loggers_path(@car), class: "bg-red-800 text-white px-2 py-2 rounded") %>
 </div>

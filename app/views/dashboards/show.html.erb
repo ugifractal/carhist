@@ -25,6 +25,28 @@
   <% end %>
 <% end %>
 
+<% if @recent_service.present? %>
+  <div class="flex flex-wrap gap-6 justify-start my-6">
+    <div class="w-48 h-48 border border-red-700 flex flex-col items-center justify-center text-red-700 p-2 text-center">
+      <div class="mb-6">Recent Service</div>
+      <div class="text-sm">
+        <% car_model = @recent_service&.car&.car_model %>
+        <% if car_model %>
+          <div><%= car_model.model %> <%= car_model.year %></div>
+        <% else %>
+          <div>Unknown car</div>
+        <% end %>
+        <div><%= truncate(@recent_service.description, length: 50) %></div>
+        <div><%= format_date(@recent_service.performed_at) %></div>
+      </div>
+    </div>
+  </div>
+  <% else %>
+    <div class="mt-2">
+      Belum ada riwayat maintenance.
+    </div>
+<% end %>
+
 <% if @cars.empty? %>
   <div class="mt-6">
     You have no cars
