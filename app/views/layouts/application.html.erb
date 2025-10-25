@@ -72,7 +72,7 @@
       <div class="flex">
         <div class="hidden lg:block bg-gray-600 w-20 md:w-80 min-h-20 py-3 px-2">
           <div>
-            <h2 class="text-white text-3xl"><%= current_user.company.name %></h2>
+            <h2 class="text-white text-3xl"><%= link_to current_user.company.name, company_path(current_user.company) %></h2>
           </div>
 
           <% if dashboard_page? %>
