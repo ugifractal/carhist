@@ -1,0 +1,16 @@
+en:
+  car_sells:
+    new:
+      sell_car: Sell your car
+      description: Description
+      status: Status
+      price: Price
+      phone: Phone number
+      create: "Create listing"
+    edit:
+      sell_car: Edit car listing
+      description: Deskripsi
+      status: Status
+      price: Price
+      phone: Phone number
+      create: "Edit listing"

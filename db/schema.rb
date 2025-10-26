@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_19_232617) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_26_005215) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -98,11 +98,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_19_232617) do
     t.integer "tank_capacity"
   end
 
+  create_table "car_sell_images", force: :cascade do |t|
+    t.integer "car_sell_id"
+    t.integer "position", default: 0
+    t.jsonb "image_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "car_sells", force: :cascade do |t|
     t.integer "car_id"
     t.decimal "price", precision: 15, scale: 2
     t.string "status"
     t.text "description"
+    t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

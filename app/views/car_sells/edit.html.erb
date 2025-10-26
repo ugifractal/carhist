@@ -1,0 +1,36 @@
+<div>
+  <div>
+    <%= link_to(car_path(@car), class: 'text-red-800') do %>
+      &larr; <%= t('common.button.back') %>
+    <% end %>
+  </div>
+  <h1 class="text-4xl mt-6"><%= t(".sell_car") %></h1>
+
+  <%= form_with(model: @car_sell, url: car_car_sells_path(@car)) do |f| %>
+    <div class="mt-2">
+      <div><%= f.label(:description, t(".description")) %></div>
+      <div><%= f.text_area(:description, class: "border w-full h-64") %></div>
+    </div>
+    <div class="mt-2">
+      <div><%= f.label(:status, t(".status")) %></div>
+      <div>
+        <%= f.select(:status, [
+          [t('model.car_sell.status_desc_not_for_sale'), "not_for_sale"],
+          [t('model.car_sell.status_desc_for_sale'), "for_sale"],
+          [t('model.car_sell.status_desc_sold'), "sold"],
+        ]) %>
+      </div>
+    </div>
+    <div class="mt-2">
+      <div><%= f.label(:price, t(".price")) %></div>
+      <div><%= f.text_field(:price, class: "border") %></div>
+    </div>
+    <div class="mt-2">
+      <div><%= f.label(:price, t(".phone")) %></div>
+      <div><%= f.text_field(:phone, class: "border") %></div>
+    </div>
+    <div class="mt-5">
+      <%= f.submit(t(".create"), class: "px-2 py-1 rounded bg-red-800 text-white") %>
+    </div>
+  <% end %>
+</div>

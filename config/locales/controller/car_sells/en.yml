@@ -1,0 +1,5 @@
+en:
+  controller:
+    car_sells:
+      created: Listing has been created
+      updated: Listing has been updated

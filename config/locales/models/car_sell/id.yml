@@ -1,0 +1,6 @@
+id:
+  model:
+    car_sell:
+      status_desc_not_for_sale: Tidak dijual
+      status_desc_for_sale: Dijual
+      status_desc_sold: Sudah terjual
