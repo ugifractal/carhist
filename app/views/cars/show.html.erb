@@ -5,6 +5,11 @@
 
   <%= link_to(t(".car_maintenances"), car_car_maintenances_path(@car), class: "text-red-800") %>
   <%= link_to(t(".device_loggers"), car_device_loggers_path(@car), class: "text-red-800") %>
+  <% if @car.car_sell %>
+    <%= link_to(t(".sell"), edit_car_car_sells_path(@car), class: "text-red-800") %>
+  <% else %>
+    <%= link_to(t(".sell"), new_car_car_sells_path(@car), class: "text-red-800") %>
+  <% end %>
 </div>
 
 <%= render @car %>

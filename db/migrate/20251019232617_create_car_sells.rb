@@ -5,6 +5,7 @@ class CreateCarSells < ActiveRecord::Migration[8.0]
       t.decimal :price, precision: 15, scale: 2
       t.string :status
       t.text :description
+      t.string :phone
       t.timestamps
     end
   end

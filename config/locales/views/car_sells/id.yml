@@ -1,0 +1,16 @@
+id:
+  car_sells:
+    new:
+      sell_car: Jual Mobil
+      description: Deskripsi
+      status: Status
+      price: Harga
+      phone: No telepon
+      create: "Buat listing"
+    edit:
+      sell_car: Edit Jual Mobil
+      description: Deskripsi
+      status: Status
+      price: Harga
+      phone: No telepon
+      create: "Buat listing"
