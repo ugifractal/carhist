@@ -1,4 +1,4 @@
-<% if current_user.api_key %>
+<% if current_user.company&.api_key %>
   <p>Name: <%= current_user.api_key.name %> </p>
   <p>Your API Key: <code><%= current_user.api_key.api_key %></code></p>
   <%= button_to "Delete API Key", api_keys_path, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'bg-red-700 px-3 py-2 rounded text-white' %>
