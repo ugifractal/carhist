@@ -13,13 +13,24 @@ class AccountTest < ApplicationSystemTestCase
     login_as user
   end
 
-  test "index" do
+  test "dashboard" do
     visit dashboards_path
     assert_text "You are currently on free plan"
     sleep 1
 
     click_on "Upgrade Plan"
     sleep 1
-    assert_text "Upgrade"
+    assert_text "#{t('.upgrade')}"
+  end
+
+  test "create order
+  " do
+    user = users(:sakib)
+    login_as user
+
+    visit new_company_order_path(company)
+    sleep 1
+
+    click_button t('.create_order')
   end
 end
