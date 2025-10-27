@@ -1,0 +1,6 @@
+en:
+  model:
+    car_sell:
+      status_desc_not_for_sale: Not For Sale
+      status_desc_for_sale: For Sell
+      status_desc_sold: Sold

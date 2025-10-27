@@ -10,7 +10,7 @@ class CarsController < ApplicationController
 
   # GET /cars/1 or /cars/1.json
   def show
-    @car = Car.find(params[:id])
+    @car = current_company.cars.find(params[:id])
   end
 
   # GET /cars/new

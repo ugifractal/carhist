@@ -4,6 +4,11 @@ class CarModelsTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
   setup do
+    # Set language
+    I18n.locale = :id
+  end
+
+  setup do
     @user = users(:admin)
     login_as @user
     @car_brand = car_brands(:suzuki)
@@ -34,7 +39,7 @@ class CarModelsTest < ApplicationSystemTestCase
     fill_in "Tank capacity", with: 2000
     click_button "Create"
     sleep 1
-    assert_text "Car model has been created!"
+    assert_text "Car Model was successfully created."
   end
 
   test "edit model" do
@@ -55,7 +60,7 @@ class CarModelsTest < ApplicationSystemTestCase
     fill_in "Tank capacity", with: 50
     click_button "Update"
     sleep 1
-    assert_text "Car model was successfully updated."
+    assert_text "Car Model was successfully updated."
   end
 
   test "destroy" do
@@ -71,6 +76,6 @@ class CarModelsTest < ApplicationSystemTestCase
       page.find(:xpath, "//tbody/tr[position()=1]/td[position()=5]/*/button[@title='Delete']").click
     end
     sleep 1
-    assert_text "Car model was successfully destroyed."
+    assert_text "Car Model was successfully deleted."
   end
 end

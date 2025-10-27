@@ -98,6 +98,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_10_081632) do
     t.integer "tank_capacity"
   end
 
+  create_table "car_sell_images", force: :cascade do |t|
+    t.integer "car_sell_id"
+    t.integer "position", default: 0
+    t.jsonb "image_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "car_sells", force: :cascade do |t|
+    t.integer "car_id"
+    t.decimal "price", precision: 15, scale: 2
+    t.string "status"
+    t.text "description"
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "car_shops", force: :cascade do |t|
     t.string "name"
     t.text "address"
