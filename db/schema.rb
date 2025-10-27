@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_10_081632) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_20_234244) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -43,11 +43,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_10_081632) do
   end
 
   create_table "api_keys", force: :cascade do |t|
-    t.integer "user_id"
     t.string "api_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.string "company_id"
   end
 
   create_table "car_brands", force: :cascade do |t|
@@ -111,7 +111,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_10_081632) do
     t.decimal "price", precision: 15, scale: 2
     t.string "status"
     t.text "description"
-    t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
