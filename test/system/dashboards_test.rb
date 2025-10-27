@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class AccountTest < ApplicationSystemTestCase
+class DashboardsTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
   setup do
@@ -11,26 +11,25 @@ class AccountTest < ApplicationSystemTestCase
   setup do
     user = users(:sakib)
     login_as user
+    @company = user.company
   end
 
-  test "dashboard" do
+  test "user can view upgrade page and create order" do
     visit dashboards_path
-    assert_text "You are currently on free plan"
     sleep 1
 
+    assert_text "You are currently on free plan"
     click_on "Upgrade Plan"
     sleep 1
-    assert_text "#{t('.upgrade')}"
-  end
 
-  test "create order
-  " do
-    user = users(:sakib)
-    login_as user
-
-    visit new_company_order_path(company)
+    visit new_company_order_path(@company)
     sleep 1
 
-    click_button t('.create_order')
+    assert_text "#{t('.upgrade')}."
+
+    click_button t(".create_order")
+    sleep 1
+
+    assert_text "Access denied due to unauthorized transaction, please check client or server key"
   end
 end
