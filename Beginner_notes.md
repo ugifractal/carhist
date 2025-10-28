@@ -134,7 +134,7 @@ bundle exec ruby -Itest test/system/car_maintenances_test.rb
 bundle exec rails test:system
 ```
 
-## Rubocop
+## Menjalankan Rubocop
 ```bash
 bundle exec rubocop -f github
 ```

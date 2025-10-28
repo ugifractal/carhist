@@ -1,0 +1,5 @@
+id:
+  controller:
+    car_sells:
+      created: Listing berhasil dibuat
+      updated: Listing berhasil diupdate

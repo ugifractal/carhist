@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         get :graph_data, on: :collection
       end
     end
+    resource :car_sells
   end
 
   namespace :api do
