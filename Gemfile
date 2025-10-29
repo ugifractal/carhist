@@ -4,7 +4,7 @@ gem "dotenv"
 gem "erb_lint", require: false
 gem "faraday"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.1.0"
+gem "rails", "~> 8.1.1"
 gem "shrine"
 gem "will_paginate", "~> 4.0"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
