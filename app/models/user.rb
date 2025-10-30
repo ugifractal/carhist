@@ -7,7 +7,6 @@ class User < ApplicationRecord
          :confirmable
 
   has_many :car_shops
-  has_one :api_key, dependent: :destroy
   has_one :setting, dependent: :destroy
   belongs_to :company
 
