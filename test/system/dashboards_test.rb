@@ -22,12 +22,8 @@ class DashboardsTest < ApplicationSystemTestCase
     click_on "Upgrade Plan"
     sleep 1
 
-    visit new_company_order_path(@company)
-    sleep 1
-
-    assert_text "#{t('.upgrade')}."
-
-    click_button t(".create_order")
+    assert_text I18n.t("orders.new.upgrade")
+    click_button I18n.t("orders.new.create_order")
     sleep 1
 
     assert_text "Access denied due to unauthorized transaction, please check client or server key"
