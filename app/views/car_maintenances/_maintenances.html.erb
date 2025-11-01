@@ -1,0 +1,36 @@
+<div id="maintenances-stream" class="min-w-full divide-y divide-gray-200 space-y-5 mt-4">
+  <% if car_maintenances.any? %>
+    <table class="w-full border border-red-500">
+      <thead>
+        <tr class="py-2 bg-red-100 text-red-800">
+          <th class="px-4 py-3 text-left"><%= t('views.car_maintenances.date') %></th>
+          <th class="px-4 py-3">Title</th>
+          <th class="px-4 py-3 text-center"><%= t('views.car_maintenances.type') %></th>
+          <th class="px-4 py-3 text-center"><%= t('views.car_maintenances.photos') %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% car_maintenances.each do |car_maintenance| %>
+          <tr>
+            <td class="px-4 py-3"><%= car_maintenance.performed_at&.strftime('%d %b %Y') %></td>
+            <th class="px-4 py-3 text-red-800"><%= link_to car_maintenance.title, car_car_maintenance_path(@car, car_maintenance) %></th>
+            <td class="px-4 py-3 text-center"><%= car_maintenance.maintenance_type&.gsub('_', ' ') || "-" %></td>
+            <td class="px-4 py-3 text-center text-red-800"><%= link_to("#{car_maintenance.history_images.count} photos", car_car_maintenance_history_images_path(@car, car_maintenance), class: 'pointer text-red-800') %></td>
+            <td class="px-4 py-3 text-center space-x-2 flex justify-center">
+              <%= link_to edit_car_car_maintenance_path(@car, car_maintenance), class: "flex items-center justify-center" do %>
+                <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
+              <% end %>
+              <%= button_to car_car_maintenance_path(@car, car_maintenance), method: :delete, data: { turbo_confirm: "Are you sure?" } do %>
+                <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate(car_maintenances, renderer: CarhistTurboRenderer.new) %>
+  <% else %>
+    <p class="text-center my-10">No car maintenances found.</p>
+  <% end %>
+</div>

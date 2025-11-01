@@ -66,12 +66,13 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     car = cars(:skyline)
     car_maintenance = car_maintenances(:history)
 
-    visit "/cars/#{car.id}/car_maintenances"
+    visit car_car_maintenances_path(car)
     sleep 1
 
     accept_confirm do
       page.find("[data-turbo-confirm='Are you sure?']", match: :first).click
     end
+    sleep 1
 
     assert_text "#{t('views.item.car_maintenance')} #{t('views.flash.notice_deleted')}."
   end
