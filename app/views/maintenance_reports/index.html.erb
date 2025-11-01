@@ -1,0 +1,15 @@
+<div>
+  <h1>Maintenance Reports</h1>
+
+  <table>
+    <tr>
+      <td></td>
+    </tr>
+    <% @maintenance_reports.each do |report| %>
+      <tr>
+        <td><%= link_to(format_time(report.created_at), report.pdf.url, target: '_blank', class: "underline text-red-800") %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate(@maintenance_reports) %>
+</div>

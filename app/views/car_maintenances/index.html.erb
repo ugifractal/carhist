@@ -1,14 +1,28 @@
 <% content_for :title, "Car maintenances" %>
 
-<div class="w-full">
+<div class="w-full"
+  data-controller="maintenance--filter"
+  data-action="page-changed@window->maintenance--filter#changePage"
+  data-maintenance--filter-url-value="<%= car_car_maintenances_path(@car, page: '--paging', q: '--keyword', categories: '--categories') %>"
+  data-maintenance--filter-pdf-url-value="<%= export_pdf_car_car_maintenances_path(@car, q: '--keyword', categories: '--categories') %>"
+  data-maintenance--filter-initial-sort-value="created_at"
+  >
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
   <% end %>
 
-  <div>
-    <%= link_to(cars_path, class: 'text-red-800') do %>
-      &larr; <%= t('views.cars.back') %>
-    <% end %>
+  <div class="flex gap-x-3">
+    <div>
+      <%= link_to(cars_path, class: 'text-red-800') do %>
+        &larr; <%= t('views.cars.back') %>
+      <% end %>
+    </div>
+
+    <div>
+      <%= link_to(car_maintenance_reports_path(@car), class: 'text-red-800') do %>
+        Generated PDF reports
+      <% end %>
+    </div>
   </div>
 
   <div class="flex justify-between items-center">
@@ -29,61 +43,31 @@
           </span>
         </div>
         <div data-dropdown-target="drop" class="hidden absolute z-50 mt-2 right-0 w-36 bg-white border border-red-700 rounded shadow-lg">
-          <%= link_to 'Generate PDF', export_pdf_car_car_maintenances_path(@car), method: :get,
+          <%= link_to('Generate PDF', '#',
               class: 'block w-full text-left px-4 py-2 text-sm text-white bg-red-800 hover:bg-red-700 rounded',
-              data: { action: 'click->dropdown#hide' } %>
+              data: { action: 'click->maintenance--filter#generatePdf click->dropdown#hide' }) %>
         </div>
       </div>
     </div>
 
-      <%= form_tag car_car_maintenances_path(@car), method: :get, local: true do %>
-        <div class="flex justify-end items-center mt-3">
-          <div class="mr-2">
-            <%= text_field_tag :search, params[:search], placeholder: t('views.car_maintenances.column'), class: "border border-red-800" %>
-          </div>
+    <%= form_tag car_car_maintenances_path(@car), method: :get, local: true do %>
+      <div class="flex justify-between items-top mt-3">
+        <div>
+          <div>categories</div>
           <div>
-            <%= submit_tag t('views.car_maintenances.button'),
-              class: "rounded-md bg-red-800 text-white px-4 py-1 rounded-r-md hover:bg-red-500 font-medium" %>
+            <% CarMaintenance::MAINTENANCE_TYPES.each do |m| %>
+              <div>
+                <%= check_box_tag('categories[]', m[:name], true, id: "category_#{m[:name]}", data: { "maintenance--filter-target": "category", action: "change->maintenance--filter#changeFilter" } ) %> <%= m[:label] %>
+              </div>
+            <% end %>
           </div>
         </div>
-      <% end %>
+        <div class="mr-2">
+          <%= text_field_tag :q, params[:q], placeholder: t('views.car_maintenances.column'), class: "border border-red-800", autocomplete: "off", data: { "maintenance--filter-target": "search", action: "maintenance--filter#changeFilter" } %>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 
-  <div id="car_maintenances" class="min-w-full divide-y divide-gray-200 space-y-5 mt-4">
-    <% if @car_maintenances.any? %>
-        <table class="w-full border border-red-500">
-          <thead>
-            <tr class="py-2 bg-red-100 text-red-800">
-              <th class="px-4 py-3 text-left"><%= t('views.car_maintenances.date') %></th>
-              <th class="px-4 py-3">Title</th>
-              <th class="px-4 py-3 text-center"><%= t('views.car_maintenances.type') %></th>
-              <th class="px-4 py-3 text-center"><%= t('views.car_maintenances.photos') %></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @car_maintenances.each do |car_maintenance| %>
-              <tr>
-                <td class="px-4 py-3"><%= car_maintenance.performed_at&.strftime('%d %b %Y') %></td>
-                <th class="px-4 py-3 text-red-800"><%= link_to car_maintenance.title, car_car_maintenance_path(@car, car_maintenance) %></th>
-                <td class="px-4 py-3 text-center"><%= car_maintenance.maintenance_type&.gsub('_', ' ') || "-" %></td>
-                <td class="px-4 py-3 text-center text-red-800"><%= link_to("#{car_maintenance.history_images.count} photos", car_car_maintenance_history_images_path(@car, car_maintenance), class: 'pointer text-red-800') %></td>
-                <td class="px-4 py-3 text-center space-x-2 flex justify-center">
-                  <%= link_to edit_car_car_maintenance_path(@car, car_maintenance), class: "flex items-center justify-center" do %>
-                    <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
-                  <% end %>
-                  <%= button_to car_car_maintenance_path(@car, car_maintenance), method: :delete, data: { turbo_confirm: "Are you sure?" } do %>
-                    <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-    <% else %>
-      <p class="text-center my-10">No car maintenances found.</p>
-    <% end %>
-  </div>
-
-  <%= will_paginate(@car_maintenances) %>
+  <%= render(partial: "car_maintenances/maintenances", locals: { car_maintenances: @car_maintenances }) %>
 </div>

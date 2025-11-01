@@ -8,6 +8,7 @@ class Car < ApplicationRecord
   has_many :device_loggers, dependent: :destroy
   has_many :hotswitch_loggers, class_name: "Device::HotswitchLogger", dependent: :destroy
   has_one :car_sell, dependent: :destroy
+  has_many :maintenance_reports, dependent: :destroy
 
   validates :name, presence: true
 

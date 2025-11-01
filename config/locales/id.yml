@@ -70,7 +70,7 @@ id:
       name: "Tambah Service"
       editing: "Ubah Service Record"
       button: "Cari"
-      column: "Cari nama mobil..."
+      column: "Cari..."
       show: "Lihat"
       edit-view: "edit"
       edit: "Update Service Record"

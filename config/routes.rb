@@ -18,9 +18,10 @@ Rails.application.routes.draw do
 
   resources :cars do
     resource :maintenance_settings, only: [ :show, :update ]
+    resources :maintenance_reports
     resources :car_maintenances do
       collection do
-        get :export_pdf
+        post :export_pdf
       end
       resources :history_images do
       end
