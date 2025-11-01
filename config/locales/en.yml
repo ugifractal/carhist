@@ -11,9 +11,9 @@ en:
           required:
           attributes:
             company:
-              required: "Company must fill"
+              required: "Company is required"
             car_model:
-              required: "Car model must fill"
+              required: "Car model is required"
         user:
           attributes:
             current_password:
@@ -21,7 +21,7 @@ en:
         car_model:
           attributes:
             car_model:
-              required: "Car model must fill"
+              required: "Car model is required"
         car_maintenance:
           attributes:
             title:
