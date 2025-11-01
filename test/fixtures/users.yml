@@ -3,6 +3,7 @@ user_base: &user_base
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   confirmed_at: 2016-01-02 08:31:23
   confirmation_sent_at: 2016-01-02 08:30:59
+  language: id
 
 admin:
   <<: *user_base

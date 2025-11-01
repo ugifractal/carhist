@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    I18n.locale = :id
+    I18n.locale = current_user&.language.presence || I18n.default_locale
   end
 
   def set_timezone

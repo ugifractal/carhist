@@ -3,14 +3,10 @@ require "application_system_test_case"
 class CarsTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
-  setup do
-    # Set language
-    I18n.locale = :id
-  end
-
   test "visiting the index" do
     user = users(:sakib)
     login_as user
+
 
     car = cars(:skyline)
 
