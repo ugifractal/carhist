@@ -14,8 +14,7 @@
   <div class="mt-2">
     <div><%= t('views.car_maintenances.new.name') %></div>
     <div>
-      <%= form.select(:maintenance_type,
-       [['Oil Change', 'oil_change'],['AC Repair', 'ac_repair'],['Tire Repair', 'tire_repair'],['Other', 'other']], {}, class:"border border-red-800 rounded text-sm") %>
+      <%= form.select(:maintenance_type, CarMaintenance::MAINTENANCE_TYPES.map { |m| [ m[:label], m[:name] ] }, {}, class:"border border-red-800 rounded text-sm") %>
     </div>
   </div>
 
