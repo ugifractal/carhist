@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_01_011708) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_01_223610) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -44,10 +44,10 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_01_011708) do
 
   create_table "api_keys", force: :cascade do |t|
     t.string "api_key"
+    t.string "company_id"
     t.datetime "created_at", null: false
     t.string "name"
     t.datetime "updated_at", null: false
-    t.integer "user_id"
   end
 
   create_table "car_brands", force: :cascade do |t|
@@ -110,10 +110,14 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_01_011708) do
     t.integer "car_id"
     t.datetime "created_at", null: false
     t.text "description"
+    t.integer "district_id"
     t.string "phone"
     t.decimal "price", precision: 15, scale: 2
+    t.integer "province_id"
+    t.integer "regency_id"
     t.string "status"
     t.datetime "updated_at", null: false
+    t.integer "village_id"
   end
 
   create_table "car_shops", force: :cascade do |t|
@@ -168,6 +172,14 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_01_011708) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "districts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.bigint "regency_id"
+    t.datetime "updated_at", null: false
+    t.index ["regency_id"], name: "index_districts_on_regency_id"
+  end
+
   create_table "history_images", force: :cascade do |t|
     t.integer "car_maintenance_id"
     t.datetime "created_at", null: false
@@ -205,6 +217,20 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_01_011708) do
     t.integer "user_id"
   end
 
+  create_table "provinces", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "regencies", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.bigint "province_id"
+    t.datetime "updated_at", null: false
+    t.index ["province_id"], name: "index_regencies_on_province_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.boolean "admin", default: false
     t.integer "company_id"
@@ -228,6 +254,17 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_01_011708) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "villages", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "district_id"
+    t.string "name"
+    t.datetime "updated_at", null: false
+    t.index ["district_id"], name: "index_villages_on_district_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "districts", "regencies"
+  add_foreign_key "regencies", "provinces"
+  add_foreign_key "villages", "districts"
 end

@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   get "maintenance_settings/show"
   devise_for :users, controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations", confirmations: "users/confirmations" }
+  resources :provinces do
+    get :regencies, on: :member
+    get :districts, on: :member
+    get :villages, on: :member
+  end
 
   resource :profiles
   resource :dashboards, only: %i[show]

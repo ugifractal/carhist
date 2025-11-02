@@ -5,4 +5,8 @@ class CarSell < ApplicationRecord
 
   belongs_to :car
   has_many :car_sell_images
+  belongs_to :province
+  belongs_to :regency
+  belongs_to :district
+  belongs_to :village
 end
