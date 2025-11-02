@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def car_page?
-    controller_name == "cars"
+    controller_name == "cars" && %w[index].include?(action_name)
   end
 
   def car_shop_page?
@@ -12,6 +12,8 @@ module ApplicationHelper
   end
 
   def active_car_page?(car_id)
+    return true if controller_name == "cars" && %w[show].include?(action_name) && car_id.to_s == params[:id]
+
     params[:car_id] == car_id.to_s
   end
 
