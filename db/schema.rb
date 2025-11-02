@@ -215,7 +215,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_01_011708) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.jsonb "image_data"
-    t.string "language"
+    t.string "language", default: "id"
     t.boolean "owner", default: false
     t.datetime "remember_created_at"
     t.datetime "reset_password_sent_at"
