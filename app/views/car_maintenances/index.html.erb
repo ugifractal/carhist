@@ -25,10 +25,10 @@
     </div>
   </div>
 
-  <div class="flex justify-between items-center">
+  <div class="flex justify-between items-center mt-5">
     <h1 class="font-bold text-xl"> <%= t('views.car_maintenances.title') %> <%= @car.brand_name %> (<%= @car.name %>)</h1>
   </div>
-  <div class="flex justify-between items-center mt-2">
+  <div class="flex justify-between items-center mt-4">
     <%= link_to t('views.car_maintenances.name'), new_car_car_maintenance_path(@car), class: "rounded-md px-3.5 py-2.5 bg-red-800 hover:bg-red-500 text-white block font-medium" %>
     <%= link_to("Car fuelings", car_car_fuelings_path(@car), class: "bg-red-800 px-2 py-2 text-white rounded") %>
   </div>
