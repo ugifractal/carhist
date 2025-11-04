@@ -16,6 +16,7 @@ module ApplicationHelper
   end
 
   def format_date(time, tz = nil)
+    return "" if time.nil?
     timezone = tz || @tz || "UTC"
     time.in_time_zone(tz).strftime("%d %b %Y")
   end
