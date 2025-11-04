@@ -7,7 +7,7 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     # Set language
     I18n.locale = :id
   end
-  
+
   test "list service history" do
     user = users(:sakib)
     login_as user

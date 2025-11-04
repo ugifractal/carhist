@@ -7,7 +7,7 @@ class CarsTest < ApplicationSystemTestCase
     # Set language
     I18n.locale = :id
   end
-  
+
   test "visiting the index" do
     user = users(:sakib)
     login_as user
