@@ -47,7 +47,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_01_223610) do
     t.string "company_id"
     t.datetime "created_at", null: false
     t.string "name"
-    t.string "company_id"
+    t.datetime "updated_at", null: false
   end
 
   create_table "car_brands", force: :cascade do |t|
