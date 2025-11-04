@@ -30,7 +30,7 @@ class CarSellsController < ApplicationController
   private
 
   def car_sell_params
-    params.expect(car_sell: %i[description price status phone])
+    params.expect(car_sell: %i[description price status phone village_id district_id regency_id province_id])
   end
 
   def set_car

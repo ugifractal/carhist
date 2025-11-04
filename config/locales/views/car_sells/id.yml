@@ -2,15 +2,17 @@ id:
   car_sells:
     new:
       sell_car: Jual Mobil
-      description: Deskripsi
-      status: Status
-      price: Harga
-      phone: No telepon
       create: "Buat listing"
     edit:
       sell_car: Edit Jual Mobil
+      update: Update listing
+    form:
       description: Deskripsi
       status: Status
       price: Harga
       phone: No telepon
-      create: "Buat listing"
+    address:
+      province: Provinsi
+      regency: Kabupaten
+      district: Kecamatan
+      village: Kelurahan

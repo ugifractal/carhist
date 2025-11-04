@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   get "maintenance_settings/show"
   devise_for :users, controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations", confirmations: "users/confirmations" }
+  resources :provinces do
+    get :regencies, on: :member
+    get :districts, on: :member
+    get :villages, on: :member
+  end
 
   resource :profiles
   resource :dashboards, only: %i[show]
@@ -12,9 +17,10 @@ Rails.application.routes.draw do
 
   resources :cars do
     resource :maintenance_settings, only: [ :show, :update ]
+    resources :maintenance_reports
     resources :car_maintenances do
       collection do
-        get :export_pdf
+        post :export_pdf
       end
       resources :history_images do
       end
