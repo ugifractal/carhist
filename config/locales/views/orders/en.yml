@@ -1,0 +1,5 @@
+en:
+  orders:
+    new:
+      create_order: "Create Order"
+      upgrade: "Upgrade"
