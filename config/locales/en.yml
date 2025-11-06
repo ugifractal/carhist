@@ -53,6 +53,8 @@ en:
       car: Car
       car_maintenance: Car Maintenance
       car_shop: Car Shop
+      maintenance_setting: Maintenance Setting
+      profile: Profile
     common:
       back: kembali
     flash:
