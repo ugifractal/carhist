@@ -12,6 +12,7 @@ class CarsTest < ApplicationSystemTestCase
     user = users(:sakib)
     login_as user
 
+
     car = cars(:skyline)
 
     visit cars_url
