@@ -54,6 +54,18 @@ jobs:
           mkdir -p .kamal
           cat <<EOF > .kamal/secrets
           RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}
+          DATABASE_CACHE_URL=${{ secrets.DATABASE_CACHE_URL }}
+          DATABASE_QUEUE_URL=${{ secrets.DATABASE_QUEUE_URL }}
+          DATABASE_CABLE_URL=${{ secrets.DATABASE_CABLE_URL }}
+          DATABASE_URL=${{ secrets.DATABASE_URL }}
+          SMTP_DOMAIN=${{ secrets.SMTP_DOMAIN }}
+          SMTP_PORT=${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME=${{ secrets.SMTP_USERNAME }}
+          SMTP_PASS=${{ secrets.SMTP_PASS }}
+          MIDTRANS_CLIENT_KEY=${{ secrets.MIDTRANS_CLIENT_KEY }}
+          MIDTRANS_SERVER_KEY=${{ secrets.MIDTRANS_SERVER_KEY }}
+          MIDTRANS_BASE_URL=${{ secrets.MIDTRANS_BASE_URL }}
+          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
           EOF
 
       - name: Debug
