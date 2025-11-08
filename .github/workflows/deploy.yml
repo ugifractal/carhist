@@ -49,6 +49,13 @@ jobs:
       - name: Install Kamal
         run: gem install kamal
 
+      - name: Create Kamal secrets file
+        run: |
+          mkdir -p .kamal
+          cat <<EOF > .kamal/secrets
+          RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}
+          EOF
+
       - name: Deploy via Kamal
         run: kamal deploy --skip-push
         env:
