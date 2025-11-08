@@ -11,30 +11,50 @@ en:
           required:
           attributes:
             company:
-              required:
+              required: "Company is required"
+            car_model:
+              required: "Car model is required"
+        user:
+          attributes:
+            current_password:
+              blank: blank
+        car_model:
+          attributes:
+            car_model:
+              required: "Car model is required"
         car_maintenance:
           attributes:
             title:
               blank: empty
             description:
               blank: empty
-        messages:
-          required:
-  hello: "Hello world"
-  date:
-    order:
-      - :day
-      - :month
-      - :year
-    month_names: [January, Febuary, March, April, May, June, July, August, September, October, November, December]
-    abbr_month_names: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-    day_names: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
+            car_id:
+              blank: empty
+        car_fueling:
+          attributes:
+            volume:
+              not_a_number: not number
+              greater_than: more than %{count}
+              blank: empty
+            distance:
+              not_a_number: not number
+              blank: empty
+        car_shop:
+          attributes:
+            name:
+              blank: "Name cant be blank"
+            category:
+              blank: "Category cant be blank"
+            description:
+              blank: "Description cant be blank"
 
   views:
     item:
       car: Car
       car_maintenance: Car Maintenance
       car_shop: Car Shop
+      maintenance_setting: Maintenance Setting
+      profile: Profile
     common:
       back: kembali
     flash:
@@ -44,6 +64,7 @@ en:
     history_images:
       back: "back"
       upload_photo: "Upload Photo"
+      command: "Add photo here!"
     car_maintenances:
       title: "Car maintenances of"
       name: "New car maintenance"
@@ -62,6 +83,7 @@ en:
       date: "Date"
       type: "Type"
       photos: "Photos"
+      description: "Description:"
     cars:
       new: "Add Car"
       back: "Back to cars"
@@ -79,3 +101,16 @@ en:
 
   alerts:
     car_limit_reached: "You have reached the maximum number of cars allowed for your plan."
+
+  support:
+    array:
+      words_connector: ' '
+
+  date:
+    order:
+      - :day
+      - :month
+      - :year
+    month_names: [January, Febuary, March, April, May, June, July, August, September, October, November, December]
+    abbr_month_names: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+    day_names: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]

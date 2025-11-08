@@ -1,9 +1,9 @@
 class ApiKey < ApplicationRecord
-  belongs_to :user
+  belongs_to :company
 
   before_create :generate_api_key
 
-  validates :user_id, uniqueness: true
+  validates :company_id, uniqueness: true
 
   private
 
