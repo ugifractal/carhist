@@ -1,0 +1,21 @@
+name: Deploy Production
+on:
+  push:
+    branches:
+      - main
+jobs:
+  kamal:
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'staging' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.KAMAL_DEPLOY_PRIVATE_KEY }}
+      - run: kamal deploy
+    concurrency:
+      group: deploy-${{ github.ref }}
+      cancel-in-progress: true
