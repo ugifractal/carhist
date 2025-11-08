@@ -56,6 +56,9 @@ jobs:
           RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}
           EOF
 
+      - name: Debug
+        run: cat .kamal/secrets
+
       - name: Deploy via Kamal
         run: kamal deploy --skip-push
         env:
