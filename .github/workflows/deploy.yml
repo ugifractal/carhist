@@ -49,12 +49,9 @@ jobs:
       - name: Install Kamal
         run: gem install kamal
 
-      - name: Debug files
-        run: |
-          ls -R .
-
       - name: Deploy via Kamal
         run: kamal deploy --skip-push
         env:
           KAMAL_REGISTRY_USERNAME: ${{ secrets.KAMAL_REGISTRY_USERNAME }}
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
