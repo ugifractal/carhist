@@ -88,7 +88,7 @@ en:
       new: "Add Car"
       back: "Back to cars"
       name: "Name"
-      tahun: "Year"
+      year: "Year"
       model: "Car Model"
       create: "Create Car"
     car_shops:
