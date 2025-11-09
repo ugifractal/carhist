@@ -1,7 +1,7 @@
 class CarMaintenancesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_car
-  before_action :set_car_maintenance, only: %i[ show edit update destroy manage_photos ]
+  before_action :set_car_maintenance, only: %i[ show edit update destroy manage_photos share delete_share]
   before_action :set_collections, only: [ :new, :edit, :create, :update ]
 
   # GET /car_maintenances or /car_maintenances.json
@@ -20,6 +20,16 @@ class CarMaintenancesController < ApplicationController
   def export_pdf
     MaintenancePdfJob.perform_now(car_id: @car.id, keyword: params[:q], categories: params[:categories])
     flash[:notice] = "PDF export in progress, once done you can download it under 'maintenance report' section."
+  end
+
+  def share
+    @car_maintenance.generate_shared_link!
+    flash[:notice] = "Shared link has been created!"
+  end
+
+  def delete_share
+    @car_maintenance.delete_shared_link!
+    flash[:notice] = "Shared link has been deleted!"
   end
 
   # GET /car_maintenances/1 or /car_maintenances/1.json
