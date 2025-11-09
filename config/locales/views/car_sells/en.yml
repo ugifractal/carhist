@@ -5,7 +5,7 @@ en:
       create: "Create listing"
     edit:
       sell_car: Edit car listing
-      create: "Edit listing"
+      update: "Edit listing"
     form:
       description: Deskripsi
       status: Status

@@ -1,0 +1,31 @@
+<div
+  data-controller="carsell--upload"
+  data-carsell--upload-info-url-value="<%= car_car_sells_car_sell_images_path(@car, @car_sell, format: 'json') %>"
+  data-carsell--upload-url-value="<%= car_car_sells_car_sell_images_path(@car, @car_sell, format: 'json') %>">
+  <div class="mt-6">
+    <div>
+      <% if @car_sell_images.size == 0 %>
+        <h2 class="text-lg font-bold text-red-800 mb-4"><%= t('views.history_images.command') %></h2>
+      <% else %>
+        <h2 class="text-lg font-bold text-red-800 mb-4">
+          Foto foto <%= @car.name %>
+        </h2>
+      <% end %>
+
+      <% if @car_sell_images.size < 10 %>
+        <%= form_tag(url: car_car_sells_car_sell_images_path(@car, @car_sell), method: :post) do %>
+          <%= link_to t('views.history_images.upload_photo'), '#', class: "upload-link rounded-md bg-red-800 text-white px-4 py-2 rounded-r-md hover:bg-red-700 font-medium", data: { action: "click->carsell--upload#triggerUpload" } %>
+          <%= file_field_tag(:image, multiple: true, data: {'carsell--upload-target': 'file', action: 'change->carsell--upload#upload'}, class: "hidden") %>
+        <% end %>
+      <% end %>
+    </div>
+    <div data-carsell--upload-target="progressList" class="mt-3">
+    </div>
+  </div>
+
+  <div id="carsell-images-frame" class="mt-6 flex flex-wrap">
+    <% @car_sell_images.each do |image| %>
+      <%= render(partial: 'car_sell_images/image', locals: { image: }) %>
+    <% end %>
+  </div>
+</div>

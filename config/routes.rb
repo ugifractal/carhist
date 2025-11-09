@@ -23,8 +23,7 @@ Rails.application.routes.draw do
       collection do
         post :export_pdf
       end
-      resources :history_images do
-      end
+      resources :history_images
     end
     resources :car_fuelings
     resources :device_loggers do
@@ -33,7 +32,9 @@ Rails.application.routes.draw do
         get :graph_data, on: :collection
       end
     end
-    resource :car_sells
+    resource :car_sells do
+      resources :car_sell_images
+    end
   end
 
   namespace :api do
