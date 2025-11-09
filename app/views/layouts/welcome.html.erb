@@ -6,9 +6,11 @@
     <%= stylesheet_link_tag "carhist", "data-turbo-track": "reload" %>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%= yield(:meta) %>
   </head>
-  <body>
   <title><%= content_for?(:title) ? yield(:title) : "Carhist" %> | Carhist</title>
+  <body>
+
     <div>
       <div class="flex flex-wrap items-center justify-between bg-gray-300 text-red-800 py-5 px-3">
         <div>

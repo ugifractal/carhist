@@ -20,9 +20,9 @@ Rails.application.routes.draw do
     resource :maintenance_settings, only: [ :show, :update ]
     resources :maintenance_reports
     resources :car_maintenances do
-      collection do
-        post :export_pdf
-      end
+      post :export_pdf, on: :collection
+      post :share, on: :member
+      delete :delete_share, on: :member
       resources :history_images
     end
     resources :car_fuelings
@@ -88,4 +88,5 @@ Rails.application.routes.draw do
   get "/public/car_shops", to: "public/car_shops#index"
   get "/public/car_models/:id/:name", to: "public/car_models#show"
   get "/public/car_models", to: "public/car_models#index"
+  get "/public/car_maintenances/:token", to: "public/car_maintenances#show", as: :shared_car_maintenance
 end

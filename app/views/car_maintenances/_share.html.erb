@@ -1,0 +1,18 @@
+<div id="share_stream">
+  <% if car_maintenance.token.present? %>
+    <div class="flex gap-x-3 items-center">
+      <div>
+        Share link: <%= link_to(shared_car_maintenance_url(car_maintenance.token), shared_car_maintenance_path(car_maintenance.token), target: '_blank', class: 'text-red-800') %>
+      </div>
+      <div>
+        <%= form_with(url: delete_share_car_car_maintenance_path(car_maintenance.car, car_maintenance), method: :delete, data: { turbo: true, turbo_stream: true, turbo_confirm: "Are you sure?" }) do %>
+          <%= submit_tag("Delete", class: "text-red-800") %>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <%= form_with(url: share_car_car_maintenance_path(car_maintenance.car, car_maintenance), data: { turbo: true, turbo_stream: true }) do %>
+      <%= submit_tag("Create a shared link", class: "text-white px-3 py-2 bg-red-800 rounded") %>
+    <% end %>
+  <% end %>
+</div>

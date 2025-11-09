@@ -10,6 +10,14 @@ class CarMaintenance < ApplicationRecord
   belongs_to :car_shop, optional: true
   validates :maintenance_type, :description, :title, presence: true
 
+  def generate_shared_link!
+    update!(token: SecureRandom.hex(5))
+  end
+
+  def delete_shared_link!
+    update!(token: nil)
+  end
+
   def self.apply_filter(keyword:, categories:)
     query = all
     query = query.where("LOWER(description) ILIKE :keyword OR LOWER(title) ILIKE :keyword", keyword: "%#{keyword.downcase}%") if keyword.present?

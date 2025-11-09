@@ -1,0 +1,11 @@
+<turbo-stream target="flash" action="replace">
+  <template>
+    <%= render(partial: 'shared/flash', formats: [:html]) %>
+  </template>
+</turbo-stream>
+
+<turbo-stream target="share_stream" action="replace">
+  <template>
+    <%= render(partial: 'car_maintenances/share', formats: [:html], locals: { car_maintenance: @car_maintenance }) %>
+  </template>
+</turbo-stream>

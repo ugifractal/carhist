@@ -1,0 +1,30 @@
+<% content_for :meta do %>
+  <meta property="og:title" content="<%= @car_maintenance.title %>" />
+  <meta property="og:description" content="<%= @car_maintenance.description %>" />
+  <meta property="og:url" content="<%= shared_car_maintenance_url(@car_maintenance.token) %>" />
+  <% if @car_maintenance.history_images.any? %>
+    <meta property="og:image" content="https://carhist.duruxignition.com<%= @car_maintenance.history_images.first.image.url %>" />
+  <% end %>
+<% end %>
+<div class="px-8 py-8">
+  <div>
+    Car: <%= @car_maintenance.car.name %>
+  </div>
+  <div>
+    Title: <%= @car_maintenance.title %>
+  </div>
+  <div>Description</div>
+  <div>
+    <%= @car_maintenance.description %>
+  </div>
+
+  <div class="flex gap-x-5">
+    <% @car_maintenance.history_images.each do |hi| %>
+      <div class="">
+        <%= link_to(hi.image.url, target: '_blank') do %>
+          <%= image_tag(hi.image.url, class: "h-56") %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

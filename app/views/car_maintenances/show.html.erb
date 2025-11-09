@@ -1,12 +1,22 @@
-<div>
+<div class="flex gap-x-3">
   <%= link_to(car_path(@car), class: 'text-red-800') do %>
     &larr; <%= t('views.history_images.back') %>
+  <% end %>
+
+  <%= link_to edit_car_car_maintenance_path(@car, @car_maintenance) do %>
+    <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
+    <%= t('.edit') %>
+  <% end %>
+
+  <%= button_to car_car_maintenance_path(@car, @car_maintenance), method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", data: { turbo_confirm: "Are you sure?" } do %>
+    <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
+    <%= t('views.car_maintenances.destroy') %>
   <% end %>
 </div>
 
 <% content_for :title, "Showing car maintenance" %>
 
-<div class="md:w-2/3 w-full">
+<div class="md:w-2/3 w-full mt-6">
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
   <% end %>
@@ -16,17 +26,16 @@
   <div>
     Maintenance Type: <%= @car_maintenance.maintenance_type %>
   </div>
-  <div>
-    <%= t('views.car_maintenances.description') %>
-    <%= @car_maintenance.description %>
+  <div class="mt-3">
+    <div>
+      <%= t('views.car_maintenances.description') %>
+    </div>
+    <div>
+      <%= @car_maintenance.description %>
+    </div>
   </div>
+</div>
 
-  <%= link_to edit_car_car_maintenance_path(@car, @car_maintenance) do %>
-    <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
-    <%= t('.edit') %>
-  <% end %>
-  <%= button_to car_car_maintenance_path(@car, @car_maintenance), method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", data: { turbo_confirm: "Are you sure?" } do %>
-    <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
-    <%= t('views.car_maintenances.destroy') %>
-  <% end %>
+<div class="mt-6">
+  <%= render(partial: 'car_maintenances/share', locals: { car_maintenance: @car_maintenance }) %>
 </div>
