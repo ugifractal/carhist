@@ -44,10 +44,10 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_01_223610) do
 
   create_table "api_keys", force: :cascade do |t|
     t.string "api_key"
+    t.string "company_id"
     t.datetime "created_at", null: false
     t.string "name"
     t.datetime "updated_at", null: false
-    t.integer "user_id"
   end
 
   create_table "car_brands", force: :cascade do |t|
@@ -241,7 +241,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_01_223610) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.jsonb "image_data"
-    t.string "language", default: "id"
+    t.string "language"
     t.boolean "owner", default: false
     t.datetime "remember_created_at"
     t.datetime "reset_password_sent_at"
