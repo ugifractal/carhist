@@ -7,6 +7,7 @@ class CarSellsController < ApplicationController
 
   def edit
     @car_sell = @car.car_sell
+    @car_sell_images = @car_sell.car_sell_images
   end
 
   def create
@@ -20,6 +21,7 @@ class CarSellsController < ApplicationController
 
   def update
     @car_sell = @car.car_sell
+
     if @car_sell.update(car_sell_params)
       redirect_to(car_car_sells_path(@car), notice: t("controller.car_sells.updated"))
     else
