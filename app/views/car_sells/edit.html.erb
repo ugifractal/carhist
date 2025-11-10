@@ -18,6 +18,10 @@
     </div>
   <% end %>
 
+  <% if @car_sell.status == "for_sale" %>
+    <div><%= link_to("Public Link: #{car_for_sale_url(@car_sell.token)}", car_for_sale_url(@car_sell.token)) %></div>
+  <% end %>
+
   <div class="mt-5">
     <%= render(partial: "car_sells/photos") %>
   </div>
