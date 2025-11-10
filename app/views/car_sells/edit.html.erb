@@ -1,8 +1,12 @@
 <div>
-  <div>
+  <div class="flex items-center gap-x-3">
     <%= link_to(car_path(@car), class: 'text-red-800') do %>
       &larr; <%= t('common.button.back') %>
     <% end %>
+
+    <div>
+      <%= button_to("Delete listing", car_car_sells_path(@car), method: :delete, data: { turbo_confirm: 'Are you sure?'}) %>
+    </div>
   </div>
   <h1 class="text-4xl mt-6"><%= t(".sell_car") %></h1>
 

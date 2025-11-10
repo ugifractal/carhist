@@ -2,4 +2,5 @@ en:
   controller:
     car_sells:
       created: Listing has been created
-      updated: Listing has been updated
+      updated: Listing has been
+      deleted: listing has been succesfully deleted.

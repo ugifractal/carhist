@@ -8,6 +8,12 @@ Rails.application.routes.draw do
              confirmations: "users/confirmations"
            }
 
+  resources :provinces do
+    get :regencies, on: :member
+    get :districts, on: :member
+    get :villages, on: :member
+  end
+
   resource :profiles
   resource :dashboards, only: %i[show]
   resources :companies do

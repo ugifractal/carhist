@@ -9,4 +9,12 @@ class CarSell < ApplicationRecord
   belongs_to :regency
   belongs_to :district
   belongs_to :village
+
+  before_create :generate_token
+
+  private
+
+  def generate_token
+    self.token = SecureRandom.hex(5)
+  end
 end

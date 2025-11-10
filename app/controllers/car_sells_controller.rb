@@ -29,6 +29,11 @@ class CarSellsController < ApplicationController
     end
   end
 
+  def destroy
+    @car.car_sell.destroy
+    redirect_to(car_path(@car), notice: t("controller.car_sells.deleted"))
+  end
+
   private
 
   def car_sell_params
