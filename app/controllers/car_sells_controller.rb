@@ -13,7 +13,7 @@ class CarSellsController < ApplicationController
   def create
     @car_sell = @car.car_sell || @car.build_car_sell(car_sell_params)
     if @car_sell.save
-      redirect_to(car_car_sells_path(@car), notice: t("controller.car_sells.created"))
+      redirect_to(edit_car_car_sells_path(@car), notice: t("controller.car_sells.created"))
     else
       render action: :new
     end
