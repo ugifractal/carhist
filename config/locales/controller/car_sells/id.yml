@@ -3,3 +3,4 @@ id:
     car_sells:
       created: Listing berhasil dibuat
       updated: Listing berhasil diupdate
+      deleted: Listing berhasil dihapus.

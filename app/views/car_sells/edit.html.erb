@@ -1,8 +1,12 @@
 <div>
-  <div>
+  <div class="flex items-center gap-x-3">
     <%= link_to(car_path(@car), class: 'text-red-800') do %>
       &larr; <%= t('common.button.back') %>
     <% end %>
+
+    <div>
+      <%= button_to("Delete listing", car_car_sells_path(@car), method: :delete, data: { turbo_confirm: 'Are you sure?'}) %>
+    </div>
   </div>
   <h1 class="text-4xl mt-6"><%= t(".sell_car") %></h1>
 
@@ -10,10 +14,11 @@
     <%= render(partial: "car_sells/form", locals: { f: }) %>
 
     <div class="mt-5">
-      <%= render(partial: "car_sells/photos") %>
-    </div>
-    <div class="mt-5">
       <%= f.submit(t(".update"), class: "px-2 py-1 rounded bg-red-800 text-white") %>
     </div>
   <% end %>
+
+  <div class="mt-5">
+    <%= render(partial: "car_sells/photos") %>
+  </div>
 </div>
