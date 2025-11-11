@@ -95,4 +95,5 @@ Rails.application.routes.draw do
   get "/public/car_models/:id/:name", to: "public/car_models#show"
   get "/public/car_models", to: "public/car_models#index"
   get "/public/car_maintenances/:token", to: "public/car_maintenances#show", as: :shared_car_maintenance
+  get "/public/marketplace/:token", to: "public/marketplace#show", as: :car_for_sale
 end
