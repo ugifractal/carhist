@@ -27,8 +27,10 @@
 
 <% if @recent_service.present? %>
   <div class="flex flex-wrap gap-6 justify-start my-6">
-    <div class="w-48 h-48 border border-red-700 flex flex-col items-center justify-center text-red-700 p-2 text-center">
-      <%= link_to t('.recent_service'), car_car_maintenances_path(@recent_service.car), class:"mb-6" %>
+    <%= link_to car_car_maintenances_path(@recent_service.car), class: "w-48 h-48 border border-red-700 flex flex-col items-center justify-center text-red-700 p-2 text-center" do %>
+      <div class="mb-6 font-bold">
+        <%= t('.recent_service') %>
+      </div>
       <div class="text-sm">
         <% car_model = @recent_service&.car&.car_model %>
         <% if car_model %>
@@ -39,7 +41,7 @@
         <div><%= truncate(@recent_service.description, length: 50) %></div>
         <div><%= format_date(@recent_service.performed_at) %></div>
       </div>
-    </div>
+    <% end %>
   </div>
   <% else %>
     <div class="mt-2">
