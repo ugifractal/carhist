@@ -46,7 +46,7 @@ class CarMaintenancesTest < ApplicationSystemTestCase
     car_maintenance = car_maintenances(:history)
 
     visit "/cars/#{car.id}/car_maintenances/#{car_maintenance.id}/edit"
-    assert_text "Ubah Service Record"
+    assert_text "#{t('views.car_maintenances.edit')}"
     sleep 1
 
     select "AC Repair", from: "car_maintenance_maintenance_type"
