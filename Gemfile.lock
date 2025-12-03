@@ -122,7 +122,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    dotenv (3.1.8)
+    dotenv (3.2.0)
     down (5.4.2)
       addressable (~> 2.8)
     drb (2.2.3)
