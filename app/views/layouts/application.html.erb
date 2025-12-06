@@ -87,8 +87,8 @@
             <span>My Car</span>
           <% end %>
 
-          <% if user_signed_in? %>
-            <% current_user.company.cars.each do |car| %>
+          <% if user_signed_in? && current_user.company.present? %>
+            <% current_user.company.cars.where.not(id: nil).each do |car| %>
               <%= link_to car_path(car),
                 class: "flex items-center ml-8 gap-2 px-2 py-1 text-sm rounded-md hover:bg-[#2A1C33] #{active_car_page?(car.id) ? 'bg-[#2A1C33]' : ''}" do %>
                 <span class="text-base">&#10551;</span>
