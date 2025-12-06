@@ -1,6 +1,6 @@
 <% content_for :title, "Cars" %>
 
-<h1 class="text-2xl">
+<h1 class="text-2xl text-white">
   <%= t('cars.index.title') %>
 </h1>
 
@@ -13,9 +13,9 @@
 </div>
 <div class="mt-4 overflow-x-scroll">
   <% if @cars.any? %>
-    <table class="w-full border border-red-500">
+    <table class="w-full border border-[#C7C7D1]">
       <thead>
-        <tr class="bg-red-100 text-red-800 font-semibold">
+        <tr class="bg-red-100 text-[#2A1C33] font-semibold">
           <th class="py-2 px-4 text-center">No</th>
           <th class="py-2 px-4 text-center"><%= t('cars.index.column_name') %></th>
           <th class="py-2 px-4 text-center">Brand & Model</th>
@@ -27,19 +27,19 @@
       <tbody>
         <% if user_signed_in? %>
           <% @cars.each_with_index do |car, index| %>
-            <tr>
+            <tr class="text-white">
               <td class="text-center py-2 px-4"><%= index + 1 %></td>
               <td class="text-center py-2 px-4">
-                <%= link_to car.name, car_path(car), class: "underline text-red-600" %>
+                <%= link_to car.name, car_path(car) %>
               </td>
               <td class="text-center py-2 px-4">
                 <%= car.car_model.car_brand.name %> <%= car.car_model.model %> <%= car.car_model.year %>
               </td>
               <td class="text-center py-2 px-4">
-                <%= link_to t('cars.index.maintenance_history'), car_car_maintenances_path(car), class: 'underline text-red-700' %>
+                <%= link_to t('cars.index.maintenance_history'), car_car_maintenances_path(car) %>
               </td>
               <td class="text-center py-2 px-4">
-                <%= link_to "Fuelings", car_car_fuelings_path(car), class: 'underline text-red-700' %>
+                <%= link_to "Fuelings", car_car_fuelings_path(car) %>
               </td>
               <td class="text-center py-2 px-4 space-x-2 flex justify-center">
                 <%= link_to edit_car_path(car), class: "text-blue-600 hover:underline" do %>

@@ -15,7 +15,7 @@
       <% end %>
     </title>
   </head>
-  <body class="h-screen overflow-hidden">
+  <body>
     <div class="bg-[#2A1C33]">
       <div class="flex flex-wrap items-center justify-between bg-[#342a3b] text-white py-5 px-3">
         <div data-controller="sidebar" class="block lg:hidden">
@@ -41,11 +41,11 @@
         </div>
         <% if user_signed_in? %>
           <div data-controller="account">
-            <div data-btn="right-top-menu" data-action="click->account#toggle" class="rounded-full bg-[#1C1424] w-12 h-12 flex items-center justify-center cursor-pointer">
+            <div data-btn="right-top-menu" data-action="click->account#toggle" class="rounded-full bg-white w-12 h-12 flex items-center justify-center cursor-pointer">
               <% if current_user.image %>
                 <%= image_tag current_user.image.url, class: "rounded-full w-12 h-12 object-cover" %>
               <% else %>
-                <div class="text-2xl text-white">
+                <div class="text-2xl text-[#1C1424]">
                   <%= current_user.email[0].upcase %>
                 </div>
               <% end %>
@@ -70,7 +70,7 @@
         <% end %>
       </div>
       <div class="flex">
-        <nav class="w-64 bg-[#1C1424] text-white py-6 px-4 space-y-2 h-screen overflow-y-auto">
+        <nav class="w-64 bg-[#1C1424] text-white py-6 px-4 space-y-2 min-h-screen">
           <div class="bg-[#2A1C33] rounded-md mx-2 mb-4 p-3">
             <%= link_to current_user.company.name,
                 company_path(current_user.company),
@@ -108,7 +108,7 @@
             <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
           <% end %>
         </nav>
-        <div class="flex-1 w-full px-5 py-5 h-screen overflow-y-auto">
+        <div class="flex-1 w-full px-5 py-5">
           <%= render "shared/flash" %>
           <div id="flash_notice_stream" class="text-green-600">
           </div>

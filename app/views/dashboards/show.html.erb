@@ -4,7 +4,7 @@
 <% if current_user.company.plan == "paid" %>
   Plan: <%= current_user.company.plan %> Until <%= current_user.company.paid_until.strftime("%d %b %Y") %>
 <% else %>
-  <div>
+  <div class="text-white">
     You are currently on free plan
   </div>
 
@@ -18,7 +18,7 @@
     </div>
   <% else %>
     <div class="mt-3">
-      <%= link_to(new_company_order_path(current_user.company), class: "bg-red-700 text-white px-3 py-2 rounded") do %>
+      <%= link_to(new_company_order_path(current_user.company), class: "bg-[#6D4AFF] text-white px-3 py-2 rounded") do %>
         Upgrade Plan
       <% end %>
     </div>
@@ -44,7 +44,7 @@
     <% end %>
   </div>
   <% else %>
-    <div class="mt-2">
+    <div class="text-white mt-2">
       Belum ada riwayat maintenance.
     </div>
 <% end %>
