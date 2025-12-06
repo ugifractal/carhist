@@ -1,24 +1,23 @@
-<h1 class="text-2xl">Your Car Shops</h1>
+<h1 class="text-2xl text-white">Your Car Shops</h1>
 <div class="mt-4">
-  <%= link_to "Create New Car Shop", new_car_shop_path, class: 'bg-red-700 px-3 py-2 rounded text-white' %>
+  <%= link_to "Create New Car Shop", new_car_shop_path, class: 'bg-[#6D4AFF] px-3 py-2 rounded text-white' %>
 </div>
 
 <div class="mt-4 hiddenx">
   <% if @car_shops.present? %>
-    <table class="w-full border border-red-500">
+    <table class="w-full border border-[#C7C7D1]">
       <thead>
-        <tr class="py-2 bg-red-100 text-red-800">
-          <th class="text-left py-2 px-2">Name</th>
-          <th class="text-center py-2 px-2">Category</th>
-          <th class="w-48 text-center py-2 px-2">Description</th>
-          <th class="w-48 py-2 px-2"></th>
-          <th class="w-48 py-2 px-2"></th>
+        <tr class="py-2 bg-red-100 text-red-[#2A1C33]">
+          <th class="py-2 px-4 text-center">Name</th>
+          <th class="py-2 px-4 text-center">Category</th>
+          <th class="py-2 px-4 text-center">Description</th>
+          <th class="py-2 px-4 text-center">Action</th>
         </tr>
       </thead>
       <tbody>
         <% @car_shops.each do |shop| %>
-          <tr>
-            <td class="px-4 py-3"><%= shop.name %></td>
+          <tr class="text-white">
+            <td class="py-2 px-4 text-center"><%= shop.name %></td>
             <td class="px-4 py-3 text-center"><%= shop.category %></td>
             <td class="px-4 py-3 text-center"><%= shop.description %></td>
             <td class="px-4 py-3 text-center space-x-2 flex justify-center">
@@ -37,6 +36,6 @@
       </tbody>
     </table>
   <% else %>
-      <p class="mt-4">No data to show</p>
+      <p class="mt-4 text-white">No data to show</p>
     <% end %>
 </div>
