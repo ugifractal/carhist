@@ -1,16 +1,16 @@
 <div>
-  <%= link_to(cars_path, class: 'text-red-800') do %>
+  <%= link_to(cars_path, class: 'text-white') do %>
     &larr; <%= t('views.cars.back') %>
   <% end %>
 </div>
 
 <% content_for :title, "Editing car" %>
 
-<h1 class="text-2xl">Editing car</h1>
+<h1 class="text-2xl text-[#6D4AFF]">Editing car</h1>
 <%= form_with model: @car, local: true do |form| %>
   <%= render 'form', car: @car, form: form %>
   <div class="mt-2">
-    <%= form.submit 'Update', class: 'bg-red-800 text-white rounded py-2 px-3' %>
+    <%= form.submit 'Update', class: "bg-[#6D4AFF] text-white px-4 py-2 rounded-md hover:bg-[#5b3ce0] transition" %>
   </div>
 <% end %>
 <br>

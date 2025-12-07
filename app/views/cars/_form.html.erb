@@ -10,22 +10,24 @@
     </div>
   <% end %>
 
-  <div class="mt-2">
-    <%= form.label :name,t('views.cars.name'), style: "display: block" %>
-    <%= form.text_field :name, class: 'border' %>
-  </div>
+  <div class="text-[#6D4AFF]">
+    <div class="mt-2">
+      <%= form.label :name,t('views.cars.name'), style: "display: block", class: "text-white" %>
+      <%= form.text_field :name, class: 'border' %>
+    </div>
 
-  <div class="mt-2">
-    <%= form.label :year,t('views.cars.year'), style: "display: block" %>
-    <%= form.select(:year, (1900..(Time.now.year)).map { |x| [x,x] }.reverse, class: 'border') %>
-  </div>
+    <div class="mt-2">
+      <%= form.label :year,t('views.cars.year'), style: "display: block", class: "text-white" %>
+      <%= form.select(:year, (1900..(Time.now.year)).map { |x| [x,x] }.reverse, class: 'border') %>
+    </div>
 
-  <div class="mt-2">
-    <%= form.label :car_model_id,t('views.cars.model'), style: "display: block" %>
-    <%= form.select :car_model_id, CarModel.all.map { |m| ["#{m.car_brand.name} #{m.model}", m.id] } %>
-  </div>
+    <div class="mt-2">
+      <%= form.label :car_model_id,t('views.cars.model'), style: "display: block", class: "text-white" %>
+      <%= form.select :car_model_id, CarModel.all.map { |m| ["#{m.car_brand.name} #{m.model}", m.id] } %>
+    </div>
 
-  <div class="mt-2">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
+    <div class="mt-2 text-white">
+      <%= form.label :image %>
+      <%= form.file_field :image %>
+    </div>
   </div>
