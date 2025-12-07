@@ -27,8 +27,8 @@
 
 <% if @recent_service.present? %>
   <div class="flex flex-wrap gap-6 justify-start my-6">
-    <%= link_to car_car_maintenances_path(@recent_service.car), class: "w-48 h-48 border border-red-700 flex flex-col items-center justify-center text-red-700 p-2 text-center" do %>
-      <div class="mb-6 font-bold">
+    <%= link_to car_car_maintenances_path(@recent_service.car), class: "w-48 h-48 border border-[#6D4AFF]  flex flex-col items-center justify-center text-[#6D4AFF] p-2 text-center" do %>
+      <div class="mb-6 font-bold text-white">
         <%= t('.recent_service') %>
       </div>
       <div class="text-sm">
