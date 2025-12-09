@@ -1,21 +1,53 @@
-<div class="text-[#6D4AFF]">
-  <div class="mt-2">
-    <%= form.label :name, class: "text-white" %><br>
-    <%= form.text_field :name, class:"border rounded" %>
+<% if service_shop.errors.any? %>
+  <div class="bg-red-600 text-white p-3 rounded-lg mb-4">
+    <h2 class="font-semibold mb-1">
+      <%= pluralize(service_shop.errors.count, "error") %> prohibited this service shop from being saved:
+    </h2>
+    <ul class="list-disc pl-5 text-sm">
+      <% service_shop.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="text-white space-y-5">
+
+  <!-- Name -->
+  <div>
+    <%= form.label :name, "Name", class: "block mb-1 font-medium" %>
+    <%= form.text_field :name,
+          placeholder: "e.g. Agus Tire & Wheel",
+          class: "border border-[#6D4AFF] bg-transparent rounded px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-[#6D4AFF]" %>
   </div>
 
-  <div class="mt-2">
-    <div class="text-white"><%= "Category" %></div>
-    <div>
-      <%= form.select(:category,
-      [['Tire Shop', 'tire_shop'],['Ecu Shop', 'ecu_shop'],['Suspension', 'suspension'],['Other', 'other']], {}, class:"border rounded") %>
-    </div>
+  <!-- Category -->
+  <div>
+    <%= form.label :category, "Category", class: "block mb-1 font-medium" %>
+    <%= form.select :category,
+          [
+            ['Tire Shop', 'tire_shop'],
+            ['ECU Shop', 'ecu_shop'],
+            ['Suspension', 'suspension'],
+            ['Other', 'other']
+          ],
+          { include_blank: "- Select Category -" },
+          class: "border border-[#6D4AFF] bg-transparent rounded px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-[#6D4AFF]" %>
   </div>
 
-  <div class="mt-2">
-    <div class="text-white"><%= "Description" %></div>
-    <div>
-      <%= form.text_area(:description, class: 'border w-80 h-80 rounded') %>
-    </div>
+  <!-- Description -->
+  <div>
+    <%= form.label :description, "Description", class: "block mb-1 font-medium" %>
+    <%= form.text_area :description,
+          placeholder: "Write detail description here...",
+          rows: 6,
+          class: "border border-[#6D4AFF] bg-transparent rounded px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-[#6D4AFF]" %>
   </div>
+
+  <!-- Submit Button -->
+  <div class="pt-2">
+    <%= form.submit "Save Shop",
+          class: "bg-[#6D4AFF] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#5A3EDF] transition w-full" %>
+  </div>
+
 </div>

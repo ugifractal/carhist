@@ -1,12 +1,21 @@
-<% content_for :title, "Editing car brand" %>
+<div>
+  <%= link_to admin_car_brand_path(@car_brand), class: 'text-red-800 hover:text-red-600' do %>
+    &larr; <%= t('views.car_brands.back_show', default: 'Back to brand details') %>
+  <% end %>
+</div>
 
-<h1>Editing car brand</h1>
+<% content_for :title, t('views.car_brands.edit_title', default: 'Editing Car Brand') %>
+
+<h1 class="font-bold text-4xl mb-6">
+  <%= t('views.car_brands.edit_heading', default: 'Edit Car Brand') %>
+</h1>
 
 <%= render "form", car_brand: @car_brand %>
 
-<br>
+<div class="mt-6 flex gap-4">
+  <%= link_to t('views.car_brands.show', default: 'Show this car brand'), admin_car_brand_path(@car_brand),
+        class: "text-blue-500 hover:text-blue-400 underline" %>
 
-<div>
-  <%= link_to "Show this car brand", admin_car_brand_path(@car_brand) %> |
-  <%= link_to "Back to car brands", admin_car_brands_path %>
+  <%= link_to t('views.car_brands.back_index', default: 'Back to car brands'), admin_car_brands_path,
+        class: "text-gray-400 hover:text-gray-200 underline" %>
 </div>

@@ -1,8 +1,14 @@
-<div>
-  <%= link_to(car_car_fuelings_path(@car), class: 'text-red-800') do %>
-    &larr; <%= t('views.cars.back') %>
+<div class="mb-4">
+  <%= link_to car_car_fuelings_path(@car),
+        class: "text-[#6D4AFF] hover:underline flex items-center gap-1" do %>
+    <span class="text-lg">&larr;</span> <%= t('views.cars.back') %>
   <% end %>
 </div>
 
-<h2 class="text-xl">New Fuel filling</h2>
-<%= render partial: 'car_fuelings/form' %>
+<h2 class="text-2xl font-semibold text-white mb-4">
+  <span class="text-[#6D4AFF]">New</span> Fuel Filling
+</h2>
+
+<div class="p-5 border border-[#6D4AFF] rounded-xl bg-[#1A1A22]/50 backdrop-blur-sm shadow-lg">
+  <%= render partial: "car_fuelings/form" %>
+</div>

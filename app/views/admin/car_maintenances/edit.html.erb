@@ -1,15 +1,29 @@
-<div>
-  <%= link_to(admin_car_maintenances_path, class: 'text-red-800') do %>
-    &larr; <%= t('views.history_images.back') %>
+<div class="mb-4">
+  <%= link_to admin_car_maintenances_path,
+      class: "text-[#6D4AFF] hover:underline flex items-center gap-1" do %>
+    <span class="text-lg">&larr;</span>
+    <%= t('views.history_images.back') %>
   <% end %>
 </div>
 
-<% content_for :title, "Editing car maintenance" %>
+<% content_for :title, "Editing Car Maintenance" %>
 
-<h1 class="font-bold text-4xl"> <%= t('views.car_maintenances.editing') %></h1>
-<%= form_with model: @car_maintenance, url: admin_car_maintenance_path(@car_maintenance), local: true do |form| %>
-  <%= render 'form', car_maintenance: @car_maintenance, form: form %>
-  <div class="mt-8">
-    <%= form.submit 'Update', class: 'bg-red-800 text-white rounded py-2 px-3' %>
-  </div>
-<% end %>
+<h1 class="text-2xl font-bold text-white mb-4">
+  <span class="text-[#6D4AFF]"><%= t('views.car_maintenances.editing') %></span>
+</h1>
+
+<div class="p-5 border border-[#6D4AFF] rounded-xl bg-[#1A1A22]/50 backdrop-blur-md">
+  <%= form_with model: @car_maintenance,
+                url: admin_car_maintenance_path(@car_maintenance),
+                local: true do |form| %>
+
+    <%= render 'form', car_maintenance: @car_maintenance, form: form %>
+
+    <div class="mt-5">
+      <%= form.submit 'Update',
+          class: "bg-[#6D4AFF] text-white px-5 py-2 rounded-lg font-medium
+                 hover:bg-[#5A3EDF] transition-all shadow-sm" %>
+    </div>
+
+  <% end %>
+</div>

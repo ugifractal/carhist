@@ -1,7 +1,26 @@
-<% if current_user.company&.api_key %>
-  <p>Name: <%= current_user.company.api_key.name %> </p>
-  <p>Your API Key: <code><%= current_user.company.api_key.api_key %></code></p>
-  <%= button_to "Delete API Key", api_keys_path, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'bg-red-700 px-3 py-2 rounded text-white' %>
-<% else %>
-  <%= link_to "Create API Key", new_api_key_path, class: 'bg-red-700 px-3 py-2 rounded text-white' %>
-<% end %>
+<div class="text-white space-y-4">
+
+  <% if current_user.company&.api_key %>
+    <div class="flex items-center gap-2">
+      <p class="font-semibold">Name:</p>
+      <span class="text-[#6D4AFF] font-medium"><%= current_user.company.api_key.name %></span>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <p class="font-semibold">API Key:</p>
+      <code class="text-[#6D4AFF]"><%= current_user.company.api_key.api_key %></code>
+    </div>
+
+    <%= button_to "Delete API Key", api_keys_path,
+      method: :delete,
+      data: { turbo_confirm: "Are you sure?" },
+      class: "bg-[#6D4AFF] hover:bg-[#5D3ED6] transition px-4 py-2 rounded-lg text-white font-medium"
+    %>
+
+  <% else %>
+    <%= link_to "Create API Key", new_api_key_path,
+      class: "bg-[#6D4AFF] hover:bg-[#5D3ED6] transition px-4 py-2 rounded-lg text-white font-medium"
+    %>
+  <% end %>
+
+</div>

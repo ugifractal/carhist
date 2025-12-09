@@ -1,33 +1,44 @@
-  <% if car.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
-
-      <ul>
-        <% car.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="text-[#6D4AFF]">
-    <div class="mt-2">
-      <%= form.label :name,t('views.cars.name'), style: "display: block", class: "text-white" %>
-      <%= form.text_field :name, class: 'border' %>
-    </div>
-
-    <div class="mt-2">
-      <%= form.label :year,t('views.cars.year'), style: "display: block", class: "text-white" %>
-      <%= form.select(:year, (1900..(Time.now.year)).map { |x| [x,x] }.reverse, class: 'border') %>
-    </div>
-
-    <div class="mt-2">
-      <%= form.label :car_model_id,t('views.cars.model'), style: "display: block", class: "text-white" %>
-      <%= form.select :car_model_id, CarModel.all.map { |m| ["#{m.car_brand.name} #{m.model}", m.id] } %>
-    </div>
-
-    <div class="mt-2 text-white">
-      <%= form.label :image %>
-      <%= form.file_field :image %>
-    </div>
+<% if car.errors.any? %>
+  <div class="bg-red-600 text-white p-3 rounded-lg mb-4">
+    <h2 class="font-semibold mb-1">
+      <%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:
+    </h2>
+    <ul class="list-disc pl-5 text-sm">
+      <% car.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
   </div>
+<% end %>
+
+<div class="text-white space-y-4">
+
+  <div>
+    <%= form.label :name, t('views.cars.name'), class: "block mb-1 font-medium" %>
+    <%= form.text_field :name,
+          class: "border border-[#6D4AFF] bg-transparent rounded px-3 py-2 w-full focus:outline-none" %>
+  </div>
+
+  <div>
+    <%= form.label :year, t('views.cars.year'), class: "block mb-1 font-medium" %>
+    <%= form.select :year,
+          (1900..Time.current.year).to_a.reverse,
+          {},
+          class: "border border-[#6D4AFF] bg-transparent rounded px-3 py-2 w-full focus:outline-none" %>
+  </div>
+
+  <div>
+    <%= form.label :car_model_id, t('views.cars.model'), class: "block mb-1 font-medium" %>
+    <%= form.select :car_model_id,
+          CarModel.all.map { |m| ["#{m.car_brand.name} #{m.model}", m.id] },
+          {},
+          class: "border border-[#6D4AFF] bg-transparent rounded px-3 py-2 w-full focus:outline-none" %>
+  </div>
+
+  <div>
+    <%= form.label :image, "Car Image", class: "block mb-1 font-medium" %>
+    <%= form.file_field :image,
+          class: "border border-[#6D4AFF] bg-transparent rounded px-3 py-2 w-full focus:outline-none" %>
+  </div>
+
+</div>

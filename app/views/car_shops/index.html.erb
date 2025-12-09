@@ -1,41 +1,53 @@
-<h1 class="text-2xl text-white">Your Car Shops</h1>
+<h1 class="text-2xl font-semibold text-white">Your Car Shops</h1>
+
 <div class="mt-4">
-  <%= link_to "Create New Car Shop", new_car_shop_path, class: "bg-[#6D4AFF] text-white px-4 py-2 rounded-md hover:bg-[#5b3ce0] transition" %>
+  <%= link_to "Create New Car Shop",
+        new_car_shop_path,
+        class: "bg-[#6D4AFF] hover:bg-[#5A3EDF] transition px-4 py-2 rounded-lg text-white font-medium" %>
 </div>
 
-<div class="mt-4 hiddenx">
+<div class="mt-6 overflow-x-auto">
   <% if @car_shops.present? %>
-    <table class="w-full border border-[#C7C7D1]">
-      <thead>
-        <tr class="py-2 bg-red-100 text-red-[#2A1C33]">
-          <th class="py-2 px-4 text-center">Name</th>
-          <th class="py-2 px-4 text-center">Category</th>
-          <th class="py-2 px-4 text-center">Description</th>
-          <th class="py-2 px-4 text-center">Action</th>
+    <table class="w-full border border-[#6D4AFF] text-white rounded-lg overflow-hidden">
+      <thead class="bg-[#6D4AFF]">
+        <tr>
+          <th class="py-2 px-4 text-center font-medium">Name</th>
+          <th class="py-2 px-4 text-center font-medium">Category</th>
+          <th class="py-2 px-4 text-center font-medium">Description</th>
+          <th class="py-2 px-4 text-center font-medium">Action</th>
         </tr>
       </thead>
       <tbody>
         <% @car_shops.each do |shop| %>
-          <tr class="text-white">
+          <tr class="hover:bg-[#2A1C33] transition">
             <td class="py-2 px-4 text-center"><%= shop.name %></td>
             <td class="px-4 py-3 text-center"><%= shop.category %></td>
             <td class="px-4 py-3 text-center"><%= shop.description %></td>
-            <td class="px-4 py-3 text-center space-x-2 flex justify-center">
-              <%= link_to edit_car_shop_path(shop), class: "flex items-center justify-center" do %>
-                <%= image_tag "edit.svg", class: "w-4 h-4 inline" %>
+            <td class="px-4 py-3 flex items-center justify-center gap-3">
+
+              <%= link_to edit_car_shop_path(shop),
+                    class: "hover:opacity-80 transition" do %>
+                <%= image_tag "edit.svg", class: "w-4 h-4" %>
               <% end %>
-              <%= link_to car_shop_path(shop), class: "flex items-center justify-center" do %>
-                <%= image_tag "show.svg", class: "w-4 h-4 inline" %>
+
+              <%= link_to car_shop_path(shop),
+                    class: "hover:opacity-80 transition" do %>
+                <%= image_tag "show.svg", class: "w-4 h-4" %>
               <% end %>
-              <%= button_to car_shop_path(shop), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
-                <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
+
+              <%= button_to car_shop_path(shop),
+                    method: :delete,
+                    data: { turbo_confirm: "Are you sure?" },
+                    class: "hover:opacity-80 transition" do %>
+                <%= image_tag "trash.svg", class: "w-5 h-5" %>
               <% end %>
+
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
   <% else %>
-      <p class="mt-4 text-white">No data to show</p>
-    <% end %>
+    <p class="mt-4 text-gray-300 italic text-sm">No data to show</p>
+  <% end %>
 </div>

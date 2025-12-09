@@ -1,16 +1,23 @@
-<div>
-  <%= link_to(car_shops_path, class: 'text-white') do %>
-    &larr; <%= t('views.cars.back') %>
+<div class="mb-4">
+  <%= link_to car_shops_path, class: "text-[#6D4AFF] hover:underline flex items-center gap-1" do %>
+    <span class="text-lg">&larr;</span> <%= t('views.cars.back') %>
   <% end %>
 </div>
 
 <% content_for :title, "New Car Shop" %>
 
-<h1 class="text-2xl text-[#6D4AFF]">New Car Shop</h1>
-<%= form_with(model: @car_shop, url: car_shops_path, local: true) do |form| %>
-  <%= render "form", car_shop: @car_shop, form: form %>
-  <div class="mt-2">
-    <%= form.submit 'Create', class: "bg-[#6D4AFF] text-white px-4 py-2 rounded-md hover:bg-[#5b3ce0] transition"%>
-  </div>
-<% end %>
-<br>
+<h1 class="text-2xl font-semibold text-white mb-4">
+  <span class="text-[#6D4AFF]">New</span> Car Shop
+</h1>
+
+<div class="p-5 border border-[#6D4AFF] rounded-xl shadow-sm bg-[#1A1A22]/50 backdrop-blur-md">
+  <%= form_with model: @car_shop, url: car_shops_path, local: true do |form| %>
+    <%= render "form", car_shop: @car_shop, form: form %>
+
+    <div class="mt-5">
+      <%= form.submit "Create",
+            class: "bg-[#6D4AFF] text-white px-5 py-2 rounded-lg font-medium
+                    hover:bg-[#5A3EDF] transition-all shadow-sm" %>
+    </div>
+  <% end %>
+</div>
