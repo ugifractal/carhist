@@ -1,5 +1,5 @@
 <h1 class="font-bold mb-4"><%= t('.upgrade') %></h1>
 
 <%= form_with(model: @order, url: company_orders_path(@company), data: { turbo: false }) do |f| %>
-  <%= f.submit t('.create_order') %>
+  <%= f.submit t('.create_order'), class: 'bg-[#6D4AFF] px-3 py-2 rounded text-white' %>
 <% end %>
