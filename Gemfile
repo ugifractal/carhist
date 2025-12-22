@@ -80,3 +80,5 @@ gem "prawn"
 gem "prawn-table"
 
 gem "inline_svg", "~> 1.10"
+
+gem "jwt"

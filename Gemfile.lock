@@ -165,8 +165,10 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.3.1)
       railties (>= 6.0.0)
-    json (2.17.1)
-    kamal (2.9.0)
+    json (2.16.0)
+    jwt (3.1.2)
+      base64
+    kamal (2.8.2)
       activesupport (>= 7.0)
       base64 (~> 0.2)
       bcrypt_pbkdf (~> 1.0)
@@ -428,6 +430,7 @@ DEPENDENCIES
   inline_svg (~> 1.10)
   jbuilder
   jsbundling-rails (~> 1.3)
+  jwt
   kamal
   letter_opener
   pg (~> 1.6.2)
