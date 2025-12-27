@@ -37,12 +37,9 @@ jobs:
         id: gemini
         uses: google-github-actions/run-gemini-cli@main
         env:
-          GOOGLE_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         with:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
-          google_api_key: ${{ secrets.GEMINI_API_KEY }}
-          use_vertex_ai: true
           prompt: |
             You are an AI code reviewer.
             Review the following pull request diff and give:
