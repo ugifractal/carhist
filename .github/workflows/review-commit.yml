@@ -35,9 +35,10 @@ jobs:
 
       - name: Run Gemini Review
         id: gemini
-        uses: google-github-actions/run-gemini-cli@main
+        uses: google-github-actions/run-gemini-cli@v1
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         with:
-          gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
           prompt: |
             You are an AI code reviewer.
             Review the following pull request diff and give:
@@ -63,4 +64,4 @@ jobs:
           body: |
             🤖 **Gemini AI Commit Analysis (${{ github.event.pull_request.head.sha }})**
             ---
-            ${{ steps.gemini.outputs.summary }}
+            ${{ steps.gemini.outputs.response }}
