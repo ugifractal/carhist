@@ -6,7 +6,7 @@
     <%= stylesheet_link_tag "carhist", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "datepicker", "data-turbo-track": "reload" %>
     <%= csrf_meta_tags %>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
       <% if (title = yield(:title)).present? %>
         <%= title %>
@@ -70,7 +70,7 @@
         <% end %>
       </div>
       <div class="flex">
-        <nav class="hidden lg:block w-64 bg-[#1C1424] text-white py-6 px-4 space-y-2 min-h-screen">
+        <nav class="w-64 bg-[#1C1424] text-white py-6 px-4 space-y-2 min-h-screen">
           <div class="bg-[#2A1C33] rounded-md mx-2 mb-4 p-3">
             <%= link_to current_user.company.name,
                 company_path(current_user.company),
