@@ -21,7 +21,7 @@ class CarBrandsTest < ApplicationSystemTestCase
     visit new_admin_car_brand_url
     sleep 1
     fill_in :car_brand_name, with: "chevrolet"
-    click_button "Create Car brand"
+    click_button "Save Brand"
     sleep 1
     assert_text "Car Brand was successfully created."
   end
@@ -35,7 +35,7 @@ class CarBrandsTest < ApplicationSystemTestCase
     visit edit_admin_car_brand_path(car_brand)
     sleep 1
     fill_in :car_brand_name, with: "Audi"
-    click_button "Update Car brand"
+    click_button "Save Brand"
     sleep 1
     assert_text "Car Brand was successfully updated."
   end
