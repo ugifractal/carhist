@@ -1,14 +1,25 @@
-<div>
-  <%= link_to(car_car_maintenances_path(@car), class: 'text-red-800') do %>
-    &larr; <%= t('views.history_images.back') %>
+<div class="mb-4">
+  <%= link_to car_car_maintenances_path(@car),
+        class: "text-[#6D4AFF] hover:underline flex items-center gap-1" do %>
+    <span class="text-lg">&larr;</span> <%= t('views.history_images.back') %>
   <% end %>
 </div>
 
-<% content_for :title, "Editing car maintenance" %>
+<% content_for :title, "Editing Car Maintenance" %>
 
-<div class="md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl"> <%= t('views.car_maintenances.edit') %></h1>
+<div class="w-full md:w-2/3 bg-[#1A1A22]/50 backdrop-blur-md border border-[#6D4AFF] rounded-xl p-6 shadow-md">
+
+  <h1 class="text-2xl font-semibold text-white mb-5">
+    <%= t('views.car_maintenances.edit') %>
+  </h1>
 
   <%= render "form", car_maintenance: @car_maintenance %>
 
+  <div class="mt-5">
+    <%= form_with model: @car_maintenance, url: car_car_maintenance_path(@car, @car_maintenance), local: true do |form| %>
+      <%= form.submit "Update",
+            class: "bg-[#6D4AFF] text-white px-5 py-2 rounded-lg font-medium
+                    hover:bg-[#5A3EDF] transition-all shadow" %>
+    <% end %>
+  </div>
 </div>

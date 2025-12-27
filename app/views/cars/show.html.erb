@@ -1,14 +1,14 @@
 <div class="flex gap-x-3 items-center">
-  <%= link_to(cars_path, class: 'text-red-800') do %>
+  <%= link_to(cars_path, class: 'text-white') do %>
     &larr; <%= t('views.cars.back') %>
   <% end %>
 
-  <%= link_to(t(".car_maintenances"), car_car_maintenances_path(@car), class: "text-red-800") %>
-  <%= link_to(t(".device_loggers"), car_device_loggers_path(@car), class: "text-red-800") %>
+  <%= link_to(t(".car_maintenances"), car_car_maintenances_path(@car), class: "text-white") %>
+  <%= link_to(t(".device_loggers"), car_device_loggers_path(@car), class: "text-white") %>
   <% if @car.car_sell %>
-    <%= link_to(t(".sell"), edit_car_car_sells_path(@car), class: "text-red-800") %>
+    <%= link_to(t(".sell"), edit_car_car_sells_path(@car), class: "text-white") %>
   <% else %>
-    <%= link_to(t(".sell"), new_car_car_sells_path(@car), class: "text-red-800") %>
+    <%= link_to(t(".sell"), new_car_car_sells_path(@car), class: "text-white") %>
   <% end %>
 </div>
 
@@ -21,6 +21,6 @@
       <%= image_tag(@car.image.url, class:"px-5 w-60 h-60 object-cover") %>
     <% end %>
   <% else %>
-    <p>No image available.</p>
+    <p class="text-white">No image available.</p>
   <% end %>
 </div>

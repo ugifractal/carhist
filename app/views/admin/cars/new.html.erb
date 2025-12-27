@@ -1,16 +1,25 @@
-<div>
-  <%= link_to(admin_cars_path, class: 'text-red-800') do %>
-    &larr; <%= t('views.cars.back') %>
+<div class="mb-4">
+  <%= link_to admin_cars_path, class: "text-[#6D4AFF] hover:underline flex items-center gap-1" do %>
+    <span class="text-lg">&larr;</span> <%= t('views.cars.back') %>
   <% end %>
 </div>
 
-<% content_for :title, "New car" %>
+<% content_for :title, "New Car" %>
 
-<h1 class="text-2xl"><%= t('views.cars.new') %></h1>
-<%= form_with model: @car, url: admin_cars_path(@car), local: true do |form| %>
-  <%= render 'form', car: @car, form: form %>
-  <div class="mt-2">
-    <%= form.submit t('views.cars.create'), class: 'bg-red-800 text-white rounded py-2 px-3' %>
-  </div>
-<% end %>
+<h1 class="text-2xl font-semibold text-white mb-4">
+  <span class="text-[#6D4AFF]">New</span> Car
+</h1>
+
+<div class="p-5 border border-[#6D4AFF] rounded-xl shadow-sm bg-[#1A1A22]/50 backdrop-blur-md">
+  <%= form_with model: @car, url: admin_cars_path(@car), local: true do |form| %>
+    <%= render "form", car: @car, form: form %>
+
+    <div class="mt-6">
+      <%= form.submit t('views.cars.create'),
+            class: "bg-[#6D4AFF] text-white rounded-lg py-2 px-5 font-medium
+                     hover:bg-[#5A3EDF] transition-all shadow-sm" %>
+    </div>
+  <% end %>
+</div>
+
 <br>

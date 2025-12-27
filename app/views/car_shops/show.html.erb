@@ -1,5 +1,5 @@
 <div>
-  <%= link_to(car_shops_path, class: 'text-red-800') do %>
+  <%= link_to(car_shops_path, class: 'text-white') do %>
     &larr; <%= t('views.cars.back') %>
   <% end %>
 </div>
@@ -11,13 +11,15 @@
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
   <% end %>
 
-  <h1 class="font-bold text-4xl">Showing car shop</h1>
+  <h1 class="font-bold text-4xl mt-2 mb-4 text-[#6D4AFF]">Showing car shop</h1>
 
-  <div>
-    Car Shop Name: <%= @car_shop.name %>
-  </div>
+  <p>
+    <strong class="text-[#6D4AFF]">Car Shop Name: </strong>
+    <span class="text-white"><%= @car_shop.name %></span>
+  </p>
 
-  <div>
-    Category: <%= @car_shop.category %>
-  </div>
+  <p>
+    <strong class="text-[#6D4AFF]">Category: </strong>
+    <span class="text-white"><%= @car_shop.category %></span>
+  </p>
 </div>
