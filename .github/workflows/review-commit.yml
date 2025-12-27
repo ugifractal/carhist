@@ -2,7 +2,10 @@ name: AI Commit Scoring
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types:
+      - opened
+      - synchronize
+      - reopened
 
 jobs:
   score-and-analyze:
@@ -24,36 +27,62 @@ jobs:
           curl -sL \
             -H "Accept: application/vnd.github.v3.diff" \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            https://api.github.com/repos/${{ github.repository }}/commits/$COMMIT_SHA \
+            "https://api.github.com/repos/${{ github.repository }}/commits/$COMMIT_SHA" \
             > commit.diff
 
           {
             echo "diff<<EOF"
             cat commit.diff
             echo "EOF"
-          } >> $GITHUB_OUTPUT
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Gemini SDK
+        run: npm install @google/generative-ai
 
       - name: Run Gemini Review
         id: gemini
-        uses: google-github-actions/run-gemini-cli@main
-        with:
-          gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
-          prompt: |
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DIFF: ${{ steps.diff.outputs.diff }}
+          COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+          CREATED_AT: ${{ github.event.pull_request.created_at }}
+          UPDATED_AT: ${{ github.event.pull_request.updated_at }}
+        run: |
+          node << 'EOF'
+          import { GoogleGenerativeAI } from "@google/generative-ai";
+          import fs from "fs";
+
+          const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+          const model = genAI.getGenerativeModel({ model: "models/gemini-flash-latest" });
+
+          const prompt = `
             You are an AI code reviewer.
             Review the following pull request diff and give:
             - A score from 0–100 (only one number).
             - A list of weaknesses with numbers 1,2,3 format (provide suggestions).
-            - Ignore any `sleep` code under tests.
+            - Ignore any \`sleep\` code under tests.
             - Analyze developer efficiency based on PR timing.
             - Use Indonesian language
 
-            Commit SHA: ${{ github.event.pull_request.head.sha }}
-            PR submitted at: ${{ github.event.pull_request.created_at }}
-            PR last updated at: ${{ github.event.pull_request.updated_at }}
+            Commit SHA: ${process.env.COMMIT_SHA}
+            PR submitted at: ${process.env.CREATED_AT}
+            PR last updated at: ${process.env.UPDATED_AT}
 
             --- BEGIN DIFF ---
-            ${{ steps.diff.outputs.diff }}
+            ${process.env.DIFF}
             --- END DIFF ---
+            `;
+
+                      const result = await model.generateContent(prompt);
+                      const text = result.response.text();
+
+                      fs.appendFileSync(process.env.GITHUB_OUTPUT, `response<<EOF\n${text}\nEOF\n`);
+          EOF
 
       - name: Post comment per commit
         uses: peter-evans/create-or-update-comment@v4
@@ -63,4 +92,4 @@ jobs:
           body: |
             🤖 **Gemini AI Commit Analysis (${{ github.event.pull_request.head.sha }})**
             ---
-            ${{ steps.gemini.outputs.summary }}
+            ${{ steps.gemini.outputs.response }}
