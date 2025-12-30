@@ -4,7 +4,7 @@
 <% if current_user.company.plan == "paid" %>
   Plan: <%= current_user.company.plan %> Until <%= current_user.company.paid_until.strftime("%d %b %Y") %>
 <% else %>
-  <div class="text-white">
+  <div>
     You are currently on free plan
   </div>
 
