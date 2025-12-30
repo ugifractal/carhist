@@ -7,6 +7,6 @@
     </turbo-frame>
   </div>
   <div>
-    <%= image_tag(image.image.url, class: 'px-5 w-60 h-60 object-cover') if image.image %>
+    <%= image_tag(image.image_url(:thumb), class: 'px-5 w-60 h-60 object-cover') if image.image %>
   </div>
 </div>
