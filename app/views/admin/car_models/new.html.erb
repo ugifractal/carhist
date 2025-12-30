@@ -1,18 +1,25 @@
-<div>
-  <%= link_to(admin_car_models_path, class: 'text-red-800') do %>
-    &larr; <%= t('views.cars.back') %>
+<div class="mb-4">
+  <%= link_to admin_car_models_path,
+        class: "text-[#6D4AFF] hover:underline flex items-center gap-1" do %>
+    <span class="text-lg">&larr;</span> <%= t('views.cars.back') %>
   <% end %>
 </div>
 
-<% content_for :title, "New Car" %>
+<% content_for :title, "New Car Model" %>
 
-<h1>New Model</h1>
+<h1 class="text-2xl font-semibold text-white mb-4">
+  <span class="text-[#6D4AFF]">New</span> Car Model
+</h1>
 
-<%= form_with(model: [:admin, @car_model], local: true) do |form| %>
-  <%= render "form", car_model: @car_model, form: form %>
-  <div class="mt-2">
-    <%= form.submit 'Create' %>
-  </div>
-<% end %>
+<div class="p-5 border border-[#6D4AFF] rounded-xl shadow-md bg-[#1A1A22]/40 backdrop-blur">
+  <%= form_with(model: [:admin, @car_model], local: true) do |form| %>
 
-<br>
+    <%= render "form", car_model: @car_model, form: form %>
+
+    <div class="mt-5">
+      <%= form.submit "Create",
+            class: "bg-[#6D4AFF] text-white font-medium px-5 py-2 rounded-lg
+                    hover:bg-[#5A3EDF] transition-all shadow-sm" %>
+    </div>
+  <% end %>
+</div>

@@ -1,35 +1,45 @@
-<div>
-  <%= link_to(admin_car_models_path, class: 'text-red-800') do %>
-    &larr; <%= t('views.cars.back') %>
+<div class="mb-4">
+  <%= link_to admin_car_models_path,
+        class: "text-[#6D4AFF] hover:underline flex items-center gap-1" do %>
+    <span class="text-lg">&larr;</span> <%= t('views.cars.back') %>
   <% end %>
 </div>
 
-<% content_for :title, "Editing Car" %>
+<% content_for :title, "Editing Car Model" %>
 
-<h1>Edit Car</h1>
+<h1 class="text-2xl font-semibold text-white mb-5">
+  <span class="text-[#6D4AFF]">Edit</span> Car Model
+</h1>
 
-<%= form_with(model: [:admin, @car_model], local: true) do |form| %>
-  <%= render "form", form: form %>
-  <div class="mt-2">
-    <%= form.submit 'Update', class: "bg-blue-500 text-white px-4 py-2 rounded" %>
-  </div>
-<% end %>
+<div class="p-6 border border-[#6D4AFF] rounded-xl shadow-sm bg-[#1A1A22]/60 backdrop-blur-sm">
+  <%= form_with(model: [:admin, @car_model], local: true) do |form| %>
+    <%= render "form", form: form %>
 
-<% if @car_model.persisted? %>
-  <div class="mt-3"
-    data-controller="ai-helper--car-model"
-    data-ai-helper--car-model-url-value="<%= car_spec_admin_ai_help_path %>"
-    data-ai-helper--car-model-model-value="<%= @car_model.full_name %>"
-    data-ai-helper--car-model-year-value="<%= @car_model.year %>"
-    >
-    <button data-ai-helper--car-model-target="button" data-action="click->ai-helper--car-model#fill" class="bg-white border border-red-800 px-2 py-2 rounded text-red-800">
-      Fetch from AI
-    </button>
-  </div>
-<% end %>
+    <div class="mt-6 flex gap-3">
+      <%= form.submit 'Update',
+            class: "bg-[#6D4AFF] text-white px-5 py-2 rounded-lg font-medium
+                    hover:bg-[#5A3EDF] transition shadow-md" %>
 
-<br>
+      <% if @car_model.persisted? %>
+        <button
+          data-controller="ai-helper--car-model"
+          data-ai-helper--car-model-url-value="<%= car_spec_admin_ai_help_path %>"
+          data-ai-helper--car-model-model-value="<%= @car_model.full_name %>"
+          data-ai-helper--car-model-year-value="<%= @car_model.year %>"
+          data-ai-helper--car-model-target="button"
+          data-action="click->ai-helper--car-model#fill"
+          class="border border-[#6D4AFF] text-white px-4 py-2 rounded-lg
+                 hover:bg-[#6D4AFF]/20 transition"
+        >
+          🚀 Fetch from AI
+        </button>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
-<div>
-  <%= link_to "Show this car", [:admin, @car_model] %>
+<div class="mt-6">
+  <%= link_to "Show this car",
+        [:admin, @car_model],
+        class: "text-[#6D4AFF] hover:underline" %>
 </div>
