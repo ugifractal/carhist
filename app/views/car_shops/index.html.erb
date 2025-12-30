@@ -1,4 +1,4 @@
-<h1 class="text-2xl text-white">Your Car Shops</h1>
+<h1 class="text-2xl">Your Car Shops</h1>
 <div class="mt-4">
   <%= link_to "Create New Car Shop", new_car_shop_path, class: 'bg-[#6D4AFF] px-3 py-2 rounded text-white' %>
 </div>
@@ -16,7 +16,7 @@
       </thead>
       <tbody>
         <% @car_shops.each do |shop| %>
-          <tr class="text-white">
+          <tr class="">
             <td class="py-2 px-4 text-center"><%= shop.name %></td>
             <td class="px-4 py-3 text-center"><%= shop.category %></td>
             <td class="px-4 py-3 text-center"><%= shop.description %></td>
@@ -36,6 +36,6 @@
       </tbody>
     </table>
   <% else %>
-      <p class="mt-4 text-white">No data to show</p>
+      <p class="mt-4">No data to show</p>
     <% end %>
 </div>

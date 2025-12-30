@@ -1,6 +1,6 @@
 <% content_for :title, "Cars" %>
 
-<h1 class="text-2xl text-white">
+<h1 class="text-2xl">
   <%= t('cars.index.title') %>
 </h1>
 
@@ -13,7 +13,7 @@
 </div>
 <div class="mt-4 overflow-x-scroll">
   <% if @cars.any? %>
-    <table class="w-full border border-[#C7C7D1]">
+    <table class="w-full border border-[#C7C7D1] bg-white">
       <thead>
         <tr class="bg-red-100 text-[#2A1C33] font-semibold">
           <th class="py-2 px-4 text-center">No</th>
@@ -27,7 +27,7 @@
       <tbody>
         <% if user_signed_in? %>
           <% @cars.each_with_index do |car, index| %>
-            <tr class="text-white">
+            <tr>
               <td class="text-center py-2 px-4"><%= index + 1 %></td>
               <td class="text-center py-2 px-4">
                 <%= link_to car.name, car_path(car) %>

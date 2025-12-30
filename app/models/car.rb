@@ -10,6 +10,8 @@ class Car < ApplicationRecord
   has_one :car_sell, dependent: :destroy
   has_many :maintenance_reports, dependent: :destroy
 
+  scope :for_sale, -> { joins(:car_sell).where(car_sell: { status: "for_sale" }) }
+
   validates :name, presence: true
 
   def brand_name

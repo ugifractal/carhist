@@ -50,7 +50,7 @@
                 </div>
               <% end %>
             </div>
-            <div data-account-target="menu" class="hidden absolute bg-[#1C1424] border border-red-700 w-full lg:w-60 right-0 lg:right-1 py-3 px-3 text-red-800">
+            <div data-account-target="menu" class="hidden absolute bg-[#1C1424] border border-gray-300 w-full lg:w-60 right-0 lg:right-1 py-3 px-3 text-gray-200">
               <div>
                 <%= link_to("Setting", api_keys_path) %>
               </div>
@@ -108,7 +108,7 @@
             <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
           <% end %>
         </nav>
-        <div class="flex-1 w-full px-5 py-5 overflow-x-hidden">
+        <div class="flex-1 w-full px-5 py-5 bg-gray-200">
           <%= render "shared/flash" %>
           <div id="flash_notice_stream" class="text-green-600">
           </div>
