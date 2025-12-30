@@ -2,3 +2,5 @@ en:
   layout:
     application:
       list_car: 'My Car'
+    welcome:
+      marketplace: Marketplace
