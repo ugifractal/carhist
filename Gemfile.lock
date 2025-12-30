@@ -144,6 +144,9 @@ GEM
       logger
     faraday-net_http (3.4.1)
       net-http (>= 0.5.0)
+    ffi (1.17.3-arm64-darwin)
+    ffi (1.17.3-x64-mingw-ucrt)
+    ffi (1.17.3-x86_64-linux-gnu)
     fugit (1.12.1)
       et-orbi (~> 1.4)
       raabro (~> 1.4)
@@ -151,6 +154,9 @@ GEM
       activesupport (>= 6.1)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
+    image_processing (1.14.0)
+      mini_magick (>= 4.9.5, < 6)
+      ruby-vips (>= 2.0.17, < 3)
     indonesian-territory-rails (0.1.1)
     inline_svg (1.10.0)
       activesupport (>= 3.0)
@@ -199,6 +205,8 @@ GEM
       net-smtp
     marcel (1.1.0)
     matrix (0.4.2)
+    mini_magick (5.3.1)
+      logger
     mini_mime (1.1.5)
     minitest (5.26.2)
     msgpack (1.8.0)
@@ -336,6 +344,9 @@ GEM
       rubocop-performance (>= 1.24)
       rubocop-rails (>= 2.30)
     ruby-progressbar (1.13.0)
+    ruby-vips (2.3.0)
+      ffi (~> 1.12)
+      logger
     rubyzip (3.2.1)
     securerandom (0.4.1)
     selenium-webdriver (4.38.0)
@@ -427,6 +438,7 @@ DEPENDENCIES
   dotenv
   erb_lint
   faraday
+  image_processing
   indonesian-territory-rails
   inline_svg (~> 1.10)
   jbuilder
