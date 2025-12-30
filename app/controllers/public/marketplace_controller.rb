@@ -7,7 +7,7 @@ module Public
     end
 
     def show
-      @car = Car.for_sale.find_by(car_sell: { token: params[:token] })
+      @car = Car.for_sale.find_by!(car_sell: { token: params[:token] })
       @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
     end
   end
