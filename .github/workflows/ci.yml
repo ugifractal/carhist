@@ -53,7 +53,7 @@ jobs:
       - name: Lint Javascript files
         run: yarn run eslint app/javascript/
       - name: Scan for common Rails security vulnerabilities using static analysis
-        run: bundle exec brakeman --no-pager
+        run: bundle exec brakeman --no-pager -c .brakeman.yml
       - name: Set up database schema
         run: bundle exec rails db:schema:load
       - name: Precompile assets
