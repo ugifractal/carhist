@@ -2,3 +2,5 @@ id:
   layout:
     application:
       list_car: 'Mobilmu'
+    welcome:
+      marketplace: Marketplace

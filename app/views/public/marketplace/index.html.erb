@@ -1,0 +1,19 @@
+<h1 class="text-xl font-bold mt-4 text-center">Mobil dijual</h1>
+
+<div class="flex flex-wrap gap-6 justify-start my-6 px-6">
+  <% @cars.each do |car| %>
+    <div class="w-[200px] h-[200px] overflow-hidden border border-red-700 flex items-center justify-center text-red-700 text-sm">
+      <%= link_to(car_for_sale_path(car.car_sell.token)) do %>
+        <% if car.car_sell.car_sell_images.first %>
+          <%= image_tag(car.car_sell.car_sell_images.first.image.url) %>
+        <% else %>
+          <%= image_tag("dummy-car.png") %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="mt-4">
+  <%= will_paginate(@cars) %>
+</div>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "/marketplace", to: "public/marketplace#index"
   get "maintenance_settings/show"
   devise_for :users,
            controllers: {
