@@ -9,6 +9,11 @@ module Public
     def show
       @car = Car.for_sale.find_by!(car_sell: { token: params[:token] })
       @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+      respond_to do |format|
+        format.turbo_stream
+        format.html
+      end
+      #render plain: 'ya'
     end
   end
 end
