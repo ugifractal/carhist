@@ -5,6 +5,7 @@ gem "erb_lint", require: false
 gem "faraday"
 gem "image_processing"
 gem "indonesian-territory-rails"
+gem "money"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.1.1"
 gem "shrine"

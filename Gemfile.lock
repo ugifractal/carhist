@@ -209,6 +209,9 @@ GEM
       logger
     mini_mime (1.1.5)
     minitest (5.26.2)
+    money (7.0.2)
+      bigdecimal
+      i18n (~> 1.9)
     msgpack (1.8.0)
     net-http (0.6.0)
       uri
@@ -446,6 +449,7 @@ DEPENDENCIES
   jwt
   kamal
   letter_opener
+  money
   pg (~> 1.6.2)
   prawn
   prawn-table

@@ -14,7 +14,7 @@
 
       <% if @car_sell_images.size < 10 %>
         <%= form_tag(url: car_car_sells_car_sell_images_path(@car, @car_sell), method: :post) do %>
-          <%= link_to t('views.history_images.upload_photo'), '#', class: "upload-link rounded-md bg-red-800 text-white px-4 py-2 rounded-r-md hover:bg-red-700 font-medium", data: { action: "click->carsell--upload#triggerUpload" } %>
+          <%= link_to t('views.history_images.upload_photo'), '#', class: "lg:w-fit block w-full upload-link rounded-md bg-red-800 text-white px-4 py-2 rounded-r-md hover:bg-red-700 font-medium", data: { action: "click->carsell--upload#triggerUpload" } %>
           <%= file_field_tag(:image, multiple: true, data: {'carsell--upload-target': 'file', action: 'change->carsell--upload#upload'}, class: "hidden") %>
         <% end %>
       <% end %>
