@@ -13,7 +13,6 @@ module Public
         format.turbo_stream
         format.html
       end
-      #render plain: 'ya'
     end
   end
 end
