@@ -1,26 +1,26 @@
 <div data-controller="address--selector">
   <div class="mt-2">
     <div><%= label_tag(t(".province")) %></div>
-    <div><%= select(:car_sell, :province_id, Province.all.map { |x| [x.name, x.id] }, { include_blank: true }, class: "border", data: { action: "change->address--selector#loadRegencies" }) %></div>
+    <div><%= select(:car_sell, :province_id, Province.all.map { |x| [x.name, x.id] }, { include_blank: true }, class: "border w-full lg:w-fit", data: { action: "change->address--selector#loadRegencies" }) %></div>
   </div>
 
   <% regencies = @car_sell.province&.regencies || [] %>
   <div class="mt-2">
     <div><%= label_tag(t(".regency")) %></div>
     <div>
-      <%= select(:car_sell, :regency_id, regencies.map { |x| [x.name, x.id] }, { include_blank: true }, class: "border", data: { action: "change->address--selector#loadDistricts", "address--selector-target": "regency" }) %>
+      <%= select(:car_sell, :regency_id, regencies.map { |x| [x.name, x.id] }, { include_blank: true }, class: "border w-full lg:w-fit", data: { action: "change->address--selector#loadDistricts", "address--selector-target": "regency" }) %>
     </div>
   </div>
 
   <% districts = @car_sell&.regency&.districts || [] %>
   <div class="mt-2">
     <div><%= label_tag(t(".district")) %></div>
-    <div><%= select(:car_sell, :district_id, districts.map { |x| [x.name, x.id] }, { include_blank: true }, class: "border", data: { action: "change->address--selector#loadVillages", "address--selector-target": "district" }) %></div>
+    <div><%= select(:car_sell, :district_id, districts.map { |x| [x.name, x.id] }, { include_blank: true }, class: "border w-full lg:w-fit", data: { action: "change->address--selector#loadVillages", "address--selector-target": "district" }) %></div>
   </div>
 
   <% villages = @car_sell&.district&.villages || [] %>
   <div class="mt-2">
     <div><%= label_tag(t(".village")) %></div>
-    <div><%= select(:car_sell, :village_id, villages.map { |x| [x.name, x.id] }, { include_blank: true }, class: "border", data: { "address--selector-target": "village" }) %></div>
+    <div><%= select(:car_sell, :village_id, villages.map { |x| [x.name, x.id] }, { include_blank: true }, class: "border w-full lg:w-fit", data: { "address--selector-target": "village" }) %></div>
   </div>
 </div>
