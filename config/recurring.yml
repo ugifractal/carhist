@@ -8,3 +8,8 @@
 #     command: "SoftDeletedRecord.due.delete_all"
 #     priority: 2
 #     schedule: at 5am every day
+
+production:
+  sitemap:
+    class: SitemapGeneratorJob
+    schedule: at 5am every day
