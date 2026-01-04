@@ -53,6 +53,7 @@ jobs:
         run: |
           mkdir -p .kamal
           cat <<EOF > .kamal/secrets
+          ADMIN_EMAILS=${{ secrets.ADMIN_EMAILS }}
           RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}
           DATABASE_CACHE_URL=${{ secrets.DATABASE_CACHE_URL }}
           DATABASE_QUEUE_URL=${{ secrets.DATABASE_QUEUE_URL }}
