@@ -78,6 +78,7 @@ aliases:
 volumes:
   - "carhist_storage:/rails/storage"
   - "/root/carhist-uploads:/rails/public/uploads"
+  - "/root/carhist-sitemaps:/rails/public/sitemaps"
 
 
 # Bridge fingerprinted assets, like JS and CSS, between versions to avoid
