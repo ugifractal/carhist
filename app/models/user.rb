@@ -26,7 +26,7 @@ class User < ApplicationRecord
     return unless saved_change_to_confirmed_at?
 
     MailerUtil.with_admin_emails do |email|
-      AdminMailer.with(user: User.last, email: email).notify_signup.deliver!
+      AdminMailer.with(user: self, email: email).notify_signup.deliver!
     end
   end
 end
