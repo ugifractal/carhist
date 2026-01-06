@@ -12,6 +12,16 @@ class CarSell < ApplicationRecord
 
   before_create :generate_token
 
+  def wa_phone
+    number = phone.gsub("+", "")
+    if number.starts_with?("0")
+      return number.sub("0", "62")
+    elsif number.starts_with?("62")
+      return number
+    end
+    phone
+  end
+
   private
 
   def generate_token

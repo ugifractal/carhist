@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_10_214329) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_06_031907) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -116,6 +116,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_10_214329) do
     t.decimal "price", precision: 15, scale: 2
     t.integer "province_id"
     t.integer "regency_id"
+    t.boolean "show_service_history", default: false
     t.string "status"
     t.string "token", null: false
     t.datetime "updated_at", null: false

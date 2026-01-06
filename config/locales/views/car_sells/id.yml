@@ -11,6 +11,7 @@ id:
       status: Status
       price: Harga
       phone: No telepon
+      show_service_history: Tampilkan service history?
     address:
       province: Provinsi
       regency: Kabupaten

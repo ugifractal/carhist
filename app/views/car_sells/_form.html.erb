@@ -16,9 +16,17 @@
   <div><%= f.label(:price, t(".price")) %></div>
   <div><%= f.text_field(:price, class: "border w-full lg:w-fit") %></div>
 </div>
+
 <div class="mt-2">
   <div><%= f.label(:price, t(".phone")) %></div>
   <div><%= f.text_field(:phone, class: "border w-full lg:w-fit") %></div>
+</div>
+
+<div class="mt-3">
+  <div class="flex items-center gap-x-3">
+    <div><%= f.check_box(:show_service_history) %></div>
+    <div><%= t(".show_service_history") %></div>
+  </div>
 </div>
 
 <%= render(partial: "car_sells/address") %>
