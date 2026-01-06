@@ -11,6 +11,7 @@ en:
       status: Status
       price: Price
       phone: Phone number
+      show_service_history: Show service history?
     address:
       province: Province
       regency: State
