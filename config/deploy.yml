@@ -33,6 +33,7 @@ env:
   secret:
     - ADMIN_EMAILS
     - APP_URL
+    - GA_TRACKING_ID
     - RAILS_MASTER_KEY
     - SITEMAP_FOLDER
     - DATABASE_CACHE_URL
