@@ -46,26 +46,27 @@
       </div>
 
       <% if car.car_sell.show_service_history? && car.car_maintenances.any? %>
-        <div class="mt-10 mb-5 overflow-scroll">
+        <div class="mt-10 mb-5">
           <h2 class="text-2xl">100 Service History Terakhir</h2>
           <table class="mt-4 bg-white">
-            <thead>
+            <thead class="hidden lg:table-header-group">
               <tr class="bg-green-100 text-green-800">
-                <th class="text-left px-2 py-2">Waktu</th>
-                <th class="text-left">Jenis</th>
+                <th class="text-left px-2 py-2 lg:w-48">Waktu</th>
+                <th class="text-left lg:w-64">Jenis</th>
                 <th class="text-left">Keterangan</th>
               </td>
             </thead>
-            <tbody>
+            <tbody class="block lg:table-row-group">
               <% car.car_maintenances.order(performed_at: :desc).limit(100).each do |maintenance| %>
-                <tr class="">
-                  <td class="text-left py-2 px-2 align-top">
-                    <%= maintenance.performed_at.strftime("%d %b %Y") %>
+                <tr class="block lg:table-row border-b">
+                  <td class="flex lg:table-cell lg:w-48 text-left py-2 px-2 lg:border-0 lg:px-0 lg:align-top">
+                    <span class="bg-green-100 text-green-800 px-3 py-3 rounded lg:bg-white lg:py-0"><%= maintenance.performed_at.strftime("%d %b %Y") %></span>
                   </td>
-                  <td class="text-left py-2 px-2 align-top">
-                    <%= maintenance.title %>
+                  <td class="flex lg:table-cell text-left py-2 px-2 lg:border-0 lg:align-top">
+                    <span class="block lg:hidden">Servis:&nbsp;</span>
+                    <span><%= maintenance.title %></span>
                   </td>
-                  <td class="text-left py-2 px-2 align-top">
+                  <td class="flex lg:table-cell text-left py-2 px-2 lg:border-0 lg:align-top">
                     <%= maintenance.description %>
                   </td>
                 </tr>
@@ -73,7 +74,7 @@
             </tbody>
           </table>
         </div>
-        <hr>
+
         <div class="mt-10 flex flex-wrap items-center lg:gap-x-5">
           <div class="text-2xl text-green-800">Repot nyatet perawatan mobil? yuk gabung </div>
           <div class="mt-10 lg:mt-0">
