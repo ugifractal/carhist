@@ -55,6 +55,7 @@ jobs:
           cat <<EOF > .kamal/secrets
           ADMIN_EMAILS=${{ secrets.ADMIN_EMAILS }}
           APP_URL=${{ secrets.APP_URL }}
+          GA_TRACKING_ID=${{ secrets.GA_TRACKING_ID }}
           RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}
           SITEMAP_FOLDER=${{ secrets.SITEMAP_FOLDER }}
           DATABASE_CACHE_URL=${{ secrets.DATABASE_CACHE_URL }}
