@@ -1,6 +1,6 @@
 <div id="show-frame">
-  <div class="flex lg:gap-x-10 flex-wrap">
-    <div class="w-[500px]">
+  <div class="flex lg:gap-x-10 flex-wrap lg:flex-nowrap">
+    <div class="w-full lg:w-[500px] flex-none">
       <div>
         <% if (image = car.car_sell.car_sell_images.order(created_at: :asc)[params[:index].to_i]) %>
           <%= link_to(image_tag(image.image_url(:medium)), image.image_url(:medium)) %>
@@ -46,9 +46,9 @@
       </div>
 
       <% if car.car_sell.show_service_history? && car.car_maintenances.any? %>
-        <div class="mt-10 mb-5">
+        <div class="mt-10 mb-5 overflow-scroll">
           <h2 class="text-2xl">100 Service History Terakhir</h2>
-          <table class="mt-4 w-full bg-white">
+          <table class="mt-4 bg-white">
             <thead>
               <tr class="bg-green-100 text-green-800">
                 <th class="text-left px-2 py-2">Waktu</th>
@@ -58,14 +58,14 @@
             </thead>
             <tbody>
               <% car.car_maintenances.order(performed_at: :desc).limit(100).each do |maintenance| %>
-                <tr>
-                  <td class="text-left py-2 px-2">
+                <tr class="">
+                  <td class="text-left py-2 px-2 align-top">
                     <%= maintenance.performed_at.strftime("%d %b %Y") %>
                   </td>
-                  <td class="text-left">
+                  <td class="text-left py-2 px-2 align-top">
                     <%= maintenance.title %>
                   </td>
-                  <td class="text-left">
+                  <td class="text-left py-2 px-2 align-top">
                     <%= maintenance.description %>
                   </td>
                 </tr>
