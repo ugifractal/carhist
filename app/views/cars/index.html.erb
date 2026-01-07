@@ -20,7 +20,6 @@
           <th class="py-2 px-4 text-center"><%= t('cars.index.column_name') %></th>
           <th class="py-2 px-4 text-center">Brand & Model</th>
           <th class="py-2 px-4 text-center">Maintenance</th>
-          <th class="py-2 px-4 text-center">Fuelings</th>
           <th class="py-2 px-4 text-center">Action</th>
         </tr>
       </thead>
@@ -30,16 +29,13 @@
             <tr>
               <td class="text-center py-2 px-4"><%= index + 1 %></td>
               <td class="text-center py-2 px-4">
-                <%= link_to car.name, car_path(car) %>
+                <%= link_to(car.name, car_path(car), class: "underline") %>
               </td>
               <td class="text-center py-2 px-4">
                 <%= car.car_model.car_brand.name %> <%= car.car_model.model %> <%= car.car_model.year %>
               </td>
               <td class="text-center py-2 px-4">
-                <%= link_to t('cars.index.maintenance_history'), car_car_maintenances_path(car) %>
-              </td>
-              <td class="text-center py-2 px-4">
-                <%= link_to "Fuelings", car_car_fuelings_path(car) %>
+                <%= link_to(t('cars.index.maintenance_history'), car_car_maintenances_path(car), class: "underline") %>
               </td>
               <td class="text-center py-2 px-4 space-x-2 flex justify-center">
                 <%= link_to edit_car_path(car), class: "text-blue-600 hover:underline" do %>

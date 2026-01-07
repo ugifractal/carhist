@@ -4,6 +4,8 @@ en:
       name: "Name"
       year: "Year"
       image: "Image"
+    edit:
+      edit_car: Edit Car
     show:
       car_maintenances: "Service records"
       device_loggers: "Device Loggers"

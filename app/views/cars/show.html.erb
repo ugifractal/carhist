@@ -1,14 +1,23 @@
 <div class="flex gap-x-3 items-center">
-  <%= link_to(cars_path, class: 'text-red-800') do %>
-    &larr; <%= t('views.cars.back') %>
-  <% end %>
+  <div class="text-xl text-[#1C1424]">
+    &larr;
+    <%= link_to(cars_path, class: "text-xl text-[#1C1424] underline") do %>
+      <%= t('views.cars.back') %>
+    <% end %>
+  </div>
 
-  <%= link_to(t(".car_maintenances"), car_car_maintenances_path(@car), class: "text-red-800") %>
-  <%= link_to(t(".device_loggers"), car_device_loggers_path(@car), class: "text-red-800") %>
+
+  <%= link_to(t(".car_maintenances"), car_car_maintenances_path(@car), class: "text-xl text-[#1C1424] underline") %>
+  <%#= link_to(t(".device_loggers"), car_device_loggers_path(@car), class: "text-xl text-[#1C1424] underline") %>
+</div>
+
+<div class="mt-2 flex justify-end items-center gap-x-3">
+  <%= link_to("Edit", edit_car_path(@car), class: "bg-[#1C1424] text-white px-3 py-2 rounded") %>
+
   <% if @car.car_sell %>
-    <%= link_to(t(".sell"), edit_car_car_sells_path(@car), class: "text-red-800") %>
+    <%= link_to(t(".sell"), edit_car_car_sells_path(@car), class: "bg-[#1C1424] text-white px-3 py-2 rounded") %>
   <% else %>
-    <%= link_to(t(".sell"), new_car_car_sells_path(@car), class: "text-red-800") %>
+    <%= link_to(t(".sell"), new_car_car_sells_path(@car), class: "bg-[#1C1424] text-white px-3 py-2 rounded") %>
   <% end %>
 </div>
 

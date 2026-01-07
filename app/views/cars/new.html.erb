@@ -1,16 +1,20 @@
 <div>
-  <%= link_to(cars_path, class: 'text-red-800') do %>
-    &larr; <%= t('views.cars.back') %>
-  <% end %>
+  <div class="text-xl text-[#1C1424]">
+    &larr;
+    <%= link_to(cars_path, class: 'text-xl text-[#1C1424] underline') do %>
+      <%= t('views.cars.back') %>
+    <% end %>
+  </div>
 </div>
 
-<% content_for :title, "New car" %>
-
-<h1 class="text-2xl"><%= t('views.cars.new') %></h1>
-<%= form_with model: @car, url: cars_path(@car), local: true do |form| %>
-  <%= render 'form', car: @car, form: form %>
-  <div class="mt-2">
-    <%= form.submit t('views.cars.create'), class: 'bg-red-800 text-white rounded py-2 px-3' %>
-  </div>
-<% end %>
-<br>
+<% content_for :title, t('views.cars.new') %>
+<div class="mt-3">
+  <h1 class="text-2xl"><%= t('views.cars.new') %></h1>
+  <%= form_with model: @car, url: cars_path(@car), local: true do |form| %>
+    <%= render 'form', car: @car, form: form %>
+    <div class="mt-2">
+      <%= form.submit t('views.cars.create'), class: 'bg-[#1C1424] text-white px-3 py-2 rounded w-full lg:w-fit' %>
+    </div>
+  <% end %>
+  <br>
+</div>
