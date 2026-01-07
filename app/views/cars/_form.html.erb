@@ -12,17 +12,17 @@
 
   <div class="mt-2">
     <%= form.label :name,t('views.cars.name'), style: "display: block" %>
-    <%= form.text_field :name, class: 'border' %>
+    <%= form.text_field :name, class: 'border w-full lg:w-fit' %>
   </div>
 
   <div class="mt-2">
     <%= form.label :year,t('views.cars.year'), style: "display: block" %>
-    <%= form.select(:year, (1900..(Time.now.year)).map { |x| [x,x] }.reverse, class: 'border') %>
+    <%= form.select(:year, (1900..(Time.now.year)).map { |x| [x,x] }.reverse, {}, class: 'border w-full lg:w-fit') %>
   </div>
 
   <div class="mt-2">
     <%= form.label :car_model_id,t('views.cars.model'), style: "display: block" %>
-    <%= form.select :car_model_id, CarModel.all.map { |m| ["#{m.car_brand.name} #{m.model}", m.id] } %>
+    <%= form.select :car_model_id, CarModel.includes(:car_brand).order("car_brands.name ASC, car_models.model ASC").map { |m| ["#{m.car_brand.name} #{m.model}", m.id] }, {}, class: 'border w-full lg:w-fit' %>
   </div>
 
   <div class="mt-2">

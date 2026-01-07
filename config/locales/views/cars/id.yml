@@ -4,6 +4,8 @@ id:
       name: "Nama"
       year: "Tahun"
       image: "Foto"
+    edit:
+      edit_car: Edit Mobil
     show:
       car_maintenances: "Service record"
       device_loggers: "Device Logger"
