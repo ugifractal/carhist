@@ -20,6 +20,8 @@ jobs:
         ports:
           - "5432:5432"
     env:
+      ADMIN_EMAILS: josh@example.com
+      APP_URL: http://localhost:3000
       RAILS_ENV: test
       DATABASE_URL: "postgres://postgres:postgres@localhost:5432/carhist_test"
       DATABASE_CACHE_URL: "postgres://postgres:postgres@localhost:5432/carhist_test"

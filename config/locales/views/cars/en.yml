@@ -6,6 +6,9 @@ en:
       image: "Image"
     edit:
       edit_car: Edit Car
+    form:
+      car_not_listed: your car is not listed?
+      send_to_us: send us an email, we are happy to help
     show:
       car_maintenances: "Service records"
       device_loggers: "Device Loggers"
