@@ -6,6 +6,9 @@ id:
       image: "Foto"
     edit:
       edit_car: Edit Mobil
+    form:
+      car_not_listed: tipe mobilmu tidak terdaftar di carhist?
+      send_to_us: kirim email ke kami untuk menambahkannya.
     show:
       car_maintenances: "Service record"
       device_loggers: "Device Logger"
