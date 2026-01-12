@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_06_031907) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_12_222140) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -104,6 +104,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_06_031907) do
     t.datetime "created_at", null: false
     t.jsonb "image_data"
     t.integer "position", default: 0
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "car_sell_views", force: :cascade do |t|
+    t.integer "car_sell_id"
+    t.string "country_code"
+    t.datetime "created_at", null: false
+    t.string "ip_address"
     t.datetime "updated_at", null: false
   end
 

@@ -9,6 +9,7 @@ class CarSell < ApplicationRecord
   belongs_to :regency
   belongs_to :district
   belongs_to :village
+  has_many :car_sell_views, dependent: :destroy
 
   before_create :generate_token
 

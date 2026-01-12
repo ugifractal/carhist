@@ -8,6 +8,7 @@ module Public
 
     def show
       @car = Car.for_sale.find_by!(car_sell: { token: params[:token] })
+      @car.car_sell.car_sell_views.create!(ip_address: request.remote_ip)
       @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
       respond_to do |format|
         format.turbo_stream
