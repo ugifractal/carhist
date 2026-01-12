@@ -25,6 +25,11 @@
     <%= form.select :car_model_id, CarModel.includes(:car_brand).order("car_brands.name ASC, car_models.model ASC").map { |m| ["#{m.car_brand.name} #{m.model}", m.id] }, {}, class: 'border w-full lg:w-fit' %>
   </div>
 
+  <div class="italic text-gray-800">
+    <%= t(".car_not_listed") %>
+    <%= mail_to(ENV.fetch("ADMIN_EMAILS"), t(".send_to_us"), class: "text-blue-800 underline") %>
+  </div>
+
   <div class="mt-2">
     <%= form.label :image %>
     <%= form.file_field :image %>
