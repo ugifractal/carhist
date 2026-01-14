@@ -1,6 +1,6 @@
 <div>
   <div class="flex items-center gap-x-3">
-    <%= link_to(car_path(@car), class: 'text-red-800') do %>
+    <%= link_to(car_path(@car), class: 'text-[#1C1424] underline') do %>
       &larr; <%= t('common.button.back') %>
     <% end %>
 
@@ -14,12 +14,32 @@
     <%= render(partial: "car_sells/form", locals: { f: }) %>
 
     <div class="mt-5">
-      <%= f.submit(t(".update"), class: "w-full lg:w-fit px-2 py-1 rounded bg-red-800 text-white") %>
+      <%= f.submit(t(".update"), class: "w-full lg:w-fit px-2 py-2 shadow rounded bg-[#1C1424] text-white") %>
     </div>
   <% end %>
 
   <% if @car_sell.status == "for_sale" %>
-    <div class="mt-3"><%= link_to("Public Link: #{car_for_sale_url(@car_sell.token)}", car_for_sale_url(@car_sell.token)) %></div>
+    <div class="mt-5 flex items-center gap-x-2" data-controller="copy-clipboard">
+      <div>
+        Public Link:
+      </div>
+      <div class="lg:w-1/2">
+        <%= text_field_tag("x", car_for_sale_url(@car_sell.token), readonly: true, data: { "copy-clipboard-target": "textfield" }, class: "border w-full") %>
+      </div>
+      <div>
+        <a class="bg-[#1C1424] text-white px-2 py-2 rounded shadow text-sm" href="#" data-action="click->copy-clipboard#copy">
+          <span data-copy-clipboard-target="indicator">Copy</span>
+        </a>
+      </div>
+      <div>
+        <%= link_to(car_for_sale_url(@car_sell.token), target: "_blank") do %>
+          <%= image_tag("show.svg", class: "w-8") %>
+        <% end %>
+      </div>
+    </div>
+    <div class="text-gray-500 italic text-sm">
+      bagikan link ini, ke social meadia supaya publik tertarik dengan mobilmu
+    </div>
   <% end %>
 
   <div class="mt-5">

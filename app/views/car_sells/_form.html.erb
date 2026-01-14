@@ -14,7 +14,7 @@
 </div>
 <div class="mt-2">
   <div><%= f.label(:price, t(".price")) %></div>
-  <div><%= f.text_field(:price, class: "border w-full lg:w-fit") %></div>
+  <div><%= f.text_field(:price, value: f.object.price.to_i, class: "border w-full lg:w-fit") %></div>
 </div>
 
 <div class="mt-2">

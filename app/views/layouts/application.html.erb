@@ -30,7 +30,7 @@
               </div>
               <% current_user.company.cars.each do |car| %>
                 <div class="py-2">
-                  <%= link_to(car.name, car_car_maintenances_path(car), class: 'underline text-gray-200 ml-3') if car.persisted? %>
+                  <%= link_to(car.name, car_path(car), class: 'underline text-gray-200 ml-3') if car.persisted? %>
                 </div>
               <% end %>
             <% end %>
