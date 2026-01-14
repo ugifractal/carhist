@@ -5,16 +5,16 @@
   <div class="mt-6">
     <div>
       <% if @car_sell_images.size == 0 %>
-        <h2 class="text-lg font-bold text-red-800 mb-4"><%= t('views.history_images.command') %></h2>
+        <h2 class="text-lg font-bold text-indigo-800 mb-4"><%= t('views.history_images.command') %></h2>
       <% else %>
-        <h2 class="text-lg font-bold text-red-800 mb-4">
+        <h2 class="text-lg font-bold text-[#1C1424] mb-4">
           Foto foto <%= @car.name %>
         </h2>
       <% end %>
 
       <% if @car_sell_images.size < 10 %>
         <%= form_tag(url: car_car_sells_car_sell_images_path(@car, @car_sell), method: :post) do %>
-          <%= link_to t('views.history_images.upload_photo'), '#', class: "lg:w-fit block w-full upload-link rounded-md bg-red-800 text-white px-4 py-2 rounded-r-md hover:bg-red-700 font-medium", data: { action: "click->carsell--upload#triggerUpload" } %>
+          <%= link_to t('views.history_images.upload_photo'), '#', class: "lg:w-fit block w-full upload-link rounded-md bg-[#1C1424] text-white px-4 py-2 rounded-r-md hover:bg-red-700 font-medium", data: { action: "click->carsell--upload#triggerUpload" } %>
           <%= file_field_tag(:image, multiple: true, data: {'carsell--upload-target': 'file', action: 'change->carsell--upload#upload'}, class: "hidden") %>
         <% end %>
       <% end %>
