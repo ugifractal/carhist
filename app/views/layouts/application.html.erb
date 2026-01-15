@@ -23,6 +23,7 @@
             <svg data-sidebar-target="openIcon" data-action="click->sidebar#toggle" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 18L20 18" stroke="#ffffff" stroke-width="2" stroke-linecap="round"></path> <path d="M4 12L20 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round"></path> <path d="M4 6L20 6" stroke="#ffffff" stroke-width="2" stroke-linecap="round"></path> </g></svg>
             <span data-sidebar-target="closeIcon" data-action="click->sidebar#toggle" class="hidden text-4xl">&times;</span>
           </div>
+
           <div data-sidebar-target="menu" class="hidden absolute w-full bg-[#1C1424] left-0 top-20 text-red-800 border border-gray-800 pb-5">
             <% if user_signed_in? %>
               <div class="py-2">
@@ -36,9 +37,12 @@
             <% end %>
           </div>
         </div>
+
+
         <div>
           <%= link_to('Carhist', '/', class: 'text-xl lg:text-4xl') %>
         </div>
+
         <% if user_signed_in? %>
           <div data-controller="account">
             <div data-btn="right-top-menu" data-action="click->account#toggle" class="rounded-full bg-white w-12 h-12 flex items-center justify-center cursor-pointer">
@@ -70,7 +74,7 @@
         <% end %>
       </div>
       <div class="flex">
-        <nav class="w-[350px] bg-[#1C1424] text-white py-6 px-4 space-y-2 min-h-screen lg:block hidden">
+        <nav class="lg:w-[350px] bg-[#1C1424] text-white py-6 px-4 space-y-2 min-h-screen lg:block hidden">
           <div class="bg-[#2A1C33] rounded-md mx-2 mb-4 p-3">
             <%= link_to current_user.company.name,
                 company_path(current_user.company),
