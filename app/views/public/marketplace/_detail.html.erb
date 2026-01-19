@@ -70,14 +70,14 @@
               <% car.car_maintenances.order(performed_at: :desc).limit(100).each do |maintenance| %>
                 <tr class="block lg:table-row border-b">
                   <td class="flex lg:table-cell lg:w-48 text-left py-2 px-2 lg:border-0 lg:px-0 lg:align-top">
-                    <span class="bg-green-100 text-green-800 px-3 py-3 rounded lg:bg-white lg:py-0"><%= maintenance.performed_at.strftime("%d %b %Y") %></span>
+                    <span class="bg-green-100 text-green-800 px-2 py-3 rounded lg:bg-white lg:py-0"><%= maintenance.performed_at.strftime("%d %b %Y") %></span>
                   </td>
-                  <td class="flex lg:table-cell text-left py-2 px-2 lg:border-0 lg:align-top">
+                  <td class="flex lg:table-cell text-left py-2 px-2 lg:px-0 lg:border-0 lg:align-top">
                     <span class="block lg:hidden">Servis:&nbsp;</span>
                     <span><%= maintenance.title %></span>
                   </td>
-                  <td class="flex lg:table-cell text-left py-2 px-2 lg:border-0 lg:align-top">
-                    <%= maintenance.description %>
+                  <td class="flex lg:table-cell text-left py-2 px-2 lg:px-0 lg:border-0 lg:align-top">
+                    <%= sanitize(@markdown.render(maintenance.description.to_s)) %>
                   </td>
                 </tr>
               <% end %>
