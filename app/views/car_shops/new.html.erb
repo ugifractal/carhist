@@ -10,7 +10,7 @@
   <%= form_with(model: @car_shop, url: car_shops_path, local: true) do |form| %>
     <%= render "form", car_shop: @car_shop, form: form %>
     <div class="mt-2">
-      <%= form.submit 'Create' %>
+      <%= form.submit 'Create', class: 'bg-theme-primary text-white px-3 py-2 rounded shadow' %>
     </div>
   <% end %>
 </div>
