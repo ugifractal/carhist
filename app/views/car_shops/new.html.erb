@@ -1,16 +1,16 @@
 <div>
-  <%= link_to(car_shops_path, class: 'text-red-800') do %>
+  <%= link_to(car_shops_path, class: 'text-[#1C1424] underline') do %>
     &larr; <%= t('views.cars.back') %>
   <% end %>
 </div>
 
 <% content_for :title, "New Car Shop" %>
-
-<h1>New Car Shop</h1>
-<%= form_with(model: @car_shop, url: car_shops_path, local: true) do |form| %>
-  <%= render "form", car_shop: @car_shop, form: form %>
-  <div class="mt-2">
-    <%= form.submit 'Create' %>
-  </div>
-<% end %>
-<br>
+<div class="mt-5">
+  <h1 class="text-xl">New Car Shop</h1>
+  <%= form_with(model: @car_shop, url: car_shops_path, local: true) do |form| %>
+    <%= render "form", car_shop: @car_shop, form: form %>
+    <div class="mt-2">
+      <%= form.submit 'Create', class: 'bg-theme-primary text-white px-3 py-2 rounded shadow' %>
+    </div>
+  <% end %>
+</div>

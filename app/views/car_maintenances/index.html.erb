@@ -13,13 +13,13 @@
 
   <div class="flex gap-x-3">
     <div>
-      <%= link_to(cars_path, class: 'text-red-800') do %>
+      <%= link_to(cars_path, class: 'text-[#1C1424] underline') do %>
         &larr; <%= t('views.cars.back') %>
       <% end %>
     </div>
 
     <div>
-      <%= link_to(car_maintenance_reports_path(@car), class: 'text-red-800') do %>
+      <%= link_to(car_maintenance_reports_path(@car), class: 'text-[#1C1424] underline') do %>
         Generated PDF reports
       <% end %>
     </div>
@@ -29,22 +29,22 @@
     <h1 class="font-bold text-xl"> <%= t('views.car_maintenances.title') %> <%= @car.brand_name %> (<%= @car.name %>)</h1>
   </div>
   <div class="flex justify-between items-center mt-4">
-    <%= link_to t('views.car_maintenances.name'), new_car_car_maintenance_path(@car), class: "rounded-md px-3.5 py-2.5 bg-red-800 hover:bg-red-500 text-white block font-medium" %>
-    <%= link_to("Car fuelings", car_car_fuelings_path(@car), class: "bg-red-800 px-2 py-2 text-white rounded") %>
+    <%= link_to t('views.car_maintenances.name'), new_car_car_maintenance_path(@car), class: "rounded-md px-3.5 py-2.5 bg-[#1C1424] text-white block font-medium" %>
+    <%#= link_to("Car fuelings", car_car_fuelings_path(@car), class: "bg-red-800 px-2 py-2 text-white rounded") %>
   </div>
 
   <% if @car_maintenances.any? %>
     <div class="flex justify-end mt-3">
       <div data-controller="dropdown" class="relative inline-block text-left">
         <div data-action="click->dropdown#toggle">
-          <span class="bg-red-800 px-3 py-2 rounded text-white">
+          <span class="bg-[#1C1424] px-3 py-2 rounded text-white">
             Actions
             <%= image_tag "arroww.svg", class: "g-red-800 w-2 h-2 inline" %>
           </span>
         </div>
         <div data-dropdown-target="drop" class="hidden absolute z-50 mt-2 right-0 w-36 bg-white border border-red-700 rounded shadow-lg">
           <%= link_to('Generate PDF', '#',
-              class: 'block w-full text-left px-4 py-2 text-sm text-white bg-red-800 hover:bg-red-700 rounded',
+              class: 'block w-full text-left px-4 py-2 text-sm text-white bg-[#1C1424] hover:bg-red-700 rounded',
               data: { action: 'click->maintenance--filter#generatePdf click->dropdown#hide' }) %>
         </div>
       </div>
@@ -54,7 +54,7 @@
       <div class="flex justify-between items-top mt-3">
         <div>
           <div>Categories</div>
-          <div>
+          <div class="flex flex-wrap gap-x-3 gap-y-2">
             <% CarMaintenance::MAINTENANCE_TYPES.each do |m| %>
               <div>
                 <%= check_box_tag('categories[]', m[:name], true, id: "category_#{m[:name]}", data: { "maintenance--filter-target": "category", action: "change->maintenance--filter#changeFilter" } ) %> <%= m[:label] %>
@@ -63,7 +63,7 @@
           </div>
         </div>
         <div class="mr-2">
-          <%= text_field_tag :q, params[:q], placeholder: t('views.car_maintenances.column'), class: "border border-red-800", autocomplete: "off", data: { "maintenance--filter-target": "search", action: "maintenance--filter#changeFilter" } %>
+          <%= text_field_tag :q, params[:q], placeholder: t('views.car_maintenances.column'), class: "border border-[#1C1424] bg-white px-2 py-2", autocomplete: "off", data: { "maintenance--filter-target": "search", action: "maintenance--filter#changeFilter" } %>
         </div>
       </div>
     <% end %>
