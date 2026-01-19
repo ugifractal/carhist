@@ -3,29 +3,29 @@
   <p class="text-sm text-gray-600 mb-6">
     Don't have an account?
     <% if devise_mapping.registerable? && controller_name != 'registrations' %>
-      <%= link_to "Sign up", new_registration_path(resource_name), class: "text-red-700 font-medium hover:underline" %>
+      <%= link_to "Sign up", new_registration_path(resource_name), class: "text-theme-primary underline font-medium hover:underline" %>
     <% end %>
   </p>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-4" }) do |f| %>
     <div class="field">
       <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example@gmail.com",
-        class: "w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" %>
+        class: "w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-secondary" %>
     </div>
 
     <div class="field">
       <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password",
-        class: "w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" %>
+        class: "w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-secondary" %>
     </div>
 
     <div class="actions">
       <%= f.submit "Log in",
-        class: "w-full bg-red-700 hover:bg-red-800 text-white font-semibold py-3 rounded-md" %>
+        class: "w-full bg-theme-primary hover:bg-theme-primary text-white font-semibold py-3 rounded-md" %>
     </div>
 
     <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
       <div class="mt-4">
-        <%= link_to "Forgot your password?", new_password_path(resource_name), class: "text-sm text-red-700 hover:underline font-medium" %>
+        <%= link_to "Forgot your password?", new_password_path(resource_name), class: "underline text-sm text-theme-primary hover:underline font-medium" %>
       </div>
     <% end %>
   <% end %>
