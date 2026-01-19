@@ -77,7 +77,7 @@
                     <span><%= maintenance.title %></span>
                   </td>
                   <td class="flex lg:table-cell text-left py-2 px-2 lg:px-0 lg:border-0 lg:align-top">
-                    <%= sanitize(@markdown.render(maintenance.description)) %>
+                    <%= sanitize(@markdown.render(maintenance.description.to_s)) %>
                   </td>
                 </tr>
               <% end %>
