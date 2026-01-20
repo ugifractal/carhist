@@ -5,6 +5,16 @@ id:
       column_name: "Nama"
       add_car: "Tambah Mobil"
       maintenance_history: "Service Record"
+      number: "No"
+      brand_model: "Merek & Model"
+      maintenance: "Service"
+      action: "Aksi"
+      add_alt: "Tambah Mobil"
+      confirm_delete: "Apakah Anda yakin?"
+      no_cars: "Anda belum memiliki mobil, silakan tambahkan"
+      edit_alt: "Edit"
+      show_alt: "Lihat"
+      delete_alt: "Hapus"
   views:
     history_images:
       back: "kembali"

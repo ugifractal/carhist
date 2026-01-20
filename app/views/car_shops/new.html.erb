@@ -1,5 +1,5 @@
 <div>
-  <%= link_to(car_shops_path, class: 'text-[#1C1424] underline') do %>
+  <%= link_to(car_shops_path, class: 'text-[#1C1424] underline font-bold') do %>
     &larr; <%= t('views.cars.back') %>
   <% end %>
 </div>
@@ -10,7 +10,7 @@
   <%= form_with(model: @car_shop, url: car_shops_path, local: true) do |form| %>
     <%= render "form", car_shop: @car_shop, form: form %>
     <div class="mt-2">
-      <%= form.submit 'Create', class: 'bg-theme-primary text-white px-3 py-2 rounded shadow' %>
+      <%= form.submit 'Create', class: 'bg-theme-primary text-white px-3 py-2 rounded shadow w-full md:w-auto' %>
     </div>
   <% end %>
 </div>

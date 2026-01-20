@@ -93,6 +93,20 @@ id:
       year: "Tahun"
       model: "Model Mobil"
       create: "Tambah"
+      index:
+        title: "Mobil"
+        column_name: "Nama"
+        number: "No"
+        brand_model: "Merek & Model"
+        maintenance: "Service"
+        action: "Aksi"
+        maintenance_history: "Riwayat Service"
+        add_alt: "Tambah Mobil"
+        confirm_delete: "Apakah Anda yakin?"
+        no_cars: "Anda belum memiliki mobil, silakan tambahkan"
+        edit_alt: "Edit"
+        show_alt: "Lihat"
+        delete_alt: "Hapus"
     car_shops:
       title: "Bengkel"
     car_models:

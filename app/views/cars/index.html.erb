@@ -1,13 +1,13 @@
-<% content_for :title, "Cars" %>
+<% content_for :title, t('.title') %>
 
 <h1 class="text-2xl">
-  <%= t('cars.index.title') %>
+  <%= t('.title') %>
 </h1>
 
 <div class="mt-4">
 <% if (current_user.company.plan == 'free' && current_user.company.cars.count < 2) || (current_user.company.plan == 'paid' && current_user.company.cars.count < 6) %>
     <%= link_to new_car_path(@car) do %>
-      <%= image_tag "add.svg", alt: "Add", class: "w-8 h-8 inline" %>
+      <%= image_tag "add.svg", alt: t('.add_alt'), class: "w-8 h-8 inline" %>
     <% end %>
   <% end %>
 </div>
@@ -16,11 +16,11 @@
     <table class="w-full border border-[#C7C7D1] bg-white">
       <thead>
         <tr class="bg-[#342a3b] text-white font-semibold">
-          <th class="py-2 px-4 text-center">No</th>
-          <th class="py-2 px-4 text-center"><%= t('cars.index.column_name') %></th>
-          <th class="py-2 px-4 text-center">Brand & Model</th>
-          <th class="py-2 px-4 text-center">Maintenance</th>
-          <th class="py-2 px-4 text-center">Action</th>
+          <th class="py-2 px-4 text-center"><%= t('.number') %></th>
+          <th class="py-2 px-4 text-center"><%= t('.column_name') %></th>
+          <th class="py-2 px-4 text-center"><%= t('.brand_model') %></th>
+          <th class="py-2 px-4 text-center"><%= t('.maintenance') %></th>
+          <th class="py-2 px-4 text-center"><%= t('.action') %></th>
         </tr>
       </thead>
       <tbody>
@@ -35,17 +35,17 @@
                 <%= car.car_model.car_brand.name %> <%= car.car_model.model %> <%= car.car_model.year %>
               </td>
               <td class="text-center py-2 px-4">
-                <%= link_to(t('cars.index.maintenance_history'), car_car_maintenances_path(car), class: "underline") %>
+                <%= link_to(t('.maintenance_history'), car_car_maintenances_path(car), class: "underline") %>
               </td>
               <td class="text-center py-2 px-4 space-x-2 flex justify-center">
                 <%= link_to edit_car_path(car), class: "text-blue-600 hover:underline" do %>
-                  <%= image_tag "edit.svg", class: "w-4 h-4 inline mt-1" %>
+                  <%= image_tag "edit.svg", alt: t('.edit_alt'), class: "w-4 h-4 inline mt-1" %>
                 <% end %>
                 <%= link_to car_path(car.id), class: "flex items-center justify-center" do %>
-                  <%= image_tag "show.svg", class: "w-4 h-4 inline" %>
+                  <%= image_tag "show.svg", alt: t('.show_alt'), class: "w-4 h-4 inline" %>
                 <% end %>
-                <%= button_to car_path(car), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "mt-1" do %>
-                  <%= image_tag "trash.svg", class: "w-5 h-5 inline" %>
+                <%= button_to car_path(car), method: :delete, data: { turbo_confirm: t('.confirm_delete') }, class: "mt-1" do %>
+                  <%= image_tag "trash.svg", alt: t('.delete_alt'), class: "w-5 h-5 inline" %>
                 <% end %>
               </td>
             </tr>
@@ -54,6 +54,6 @@
       </tbody>
     </table>
   <% else %>
-    <h2 class="text-red-700 font-semibold">You have no cars, please add</h2>
+    <h2 class="text-red-700 font-semibold"><%= t('.no_cars') %></h2>
   <% end %>
 </div>

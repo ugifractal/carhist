@@ -91,6 +91,20 @@ en:
       year: "Year"
       model: "Car Model"
       create: "Create Car"
+      index:
+        title: "Cars"
+        column_name: "Name"
+        number: "No"
+        brand_model: "Brand & Model"
+        maintenance: "Maintenance"
+        action: "Action"
+        maintenance_history: "Maintenance History"
+        add_alt: "Add Car"
+        confirm_delete: "Are you sure?"
+        no_cars: "You have no cars, please add"
+        edit_alt: "Edit"
+        show_alt: "Show"
+        delete_alt: "Delete"
     car_shops:
       title: "Car Shops"
     car_models:

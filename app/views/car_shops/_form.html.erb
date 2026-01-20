@@ -1,19 +1,19 @@
 <div class="mt-2">
   <%= form.label :name %><br>
-  <%= form.text_field :name, class:"border border-[#1C1424] rounded" %>
+  <%= form.text_field :name, class:"border border-[#1C1424] rounded w-full md:w-64" %>
 </div>
 
 <div class="mt-2">
   <div><%= "Category" %></div>
   <div>
     <%= form.select(:category,
-     [['Tire Shop', 'tire_shop'],['Ecu Shop', 'ecu_shop'],['Suspension', 'suspension'],['Other', 'other']], {}, class:"border border-[#1C1424] rounded") %>
+     [['Tire Shop', 'tire_shop'],['Ecu Shop', 'ecu_shop'],['Suspension', 'suspension'],['Other', 'other']], {}, class:"border border-[#1C1424] rounded w-full md:w-64") %>
   </div>
 </div>
 
 <div class="mt-2">
   <div><%= "Description" %></div>
   <div>
-    <%= form.text_area(:description, class: 'border border-[#1C1424] w-80 h-80 rounded') %>
+    <%= form.text_area(:description, class: 'border border-[#1C1424] w-full md:w-80 h-80 rounded') %>
   </div>
 </div>
