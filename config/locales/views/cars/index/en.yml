@@ -5,6 +5,16 @@ en:
       column_name: "Name"
       add_car: "Add a Car"
       maintenance_history: "Maintenance History"
+      number: "No"
+      brand_model: "Brand & Model"
+      maintenance: "Maintenance"
+      action: "Action"
+      add_alt: "Add Car"
+      confirm_delete: "Are you sure?"
+      no_cars: "You have no cars, please add"
+      edit_alt: "Edit"
+      show_alt: "Show"
+      delete_alt: "Delete"
   views:
     history_images:
       back: "back"

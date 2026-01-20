@@ -69,7 +69,7 @@ class CarsTest < ApplicationSystemTestCase
     sleep 1
 
     accept_confirm do
-      page.find(:xpath, "//tbody/tr[1]//button[@data-turbo-confirm='Are you sure?']").click
+      page.find(:xpath, "//tbody/tr[1]//button[@data-turbo-confirm='#{t('cars.index.confirm_delete')}']").click
     end
 
     assert_text "#{t('views.item.car')} #{t('views.flash.notice_deleted')}."

@@ -3,10 +3,10 @@
 <%= form_with model: @api_key, url: api_key_path, local: true do |form| %>
   <div>
     <%= form.label :name %><br>
-    <%= form.text_field :name, class: "border border-red-800 rounded" %>
+    <%= form.text_field :name, class: "border border-theme-primary rounded" %>
   </div>
 
   <div class= "mt-2">
-    <%= form.submit "Create", class: "bg-red-700 px-3 py-2 rounded text-white" %>
+    <%= form.submit "Create", class: "bg-theme-primary px-3 py-2 rounded text-white" %>
   </div>
 <% end %>
