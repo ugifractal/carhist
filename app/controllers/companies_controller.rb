@@ -12,7 +12,7 @@ class CompaniesController < ApplicationController
     if @company.update(company_params)
       respond_to do |format|
         format.turbo_stream
-        format.html { redirect_to company_path, notice: 'Company was successfully updated.' }
+        format.html { redirect_to company_path, notice: t("controller.companies.updated") }
       end
     else
       render :edit, status: :unprocessable_entity

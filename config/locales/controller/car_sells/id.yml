@@ -4,3 +4,7 @@ id:
       created: Listing berhasil dibuat
       updated: Listing berhasil diupdate
       deleted: Listing berhasil dihapus.
+    companies:
+      created: Perusahaan berhasil dibuat
+      updated: Perusahaan berhasil diupdate
+      deleted: Perusahaan berhasil dihapus
