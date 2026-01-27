@@ -1,0 +1,4 @@
+<%= turbo_frame_tag dom_id(company) do %>
+  <h1 class="text-lg font-bold"><%= company.name %></h1>
+  <%= link_to "Edit", edit_company_path, class: "text-blue-500" %>
+<% end %>
