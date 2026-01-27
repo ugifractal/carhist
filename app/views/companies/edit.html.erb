@@ -1,0 +1,8 @@
+<%= turbo_frame_tag dom_id(@company) do %>
+  <%= form_with(model: @company, url: company_path(@company), class: "flex items-center space-x-2") do |form| %>
+    <%= form.text_field :name, class: "text-2xl font-bold border rounded px-2 py-1" %>
+    <%= form.submit "Save", class: "bg-blue-500 text-white px-3 py-2 rounded" %>
+    <%# Clicking Cancel will re-render the show view for the company, and Turbo will extract the matching frame. %>
+    <%= link_to "Cancel", company_path(@company), class: "text-gray-500" %>
+  <% end %>
+<% end %>

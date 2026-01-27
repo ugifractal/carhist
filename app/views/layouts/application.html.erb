@@ -76,9 +76,7 @@
       <div class="flex">
         <nav class="lg:w-[350px] bg-[#1C1424] text-white py-6 px-4 space-y-2 min-h-screen lg:block hidden">
           <div class="bg-[#2A1C33] rounded-md mx-2 mb-4 p-3">
-            <%= link_to current_user.company.name,
-                company_path(current_user.company),
-                class: "text-lg font-bold block text-center hover:text-gray-200" %>
+            <%= render(partial: "layouts/company_name", formats: [ :html ]) %>
           </div>
 
           <%= link_to dashboards_path, class: "flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2A1C33] #{dashboard_page? ? 'bg-[#2A1C33]' : ''}" do %>

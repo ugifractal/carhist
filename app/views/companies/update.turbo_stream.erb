@@ -1,0 +1,7 @@
+<%= turbo_stream.replace dom_id(@company) do %>
+  <%= render 'companies/company', company: @company %>
+<% end %>
+
+<%= turbo_stream.update "sidebar_company" do %>
+  <%= render partial: "layouts/company_name", formats: [ :html ] %>
+<% end %>

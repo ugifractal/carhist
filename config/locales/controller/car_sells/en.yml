@@ -4,3 +4,7 @@ en:
       created: Listing has been succesfully created
       updated: Listing has been succesfully updated
       deleted: listing has been succesfully deleted.
+    companies:
+      created: Company has been succesfully created
+      updated: Company has been succesfully updated
+      deleted: Company has been succesfully deleted.
