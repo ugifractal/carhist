@@ -1,0 +1,6 @@
+<div>
+  <div>
+    <%= image_tag(@history_image.image_url(:medium), class: 'px-5 object-cover') if @history_image.image %>
+  </div>
+  <%= render(partial: "history_images/detail_fields") %>
+</div>

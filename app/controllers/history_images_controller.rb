@@ -1,5 +1,6 @@
 class HistoryImagesController < ApplicationController
   before_action :set_car_maintenance
+  before_action :prepare_markdown, only: [ :detail, :edit, :update, :share ]
 
   def index
     @history_images = @car_maintenance.history_images
@@ -18,13 +19,49 @@ class HistoryImagesController < ApplicationController
     @history_image = @car_maintenance.history_images.find(params[:id])
   end
 
+  def detail
+    @history_image = @car_maintenance.history_images.find(params[:id])
+  end
+
+  def edit
+    @history_image = @car_maintenance.history_images.find(params[:id])
+  end
+
+  def update
+    @history_image = @car_maintenance.history_images.find(params[:id])
+    if @history_image.update(history_image_params)
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+    end
+  end
+
   def destroy
     @history_image = @car_maintenance.history_images.find(params[:id])
     @history_image.destroy
     redirect_to(car_car_maintenance_history_images_path(@car, @car_maintenance), notice: "image has been deleted")
   end
 
+  def share
+    @history_image = @car_maintenance.history_images.find(params[:id])
+    @history_image.generate_shared_link!
+  end
+
+  def delete_share
+    @history_image = @car_maintenance.history_images.find(params[:id])
+    @history_image.delete_shared_link!
+  end
+
   private
+
+  def history_image_params
+    params.require(:history_image).permit(:title, :description)
+  end
+
+  def prepare_markdown
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+  end
 
   def set_car_maintenance
     @car = current_user.company.cars.find(params[:car_id])

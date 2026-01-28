@@ -1,0 +1,44 @@
+<% if params[:field] == "title" %>
+  <%= turbo_stream.replace "history-image-title-stream" do %>
+    <% form_with(model: @history_image, url: car_car_maintenance_history_image_path(@car, @car_maintenance, @history_image)) do |form| %>
+      <div class="mt-5">
+        <div class="flex space-x-2 items-center">
+          <div>
+            <%= form.label(:title, "Judul", class: "label") %>
+          </div>
+          <div>
+            <%= form.text_field(:title, class: "daisy-input") %>
+          </div>
+          <div>
+            <%= form.submit("Submit", class: "daisy-btn") %>
+          </div>
+          <div>
+            <%= link_to("Cancel", detail_car_car_maintenance_history_image_path(@car, @car_maintenance, @history_image), data: { turbo_stream: true }, class: "daisy-btn") %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% elsif params[:field] == "description" %>
+  <%= turbo_stream.replace "history-image-description-stream" do %>
+    <% form_with(model: @history_image, url: car_car_maintenance_history_image_path(@car, @car_maintenance, @history_image)) do |form| %>
+      <div class="mt-5">
+        <div>
+          <%= form.label(:description, "Deskripsi", class: "label") %>
+        </div>
+        <div>
+          <%= form.text_area(:description, class: "daisy-input w-full h-48") %>
+        </div>
+
+        <div class="flex space-x-2 items-center mt-5">
+          <div>
+            <%= form.submit("Submit", class: "daisy-btn") %>
+          </div>
+          <div>
+            <%= link_to("Cancel", detail_car_car_maintenance_history_image_path(@car, @car_maintenance, @history_image), data: { turbo_stream: true }, class: "daisy-btn") %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
