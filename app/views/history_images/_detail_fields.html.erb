@@ -1,0 +1,25 @@
+<div id="detail-fields-stream">
+  <div id="history-image-title-stream" class="mt-4 text-xl font-bold">
+    <% if @history_image.title %>
+      <%= link_to(edit_car_car_maintenance_history_image_path(@car, @car_maintenance, @history_image, field: "title"), data: { turbo_stream: true }) do %>
+        <%= @history_image.title %>
+      <% end %>
+    <% else %>
+      <%= link_to(edit_car_car_maintenance_history_image_path(@car, @car_maintenance, @history_image, field: "title"), data: { turbo_stream: true }) do %>
+        Tambah judul
+      <% end %>
+    <% end %>
+  </div>
+
+  <div id="history-image-description-stream" class="mt-4">
+    <% if @history_image.description %>
+      <%= link_to(edit_car_car_maintenance_history_image_path(@car, @car_maintenance, @history_image, field: "description"), data: { turbo_stream: true }) do %>
+        <%= sanitize(@markdown.render(@history_image.description)) %>
+      <% end %>
+    <% else %>
+      <%= link_to(edit_car_car_maintenance_history_image_path(@car, @car_maintenance, @history_image, field: "description"), data: { turbo_stream: true }) do %>
+        Tambah Deskripsi
+      <% end %>
+    <% end %>
+  </div>
+</div>

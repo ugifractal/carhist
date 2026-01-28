@@ -30,7 +30,9 @@ Rails.application.routes.draw do
       post :export_pdf, on: :collection
       post :share, on: :member
       delete :delete_share, on: :member
-      resources :history_images
+      resources :history_images do
+        get :detail, on: :member
+      end
     end
     resources :car_fuelings
     resources :device_loggers do

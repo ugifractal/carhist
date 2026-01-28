@@ -14,21 +14,21 @@
   <div class="mt-2">
     <div><%= t('views.car_maintenances.new.name') %></div>
     <div>
-      <%= form.select(:maintenance_type, CarMaintenance::MAINTENANCE_TYPES.map { |m| [ m[:label], m[:name] ] }, {}, class:"border border-red-800 rounded text-sm") %>
+      <%= form.select(:maintenance_type, CarMaintenance::MAINTENANCE_TYPES.map { |m| [ m[:label], m[:name] ] }, {}, class:"daisy-select") %>
     </div>
   </div>
 
   <div class="mt-2">
     <div><%= t('views.car_maintenances.new.title') %></div>
     <div>
-      <%= form.text_field(:title, class: "border border-red-800 rounded text-sm") %>
+      <%= form.text_field(:title, class: "daisy-input") %>
     </div>
   </div>
 
   <div>
     <div><%= t('views.car_maintenances.new.time') %></div>
     <div data-controller="datepicker" class="flex items-center">
-      <%= form.text_field(:performed_at, { readonly: true, value: @car_maintenance.performed_at&.strftime('%Y-%m-%d'), class:"border border-red-800 rounded text-sm" , data: { 'datepicker-target': 'input' } } ) %>
+      <%= form.text_field(:performed_at, { readonly: true, value: @car_maintenance.performed_at&.strftime('%Y-%m-%d'), class:"daisy-input" , data: { 'datepicker-target': 'input' } } ) %>
       <div data-datepicker-target="toggle" class="-ml-6"><%= image_tag('calendar.svg', width: 20) %></div>
     </div>
   </div>
@@ -36,7 +36,7 @@
   <div class="mt-2">
     <div><%= t('views.car_maintenances.new.description') %></div>
     <div>
-      <%= form.text_area(:description, class: "border border-red-800 w-80 h-80 rounded text-sm") %>
+      <%= form.text_area(:description, class: "daisy-textarea") %>
     </div>
   </div>
 
@@ -45,7 +45,7 @@
     <div>
       <%= form.select :car_shop_id,
               @car_shops.map { |c| [c.name, c.id] },
-              { include_blank: "- Pilih Bengkel -" }, class: "border border-red-800 rounded text-sm" %>
+              { include_blank: "- Pilih Bengkel -" }, class: "daisy-select" %>
     </div>
 
     <div class="mt-8">

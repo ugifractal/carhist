@@ -18,6 +18,27 @@ class HistoryImagesController < ApplicationController
     @history_image = @car_maintenance.history_images.find(params[:id])
   end
 
+  def detail
+    @history_image = @car_maintenance.history_images.find(params[:id])
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+  end
+
+  def edit
+    @history_image = @car_maintenance.history_images.find(params[:id])
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+  end
+
+  def update
+    @history_image = @car_maintenance.history_images.find(params[:id])
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+    if @history_image.update(history_image_params)
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+    end
+  end
+
   def destroy
     @history_image = @car_maintenance.history_images.find(params[:id])
     @history_image.destroy
@@ -25,6 +46,10 @@ class HistoryImagesController < ApplicationController
   end
 
   private
+
+  def history_image_params
+    params.require(:history_image).permit(:title, :description)
+  end
 
   def set_car_maintenance
     @car = current_user.company.cars.find(params[:car_id])
