@@ -198,6 +198,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_27_222106) do
     t.text "description"
     t.jsonb "image_data"
     t.string "title"
+    t.string "token"
     t.string "type"
     t.datetime "updated_at", null: false
   end

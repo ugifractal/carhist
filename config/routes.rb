@@ -32,6 +32,8 @@ Rails.application.routes.draw do
       delete :delete_share, on: :member
       resources :history_images do
         get :detail, on: :member
+        post :share, on: :member
+        delete :delete_share, on: :member
       end
     end
     resources :car_fuelings
@@ -99,4 +101,5 @@ Rails.application.routes.draw do
   get "/public/car_models", to: "public/car_models#index"
   get "/public/car_maintenances/:token", to: "public/car_maintenances#show", as: :shared_car_maintenance
   get "/public/marketplace/:token", to: "public/marketplace#show", as: :car_for_sale
+  get "/public/service_images/:token", to: "public/service_images#show", as: :shared_service_image
 end
