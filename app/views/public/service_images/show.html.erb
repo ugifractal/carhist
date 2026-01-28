@@ -9,7 +9,7 @@
       <%= @history_image.title %>
     </div>
     <div class="mt-2">
-      <%= sanitize(@markdown.render(@history_image.description)) %>
+      <%= sanitize(@markdown.render(@history_image.description.to_s).to_s) %>
     </div>
   </div>
 </div>
