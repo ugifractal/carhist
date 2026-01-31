@@ -1,13 +1,13 @@
-<h1 class="text-2xl">Your Car Shops</h1>
+<h1 class="text-2xl">Bengkel Mobil</h1>
 <div class="mt-4">
-  <%= link_to "Create New Car Shop", new_car_shop_path, class: 'bg-[#1C1424] px-3 py-2 rounded text-white' %>
+  <%= link_to "Tambah bengkel baru", new_car_shop_path, class: 'daisy-link daisy-link-primary' %>
 </div>
 
 <div class="mt-4 hiddenx">
   <% if @car_shops.present? %>
-    <table class="w-full border border-[#C7C7D1]">
+    <table class="daisy-table daisy-table-zebra">
       <thead>
-        <tr class="py-2 bg-red-100 text-red-[#2A1C33]">
+        <tr class="py-2 bg-theme-primary text-white">
           <th class="py-2 px-4 text-center">Name</th>
           <th class="py-2 px-4 text-center">Category</th>
           <th class="py-2 px-4 text-center">Description</th>

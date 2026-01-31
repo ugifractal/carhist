@@ -1,0 +1,29 @@
+<% if @car_sells.any? && false %>
+  <table class="daisy-table daisy-table-zebra">
+    <thead>
+      <tr>
+        <th>Mobil</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @car_sells.each do |car_sell| %>
+        <tr>
+          <td><%= link_to(car_sell.car.brand_name, edit_car_car_sells_path(car_sell.car)) %></td>
+          <td>
+            <% if car_sell.status == "for_sale" %>
+              <span class="daisy-badge daisy-badge-primary"><%= car_sell.status %></span>
+            <% else %>
+              <span class="daisy-badge daisy-badge-secondary"><%= car_sell.status %></span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="mt-8 text-gray-600">
+    Belum ada mobil yang akan dijual.<br>
+    Silahkan tambahkan listing jualan mobil dari halaman <%= link_to("list mobil", cars_path, class: "daisy-link daisy-link-primary") %>.
+  </p>
+<% end %>

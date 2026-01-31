@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     resources :orders do
       patch :cancel, on: :member
     end
+
+    resources :car_sells, only: [ :index ]
   end
 
   resources :cars do

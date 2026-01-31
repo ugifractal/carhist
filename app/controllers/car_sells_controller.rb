@@ -1,5 +1,9 @@
 class CarSellsController < ApplicationController
-  before_action :set_car
+  before_action :set_car, only: [ :new, :create, :edit, :update, :destroy ]
+
+  def index
+    @car_sells = current_company.car_sells.includes(:car).order(created_at: :desc)
+  end
 
   def new
     @car_sell = @car.car_sell || @car.build_car_sell
