@@ -15,7 +15,7 @@ class CarShopsTest < ApplicationSystemTestCase
     car_shop = car_shops(:auto200)
     visit car_shops_url
     sleep 1
-    assert_text "Your Car Shops"
+    assert_text "Bengkel Mobil"
   end
 
   test "new shop" do
