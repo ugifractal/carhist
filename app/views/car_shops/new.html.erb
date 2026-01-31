@@ -4,13 +4,13 @@
   <% end %>
 </div>
 
-<% content_for :title, "New Car Shop" %>
+<% content_for :title, "Bengkel baru" %>
 <div class="mt-5">
-  <h1 class="text-xl">New Car Shop</h1>
+  <h1 class="text-xl">Tambah bengkel baru</h1>
   <%= form_with(model: @car_shop, url: car_shops_path, local: true) do |form| %>
     <%= render "form", car_shop: @car_shop, form: form %>
     <div class="mt-2">
-      <%= form.submit 'Create', class: 'bg-theme-primary text-white px-3 py-2 rounded shadow w-full md:w-auto' %>
+      <%= form.submit 'Create', class: 'daisy-btn' %>
     </div>
   <% end %>
 </div>

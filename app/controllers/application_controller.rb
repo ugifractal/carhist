@@ -24,10 +24,12 @@ class ApplicationController < ActionController::Base
   end
 
   def set_timezone
-    if current_user&.timezone
-      @tz = current_user&.timezone
-    else
-      @tz = "Asia/Jakarta"
-    end
+    @tz = "Asia/Jakarta"
+
+    # if current_user&.timezone
+    #   @tz = current_user&.timezone
+    # else
+    #   @tz = "Asia/Jakarta"
+    # end
   end
 end
