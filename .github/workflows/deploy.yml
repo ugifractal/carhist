@@ -48,13 +48,13 @@ jobs:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
       - name: Build & Push Docker image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: true
           tags: |
-            carhist:latest
-            carhist:${{ github.sha }}
+            ghcr.io/ugifractal/carhist:latest
+            ghcr.io/ugifractal/carhist:${{ github.sha }}
           labels: |
             service=carhist
 
