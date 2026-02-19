@@ -48,7 +48,6 @@ env:
     - MIDTRANS_SERVER_KEY
     - MIDTRANS_BASE_URL
     - GEMINI_API_KEY
-    - GHCR_TOKEN
     - TAILSCALE_AUTHKEY
 
   clear:
