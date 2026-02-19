@@ -49,8 +49,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/carhist:latest
-            ghcr.io/${{ github.repository_owner }}/carhist:${{ github.sha }}
+            carhist:latest
+            carhist:${{ github.sha }}
           labels: |
             service=carhist
 
