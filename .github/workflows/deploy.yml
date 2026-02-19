@@ -91,5 +91,6 @@ jobs:
       - name: Deploy via Kamal
         run: kamal deploy --skip-push
         env:
+          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
           KAMAL_REGISTRY_USERNAME: ${{ secrets.KAMAL_REGISTRY_USERNAME }}
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}

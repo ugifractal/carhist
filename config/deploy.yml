@@ -26,7 +26,7 @@ proxy:
 registry:
   server: ghcr.io/ugifractal/carhist
   username: <%= ENV.fetch("KAMAL_REGISTRY_USERNAME") %>
-  password: <%= ENV.fetch("KAMAL_REGISTRY_PASSWORD") %>
+  password: <%= ENV.fetch("GHCR_TOKEN") %>
 
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 env:
@@ -48,6 +48,8 @@ env:
     - MIDTRANS_SERVER_KEY
     - MIDTRANS_BASE_URL
     - GEMINI_API_KEY
+    - GHCR_TOKEN
+    - TAILSCALE_AUTHKEY
 
   clear:
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
