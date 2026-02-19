@@ -40,7 +40,7 @@ jobs:
 
       - name: Test GHCR credentials
         run: |
-          docker pull ghcr.io/library/hello-world 2>/dev/null && echo "Login successful"
+          docker login ghcr.io
 
       - name: Connect Tailscale
         uses: tailscale/github-action@v2
