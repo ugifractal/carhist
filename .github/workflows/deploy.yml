@@ -36,7 +36,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+          password: ${{ secrets.GHCR_TOKEN }}
 
       - name: Connect Tailscale
         uses: tailscale/github-action@v2
