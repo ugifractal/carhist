@@ -37,7 +37,8 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
-        run: docker pull ghcr.io/library/hello-world 2>/dev/null && echo "Login successful"
+        run: |
+          docker pull ghcr.io/library/hello-world 2>/dev/null && echo "Login successful"
 
       - name: Connect Tailscale
         uses: tailscale/github-action@v2
