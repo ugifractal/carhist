@@ -37,6 +37,8 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Test GHCR credentials
         run: |
           docker pull ghcr.io/library/hello-world 2>/dev/null && echo "Login successful"
 
