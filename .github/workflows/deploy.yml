@@ -1,8 +1,14 @@
 name: Deploy Production
+
 on:
   push:
     branches:
       - main
+
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   kamal:
     runs-on: ubuntu-latest
@@ -28,8 +34,14 @@ jobs:
       - name: Login to Docker registry
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.KAMAL_REGISTRY_USERNAME }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
           password: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+
+      - name: Connect Tailscale
+        uses: tailscale/github-action@v2
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
       - name: Build & Push Docker image
         uses: docker/build-push-action@v5
@@ -37,8 +49,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.KAMAL_REGISTRY_USERNAME }}/carhist:latest
-            ${{ secrets.KAMAL_REGISTRY_USERNAME }}/carhist:${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/carhist:latest
+            ghcr.io/${{ github.repository_owner }}/carhist:${{ github.sha }}
           labels: |
             service=carhist
 
@@ -70,6 +82,7 @@ jobs:
           MIDTRANS_SERVER_KEY=${{ secrets.MIDTRANS_SERVER_KEY }}
           MIDTRANS_BASE_URL=${{ secrets.MIDTRANS_BASE_URL }}
           GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+          TAILSCALE_AUTHKEY=${{ secrets.TAILSCALE_AUTHKEY }}
           EOF
 
       - name: Debug
