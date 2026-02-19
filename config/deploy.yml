@@ -24,7 +24,7 @@ proxy:
 
 # Credentials for your image host.
 registry:
-  server: ghcr.io/ugifractal/carhist
+  server: ghcr.io
   username: <%= ENV.fetch("KAMAL_REGISTRY_USERNAME") %>
   password: <%= ENV.fetch("GHCR_TOKEN") %>
 
